@@ -85,7 +85,6 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		/* animations */
 		animateContent();
-		animateButtonsNav();
 		animateResults();
 	}
 	

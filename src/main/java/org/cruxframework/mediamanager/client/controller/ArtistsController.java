@@ -46,7 +46,6 @@ public class ArtistsController extends SearchController<ArtistDTO>
 	public void onActivate()
 	{
 		animateContent();
-		animateButtonsNav();
 		animateResults();
 		
 		/* Clean grid */

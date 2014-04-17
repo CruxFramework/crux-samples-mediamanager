@@ -24,18 +24,10 @@ public abstract class AbstractController {
 		}
 	}
 	
-	public void animateButtonsNav()
-	{
-		Widget content = View.of(this).getWidget("commandButtonsNav");
-		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeIn);
-		animation.animate(content);
-	}
-	
 	public void animateResults()
 	{
 		Widget content = View.of(this).getWidget("resultPanel");
 		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeIn);
 		animation.animate(content);
 	}
-
 }
