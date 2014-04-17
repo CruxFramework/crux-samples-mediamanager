@@ -34,7 +34,6 @@ import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer
 import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -142,10 +141,10 @@ public abstract class SearchController<T extends AbstractDTO>
 	 * @author alexandre.costa
 	 */
 	@SuppressWarnings("unchecked")
-	public class SearchCallback extends WaitCallbackAdapter<List<T>>
+	public class SearchCallback implements Callback<List<T>>
 	{
 		@Override
-		public void success(List<T> result)
+		public void onSuccess(List<T> result)
 		{
 			if (result != null && result.size() > 0)
 			{
@@ -156,14 +155,22 @@ public abstract class SearchController<T extends AbstractDTO>
 				getResultGrid().clear();
 				getResultGrid().loadData();
 				getResultGrid().refresh();
+				WaitBox.hideAllDialogs();
 			} else
 			{
 				getResultGrid().clear();
 				getResultGrid().refresh();
 				WaitBox.hideAllDialogs();
-				Window.alert("No results found.");
+				MessageBox.show("No results found.", MessageType.INFO);
 			}
 		};
+		
+		@Override
+		public void onError(Exception e)
+		{
+			WaitBox.hideAllDialogs();
+			Crux.getErrorHandler().handleError(e.getLocalizedMessage(), e);
+		}
 	}
 	
 	/******************************************
