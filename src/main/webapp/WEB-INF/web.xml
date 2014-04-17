@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+	<welcome-file-list>
+		<welcome-file>mediamanager/index.html</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>outputCharset</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.cruxframework.mediamanager.server.db.InitDBListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.cruxframework.mediamanager.server.db.PopulateDBListener</listener-class>
+	</listener>
+	
+	<listener>
+  	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+
+	<listener>
+		<listener-class>org.cruxframework.crux.core.server.InitializerListener</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>remoteServiceServlet</servlet-name>
+		<servlet-class>org.cruxframework.crux.core.server.dispatch.RemoteServiceServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>remoteServiceServlet</servlet-name>
+		<url-pattern>/mediamanager/crux.rpc</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>remoteServiceServlet</servlet-name>
+		<url-pattern>*.rpc</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>restServiceServlet</servlet-name>
+		<servlet-class>org.cruxframework.crux.core.server.rest.servlet.RestServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>restServiceServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<filter>  
+    <filter-name>inview</filter-name>  
+    <filter-class>org.cruxframework.mediamanager.server.filter.CustomOpenEntityManagerInViewFilter</filter-class>  
+	</filter>  
+	  
+	<filter-mapping>  
+    <filter-name>inview</filter-name>  
+    <url-pattern>/*</url-pattern> 
+	</filter-mapping>
+
+	<!--antReplacementBlockBegin-->
+	<!-- 
+	=========================================================================== 
+		Development time CRUX listener and filters: not required in production environment. 
+		The comments "antReplacementBlockBegin" e "antReplacementBlockEnd" are used 
+		by the ant task for removing the filters when generating the application 
+		distribution file. Don't remove those comments. 
+	=========================================================================== 
+	-->
+
+	<listener>
+		<listener-class>org.cruxframework.crux.core.server.DevModeInitializerListener
+		</listener-class>
+	</listener>
+
+	<filter>
+		<display-name>ModulesDeclarativeUIFilter</display-name>
+		<filter-name>ModulesDeclarativeUIFilter</filter-name>
+		<filter-class>org.cruxframework.crux.core.declarativeui.filter.DeclarativeUIFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ModulesDeclarativeUIFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	
+	
+
+	<servlet>
+		<servlet-name>testViewServlet</servlet-name>
+		<servlet-class>org.cruxframework.crux.module.development.ModulesViewTester</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>testViewServlet</servlet-name>
+		<url-pattern>/viewTester/*</url-pattern>
+	</servlet-mapping>
+	<!--antReplacementBlockEnd-->
+
+</web-app>

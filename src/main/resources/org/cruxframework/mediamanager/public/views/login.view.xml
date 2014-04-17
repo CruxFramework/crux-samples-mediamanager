@@ -1,0 +1,58 @@
+<v:view 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:v="http://www.cruxframework.org/view" 
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt"
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces" 
+	useController="loginController"
+	title="Login"
+	onActivate="loginController.animateLogin"> 
+	
+	<gwt:flowPanel id="outerPanel">
+		<gwt:flowPanel id="leftBlock" styleName="c-leftWrapper">
+			<gwt:label id="logo" styleName="c-logo"></gwt:label>
+			<gwt:HTMLPanel id="introductionText" styleName="c-introductionText">
+                <p>
+                The Media Manager is a web application developed with 
+                <a href="http://www.cruxframework.org/" title="Crux" target="_blank" class="defaultLink">Crux Framework</a>.
+                The idea of this application is to use Crux to build a real project (called Media Manager) that can be used as example for new developers.
+                The source code of the Media Manager is available to <a href="https://crux-framework.googlecode.com/svn/" title="Download" target="_blank" class="defaultLink">download</a>.
+                If you have any doubts regarded to Crux usage you can send a message in the <a href="https://groups.google.com/forum/#!forum/crux-framework" title="Forum" target="_blank" class="defaultLink">Forum</a>.
+                </p>
+				<p> <a href="http://www.triggolabs.com/" title="Triggo" target="_blank" class="defaultLink">Triggo Labs</a> 
+				is the maintainer of Crux Framework. Our main challenge is to offer to the community one simple, efficient and scalable framework for Web and Mobile Development.
+				</p>
+				<gwt:label id="footerName" styleName="c-footerCopyright" text="© Media Manager, all rights reserved."/>
+			</gwt:HTMLPanel>
+		</gwt:flowPanel>
+		<gwt:flowPanel id="rightBlock" styleName="c-rightWrapper">
+			<gwt:flowPanel id="formWrapper" styleName="c-formWrapper">
+				<crux:formDisplay id="form" >
+				
+					<crux:entry label="Login: ">
+						<gwt:textBox id="loginTextBox" styleName="login-textbox" />
+					</crux:entry>
+					
+					<crux:entry label="Password: ">
+						<gwt:passwordTextBox id="passwordTextBox" />
+					</crux:entry>
+					
+					<crux:entry horizontalAlignment="right">
+						<faces:button id="loginButton" text="Access my media" onSelect="loginController.login" styleName="c-loginButton" />
+					</crux:entry>
+					
+					<crux:entry>
+						<gwt:label text="or" id="orLabel" styleName="c-orLabel" />
+					</crux:entry>
+					
+					<crux:entry horizontalAlignment="right">
+						<faces:button id="signUpButton" text="Create an account" styleName="c-signUpButton" />
+					</crux:entry>
+				
+				</crux:formDisplay>
+			</gwt:flowPanel>
+		</gwt:flowPanel>
+	</gwt:flowPanel>
+	
+</v:view>

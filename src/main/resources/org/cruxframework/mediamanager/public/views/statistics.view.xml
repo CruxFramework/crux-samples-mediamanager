@@ -1,0 +1,49 @@
+<v:view 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:v="http://www.cruxframework.org/view" 
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt"
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces" 
+	onActivate="statisticsController.onActivate"
+	useController="statisticsController"> 
+	
+	<h1 class="view-title">Statistics:</h1>
+	
+	<!-- CD Stats -->
+	<gwt:flowPanel id="outerPanelCDs" styleName="stats-block">
+		<gwt:flowPanel id="totalCDsWrapper" styleName="stats-items">
+			<faces:label id="totalCDsLabel" />
+			<faces:label id="totalCDs" text="CDs Total" />
+		</gwt:flowPanel>
+		
+		<gwt:flowPanel id="borrowedCDsWrapper" styleName="stats-items">
+			<faces:label id="borrowedCDsLabel" />
+			<faces:label id="borrowedCDs" text="CDs borrowed" />
+		</gwt:flowPanel>
+		
+		<gwt:flowPanel id="forgottenCDsWrapper" styleName="stats-items">
+			<faces:label id="forgottenCDsLabel" />
+			<faces:label id="forgottenCDs" text="More than one month" />
+		</gwt:flowPanel>
+	</gwt:flowPanel>
+	
+	<!-- DVD Stats -->
+	<gwt:flowPanel id="outerPanelDVDs" styleName="stats-block cf">
+		<gwt:flowPanel id="totalDVDsWrapper" styleName="stats-items">
+			<faces:label id="totalDVDsLabel" />
+			<faces:label id="totalDVDs" text="DVDs Total" />
+		</gwt:flowPanel>
+		
+		<gwt:flowPanel id="borrowedDVDsWrapper" styleName="stats-items">
+			<faces:label id="borrowedDVDsLabel" />
+			<faces:label id="borrowedDVDs" text="DVDs borrowed"/>
+		</gwt:flowPanel>
+		
+		<gwt:flowPanel id="forgottenDVDsWrapper" styleName="stats-items">
+			<faces:label id="forgottenDVDsLabel" />
+			<faces:label id="forgottenDVDs" text="More than one month"/>
+		</gwt:flowPanel>
+	</gwt:flowPanel>
+	
+</v:view>

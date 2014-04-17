@@ -1,0 +1,47 @@
+<v:view 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:v="http://www.cruxframework.org/view" 
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt"
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces" 
+	useController="mediasController"
+	onActivate="mediasController.onActivateLendView"
+	dataObject="media"
+	title="Lend Media"> 
+	
+	<gwt:flowPanel id="outerPanel" styleName="content popup">
+		<crux:formDisplay id="form">
+			
+			<crux:entry label="Borrowed">
+				<gwt:checkBox id="borrowedCbx" bindPath="borrowed" onClick="mediasController.changeBorrowed" />
+			</crux:entry>
+			
+			
+			<crux:entry label="Name:">
+				<gwt:textBox id="nameTxt" bindPath="person" />
+			</crux:entry>
+			
+			<crux:entry label="Date:">
+				<crux:dateBox id="date" bindPath="date" />
+			</crux:entry>
+		
+			<crux:entry horizontalAlignment="center">
+				<faces:navPanel id="buttons" styleName="confirmButtons">
+					<faces:button id="saveBtn" 
+						text="Save" 
+						onSelect="mediasController.saveLend" 
+						styleName="c-btn stroke success right" />
+						
+					<faces:button id="cancelBtn" 
+						text="Cancel" 
+						onSelect="mediasController.cancelLend" 
+						styleName="c-btn stroke left" />
+						
+					
+				</faces:navPanel> 
+			</crux:entry>
+
+		</crux:formDisplay>
+	</gwt:flowPanel>
+</v:view>

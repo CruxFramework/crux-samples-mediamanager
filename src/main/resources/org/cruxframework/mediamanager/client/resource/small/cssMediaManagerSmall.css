@@ -1,0 +1,445 @@
+@external *;
+
+@url detailIcon detailIcon;
+@url iconLogo iconLogo;
+@url iconLogoText iconLogoText;
+@url svgIconArrowDown svgIconArrowDown;
+@url svgIconArrowBack svgIconArrowBack;
+@url svgIconMenu svgIconMenu;
+
+html, body
+{
+	width:100%;
+	height:100%;
+	background-color:#142038 !important;
+	color:#fff;
+}
+
+/*
+* Prevent the blue "overlay" when tapping elements with actions
+*/
+*:focus, *:active
+{
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+/**/
+
+.c-btn
+{
+	display:block;
+	padding:10px 0;
+	width:100%;
+	background:#e3e3e3;
+	color:#111d35;
+	font-size:18px;
+	border-radius:3px;
+	border:none;
+	text-align:center;
+}
+
+.c-btn.orange
+{
+	background:#c73e0d;
+	color:#fff;
+}
+
+.c-btn:disabled
+{
+	background: rgba(255, 255, 255, 0.5);
+	color: rgba(255, 255, 255, 0.3);
+}
+
+.c-introductionText
+{
+	display:none;
+}
+
+.c-formWrapper
+{
+	width:100%;
+	height:100%;
+	padding:26px 26px 0;
+	font-size:1.3em;
+}
+.c-formWrapper .crux-FormDisplay
+{
+	width:100%;
+}
+
+.c-logo
+{
+	width:100%;
+	height:142px;
+	display:inline-block;
+	margin:24px auto -8px;
+	background:iconLogo no-repeat center center;
+	background-size:auto 100%;
+}
+.c-formWrapper
+{
+	width:100%;
+}
+
+.c-formWrapper input
+{
+	background:#273553;
+	color:#fff;
+	border-radius:4px 4px 0 0;
+	font-size:0.8em;
+	height:45px;
+	padding:8px;
+	border:none;
+}
+
+.c-formWrapper input:focus
+{
+	box-shadow:none;
+	background:#5c6f96;
+	border:none;
+}
+
+.c-formWrapper button
+{
+	border:none;
+	display:block;
+	text-align:center;
+	padding:10px;
+	font-family:'Source Sans Pro', sans-serif;
+	width:100%;
+	border-radius:3px;
+	font-size:1em;
+	font-weight:lighter;
+}
+.login-textbox
+{
+	width:100%;
+	margin-bottom:5px !important;
+}
+.c-formWrapper .c-loginButton
+{
+	background:#e3e3e3;
+	color:#111d35;
+}
+
+.c-formWrapper .c-signUpButton
+{
+	background:#c73e0d;
+	color:white;
+}
+
+.c-formWrapper .formEntryLabel .gwt-Label
+{
+	display:none;
+}
+
+.c-formWrapper .gwt-PasswordTextBox
+{
+	margin-top:-4px;
+	border-radius:0 0 4px 4px;
+	margin-bottom:20px;
+	width:100%;
+}
+.c-formWrapper .gwt-TextBox
+{
+	margin-bottom:0;
+	box-shadow:none;
+}
+
+.c-formWrapper .c-orLabel
+{
+	font-family:'Clicker Script', cursive;
+	color:#6585c4;
+	font-size:1.6em;
+	margin:0px auto;
+	text-align:center;
+	position:relative;
+}
+.c-formWrapper .c-orLabel:before
+{
+	position:absolute;
+	content:'';
+	width:70px;
+	height:1px;
+	background:#273553;
+	top: 24px;
+	margin-left:-83px;
+}
+.c-formWrapper .c-orLabel:after
+{
+	position:absolute;
+	content:'';
+	width:70px;
+	height:1px;
+	background:#273553;
+	top: 24px;
+	margin-left:13px;
+}
+.hide
+{
+	opacity:0;
+}
+.crux-FormDisplay .formEntryData
+{
+	box-shadow:none !important;
+	padding:0 !important;
+}
+.header
+{
+	z-index:4;
+	width:100%;
+	height:45px;
+	background:iconLogoText no-repeat center center #273553;
+	background-size:115px auto;
+	box-shadow:0 -2px 0 rgba(0,0,0,0.2) inset;
+	text-align:center;
+	line-height:45px;
+	font-weight:lighter;
+}
+.header .header-menu-wrapper
+{
+	position:absolute;
+	background:#e3e3e3;
+	height:435px;
+	/*height:literal("calc(100% - 45px)");
+	height:literal("-webkit-calc(100% - 45px)");*/
+	overflow-y:auto;
+	-webkit-overflow-scrolling:touch;
+	z-index:3;
+	top:45px;
+	left:0;
+	width:320px;
+	-webkit-transition:all 0.45s cubic-bezier(.32,.59,0,1);
+	-moz-transition:all 0.45s cubic-bezier(.32,.59,0,1);
+	transition:all 0.45s cubic-bezier(.32,.59,0,1);
+	-moz-transform:translateX(-320px);
+	-webkit-transform:translateX(-320px);
+	transform:translateX(-320px);
+}
+.header.on .header-menu-wrapper{
+	-moz-transform:translateX(0) !important;
+	-webkit-transform:translateX(0) !important;
+	transform:translateX(0) !important;
+}
+.header-menu-button
+{
+	background:svgIconMenu no-repeat left center transparent;
+	background-size:16px auto;
+	width:40px;
+	height:45px;
+	position:absolute;
+	top:0;
+	left:0;
+	border:0;
+}
+.header-menu button
+{
+	width:100%;
+	border:none;
+	border-bottom:1px solid #cbcbcb;
+	font-size:20px;
+	font-weight:lighter;
+	padding:12px 10px;
+	color:#273553;
+	text-align:left;
+	background:transparent;
+}
+.header-logout
+{
+	background:#d1d1d1;
+	padding:10px;
+}
+.logout-label
+{
+	color:#909090;
+	font-size:13px;
+}
+.logout-username
+{
+	color:#273553;
+	font-size:20px;
+}
+.logout-btn
+{
+	display:block;
+	border-radius:4px;
+	background:#c70d0d;
+	border:none;
+	width:100%;
+	padding:15px 0;
+	text-align:center;
+	margin-top:10px;
+	font-size:18px;
+	font-weight:lighter;
+}
+.view-title
+{
+	text-align:center;
+	font-weight:lighter;
+	margin:10px 0;
+}
+.stats-block
+{
+	background:#e7e8e9;
+	padding:10px;
+	box-shadow:0 -2px 0 0 rgba(0,0,0,0.17) inset;
+	margin:5px;
+	border-radius:4px;
+	color:#142038;
+}
+.stats-items
+{
+	text-align: center;
+;
+}
+.stats-items .faces-Label:first-child
+{
+	font-weight:bold;
+	font-size:20px;
+}
+.stats-items .faces-Label:last-child
+{
+	margin-bottom:10px;
+}
+.content
+{
+	width:90%;
+	margin:20px 5%;
+}
+.content.styled
+{
+	border:1px solid #0D1527;
+	border-radius:5px;
+	margin-bottom:10px;
+}
+.content.styled .crux-FormDisplay
+{
+	width:100%;
+}
+.gwt-Label
+{
+	color:#fff;
+	text-shadow:none;
+}
+.txt-box, .sel-box
+{
+	width:93.2%;
+	-webkit-appearance:none;
+	background:rgba(255,255,255,0.8);
+	border:none;
+	border-radius:3px;
+	padding:11px 8px;
+	color:#0a111f;
+}
+.txt-box:focus
+{
+	background:#fff;
+}
+.sel-box
+{
+	background: svgIconArrowDown no-repeat right 6px center, linear-gradient(90deg, #212e49, #212e49) repeat-y right rgba(255,255,255,0.8);
+	background-size: 16px auto, 30px 10px;
+	box-shadow: -5px 0 0 #212e49 inset, -5px 0 0 #212e49 inset, -5px 0 0 #212e49 inset, -5px 0 0 #212e49 inset;
+}
+.sel-box:focus
+{
+	background: svgIconArrowDown no-repeat right 6px center, linear-gradient(90deg, #212e49, #212e49) repeat-y right rgba(255,255,255,1);
+	background-size: 16px auto, 30px 10px;
+}
+.content.styled .gwt-Label, .content.styled .txt-box, .content.styled .sel-box
+{
+	margin:10px 10px 5px;
+	width:literal("calc(100% - 20px)") !important;
+}
+.content.styled.onlyone .txt-box, .content.styled.onlyone .gwt-Label
+{
+	margin:10px 10px 0px;
+}
+.crud-btns
+{
+	text-align:right;
+	background:rgba(255,255,255,0.05);
+	padding:10px;
+	border-top:1px solid rgba(255,255,255,0.05);
+	border-radius:0 0 5px 5px;
+	margin-top:10px;
+}
+.crud-btns .c-btn
+{
+	margin-bottom:10px;
+}
+.crud-btns .c-btn:last-child
+{
+	margin-bottom:0;
+}
+.sub-menu
+{
+	background:rgba(0,0,0,0.3);
+	padding:8px;
+	text-align:center;
+	border-radius:0 0 5px 5px;
+	margin-top:0;
+	position:relative;
+	margin-bottom:10px;
+}
+.sub-menu button
+{
+	background:none;
+	border:none;
+	color:#fff;
+	font-size:14px;
+	margin-right:10px;
+}
+.crux-Grid
+{
+	border-radius: 5px;
+}
+.crux-Grid > div > table > tbody > tr:first-child > td
+{
+	padding: 8px;
+	background: rgba(255,255,255,0.2);
+	box-shadow: -1px 0 0 rgba(0,0,0,0.5);
+}
+.back-btn
+{
+	position:absolute;
+	left:0;
+	top:0;
+	height:35px;
+	background:svgIconArrowBack no-repeat center !important;
+	background-size:auto 70% !important;
+	box-shadow:0 0 0 100px rgba(255,255,255,0.1) inset, -1px 0 0 rgba(255,255,255,0.1) inset;
+	width:50px;
+	border-radius:0 0 0 5px;
+}
+.crux-Grid > div > table > tbody > tr:first-child > td:nth-child(1), .crux-Grid > div > table > tbody > tr:first-child > td:nth-child(3), .crux-Grid > div > table > tbody > tr:first-child > td:nth-child(4), .row > td:nth-child(1), .row > td:nth-child(3), .row > td:nth-child(4)
+{
+	display:none;
+}
+.row:nth-child\(even\) td
+{
+	background:rgba(0,0,0,0.3);
+}
+.row:nth-child\(n\+2\) td:nth-child\(odd\)
+{
+	box-shadow:0 0 0 100px rgba(255,255,255, 0.02) inset;
+}
+.row td .gwt-Label
+{
+	margin:10px !important;
+}
+.detail-icon
+{
+	background: detailIcon no-repeat center rgba(0,0,0,0.0);
+}
+
+.grid-detail-dialogbox
+{
+	font-size: 11px;
+	background-color: rgba(255,255,255,0.9);
+	border: 1px solid #aaa;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	padding: 1.25em;
+	border-radius: 6px;
+	z-index: 98;
+	color: #000;
+}
