@@ -22,6 +22,8 @@ import org.cruxframework.crux.core.client.css.animation.StandardAnimation;
 import org.cruxframework.crux.core.client.ioc.Inject;
 import org.cruxframework.crux.core.client.screen.Screen;
 import org.cruxframework.crux.core.client.screen.views.View;
+import org.cruxframework.crux.widgets.client.dialog.FlatMessageBox;
+import org.cruxframework.crux.widgets.client.dialog.FlatMessageBox.MessageType;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
 import org.cruxframework.mediamanager.client.service.LoginServiceAsync;
 
@@ -62,7 +64,8 @@ public class LoginController
 	@Expose
 	public void createNewAccount()
 	{
-		Window.alert("Use - user=admin - passord=admin");
+		FlatMessageBox.show("Use - user=admin - passord=admin" , MessageType.INFO);
+		//Window.alert("Use - user=admin - passord=admin");
 	}
 	
 	@Expose
