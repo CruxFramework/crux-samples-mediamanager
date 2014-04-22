@@ -62,7 +62,7 @@ public class LoginController
 	@Expose
 	public void createNewAccount()
 	{
-		
+		Window.alert("Use - user=admin - passord=admin");
 	}
 	
 	@Expose

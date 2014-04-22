@@ -47,7 +47,7 @@
 					</crux:entry>
 					
 					<crux:entry horizontalAlignment="right">
-						<faces:button id="signUpButton" text="Create an account" styleName="c-signUpButton" />
+						<faces:button id="signUpButton" text="Create an account" onSelect="loginController.createNewAccount" styleName="c-signUpButton" />
 					</crux:entry>
 				
 				</crux:formDisplay>
