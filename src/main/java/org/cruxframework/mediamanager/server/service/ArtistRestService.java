@@ -33,6 +33,7 @@ import org.cruxframework.mediamanager.server.entity.dao.GenreDAO;
 import org.cruxframework.mediamanager.server.entity.dao.MediaDAO;
 import org.cruxframework.mediamanager.server.reuse.service.AbstractRestService;
 import org.cruxframework.mediamanager.server.utils.Filter;
+import org.cruxframework.mediamanager.server.utils.Operator;
 import org.cruxframework.mediamanager.server.utils.OrderBy;
 import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 import org.cruxframework.mediamanager.shared.exception.ValidationException;
@@ -107,9 +108,11 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 	}
 	
 	@Override
-	protected OrderBy orderBy()
+	protected List<OrderBy> orderBy()
 	{
-		return new OrderBy("name");
+		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
+		orderings.add(new OrderBy("name"));
+		return orderings;
 	}
 	
 	/****************************************
@@ -121,7 +124,9 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 		List<Filter> filters = new ArrayList<Filter>(0);
 		if (name != null && name.trim().length() > 0)
 		{
-			filters.add(new Filter("name", name));
+			Filter filter = new Filter("name", name);
+			filter.setOperator(Operator.LIKE_RIGHT);
+			filters.add(filter);
 		}
 		
 		return filters;

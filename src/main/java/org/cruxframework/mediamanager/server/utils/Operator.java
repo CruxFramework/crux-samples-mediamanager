@@ -16,41 +16,25 @@
 package org.cruxframework.mediamanager.server.utils;
 
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
-public class OrderBy
+public enum Operator
 {
-	private final String field;
-	private final boolean crescente;
-	
-	public OrderBy(String field)
-	{
-		this.field = field;
-		this.crescente = true;
-	}
-	
-	public OrderBy(String field, boolean crescente)
-	{
-		this.field = field;
-		this.crescente = crescente;
-	}
-	
-	/**
-	 * @return the field
-	 */
-	public String getField()
-	{
-		return field;
-	}
-
-	/**
-	 * @return the crescente
-	 */
-	public boolean isCrescente()
-	{
-		return crescente;
-	}
-
-	
+	EQUALS,
+	NOT_EQUALS,
+	GREATER_THAN,
+	LESS_THAN,
+	GREATER_THAN_OR_EQUAL,
+	LESS_THAN_OR_EQUAL,
+	MEMBER_OF,
+	NOT_MEMBER_OF,
+	IN,
+	NOT_IN,
+	BETWEEN,
+	LIKE,
+	LIKE_FULL,
+	LIKE_LEFT,
+	LIKE_RIGHT;
 }

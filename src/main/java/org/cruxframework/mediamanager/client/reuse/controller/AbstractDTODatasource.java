@@ -57,6 +57,11 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 		}
 	}
 	
+	public void clear()
+	{
+		getMap().clear();
+	}
+	
 	public void add(T dto)
 	{
 		if (dto != null)
@@ -73,7 +78,7 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 		}
 	}
 
-	public Map<Integer, T> getMap()
+	private Map<Integer, T> getMap()
 	{
 		if (map == null)
 		{
@@ -81,10 +86,5 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 		}
 		
 		return map;
-	}
-
-	public void setMap(Map<Integer, T> map)
-	{
-		this.map = map;
 	}
 }

@@ -15,6 +15,7 @@
  */
 package org.cruxframework.mediamanager.server.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.cruxframework.crux.core.server.rest.annotation.RestService;
@@ -60,8 +61,11 @@ public class EditArtistRestService
 	@Path("get")
 	public EditArtistDTO get(@QueryParam("id") Integer id) throws RestException
 	{
-		List<Country> countries = countryDAO.search(null, new OrderBy("name"));
-		List<Genre> genres = genreDAO.search(null, new OrderBy("name"));
+		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
+		orderings.add(new OrderBy("name"));
+		
+		List<Country> countries = countryDAO.search(null, orderings);
+		List<Genre> genres = genreDAO.search(null, orderings);
 		ArtistDTO artistDTO = null;
 		
 		if (id != null)

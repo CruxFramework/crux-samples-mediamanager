@@ -174,7 +174,7 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 		return doSearch(filters, orderBy());
 	}
 	
-	protected List<D> doSearch(List<Filter> filters, OrderBy orderBy) 
+	protected List<D> doSearch(List<Filter> filters, List<OrderBy> orderBy) 
 		throws RestException
 	{
 		try
@@ -287,7 +287,7 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 	 * Get the default ordering for search operation.
 	 * @return ordering
 	 */
-	protected OrderBy orderBy()
+	protected List<OrderBy> orderBy()
 	{
 		return null;
 	}

@@ -17,17 +17,18 @@ package org.cruxframework.mediamanager.server.reuse.entity.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 import org.cruxframework.mediamanager.server.utils.Filter;
 import org.cruxframework.mediamanager.server.utils.OrderBy;
+import org.cruxframework.mediamanager.server.utils.QueryBuilder;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
@@ -37,7 +38,6 @@ import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 public abstract class AbstractDAO<DTO extends AbstractDTO, 
 	E extends AbstractEntity<DTO>>
 {
-	@PersistenceContext
 	private EntityManager entityManager;
 
 	/* Abstract BO class */
@@ -63,69 +63,57 @@ public abstract class AbstractDAO<DTO extends AbstractDTO,
 		entityManager.remove(entity);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<E> search(List<Filter> filters, OrderBy orderBy) 
+	public List<E> search(List<Filter> filters, List<OrderBy> orderings) 
 	{
-		String sql = getStringSearch(filters, orderBy);
-		Query query = entityManager.createQuery(sql);
+		return search(filters, orderings, null, null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<E> search(List<Filter> filters, List<OrderBy> orderings, 
+		Integer firstResult, Integer pageSize) 
+	{
+		QueryBuilder queryBuilder = new QueryBuilder(entityClass);
+		queryBuilder.addFilters(filters);
+		queryBuilder.addOrderings(orderings);
 		
-		if (CollectionUtils.isNotEmpty(filters))
+		String sql = queryBuilder.buildJPAQuery();
+		Map<String, Object> valuesMap = queryBuilder.getValuesMap();
+		
+		Query query = buildJPAQuery(sql, valuesMap, firstResult, pageSize);
+		List<E> resultList = query.getResultList();
+		return resultList;
+	}
+	
+	private Query buildJPAQuery(String sql, Map<String, Object> valuesMap,
+		Integer firstResult, Integer pageSize)
+	{
+		Query query = entityManager.createQuery(sql);
+		Set<String> keys = valuesMap.keySet();
+		for (String chave : keys)
 		{
-			for (Filter filter : filters)
-			{
-				query.setParameter(filter.getField(), filter.getValue());
-			}
+			query.setParameter(chave, valuesMap.get(chave));
 		}
 		
-		List<E> boResultList = query.getResultList();
-		return boResultList;
+		if (firstResult != null && pageSize != null)
+		{
+			query.setFirstResult(firstResult);
+			query.setMaxResults(pageSize);
+		}
+		return query;
 	}
 	
 	/**************************************
 	 * Utilities
 	 **************************************/
 	
-	protected String getStringSearch(List<Filter> filters, OrderBy orderBy)
-	{
-		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("from ");
-		sqlBuilder.append(entityClass.getSimpleName()); 
-		
-		if (CollectionUtils.isNotEmpty(filters))
-		{
-			sqlBuilder.append(" where ");
-			Iterator<Filter> iterator = filters.iterator();
-			while (iterator.hasNext())
-			{
-				Filter filter = iterator.next();
-				sqlBuilder.append(filter.getField());
-				sqlBuilder.append(" = :");
-				sqlBuilder.append(filter.getField());
-				
-				if (iterator.hasNext())
-				{
-					sqlBuilder.append(" and ");
-				}
-			}
-		}
-		
-		if (orderBy != null)
-		{
-			sqlBuilder.append(" order by ");
-			sqlBuilder.append(orderBy.getField());
-		}
-
-		return sqlBuilder.toString();
-	}
-	
 	@SuppressWarnings("unchecked")
 	protected void init()
 	{
-		ParameterizedType classeParametrizada = (ParameterizedType) this.getClass()
+		ParameterizedType parameterizedType = (ParameterizedType) this.getClass()
 			.getGenericSuperclass();
 
-		Type tipo[] = classeParametrizada.getActualTypeArguments();
-		entityClass = (Class<E>) tipo[1];
+		Type types[] = parameterizedType.getActualTypeArguments();
+		entityClass = (Class<E>) types[1];
 	}
 	
 	/*****************************************

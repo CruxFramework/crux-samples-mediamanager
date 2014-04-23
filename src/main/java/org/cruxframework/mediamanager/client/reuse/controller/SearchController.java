@@ -151,8 +151,9 @@ public abstract class SearchController<T extends AbstractDTO>
 				AbstractDTODatasource<T> datasource = 
 					(AbstractDTODatasource<T>) getResultGrid().getDataSource();
 				
-				datasource.addValues(result);
 				getResultGrid().clear();
+				datasource.clear();
+				datasource.addValues(result);
 				getResultGrid().loadData();
 				getResultGrid().refresh();
 				WaitBox.hideAllDialogs();

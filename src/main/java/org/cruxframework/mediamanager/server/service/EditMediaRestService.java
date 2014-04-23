@@ -15,6 +15,7 @@
  */
 package org.cruxframework.mediamanager.server.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.cruxframework.crux.core.server.rest.annotation.RestService;
@@ -63,7 +64,10 @@ public class EditMediaRestService
 			mediaDTO = media.getDTORepresentation();
 		}
 		
-		List<Artist> artists = artistDAO.search(null, new OrderBy("name"));
+		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
+		orderings.add(new OrderBy("name"));
+		
+		List<Artist> artists = artistDAO.search(null, orderings);
 		EditMediaDTO editMediaDTO = new EditMediaDTO();
 		editMediaDTO.setMedia(mediaDTO);
 		editMediaDTO.setArtists(EntityUtils.convert(artists));
