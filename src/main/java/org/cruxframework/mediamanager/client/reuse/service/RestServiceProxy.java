@@ -26,10 +26,8 @@ import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
  */
 public interface RestServiceProxy<T extends AbstractDTO> extends RestProxy
 {
-//	void search(Callback<List<T>> callback);
 	void get(Integer id, Callback<T> callback);
 	void update(Integer id, T dto, Callback<EditOperation> callback);
 	void insert(T dto, Callback<EditOperation> callback);
 	void delete(T dto, Callback<EditOperation> callback);
-//	void search(List<Filter> filters, Callback<List<T>> callback);
 }
