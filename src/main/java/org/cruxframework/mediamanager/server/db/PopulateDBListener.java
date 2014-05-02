@@ -120,7 +120,7 @@ public class PopulateDBListener implements ServletContextListener
 		entityManager.persist(new Media("Sgt. Pepper's Lonely Hearts Club Band", MediaType.CD, artist, false));
 		entityManager.persist(new Media("Help!", MediaType.CD, artist, false));
 	
-		artist = new Artist("Bob Marley", genres.get(1), countries.get(3));
+		artist = new Artist("Bob Marley", genres.get(1), countries.get(4));
 		entityManager.persist(artist);
 		entityManager.persist(new Media("Soul Revolution", MediaType.CD, artist, false));
 		
@@ -152,6 +152,8 @@ public class PopulateDBListener implements ServletContextListener
 		countries.add(new Country("England"));
 		countries.add(new Country("Mexico"));		
 		countries.add(new Country("Jamaica"));
+		countries.add(new Country("Itali"));
+		countries.add(new Country("France"));
 		
 		for (Country country : countries)
 		{
