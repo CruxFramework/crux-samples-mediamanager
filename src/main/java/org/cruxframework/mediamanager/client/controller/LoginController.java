@@ -55,7 +55,6 @@ public class LoginController
 		final TextBox loginTextBox = (TextBox) view.getWidget("loginTextBox");
 		final PasswordTextBox passwrodTextBox = 
 			(PasswordTextBox)view.getWidget("passwordTextBox");
-		
 		/* invoke login service */
 		loginServiceAsync.login(loginTextBox.getValue(), passwrodTextBox.getValue(), 
 			new LoginCallback(loginTextBox, passwrodTextBox));

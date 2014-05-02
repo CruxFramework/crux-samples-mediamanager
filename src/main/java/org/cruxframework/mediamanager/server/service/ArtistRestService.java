@@ -125,7 +125,7 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 		if (name != null && name.trim().length() > 0)
 		{
 			Filter filter = new Filter("name", name);
-			filter.setOperator(Operator.LIKE_RIGHT);
+			filter.setOperator(Operator.LIKE_FULL);
 			filters.add(filter);
 		}
 		

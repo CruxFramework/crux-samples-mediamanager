@@ -1,8 +1,12 @@
 <v:view xmlns="http://www.w3.org/1999/xhtml" xmlns:v="http://www.cruxframework.org/view"
-	xmlns:core="http://www.cruxframework.org/crux" xmlns:crux="http://www.cruxframework.org/crux/widgets"
-	xmlns:gwt="http://www.cruxframework.org/crux/gwt" xmlns:faces="http://www.cruxframework.org/crux/smart-faces"
-	onActivate="mediasController.onActivate" useController="mediasController"
-	useDataSource="mediaDTODatasource" title="Hello, Crux!">
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt" 
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces"
+	onActivate="mediasController.onActivate" 
+	useController="mediasController"
+	useDataSource="mediaDTODatasource" 
+	title="Hello, Crux!">
 
 	<!-- Search panel -->
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
