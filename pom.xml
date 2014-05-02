@@ -8,6 +8,7 @@
 	<packaging>war</packaging>
 	<description>Crux Sample</description>
 
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cruxVersion>5.2.0</cruxVersion>
