@@ -64,7 +64,6 @@ public class LoginController
 	public void createNewAccount()
 	{
 		FlatMessageBox.show("Use to login : <br> user=admin - passord=admin" , MessageType.INFO);
-		//Window.alert("Use - user=admin - passord=admin");
 	}
 	
 	@Expose
