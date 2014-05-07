@@ -26,6 +26,13 @@ import java.util.Map;
  */
 public class DateFormatUtils
 {
+	
+	private DateFormatUtils()
+	{
+		// Constructor
+	}
+	
+	
 	public static boolean isValid(String date)
 	{
 		SimpleDateFormat format = 
