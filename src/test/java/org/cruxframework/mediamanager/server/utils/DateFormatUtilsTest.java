@@ -2,9 +2,11 @@
 package org.cruxframework.mediamanager.server.utils;
 
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -30,6 +32,15 @@ public class DateFormatUtilsTest {
 	{
 		System.out.println("testIsValid - ct03");
 		String date = "01/05/1812";
-		assertFalse( DateFormatUtils.isValid(date) );
+		assertTrue( DateFormatUtils.isValid(date) );
 	}
+	
+	@Ignore
+	@Test
+	public void testIsValid_false() 
+	{
+		int a = 2;
+		assertEquals( a , 7 );
+	}
+	
 }
