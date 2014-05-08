@@ -27,10 +27,10 @@ import org.cruxframework.mediamanager.server.entity.Artist;
 import org.cruxframework.mediamanager.server.entity.Country;
 import org.cruxframework.mediamanager.server.entity.Genre;
 import org.cruxframework.mediamanager.server.entity.Media;
-import org.cruxframework.mediamanager.server.entity.dao.ArtistDAO;
-import org.cruxframework.mediamanager.server.entity.dao.CountryDAO;
-import org.cruxframework.mediamanager.server.entity.dao.GenreDAO;
-import org.cruxframework.mediamanager.server.entity.dao.MediaDAO;
+import org.cruxframework.mediamanager.server.entity.dao.ArtistDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.CountryDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.GenreDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.MediaDAOImpl;
 import org.cruxframework.mediamanager.server.reuse.service.AbstractRestService;
 import org.cruxframework.mediamanager.server.utils.Filter;
 import org.cruxframework.mediamanager.server.utils.Operator;
@@ -53,16 +53,16 @@ import org.springframework.web.context.WebApplicationContext;
 public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 {
 	@Autowired
-	private ArtistDAO artistDAO;
+	private ArtistDAOImpl artistDAOImpl;
 	
 	@Autowired
-	private CountryDAO countryDAO;
+	private CountryDAOImpl countryDAOImpl;
 	
 	@Autowired
-	private GenreDAO genreDAO;
+	private GenreDAOImpl genreDAOImpl;
 	
 	@Autowired
-	private MediaDAO mediaDAO;
+	private MediaDAOImpl mediaDAOImpl;
 	
 	@GET
 	@Path("search")
@@ -82,7 +82,7 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 	{
 		List<Filter> filters = new ArrayList<Filter>();
 		filters.add(new Filter("artist", object));
-		List<Media> medias = mediaDAO.search(filters, null);
+		List<Media> medias = mediaDAOImpl.search(filters, null);
 		if (medias.size() != 0)
 		{
 			throw new ValidationException();
@@ -96,13 +96,13 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 		
 		if (artistDTO.getCountry() != null)
 		{
-			Country country = countryDAO.find(artistDTO.getCountry().getId());
+			Country country = countryDAOImpl.find(artistDTO.getCountry().getId());
 			artist.setCountry(country);
 		}
 		
 		if (artistDTO.getGenre() != null)
 		{
-			Genre genere = genreDAO.find(artistDTO.getGenre().getId());
+			Genre genere = genreDAOImpl.find(artistDTO.getGenre().getId());
 			artist.setGenre(genere);
 		}
 	}
@@ -137,43 +137,43 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 	 ****************************************/
 
 	/**
-	 * @return the artistDAO
+	 * @return the artistDAOImpl
 	 */
 	@Override
-	public ArtistDAO getDao()
+	public ArtistDAOImpl getDao()
 	{
-		return artistDAO;
+		return artistDAOImpl;
 	}
 
 	/**
-	 * @param artistDAO the artistDAO to set
+	 * @param artistDAOImpl the artistDAOImpl to set
 	 */
-	public void setArtistDAO(ArtistDAO artistDAO)
+	public void setArtistDAO(ArtistDAOImpl artistDAOImpl)
 	{
-		this.artistDAO = artistDAO;
+		this.artistDAOImpl = artistDAOImpl;
 	}
 
 	/**
-	 * @param countryDAO the countryDAO to set
+	 * @param countryDAOImpl the countryDAOImpl to set
 	 */
-	public void setCountryDAO(CountryDAO countryDAO)
+	public void setCountryDAO(CountryDAOImpl countryDAOImpl)
 	{
-		this.countryDAO = countryDAO;
+		this.countryDAOImpl = countryDAOImpl;
 	}
 
 	/**
-	 * @param genreDAO the genreDAO to set
+	 * @param genreDAOImpl the genreDAOImpl to set
 	 */
-	public void setGenreDAO(GenreDAO genreDAO)
+	public void setGenreDAO(GenreDAOImpl genreDAOImpl)
 	{
-		this.genreDAO = genreDAO;
+		this.genreDAOImpl = genreDAOImpl;
 	}
 
 	/**
-	 * @param mediaDAO the mediaDAO to set
+	 * @param mediaDAOImpl the mediaDAOImpl to set
 	 */
-	public void setMediaDAO(MediaDAO mediaDAO)
+	public void setMediaDAO(MediaDAOImpl mediaDAOImpl)
 	{
-		this.mediaDAO = mediaDAO;
+		this.mediaDAOImpl = mediaDAOImpl;
 	}
 }

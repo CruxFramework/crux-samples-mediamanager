@@ -26,9 +26,9 @@ import org.cruxframework.crux.core.shared.rest.annotation.QueryParam;
 import org.cruxframework.mediamanager.server.entity.Artist;
 import org.cruxframework.mediamanager.server.entity.Country;
 import org.cruxframework.mediamanager.server.entity.Genre;
-import org.cruxframework.mediamanager.server.entity.dao.ArtistDAO;
-import org.cruxframework.mediamanager.server.entity.dao.CountryDAO;
-import org.cruxframework.mediamanager.server.entity.dao.GenreDAO;
+import org.cruxframework.mediamanager.server.entity.dao.ArtistDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.CountryDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.GenreDAOImpl;
 import org.cruxframework.mediamanager.server.utils.EntityUtils;
 import org.cruxframework.mediamanager.server.utils.OrderBy;
 import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
@@ -49,13 +49,13 @@ import org.springframework.web.context.WebApplicationContext;
 public class EditArtistRestService
 {
 	@Autowired
-	private CountryDAO countryDAO;
+	private CountryDAOImpl countryDAOImpl;
 	
 	@Autowired
-	private GenreDAO genreDAO;
+	private GenreDAOImpl genreDAOImpl;
 	
 	@Autowired
-	private ArtistDAO artistDAO;
+	private ArtistDAOImpl artistDAOImpl;
 	
 	@GET
 	@Path("get")
@@ -64,13 +64,13 @@ public class EditArtistRestService
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
 		orderings.add(new OrderBy("name"));
 		
-		List<Country> countries = countryDAO.search(null, orderings);
-		List<Genre> genres = genreDAO.search(null, orderings);
+		List<Country> countries = countryDAOImpl.search(null, orderings);
+		List<Genre> genres = genreDAOImpl.search(null, orderings);
 		ArtistDTO artistDTO = null;
 		
 		if (id != null)
 		{
-			Artist artist = artistDAO.find(id);
+			Artist artist = artistDAOImpl.find(id);
 			artistDTO = artist.getDTORepresentation();
 		}
 		
@@ -86,27 +86,27 @@ public class EditArtistRestService
 	 ******************************************/
 
 	/**
-	 * @param countryDAO the countryDAO to set
+	 * @param countryDAOImpl the countryDAOImpl to set
 	 */
-	public void setCountryDAO(CountryDAO countryDAO)
+	public void setCountryDAO(CountryDAOImpl countryDAOImpl)
 	{
-		this.countryDAO = countryDAO;
+		this.countryDAOImpl = countryDAOImpl;
 	}
 
 	/**
-	 * @param genreDAO the genreDAO to set
+	 * @param genreDAOImpl the genreDAOImpl to set
 	 */
-	public void setGenreDAO(GenreDAO genreDAO)
+	public void setGenreDAO(GenreDAOImpl genreDAOImpl)
 	{
-		this.genreDAO = genreDAO;
+		this.genreDAOImpl = genreDAOImpl;
 	}
 
 	/**
-	 * @param artistDAO the artistDAO to set
+	 * @param artistDAOImpl the artistDAOImpl to set
 	 */
-	public void setArtistDAO(ArtistDAO artistDAO)
+	public void setArtistDAO(ArtistDAOImpl artistDAOImpl)
 	{
-		this.artistDAO = artistDAO;
+		this.artistDAOImpl = artistDAOImpl;
 	}
 
 }

@@ -25,8 +25,8 @@ import org.cruxframework.crux.core.shared.rest.annotation.Path;
 import org.cruxframework.crux.core.shared.rest.annotation.QueryParam;
 import org.cruxframework.mediamanager.server.entity.Artist;
 import org.cruxframework.mediamanager.server.entity.Media;
-import org.cruxframework.mediamanager.server.entity.dao.ArtistDAO;
-import org.cruxframework.mediamanager.server.entity.dao.MediaDAO;
+import org.cruxframework.mediamanager.server.entity.dao.ArtistDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.MediaDAOImpl;
 import org.cruxframework.mediamanager.server.utils.EntityUtils;
 import org.cruxframework.mediamanager.server.utils.OrderBy;
 import org.cruxframework.mediamanager.shared.dto.EditMediaDTO;
@@ -47,10 +47,10 @@ import org.springframework.web.context.WebApplicationContext;
 public class EditMediaRestService
 {
 	@Autowired
-	private MediaDAO mediaDAO;
+	private MediaDAOImpl mediaDAOImpl;
 	
 	@Autowired
-	private ArtistDAO artistDAO;
+	private ArtistDAOImpl artistDAOImpl;
 	
 	@GET
 	@Path("get")
@@ -60,14 +60,14 @@ public class EditMediaRestService
 		
 		if (id != null)
 		{
-			Media media = id == null ? null : mediaDAO.find(id);
+			Media media = id == null ? null : mediaDAOImpl.find(id);
 			mediaDTO = media.getDTORepresentation();
 		}
 		
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
 		orderings.add(new OrderBy("name"));
 		
-		List<Artist> artists = artistDAO.search(null, orderings);
+		List<Artist> artists = artistDAOImpl.search(null, orderings);
 		EditMediaDTO editMediaDTO = new EditMediaDTO();
 		editMediaDTO.setMedia(mediaDTO);
 		editMediaDTO.setArtists(EntityUtils.convert(artists));
@@ -79,19 +79,19 @@ public class EditMediaRestService
 	 *****************************************/
 	
 	/**
-	 * @param mediaDAO the mediaDAO to set
+	 * @param mediaDAOImpl the mediaDAOImpl to set
 	 */
-	public void setMediaDAO(MediaDAO mediaDAO)
+	public void setMediaDAO(MediaDAOImpl mediaDAOImpl)
 	{
-		this.mediaDAO = mediaDAO;
+		this.mediaDAOImpl = mediaDAOImpl;
 	}
 
 	/**
-	 * @param artistDAO the artistDAO to set
+	 * @param artistDAOImpl the artistDAOImpl to set
 	 */
-	public void setArtistDAO(ArtistDAO artistDAO)
+	public void setArtistDAO(ArtistDAOImpl artistDAOImpl)
 	{
-		this.artistDAO = artistDAO;
+		this.artistDAOImpl = artistDAOImpl;
 	}
 
 }

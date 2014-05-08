@@ -25,7 +25,7 @@ import org.apache.commons.lang.StringUtils;
 import org.cruxframework.crux.core.server.dispatch.RequestAware;
 import org.cruxframework.mediamanager.client.service.LoginService;
 import org.cruxframework.mediamanager.server.entity.User;
-import org.cruxframework.mediamanager.server.entity.dao.UserDAO;
+import org.cruxframework.mediamanager.server.entity.dao.UserDAOImpl;
 import org.cruxframework.mediamanager.server.utils.Filter;
 
 /**
@@ -45,7 +45,7 @@ public class LoginServiceImpl implements LoginService, RequestAware
 		filters.add(new Filter("login", login));
 		filters.add(new Filter("password", password));
 		List<User> result =  SpringUtils.get().getBean(
-			UserDAO.class).search(filters, null);
+			UserDAOImpl.class).search(filters, null);
 		
 		if (CollectionUtils.size(result) != 1)
 		{
