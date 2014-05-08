@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.cruxframework.mediamanager.server.entity.dao;
+package org.cruxframework.mediamanager.server.entity.dao.impl;
 
 import org.cruxframework.mediamanager.server.entity.User;
 import org.cruxframework.mediamanager.server.reuse.entity.dao.AbstractDAO;

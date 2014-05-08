@@ -25,7 +25,7 @@ import org.apache.commons.lang.StringUtils;
 import org.cruxframework.crux.core.server.dispatch.RequestAware;
 import org.cruxframework.mediamanager.client.service.LoginService;
 import org.cruxframework.mediamanager.server.entity.User;
-import org.cruxframework.mediamanager.server.entity.dao.UserDAOImpl;
+import org.cruxframework.mediamanager.server.entity.dao.impl.UserDAOImpl;
 import org.cruxframework.mediamanager.server.utils.Filter;
 
 /**

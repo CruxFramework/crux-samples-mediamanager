@@ -13,11 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.cruxframework.mediamanager.server.entity.dao;
+package org.cruxframework.mediamanager.server.entity.dao.impl;
 
-import org.cruxframework.mediamanager.server.entity.Artist;
+import org.cruxframework.mediamanager.server.entity.Genre;
 import org.cruxframework.mediamanager.server.reuse.entity.dao.AbstractDAO;
-import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
+import org.cruxframework.mediamanager.shared.dto.GenreDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,7 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @Component
 @Scope(value =  WebApplicationContext.SCOPE_REQUEST)
-public class ArtistDAOImpl extends AbstractDAO<ArtistDTO, Artist>
+public class GenreDAOImpl extends AbstractDAO<GenreDTO, Genre>
 {
 
 }
