@@ -15,9 +15,9 @@
  */
 package org.cruxframework.mediamanager.server.entity.dao;
 
-import org.cruxframework.mediamanager.server.entity.User;
+import org.cruxframework.mediamanager.server.entity.Artist;
 import org.cruxframework.mediamanager.server.reuse.entity.dao.AbstractDAO;
-import org.cruxframework.mediamanager.shared.dto.UserDTO;
+import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,7 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @Component
 @Scope(value =  WebApplicationContext.SCOPE_REQUEST)
-public class UserDAO extends AbstractDAO<UserDTO, User>
+public class ArtistDAOImpl extends AbstractDAO<ArtistDTO, Artist>
 {
 
 }
