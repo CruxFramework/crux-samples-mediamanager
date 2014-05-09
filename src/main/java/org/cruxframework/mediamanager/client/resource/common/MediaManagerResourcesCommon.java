@@ -48,4 +48,7 @@ public interface MediaManagerResourcesCommon extends ClientBundle
 	@Source("svg-icon-calendar.svg")
 	DataResource svgIconCalendar();
 	
+	@Source("svg-icon-close.svg")
+	DataResource svgIconClose();
+	
 }

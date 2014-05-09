@@ -40,6 +40,6 @@ public interface MediaManagerResourcesSmall extends MediaManagerResourcesCommon
 	@Source("svg-icon-menu.svg")
 	DataResource svgIconMenu();
 	
-	@Source("detail-icon.png")
-	DataResource detailIcon();
+	@Source("svg-icon-detail.svg")
+	DataResource svgIconDetail();
 }

@@ -22,8 +22,9 @@ import org.cruxframework.crux.core.client.css.animation.StandardAnimation;
 import org.cruxframework.crux.core.client.ioc.Inject;
 import org.cruxframework.crux.core.client.screen.Screen;
 import org.cruxframework.crux.core.client.screen.views.View;
-import org.cruxframework.crux.widgets.client.dialog.FlatMessageBox;
-import org.cruxframework.crux.widgets.client.dialog.FlatMessageBox.MessageType;
+import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
+import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
+import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
 import org.cruxframework.mediamanager.client.service.LoginServiceAsync;
 
@@ -41,6 +42,8 @@ import com.google.gwt.user.client.ui.Widget;
 @Controller("loginController")
 public class LoginController
 {
+	private static final String DEFAULT_SIGN_UP_MESSAGE = "Login: admin / admin";
+	
 	@Inject
 	public LoginServiceAsync loginServiceAsync;
 	
@@ -63,7 +66,7 @@ public class LoginController
 	@Expose
 	public void createNewAccount()
 	{
-		FlatMessageBox.show("Use to login : <br> user=admin - passord=admin" , MessageType.INFO);
+		MessageBox.show(DEFAULT_SIGN_UP_MESSAGE, MessageType.INFO, DialogAnimation.fadeDownUp);
 	}
 	
 	@Expose

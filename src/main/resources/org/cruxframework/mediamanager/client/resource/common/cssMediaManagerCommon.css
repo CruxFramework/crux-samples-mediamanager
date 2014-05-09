@@ -124,7 +124,7 @@ html, body
 	text-shadow:none;
 }
 
-.crux-Grid
+.crux-Grid, .c-grid
 {
 	border-radius: 5px;
 }
@@ -134,6 +134,30 @@ html, body
 	padding: 8px;
 	background: rgba(255,255,255,0.2);
 	box-shadow: -1px 0 0 rgba(0,0,0,0.5);
+}
+
+.c-grid
+{
+	width:100%;
+}
+
+.c-grid td
+{
+	padding:5px;
+	font-size:22px;
+}
+
+.c-grid tr:nth-child\(odd\) td {
+box-shadow: 0 0 0 100px rgba(255, 255, 255, 0.02) inset;
+}
+
+.c-grid tr td:nth-child\(even\) {
+	box-shadow: 0 0 0 100px rgba(255, 255, 255, 0.03) inset;
+	text-align:center;
+}
+
+.c-grid tr:nth-child\(odd\) td:nth-child\(even\) {
+box-shadow: 0 0 0 100px rgba(255, 255, 255, 0.05) inset;
 }
 
 .popupContent
@@ -345,6 +369,7 @@ html, body
 	background:rgba(255,255,255,0.5);
 	font-size:13px;
 }
+
 .datePickerWeekdayLabel, .datePickerWeekendLabel
 {
 	background:rgba(255,255,255,0.9);
@@ -352,25 +377,38 @@ html, body
 	font-weight:bold;
 	text-align:center;
 }
-.datePickerDays td{
+.dat
+ePickerDays td{
 	border:1px solid #ccc;
 	border-collapse:collapse;
 	padding:4px;
 }
+
 .crux-DatePicker td[width="100%"]
 {
 	text-align:center;
 }
+
 .crux-DatePicker datePickerDayIsValue
 {
 	background:rgb(199, 62, 13);
 	border-radius:3px;
 	color:#fff;
 }
+
 .crux-DatePicker .datePickerDayIsValue
 {
 	color:rgb(199, 62, 13);
 	font-weight:bold;
+}
+
+.stats-h2
+{
+	text-align:center;
+	font-size:30px;
+	position:absolute;
+	width:800px;
+	margin-top:-38px;
 }
 
 

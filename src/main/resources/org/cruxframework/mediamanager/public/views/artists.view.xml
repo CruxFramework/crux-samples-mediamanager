@@ -50,10 +50,10 @@
 			<crux:smallColumns>
 				<crux:dataColumn key="name" label="Name" />
 				<crux:actionColumn key="actionEdit">
-					<crux:button id="deleteSmall" onSelect="artistsController.prepareForUpdate" text="Edit" styleName="c-btn orange" />
+					<crux:button id="deleteSmall" onSelect="artistsController.prepareForUpdate" text="Edit" styleName="c-btn orange device-small" />
 				</crux:actionColumn>
 				<crux:actionColumn key="actionDelete">
-					<crux:button id="editSmall" onSelect="artistsController.delete" text="Delete" styleName="c-btn orange" />
+					<crux:button id="editSmall" onSelect="artistsController.delete" text="Delete" styleName="c-btn orange device-small" />
 				</crux:actionColumn>
 			</crux:smallColumns>
 

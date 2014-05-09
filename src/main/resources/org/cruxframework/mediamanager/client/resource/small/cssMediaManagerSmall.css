@@ -6,6 +6,8 @@
 @url svgIconArrowDown svgIconArrowDown;
 @url svgIconArrowBack svgIconArrowBack;
 @url svgIconMenu svgIconMenu;
+@url svgIconDetail svgIconDetail;
+@url svgIconClose svgIconClose;
 
 html, body
 {
@@ -427,12 +429,17 @@ html, body
 {
 	margin:10px !important;
 }
-.detail-icon
+.detail-icon, .detailIcon
 {
-	background: detailIcon no-repeat center rgba(0,0,0,0.0);
+	border-radius:3px;
+	border:0;
+	background:svgIconDetail no-repeat center #c73e0d;
+	color:#fff;
+	margin:0 10px;
 }
 
-.grid-detail-dialogbox {
+.grid-detail-dialogbox
+{
 	font-size: 14px;
 	background-color: rgba(255,255,255,1.0);
 	border: 1px solid #aaa;
@@ -441,5 +448,45 @@ html, body
 	border-radius: 6px;
 	z-index: 98;
 	color: #000;
-	
+}
+
+.device-small
+{
+	margin-top:8px;
+	min-width:240px;
+}
+
+.grid-detail-dialogbox .close
+{
+	width:16px;
+	height:16px;
+	background:svgIconClose no-repeat right top;
+	background-size:16px auto;
+}
+.grid-detail-dialogbox .close .html-face
+{
+	display:none;
+}
+.grid-detail-dialogbox .line{
+	margin:5px 0 10px;
+	border-bottom:1px solid #ccc;
+}
+
+.stats-h2
+{
+	text-align:center;
+	font-size:20px;
+	position:absolute;
+	width:100%;
+	margin-top:-38px;
+	margin-left:-25px;
+}
+
+.c-grid td
+{
+	padding:10px;
+	font-size:1em;
+}
+.content.stats{
+	margin:50px 5%;
 }

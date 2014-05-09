@@ -60,13 +60,13 @@
 			<crux:smallColumns> 
 				<crux:dataColumn key="name" label="Name" />
 				<crux:actionColumn key="actionEdit">
-					<crux:button id="editSmall" onSelect="mediasController.prepareForUpdate" text="Edit" styleName="c-btn orange" />
+					<crux:button id="editSmall" onSelect="mediasController.prepareForUpdate" text="Edit" styleName="c-btn orange device-small" />
 				</crux:actionColumn>
 				<crux:actionColumn key="actionDelete">
-					<crux:button id="deleteSmall" onSelect="mediasController.delete" text="Delete" styleName="c-btn orange"/>
+					<crux:button id="deleteSmall" onSelect="mediasController.delete" text="Delete" styleName="c-btn orange device-small"/>
 				</crux:actionColumn>
 				<crux:actionColumn key="actionLend">
-					<crux:button id="lendSmall" onSelect="mediasController.lend" text="Lend" styleName="c-btn orange" />
+					<crux:button id="lendSmall" onSelect="mediasController.lend" text="Lend" styleName="c-btn orange device-small" />
 				</crux:actionColumn>
 			</crux:smallColumns>
 		</crux:adaptiveGrid>
