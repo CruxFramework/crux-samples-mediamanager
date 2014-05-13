@@ -18,11 +18,11 @@
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>classpath:log4j.properties</param-value>
 	</context-param>
-	
+	<!-- 
 	<listener>
 		<listener-class>org.cruxframework.mediamanager.server.db.InitDBListener</listener-class>
 	</listener>
-
+ -->
 	<listener>
 		<listener-class>org.cruxframework.mediamanager.server.db.PopulateDBListener</listener-class>
 	</listener>

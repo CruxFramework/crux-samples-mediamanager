@@ -18,6 +18,7 @@ package org.cruxframework.mediamanager.server.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
@@ -28,6 +29,7 @@ import org.cruxframework.mediamanager.shared.dto.UserDTO;
  * @author alexandre.costa
  */
 @Entity
+@Table(name = "APL_USER") // "User" is reserved in same databases
 @SequenceGenerator(name = "SEQ_STORE", sequenceName = "SEQ_USER")
 public class User extends AbstractEntity<UserDTO>
 {
