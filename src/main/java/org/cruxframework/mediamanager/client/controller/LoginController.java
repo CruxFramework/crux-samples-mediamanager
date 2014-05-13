@@ -95,8 +95,11 @@ public class LoginController
 		@Override
 		public void onSuccess(Boolean result)
 		{
-			((SimpleViewContainer) Screen.get("views")).showView("statistics");
-			LoginController.showMenu();
+			if (result)
+			{
+				((SimpleViewContainer) Screen.get("views")).showView("statistics");
+				LoginController.showMenu();
+			}
 		}
 		
 		@Override
