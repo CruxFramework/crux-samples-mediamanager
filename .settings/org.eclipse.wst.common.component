@@ -4,12 +4,6 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="crux-runtime-5.2.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/crux-runtime/crux-runtime">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="crux-smart-faces-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/crux-smart-faces/crux-smart-faces">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="mediamanager"/>
         <property name="java-output-path" value="/mediamanager/target/classes"/>
         <property name="component.exclusion.patterns" value="WEB-INF/web.xml,**/gwt-dev*.jar,**/gwt-codeserver*.jar,**/gwt-user*.jar,**/validation-api*.jar,**/crux-dev*.jar,**/crux-widgets*.jar,**/crux-themes*.jar,**/*.view.xml,**/*.crux.xml,**/*.template.xml,**/*.offline.xml,**/*.xdevice.xml"/>
