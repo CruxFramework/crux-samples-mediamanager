@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+   version="1.0">
+
+   <!-- in-process database setup -->
+   <persistence-unit name="persistencia" transaction-type="RESOURCE_LOCAL" >
+   	<class>org.cruxframework.mediamanager.model.jpa.entity.Artist</class>
+   	<class>org.cruxframework.mediamanager.model.jpa.entity.Country</class>
+   	<class>org.cruxframework.mediamanager.model.jpa.entity.Genre</class>
+   	<class>org.cruxframework.mediamanager.model.jpa.entity.Media</class>
+   	<class>org.cruxframework.mediamanager.model.jpa.entity.User</class>
+   </persistence-unit>
+      
+ </persistence>
