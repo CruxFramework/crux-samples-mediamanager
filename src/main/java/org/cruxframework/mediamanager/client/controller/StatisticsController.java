@@ -20,6 +20,8 @@ import org.cruxframework.crux.core.client.controller.Expose;
 import org.cruxframework.crux.core.client.ioc.Inject;
 import org.cruxframework.crux.core.client.rpc.AsyncCallbackAdapter;
 import org.cruxframework.crux.core.client.screen.views.View;
+import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
+import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.crux.smartfaces.client.label.Label;
 import org.cruxframework.mediamanager.client.reuse.controller.AbstractController;
 import org.cruxframework.mediamanager.client.service.StatisticsServiceAsync;
@@ -39,11 +41,13 @@ public class StatisticsController extends AbstractController
 	public void onActivate()
 	{
 		animateContent();
+		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		statisticsServiceAsync.getStatistics(new AsyncCallbackAdapter<StatisticsDTO>()
 		{
 			@Override
 			public void onComplete(StatisticsDTO result)
-			{
+			{	
+				WaitBox.hideAllDialogs();
 				View view = View.of(StatisticsController.this);
 				((Label)view.getWidget("totalCDsLabel")).setText(
 					result.getTotalCDs().toString());
@@ -62,6 +66,7 @@ public class StatisticsController extends AbstractController
 				
 				((Label)view.getWidget("forgottenDVDsLabel")).setText(
 					result.getForgottenDVDs().toString());
+				
 			}
 		});
 	}
