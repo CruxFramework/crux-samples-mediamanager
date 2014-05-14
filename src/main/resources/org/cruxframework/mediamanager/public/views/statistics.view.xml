@@ -21,7 +21,7 @@
 				</gwt:cell>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalCDsLabel" text="Loading..."/>
+						<faces:label id="totalCDsLabel" text="0"/>
 					</gwt:widget>
 				</gwt:cell>
 			</gwt:row>
@@ -33,7 +33,7 @@
 				</gwt:cell>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="borrowedCDsLabel" text="Loading..."/>
+						<faces:label id="borrowedCDsLabel" text="0"/>
 					</gwt:widget>
 				</gwt:cell>
 			</gwt:row>
@@ -45,7 +45,7 @@
 				</gwt:cell>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="forgottenCDsLabel" text="Loading..."/>
+						<faces:label id="forgottenCDsLabel" text="0"/>
 					</gwt:widget>
 				</gwt:cell>
 			</gwt:row>
@@ -64,7 +64,7 @@
 				</gwt:cell>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalDVDsLabel" text="Loading..."/>
+						<faces:label id="totalDVDsLabel" text="0"/>
 					</gwt:widget>
 				</gwt:cell>
 			</gwt:row>
@@ -76,7 +76,7 @@
 				</gwt:cell>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="borrowedDVDsLabel" text="Loading..."/>
+						<faces:label id="borrowedDVDsLabel" text="0"/>
 					</gwt:widget>
 				</gwt:cell>
 			</gwt:row>
@@ -88,7 +88,7 @@
 				</gwt:cell>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="forgottenDVDsLabel" text="Loading..."/>
+						<faces:label id="forgottenDVDsLabel" text="0"/>
 					</gwt:widget>
 				</gwt:cell>
 			</gwt:row>
