@@ -1,0 +1,37 @@
+<v:view 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:v="http://www.cruxframework.org/view" 
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt"
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces" 
+	onActivate="mediaController.onActivate"
+	useController="mediaController"
+	dataObject="media"
+	title="Hello, Crux!"> 
+	
+	<gwt:flowPanel id="outerPanel" styleName="content styled">
+		<crux:formDisplay id="form">
+			
+			<crux:entry label="Media's Type:">
+				<gwt:listBox id="typeListBox"  styleName="sel-box" />
+			</crux:entry>
+			
+			<crux:entry label="Media's Name:">
+				<gwt:textBox id="nameTextBox"  styleName="txt-box" bindPath="name"/>
+			</crux:entry>
+			
+			<crux:entry label="Media's Artist:">
+				<gwt:listBox id="artistListBox" styleName="sel-box" />
+			</crux:entry>
+			
+			<crux:entry horizontalAlignment="center">
+				<faces:navPanel id="buttons" styleName="crud-btns">
+					<faces:button id="insertButton" text="Add Media" onSelect="mediaController.insert" styleName="c-btn orange" />
+					<faces:button id="updateButton" text="Save Changes" onSelect="mediaController.update" styleName="c-btn orange" />
+				</faces:navPanel> 
+			</crux:entry>
+			
+		</crux:formDisplay>
+	</gwt:flowPanel>
+</v:view>

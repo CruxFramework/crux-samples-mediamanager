@@ -1,0 +1,63 @@
+<v:view 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:v="http://www.cruxframework.org/view" 
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt"
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces" 
+	useController="artistsController"
+	onActivate="artistsController.onActivate"
+	useDataSource="artistDTODatasource"
+	title="Media Manager">
+
+	<!-- Search panel -->
+	<gwt:flowPanel id="outerPanel" styleName="content styled onlyone">
+		<crux:formDisplay id="form">
+
+			<crux:entry label="Name:">
+				<gwt:textBox id="nameTextBox" bindPath="name" styleName="txt-box last" />
+			</crux:entry>
+			
+			<crux:entry horizontalAlignment="center">
+				<faces:navPanel id="buttons" styleName="crud-btns">
+					<faces:button id="pesquisarButton" text="Search"
+						onSelect="artistsController.search" styleName="c-btn orange" />
+				</faces:navPanel>
+			</crux:entry>
+			
+		</crux:formDisplay>
+	</gwt:flowPanel>
+
+	<!-- Result Panel -->
+	<gwt:flowPanel id="resultPanel" styleName="content styled">
+		<crux:adaptiveGrid id="tableGrid" width="100%"
+			height="100" stretchColumns="true" autoLoadData="false" pageSize="10"
+			dataSource="artistDTODatasource" defaultSortingColumn="name"
+			defaultSortingType="ascending">
+			<crux:largeColumns>
+				<crux:dataColumn key="name" label="Name" />
+				<crux:dataColumn key="country.name" label="Country" />
+				<crux:dataColumn key="genre.name" label="Genre" />
+				<crux:widgetColumn key="actionColumn" label="Action">
+					<gwt:flowPanel id="btnGroup" styleName="action-btns">
+						<crux:button id="edit" onSelect="artistsController.prepareForUpdate"
+							text="Edit" styleName="c-btn orange" />
+						<crux:button id="delete" onSelect="artistsController.delete"
+							text="Delete" styleName="c-btn orange" />
+					</gwt:flowPanel>
+				</crux:widgetColumn>
+			</crux:largeColumns>
+			<crux:smallColumns>
+				<crux:dataColumn key="name" label="Name" />
+				<crux:actionColumn key="actionEdit">
+					<crux:button id="deleteSmall" onSelect="artistsController.prepareForUpdate" text="Edit" styleName="c-btn orange device-small" />
+				</crux:actionColumn>
+				<crux:actionColumn key="actionDelete">
+					<crux:button id="editSmall" onSelect="artistsController.delete" text="Delete" styleName="c-btn orange device-small" />
+				</crux:actionColumn>
+			</crux:smallColumns>
+
+		</crux:adaptiveGrid>
+	</gwt:flowPanel>
+	
+</v:view>

@@ -1,0 +1,511 @@
+@external *;
+
+@url svgIconArrowDown svgIconArrowDown;
+@url svgIconSuccess svgIconSuccess;
+@url svgIconError svgIconError;
+@url svgIconInfo svgIconInfo;
+@url svgIconCalendar svgIconCalendar;
+
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:0 0}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+
+html, body
+{
+	margin:0;
+}
+
+*, *:before, *:after
+{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+
+
+*, *:focus, *:active
+{
+	outline:none;
+}
+
+/*
+* Modern clearfix (IE9+)
+*/
+.cf:before, .cf:after, .popupContent:before, .popupContent:after
+{
+	content: " ";
+	display: table;
+}
+.cf:after, .popupContent:after
+{
+	clear: both;
+}
+/* End of clearfix */
+
+.opaque
+{
+	opacity:1;
+}
+
+.visible
+{
+	display:block;
+	visibility:visible;
+}
+.left
+{
+	float:left;
+}
+.right
+{
+	float:right;
+}
+
+a
+{
+	color:#9bb9db;
+	transition:background 0.2s linear;
+	text-decoration:none;
+}
+a:hover, a:focus
+{
+	color:#c73e0d;
+}
+
+html, body
+{
+	width:100%;
+	height:100%;
+	margin:0;
+}
+
+.c-btn:hover
+{
+	background:#a5adc5;
+}
+
+.c-btn.orange:hover
+{
+	background:#9C2C00;
+}
+
+.txt-box, .sel-box, input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="date"], input[type="file"], input[type="search"], input[type="tel"], input[type="url"]
+{
+	-webkit-appearance:none;
+	background:rgba(255,255,255,0.8);
+	border:none;
+	border-radius:3px;
+	color:#0a111f;
+}
+
+.txt-box:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="file"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="url"]:focus
+{
+	background:#fff;
+}
+
+.sel-box
+{
+	background: svgIconArrowDown no-repeat right 6px center, linear-gradient(90deg, #212e49, #212e49) repeat-y right rgba(255,255,255,0.8);
+	background-size: 16px auto, 30px 10px;
+	box-shadow: -5px 0 0 #212e49 inset, -5px 0 0 #212e49 inset, -5px 0 0 #212e49 inset, -5px 0 0 #212e49 inset;
+	
+	text-indent: 1px;
+	text-overflow: ''
+}
+
+.sel-box:focus
+{
+	background: svgIconArrowDown no-repeat right 6px center, linear-gradient(90deg, #212e49, #212e49) repeat-y right rgba(255,255,255,1);
+	background-size: 16px auto, 30px 10px;
+}
+
+.gwt-Label
+{
+	color:#fff;
+	text-shadow:none;
+}
+
+.crux-Grid, .c-grid
+{
+	border-radius: 5px;
+}
+
+.crux-Grid > div > table > tbody > tr:first-child > td
+{
+	padding: 8px;
+	background: rgba(255,255,255,0.2);
+	box-shadow: -1px 0 0 rgba(0,0,0,0.5);
+}
+
+.c-grid
+{
+	width:100%;
+}
+
+.c-grid td
+{
+	padding:5px;
+	font-size:22px;
+}
+
+.c-grid tr:nth-child\(odd\) td {
+box-shadow: 0 0 0 100px rgba(255, 255, 255, 0.02) inset;
+}
+
+.c-grid tr td:nth-child\(even\) {
+	box-shadow: 0 0 0 100px rgba(255, 255, 255, 0.03) inset;
+	text-align:center;
+}
+
+.c-grid tr:nth-child\(odd\) td:nth-child\(even\) {
+box-shadow: 0 0 0 100px rgba(255, 255, 255, 0.05) inset;
+}
+
+.popupContent
+{
+	background:#cdcfd2;
+	padding:20px;
+	font-size:18px;
+	color:#2b323f;
+	text-align:center;
+	border-radius:3px;
+	box-shadow:0 0 0 1px rgba(0,0,0,0.4), 0 0 43px rgba(0,0,0,0.70);
+	min-width:280px;
+}
+
+.faces-MessageBox .faces-Button, .faces-Confirm .faces-Button, .c-btn.stroke
+{
+	border-radius: 4px;
+	border: 1px solid #777;
+	color: #444;
+	padding: 5px 20px;
+	margin: 20px auto 0;
+	background: transparent;
+	font-size:15px;
+}
+.faces-MessageBox .faces-Button:hover, .faces-Confirm .faces-Button:hover, .c-btn.stroke:hover
+{
+	background:rgba(0,0,0,0.1);
+}
+
+.faces-MessageBox .dialogCloseButton
+{
+	display:none;
+}
+
+.faces-MessageBox-success .popupContent
+{
+	background:svgIconSuccess no-repeat center 20px #cdcfd2;
+	background-size:62px auto;
+	padding-top:90px;	
+}
+
+.faces-MessageBox-success .faces-Button, .c-btn.stroke.success
+{
+	border-radius: 4px;
+	border: 1px solid #42A846;
+	color: #1C571E;
+	padding: 5px 20px;
+	margin: 20px auto 0;
+	background: transparent;
+	transition:background 0.1s linear;
+}
+
+.faces-MessageBox-success .faces-Button:hover, .c-btn.stroke.success:hover
+{
+	background: rgba(33, 165, 38, 0.2);
+}
+
+.faces-MessageBox-error .popupContent
+{
+	background:svgIconError no-repeat center 20px #cdcfd2;
+	background-size:62px auto;
+	padding-top:90px;	
+}
+
+.faces-MessageBox-error .faces-Button, .c-btn.stroke.error
+{
+	border-radius: 4px;
+	border: 1px solid #A84242;
+	color: #561313;
+	padding: 5px 20px;
+	margin: 20px auto 0;
+	background: transparent;
+}
+
+.faces-MessageBox-error .faces-Button:hover, .c-btn.stroke.error:hover
+{
+	background: rgba(165, 33, 33, 0.2);
+}
+
+/******/
+
+.faces-MessageBox-info .popupContent
+{
+	background:svgIconInfo no-repeat center 20px #cdcfd2;
+	background-size:62px auto;
+	padding-top:90px;	
+}
+
+.faces-MessageBox-info .faces-Button, .c-btn.stroke.info
+{
+	border-radius: 4px;
+	border: 1px solid #333;
+	color: #333;
+	padding: 5px 20px;
+	margin: 20px auto 0;
+	background: transparent;
+}
+
+.faces-MessageBox-info .faces-Button:hover, .c-btn.stroke.info:hover
+{
+	background: rgba(150, 150, 150, 0.2);
+}
+
+/******/
+.faces-Confirm .faces-Button
+{
+	margin-top:10px;
+}
+.faces-Confirm .faces-Button:last-child
+{
+	float:left;
+}
+.faces-Confirm .faces-Button:first-child
+{
+	float:right;
+}
+.confirmButtons
+{
+	margin-top:10px;
+	border-top:1px solid #aaa;
+}
+.dialogTopBar
+{
+	font-size:30px;
+	font-weight:lighter;
+}
+.faces-Confirm .faces-Label
+{
+	color:#444;
+	font-size:16px;
+}
+.faces-WaitBox .popupContent
+{
+	overflow:hidden;
+	min-width:102px;
+}
+.faces-WaitBox .dialogTitle
+{
+	margin:0 auto;
+    width:60px;
+    height:60px;
+    border-radius:100px;
+    background:linear-gradient(90deg, #cdcfd2, #999);
+    position:relative;
+    -webkit-animation:spin 1.4s linear infinite;
+    -moz-animation:spin 1.4s linear infinite;
+    -ms-animation:spin 1.4s linear infinite;
+    animation:spin 1.4s linear infinite;
+    text-indent:-9999px;
+}
+.faces-WaitBox .dialogTitle:before
+{
+    content:'';
+    background:#cdcfd2;
+    position:absolute;
+    right:0;
+    width:100%;
+    height:50%;
+    bottom:0;
+}
+.faces-WaitBox .dialogTitle:after
+{
+	content:'';
+    width:80%;
+    height:80%;
+    border-radius:200px;
+    background:#cdcfd2;
+    left:10%;
+    top:10%;
+    position:absolute;
+}
+.content.popup .gwt-Label
+{
+	color:#111;
+	font-size:16px;
+	margin-right:10px;
+	margin-top:-9px;
+}
+.content.popup input
+{
+	border:1px solid #a7a8aa;
+	padding:5px;
+	color:#222;
+	background:rgba(255,255,255,0.52);
+	margin-bottom:10px;
+}
+.content.popup input:focus
+{
+	background:rgba(255,255,255,0.85);
+}
+.popupContent .crux-DateBox
+{
+	background-image:svgIconCalendar !important;
+	background-repeat: no-repeat !important;
+	background-position:right 6px center !important;
+	background-color:rgba(255, 255, 255, 0.52) !important;
+	box-shadow:-30px 0 0 rgba(199,62,13,0.2) inset;
+}
+.popupContent .crux-DateBox:focus
+{
+	background-color:rgba(255, 255, 255, 0.85) !important;
+}
+.crux-DatePicker, .datePickerDays
+{
+	width:100%;
+}
+.datePickerDays
+{
+	background:rgba(255,255,255,0.5);
+	font-size:13px;
+}
+
+.datePickerWeekdayLabel, .datePickerWeekendLabel
+{
+	background:rgba(255,255,255,0.9);
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+}
+.dat
+ePickerDays td{
+	border:1px solid #ccc;
+	border-collapse:collapse;
+	padding:4px;
+}
+
+.crux-DatePicker td[width="100%"]
+{
+	text-align:center;
+}
+
+.crux-DatePicker datePickerDayIsValue
+{
+	background:rgb(199, 62, 13);
+	border-radius:3px;
+	color:#fff;
+}
+
+.crux-DatePicker .datePickerDayIsValue
+{
+	color:rgb(199, 62, 13);
+	font-weight:bold;
+}
+
+.stats-h2
+{
+	text-align:center;
+	font-size:30px;
+	position:absolute;
+	width:800px;
+	margin-top:-38px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Keyframes*/
+@-webkit-keyframes spin
+{
+    0%{
+        -webkit-transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+    }
+}
+@-moz-keyframes spin
+{
+    0%{
+        -moz-transform:rotate(0deg);
+    }
+    100%{
+        -moz-transform:rotate(360deg);
+    }
+}
+
+@-ms-keyframes spin
+{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+@keyframes spin
+{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}

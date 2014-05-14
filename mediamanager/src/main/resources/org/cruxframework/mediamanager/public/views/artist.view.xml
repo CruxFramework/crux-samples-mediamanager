@@ -1,0 +1,37 @@
+<v:view 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:v="http://www.cruxframework.org/view" 
+	xmlns:core="http://www.cruxframework.org/crux" 
+	xmlns:crux="http://www.cruxframework.org/crux/widgets"
+	xmlns:gwt="http://www.cruxframework.org/crux/gwt"
+	xmlns:faces="http://www.cruxframework.org/crux/smart-faces" 
+	useController="artistController"
+	onActivate="artistController.onActivate"
+	dataObject="artist" 
+	title="Cadastro de artistas"> 
+	
+	<gwt:flowPanel id="outerPanel" styleName="content styled">
+		<crux:formDisplay id="form">
+			
+			<crux:entry label="Artist's Name:">
+				<gwt:textBox id="nameTextBox" bindPath="name" styleName="txt-box" />
+			</crux:entry>
+			
+			<crux:entry label="Artist's Country:">
+				<gwt:listBox id="countryListBox" styleName="sel-box" />
+			</crux:entry>
+			
+			<crux:entry label="Artist's Genre:">
+				<gwt:listBox id="genereListBox" styleName="sel-box" />
+			</crux:entry>
+			
+			<crux:entry horizontalAlignment="center">
+				<faces:navPanel id="buttons" styleName="crud-btns">
+					<faces:button id="insertButton" text="Add Artist" onSelect="artistController.insert" styleName="c-btn orange" />
+					<faces:button id="updateButton" text="Save Changes" onSelect="artistController.update" styleName="c-btn orange" />
+				</faces:navPanel> 
+			</crux:entry>
+			
+		</crux:formDisplay>
+	</gwt:flowPanel>
+</v:view>
