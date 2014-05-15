@@ -73,7 +73,7 @@ public class ArtistController extends EditController<ArtistDTO>
 			ArtistDTO artist = result.getArtist();
 			Integer identificator = artist == null ? null : artist.getId();
 			
-			/* Adjust artistsViewviewAcessor state */
+			/* Adjust artistsViewAcessor state */
 			if (identificator != null)
 			{
 				editState(view);
@@ -97,8 +97,8 @@ public class ArtistController extends EditController<ArtistDTO>
 	 ********************************************/
 	
 	/**
-	 * Adjust artistsViewviewAcessor for update mode.
-	 * @param artistsViewviewAcessor artistsViewviewAcessor to be adjusted
+	 * Adjust artistsViewAcessor for update mode.
+	 * @param artistsViewAcessor artistsViewAcessor to be adjusted
 	 */
 	@Override
 	protected void editState(View view)
@@ -110,8 +110,8 @@ public class ArtistController extends EditController<ArtistDTO>
 	}
 	
 	/**
-	 * Adjust artistsViewviewAcessor for insert mode
-	 * @param artistsViewviewAcessor artistsViewviewAcessor to be adjusted
+	 * Adjust artistsViewAcessor for insert mode
+	 * @param artistsViewAcessor artistsViewAcessor to be adjusted
 	 */
 	@Override
 	protected void insertState(View view)

@@ -37,7 +37,7 @@ import com.google.gwt.user.client.ui.TextBox;
 public class ArtistsController extends SearchController<ArtistDTO>
 {
 	@Inject
-	public ArtistsView artistsViewviewAcessor;
+	public ArtistsView artistsViewAcessor;
 	
 	@Inject
 	public ArtistServiceProxy artistServiceProxy;
@@ -57,7 +57,7 @@ public class ArtistsController extends SearchController<ArtistDTO>
 	public void search()
 	{
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
-		String name = artistsViewviewAcessor.nameTextBox().getText();
+		String name = artistsViewAcessor.nameTextBox().getText();
 		artistServiceProxy.search(name, new SearchCallback()); 
 	}
 	
@@ -92,7 +92,7 @@ public class ArtistsController extends SearchController<ArtistDTO>
 	@Override
 	protected DeviceAdaptiveGrid getResultGrid()
 	{
-		return artistsViewviewAcessor.tableGrid();
+		return artistsViewAcessor.tableGrid();
 	}
 
 	@Override

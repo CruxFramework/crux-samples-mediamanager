@@ -158,7 +158,7 @@ public class MediaController extends EditController<MediaDTO>
 			MediaDTO media = result.getMedia();
 			Integer identificator = media == null ? null : media.getId();
 			
-			/* Adjust artistsViewviewAcessor state */
+			/* Adjust artistsViewAcessor state */
 			if (identificator != null)
 			{
 				editState(view);
