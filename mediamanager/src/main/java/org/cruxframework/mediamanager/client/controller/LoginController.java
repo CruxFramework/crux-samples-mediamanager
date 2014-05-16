@@ -24,6 +24,7 @@ import org.cruxframework.crux.core.client.screen.Screen;
 import org.cruxframework.crux.core.client.screen.views.View;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
+import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
 import org.cruxframework.mediamanager.core.client.service.LoginServiceAsync;
@@ -43,6 +44,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class LoginController
 {
 	private static final String DEFAULT_SIGN_UP_MESSAGE = "Login: admin / admin";
+	private static final String DEFAULT_ERROR_SIGN_UP = "Username and password invalid!";
 	
 	@Inject
 	public LoginServiceAsync loginServiceAsync;
@@ -58,6 +60,7 @@ public class LoginController
 		final TextBox loginTextBox = (TextBox) view.getWidget("loginTextBox");
 		final PasswordTextBox passwrodTextBox = 
 			(PasswordTextBox)view.getWidget("passwordTextBox");
+		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		/* invoke login service */
 		loginServiceAsync.login(loginTextBox.getValue(), passwrodTextBox.getValue(), 
 			new LoginCallback(loginTextBox, passwrodTextBox));
@@ -99,6 +102,10 @@ public class LoginController
 			{
 				((SimpleViewContainer) Screen.get("views")).showView("statistics");
 				LoginController.showMenu();
+			}else{
+				WaitBox.hideAllDialogs();
+				MessageBox.show(null, DEFAULT_ERROR_SIGN_UP, MessageType.ERROR, true,
+						false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 			}
 		}
 		

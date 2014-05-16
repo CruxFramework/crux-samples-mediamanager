@@ -10,6 +10,7 @@
 	useDataSource="artistDTODatasource"
 	title="Media Manager">
 
+	<h1 class="view-title">Search artist</h1>
 	<!-- Search panel -->
 	<gwt:flowPanel id="outerPanel" styleName="content styled onlyone">
 		<crux:formDisplay id="form">

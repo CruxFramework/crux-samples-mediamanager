@@ -10,6 +10,7 @@
 	dataObject="media"
 	title="Hello, Crux!"> 
 	
+	<h1 class="view-title">Add media</h1>
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
 		<crux:formDisplay id="form">
 			

@@ -7,6 +7,7 @@
 	<inherits name='org.cruxframework.crux.smartfaces.CruxSmartFaces' />
 	<inherits name="com.google.gwt.resources.Resources" />
 	<inherits name="org.cruxframework.mediamanager.core.MediaManagerCore" />
+	<inherits name="org.cruxframework.mediamanager.offline.MediaManagerOffline" />
 
 	<source path='client' />
 	<source path='shared' />

@@ -49,8 +49,8 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		
 		if (!validate(dto))
 		{
-			MessageBox.show(DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, 
-				DialogAnimation.fadeDownUp);
+			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
+					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		} else
 		{
 			getRestServiceProxy().insert(dto, new InsertCallback(view));
@@ -69,8 +69,8 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		
 		if (!validate(dto))
 		{
-			MessageBox.show(DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, 
-				DialogAnimation.fadeDownUp);
+			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
+					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		} else
 		{
 			getRestServiceProxy().update(dto.getId(), dto, new UpdateCallback());
@@ -187,8 +187,8 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 			T dto = view.getData();
 			dto.setId(id);
 			editState(view);
-			MessageBox.show(DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, 
-				DialogAnimation.fadeDownUp);
+			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		}
 	}
 	
@@ -197,8 +197,8 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		@Override
 		public void onComplete(EditOperation result)
 		{
-			MessageBox.show(DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, 
-				DialogAnimation.fadeDownUp);
+			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		}
 	}
 	
