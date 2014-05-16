@@ -37,6 +37,7 @@ import org.cruxframework.mediamanager.shared.dto.GenreDTO;
 
 import com.google.gwt.user.client.ui.ListBox;
 
+
 /**
  * Class description: 
  * @author alexandre.costa

@@ -36,6 +36,7 @@ import com.google.gwt.user.client.ui.TextBox;
 @Controller("artistsController")
 public class ArtistsController extends SearchController<ArtistDTO>
 {
+	
 	@Inject
 	public ArtistsView artistsViewviewAcessor;
 	

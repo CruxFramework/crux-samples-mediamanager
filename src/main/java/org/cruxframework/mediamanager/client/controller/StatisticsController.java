@@ -68,6 +68,13 @@ public class StatisticsController extends AbstractController
 					result.getForgottenDVDs().toString());
 				
 			}
+			
+			@Override
+			public void onError(Throwable e) 
+			{
+				WaitBox.hideAllDialogs();
+				super.onError(e);
+			}
 		});
 	}
 }
