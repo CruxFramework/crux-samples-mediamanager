@@ -429,11 +429,14 @@ html, body
 {
 	margin:10px !important;
 }
-.detail-icon, .detailIcon
+.detail-image, .detailImage, button.detailImage
 {
+	width:22px;
+	height:22px;
 	border-radius:3px;
 	border:0;
-	background:svgIconDetail no-repeat center #c73e0d;
+	background:svgIconDetail no-repeat center center #c73e0d;
+	background-size:16px auto;
 	color:#fff;
 	margin:0 10px;
 }
