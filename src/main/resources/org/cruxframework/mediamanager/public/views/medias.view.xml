@@ -8,6 +8,7 @@
 	useDataSource="mediaDTODatasource" 
 	title="Hello, Crux!">
 
+	<h1 class="view-title">Search media</h1>	
 	<!-- Search panel -->
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
 		<crux:formDisplay id="form">

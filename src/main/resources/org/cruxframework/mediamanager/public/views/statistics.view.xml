@@ -8,7 +8,7 @@
 	onActivate="statisticsController.onActivate"
 	useController="statisticsController"> 
 	
-	<h1 class="view-title">Statistics:</h1>
+	<h1 class="view-title">Statistics</h1>
 	<faces:sectionPanel id="CDsWrapper" styleName="content styled stats">
 		<faces:label id="CDsTitle" text="CDs" styleName="stats-h2"/>
 		<!-- CD Stats -->

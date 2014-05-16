@@ -10,6 +10,7 @@
 	dataObject="artist" 
 	title="Cadastro de artistas"> 
 	
+	<h1 class="view-title">Add artist</h1>
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
 		<crux:formDisplay id="form">
 			
