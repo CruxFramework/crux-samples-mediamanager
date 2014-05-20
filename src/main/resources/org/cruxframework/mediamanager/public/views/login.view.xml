@@ -13,16 +13,21 @@
 		<gwt:flowPanel id="leftBlock" styleName="c-leftWrapper">
 			<gwt:label id="logo" styleName="c-logo"></gwt:label>
 			<gwt:HTMLPanel id="introductionText" styleName="c-introductionText">
-                <p>
-                The Media Manager is a web application developed with 
+                <p> The Media Manager is a web application developed with 
                 <a href="http://www.cruxframework.org/" title="Crux" target="_blank" class="defaultLink">Crux Framework</a>.
-                The idea of this application is to use Crux to build a real project (called Media Manager) that can be used as example for new developers.
-                The source code of the Media Manager is available to <a href="https://crux-framework.googlecode.com/svn/" title="Download" target="_blank" class="defaultLink">download</a>.
-                If you have any doubts regarded to Crux usage you can send a message in the <a href="https://groups.google.com/forum/#!forum/crux-framework" title="Forum" target="_blank" class="defaultLink">Forum</a>.
+                The idea of this application is to use Crux to build a real project that can be used as example for new developers.
                 </p>
-				<p> <a href="http://www.triggolabs.com/" title="Triggo" target="_blank" class="defaultLink">Triggo Labs</a> 
-				is the maintainer of Crux Framework. Our main challenge is to offer to the community one simple, efficient and scalable framework for Web and Mobile Development.
-				</p>
+                <!-- 
+                <a href="http://www.cruxframework.org/" target="_blank"> <img
+                    src="logo-crux.svg" alt="Crux Framework"
+                    style="margin-right: 10px; width:50px;" />
+                </a> 
+                 -->           
+                <p> Visit the site and know more about the 
+                <a href="http://mediamanager.cruxframework.org/" title="Media Manager" target="_blank" class="defaultLink">Media Manager </a>.
+                </p>                
+				<p>Developed by <a href="http://www.triggolabs.com/" title="Triggo" target="_blank" class="defaultLink">Triggo Labs</a>, 
+				the maintainer of Crux Framework. </p>
 				<gwt:label id="footerName" styleName="c-footerCopyright" text="© Media Manager, all rights reserved."/>
 			</gwt:HTMLPanel>
 		</gwt:flowPanel>
