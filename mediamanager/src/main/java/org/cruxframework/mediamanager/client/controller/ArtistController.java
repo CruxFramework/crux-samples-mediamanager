@@ -25,16 +25,17 @@ import org.cruxframework.crux.core.client.screen.views.View;
 import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.button.Button;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
-import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
+import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
+import org.cruxframework.mediamanager.client.proxy.EditArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.EditController;
-import org.cruxframework.mediamanager.client.reuse.controller.WaitCallbackAdapter;
 import org.cruxframework.mediamanager.client.service.ArtistServiceProxy;
-import org.cruxframework.mediamanager.client.service.EditArtistServiceProxy;
+import org.cruxframework.mediamanager.core.client.controller.ArtistControllerInterface;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.core.client.dto.EditArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.GenreDTO;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
@@ -42,54 +43,60 @@ import com.google.gwt.user.client.ui.ListBox;
  * @author alexandre.costa
  */
 @Controller("artistController")
-public class ArtistController extends EditController<ArtistDTO>
+public class ArtistController extends EditController<ArtistDTO> implements ArtistControllerInterface
 {
+	
 	@Inject
 	public ArtistServiceProxy restServiceProxy;
 	
-	@Inject
-	public EditArtistServiceProxy editArtistServiceProxy;
+	public ArtistProxy<ArtistDTO> artistService = GWT.create(ArtistProxy.class);
+	
+	
+//	@Inject
+//	public EditArtistServiceProxy editArtistServiceProxy;
+	
+//	@Inject
+//	public DbMediamanager database;
+	
+	public EditArtistProxy editArtist = GWT.create(EditArtistProxy.class);
 
 	@Expose
 	public void onActivate(ViewActivateEvent event)
 	{
 		animateContent();
-		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
+		//WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		ArtistDTO artist = event.getParameterObject();
 		Integer identificator = artist == null ? null : artist.getId();
-		editArtistServiceProxy.get(identificator, new EditAristCallback());	
+		//editArtistServiceProxy.get(identificator, new EditAristCallback());
+		editArtist.editArtist(this, identificator);	
 	}
 	
 	/********************************************
 	 * Callback classes
 	 ********************************************/
-	
-	private class EditAristCallback extends WaitCallbackAdapter<EditArtistDTO>
+	@Override
+	public void editableState(EditArtistDTO result)
 	{
-		@Override
-		protected void success(EditArtistDTO result)
+		BindableView<ArtistDTO> view = View.of(ArtistController.this);
+		ArtistDTO artist = result.getArtist();
+		Integer identificator = artist == null ? null : artist.getId();
+		WaitBox.hideAllDialogs();
+		/* Adjust artistsViewAcessor state */
+		if (identificator != null)
 		{
-			BindableView<ArtistDTO> view = View.of(ArtistController.this);
-			ArtistDTO artist = result.getArtist();
-			Integer identificator = artist == null ? null : artist.getId();
-			
-			/* Adjust artistsViewAcessor state */
-			if (identificator != null)
-			{
-				editState(view);
-				view.setData(result.getArtist());
-			} else
-			{
-				insertState(view);
-				view.setData(getNewInstance());
-			}
-			
-			fillGenereListBox((ListBox) view.getWidget("genereListBox"), 
-				result.getGenres(), artist);
-			
-			fillCountryListBox((ListBox) view.getWidget("countryListBox"), 
-				result.getCountries(), artist);
+			editState(view);
+			view.setData(result.getArtist());
+		} else
+		{
+			insertState(view);
+			view.setData(getNewInstance());
 		}
+		
+		fillGenereListBox((ListBox) view.getWidget("genereListBox"), 
+			result.getGenres(), artist);
+		
+		fillCountryListBox((ListBox) view.getWidget("countryListBox"), 
+			result.getCountries(), artist);
 	}
 	
 	/********************************************
@@ -218,6 +225,12 @@ public class ArtistController extends EditController<ArtistDTO>
 	public ArtistServiceProxy getRestServiceProxy()
 	{
 		return restServiceProxy;
+	}
+	
+	@Override
+	public ArtistProxy<ArtistDTO> getArtistProxy()
+	{
+		return artistService;
 	}
 
 	@Override

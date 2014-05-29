@@ -13,21 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.cruxframework.mediamanager.client.service;
-
-import java.util.List;
+package org.cruxframework.mediamanager.client.service.database;
 
 import org.cruxframework.crux.core.client.rest.Callback;
-import org.cruxframework.crux.core.client.rest.RestProxy.TargetRestService;
-import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
-import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
+import org.cruxframework.mediamanager.core.client.dto.EditArtistDTO;
 
 /**
  * Class description: 
  * @author alexandre.costa
  */
-@TargetRestService("artistService")
-public interface ArtistServiceProxy extends RestServiceProxy<ArtistDTO>
+public class EditArtistServiceProxy
 {
-	void search(String name, Callback<List<ArtistDTO>> callback);
+	public void get(Integer id, Callback<EditArtistDTO> callback){
+		
+	}
 }

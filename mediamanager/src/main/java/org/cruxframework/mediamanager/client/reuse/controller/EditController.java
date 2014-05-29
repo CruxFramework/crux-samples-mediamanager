@@ -22,7 +22,10 @@ import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
+import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
+import org.cruxframework.mediamanager.core.client.controller.EditControllerInterface;
+import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
 
@@ -30,7 +33,8 @@ import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
  * Class description:
  * @author alexandre.costa
  */
-public abstract class EditController<T extends AbstractDTO> extends AbstractController
+public abstract class EditController<T extends AbstractDTO> extends AbstractController 
+implements EditControllerInterface
 {
 	private static final String DEFAULT_TITLE = "Cancel?";
 	private static final String DEFAULT_MESSAGE = "Deseja cencelar a edição desse registro?";
@@ -53,7 +57,8 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		} else
 		{
-			getRestServiceProxy().insert(dto, new InsertCallback(view));
+			//getRestServiceProxy().insert(dto, new InsertCallback(view));
+			getArtistProxy().insert(this, dto);
 		}
 	}
 	
@@ -114,6 +119,20 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		}
 	}
 	
+	@Override
+	public void completeInsert(EditOperation result)
+	{
+		BindableView<ArtistDTO> view = View.of(this);
+		Integer id = result.getId();
+		ArtistDTO dto = view.getData();
+		dto.setId(id);
+		editState(view);
+		MessageBox.show(null, "Successfully saved!", MessageType.SUCCESS, true,
+				false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+	}
+	
+	
+	
 	/******************************************
 	 * Abstract or empty methods
 	 ******************************************/
@@ -129,6 +148,8 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	 * @return current proxy
 	 */
 	protected abstract RestServiceProxy<T> getRestServiceProxy();
+	
+	protected abstract ArtistProxy<T> getArtistProxy();
 
 
 	/**
@@ -171,26 +192,26 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		}
 	}
 	
-	private class InsertCallback extends CallbackAdapter<EditOperation>
-	{
-		private final BindableView<T> view;
-		
-		public InsertCallback(BindableView<T> view)
-		{
-			this.view = view;
-		}
-		
-		@Override
-		public void onComplete(EditOperation result)
-		{
-			Integer id = result.getId();
-			T dto = view.getData();
-			dto.setId(id);
-			editState(view);
-			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
-					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-		}
-	}
+//	private class InsertCallback extends CallbackAdapter<EditOperation>
+//	{
+//		private final BindableView<T> view;
+//		
+//		public InsertCallback(BindableView<T> view)
+//		{
+//			this.view = view;
+//		}
+//		
+//		@Override
+//		public void onComplete(EditOperation result)
+//		{
+//			Integer id = result.getId();
+//			T dto = view.getData();
+//			dto.setId(id);
+//			editState(view);
+//			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+//					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+//		}
+//	}
 	
 	private class UpdateCallback extends CallbackAdapter<EditOperation>
 	{

@@ -27,7 +27,7 @@
 			<artifactId>mediamanager-model-spring</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+	
 		<!-- C2P0 dependencies -->
 		<dependency>
 			<groupId>c3p0</groupId>
@@ -56,13 +56,11 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<!--  
 		<dependency>
 			<groupId>org.cruxframework</groupId>
 			<artifactId>mediamanager-offline</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		-->
 	</dependencies>
 
 	<build>

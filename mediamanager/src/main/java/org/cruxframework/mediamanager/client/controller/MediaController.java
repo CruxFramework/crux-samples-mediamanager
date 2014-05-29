@@ -26,6 +26,7 @@ import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.button.Button;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
+import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.EditController;
 import org.cruxframework.mediamanager.client.reuse.controller.WaitCallbackAdapter;
 import org.cruxframework.mediamanager.client.service.EditMediaServiceProxy;
@@ -222,5 +223,12 @@ public class MediaController extends EditController<MediaDTO>
 	protected MediaDTO getNewInstance()
 	{
 		return new MediaDTO();
+	}
+
+	@Override
+	protected ArtistProxy<MediaDTO> getArtistProxy()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
