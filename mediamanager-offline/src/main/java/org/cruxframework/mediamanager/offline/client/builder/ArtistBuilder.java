@@ -1,6 +1,7 @@
 package org.cruxframework.mediamanager.offline.client.builder;
 
 import org.cruxframework.crux.core.client.db.DatabaseCallback;
+import org.cruxframework.crux.core.client.db.DatabaseRetrieveCallback;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.offline.client.dao.impl.ArtistDao;
@@ -16,7 +17,7 @@ public class ArtistBuilder
 {
 	private Artist artist;
 	private boolean doneSave = false;
-
+	private Integer id;
 
 	public DbMediamanager database = GWT.create(DbMediamanager.class);
 	
@@ -31,10 +32,7 @@ public class ArtistBuilder
 		Genre genre = new Genre();
 		genre.setId(dto.getGenre().getId());
 		artist.setGenre(genre);
-		open();
-	}
-	
-	private void open(){
+		//Open database
 		this.database.open(new DatabaseCallback()
 		{
 			@Override
@@ -45,7 +43,7 @@ public class ArtistBuilder
 					@Override
 					public void onSuccess()
 					{
-						setDoneSave(true);
+						searchId();
 					}
 				});
 			}
@@ -56,6 +54,25 @@ public class ArtistBuilder
 			}
 		});
 	}
+	
+	public ArtistBuilder(Integer id, ArtistDTO artist)
+	{
+		
+	}
+	
+	private void searchId(){
+		ArtistDao.getInstance().search(artist.getName(), artist.STORE_NAME, database, new DatabaseRetrieveCallback<Artist>()
+		{
+			
+			@Override
+			public void onSuccess(Artist result)
+			{
+				setId(result.getId());
+				setDoneSave(true);
+			}
+		});
+	}
+
 	
 	
 	
@@ -77,5 +94,21 @@ public class ArtistBuilder
 	public void setDoneSave(boolean doneSave)
 	{
 		this.doneSave = doneSave;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId()
+	{
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id)
+	{
+		this.id = id;
 	}
 }
