@@ -17,7 +17,7 @@ public class Artist<T extends ArtistDTO> implements ArtistProxy<ArtistDTO>
 {
 
 	@Override
-	public void insert(EditControllerInterface controller, ArtistDTO dto)
+	public void insert(final EditControllerInterface controller, ArtistDTO dto)
 	{
 		final ArtistBuilder artist = new ArtistBuilder(dto);
 		Scheduler.get().scheduleFixedDelay(new RepeatingCommand()
@@ -27,14 +27,23 @@ public class Artist<T extends ArtistDTO> implements ArtistProxy<ArtistDTO>
 			public boolean execute()
 			{
 				if (artist.isDoneSave()){
+					
 					EditOperation edit = new EditOperation();
-					edit.setId(id);
-					return edit;
-					return true;
+					edit.setId(artist.getId());
+					controller.completeInsert(edit);
+					return false;
 				}
-				return false;
+				return true;
 			}
 		}, 1000);
+	}
+	
+	
+	@Override
+	public void update(EditControllerInterface controller, Integer id,
+			ArtistDTO dto)
+	{
+		
 		
 	}
 	
