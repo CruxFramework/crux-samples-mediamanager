@@ -1,5 +1,8 @@
 package org.cruxframework.mediamanager.client.rebind.jpa;
 
+import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
+import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
+import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.CallbackAdapter;
 import org.cruxframework.mediamanager.client.service.ArtistServiceProxy;
@@ -42,4 +45,24 @@ public class Artist<T extends ArtistDTO> implements ArtistProxy<ArtistDTO>
 			controller.completeInsert(result);
 		}
 	}
+	
+	
+	@Override
+	public void update(EditControllerInterface controller, Integer id,
+			ArtistDTO dto)
+	{
+		restServiceProxy.update(id, dto, new UpdateCallback());
+	}
+	
+	private class UpdateCallback extends CallbackAdapter<EditOperation>
+	{
+		@Override
+		public void onComplete(EditOperation result)
+		{
+			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+		}
+	}
+	
+	
 }

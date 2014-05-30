@@ -27,7 +27,6 @@ public class Artist<T extends ArtistDTO> implements ArtistProxy<ArtistDTO>
 			public boolean execute()
 			{
 				if (artist.isDoneSave()){
-					
 					EditOperation edit = new EditOperation();
 					edit.setId(artist.getId());
 					controller.completeInsert(edit);

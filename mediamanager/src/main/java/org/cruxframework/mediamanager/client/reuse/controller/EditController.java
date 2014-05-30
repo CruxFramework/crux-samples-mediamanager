@@ -78,7 +78,8 @@ implements EditControllerInterface
 					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		} else
 		{
-			getRestServiceProxy().update(dto.getId(), dto, new UpdateCallback());
+			//getRestServiceProxy().update(dto.getId(), dto, new UpdateCallback());
+			getArtistProxy().update(this, dto.getId(), dto);
 		}
 	}
 	
@@ -213,15 +214,15 @@ implements EditControllerInterface
 //		}
 //	}
 	
-	private class UpdateCallback extends CallbackAdapter<EditOperation>
-	{
-		@Override
-		public void onComplete(EditOperation result)
-		{
-			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
-					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-		}
-	}
+//	private class UpdateCallback extends CallbackAdapter<EditOperation>
+//	{
+//		@Override
+//		public void onComplete(EditOperation result)
+//		{
+//			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+//					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+//		}
+//	}
 	
 	/*********************************************
 	 * Confirm dialog messages
