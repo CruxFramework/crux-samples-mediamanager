@@ -9,6 +9,7 @@
 		<module>mediamanager-core</module>
 		<module>mediamanager-model-jpa</module>
 		<module>mediamanager-model-spring</module>
+		<module>mediamanager-offline</module>
 		<module>mediamanager</module>
 	</modules>
 	
