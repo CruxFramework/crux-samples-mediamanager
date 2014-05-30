@@ -4,6 +4,7 @@ import org.cruxframework.crux.core.client.db.Database;
 import org.cruxframework.crux.core.client.db.DatabaseCallback;
 import org.cruxframework.crux.core.client.db.DatabaseCursorCallback;
 import org.cruxframework.crux.core.client.db.DatabaseRetrieveCallback;
+import org.cruxframework.crux.core.client.db.Index;
 import org.cruxframework.crux.core.client.db.KeyRange;
 import org.cruxframework.crux.core.client.db.ObjectStore;
 import org.cruxframework.crux.core.client.db.Transaction;
@@ -99,4 +100,14 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 		KeyRange<Integer> keyRange = objStore.getKeyRangeFactory().only(id);
 		objStore.openCursor(callback);
 	}
+	
+	public void search(String name, String store_name, final Database database, DatabaseRetrieveCallback<E> callback)
+	{
+		Transaction transaction = database.getTransaction(new String[]{store_name}, 
+				Transaction.Mode.readWrite);
+		ObjectStore<Integer, E> objStore = transaction.getObjectStore(store_name);
+		Index<Integer, String, E> nameIndex = objStore.getIndex("name");
+		nameIndex.get(name, callback); 
+	}
+	
 }
