@@ -9,7 +9,7 @@ import org.cruxframework.mediamanager.offline.client.builder.EditArtistBuilder;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 
-/**Search and returns the information necessary to controller one editArtistDTO
+/**Class description: Search and returns the information necessary to controller one editArtistDTO
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 public class EditArtist implements EditArtistProxy

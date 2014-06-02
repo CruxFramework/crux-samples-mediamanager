@@ -11,22 +11,23 @@ import org.cruxframework.mediamanager.core.client.dto.EditArtistDTO;
 
 import com.google.gwt.core.client.GWT;
 
-/**This class is responsible for running the service  REST communication (EditArtistServiceProxy)  with 
+/**Class descrption: This class is responsible for running the service  REST communication (EditArtistServiceProxy)  with 
  * the server when the project is switched to use JPA database.
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 public class EditArtist implements EditArtistProxy
 {
-//	@Inject
-//	public EditArtistServiceProxy editArtistServiceProxy;
-	
 	public EditArtistServiceProxy editArtistServiceProxy = GWT.create(EditArtistServiceProxy.class);
-	
+
 	@Override
 	public void editArtist(ArtistControllerInterface controller, Integer identificator)
 	{
 		editArtistServiceProxy.get(identificator, new EditAristCallback(controller));
 	}
+	
+	/********************
+	 * Callback
+	 *********************/
 
 	private class EditAristCallback extends WaitCallbackAdapter<EditArtistDTO>
 	{	

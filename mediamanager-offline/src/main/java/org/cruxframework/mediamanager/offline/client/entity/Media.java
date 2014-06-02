@@ -9,12 +9,12 @@ import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
 
 /**
- * Class description: 
- * @author Bruno.Rafael
+ * Class description: Defines an entity Media with the properties that must be stored in the database.
+ * 
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 @Store(Media.STORE_NAME)
 public class Media extends OfflineEntity<MediaDTO> 
-//implements AbstractEntity<ArtistDTO>
 {
 	public static final String STORE_NAME = "media";
 	private Boolean borrowed = false;

@@ -35,7 +35,6 @@ import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.core.client.dto.EditArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.GenreDTO;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
@@ -45,21 +44,16 @@ import com.google.gwt.user.client.ui.ListBox;
 @Controller("artistController")
 public class ArtistController extends EditController<ArtistDTO> implements ArtistControllerInterface
 {
-	
+	//TODO remover esse artistserviceproxy
 	@Inject
 	public ArtistServiceProxy restServiceProxy;
 	
-	public ArtistProxy<ArtistDTO> artistService = GWT.create(ArtistProxy.class);
-	
-	
-//	@Inject
-//	public EditArtistServiceProxy editArtistServiceProxy;
-	
-//	@Inject
-//	public DbMediamanager database;
-	
-	public EditArtistProxy editArtist = GWT.create(EditArtistProxy.class);
+	@Inject
+	public ArtistProxy<ArtistDTO> artistService;
 
+	@Inject
+	public EditArtistProxy editArtist;
+	
 	@Expose
 	public void onActivate(ViewActivateEvent event)
 	{

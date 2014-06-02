@@ -22,7 +22,7 @@ import com.google.gwt.core.shared.GWT;
 
 /** This class is responsible for building an editArtist with the 
  * information provided by the DTO and execute database operations. 
- * Also, monitors, by doneX variables, whether the transactions database finished.
+ * Also, monitors, by doneX variables, if the transactions database finished.
  * 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
@@ -39,12 +39,11 @@ public class EditArtistBuilder
 	
 	public DbMediamanager database = GWT.create(DbMediamanager.class);
 	
-	public EditArtistBuilder(Integer id)
-	{
-		open(id);
-	}
-	
-	private void open(final Integer id)
+	/**Search in the database the information needed to build a EditArtist. 
+	 * The id is used to search a stored Artist in the database.
+	 * @param id
+	 */
+	public EditArtistBuilder(final Integer id)
 	{
 		this.database.open(new DatabaseCallback()
 		{
@@ -70,7 +69,7 @@ public class EditArtistBuilder
 	
 	private void setArtistDTO(Integer id)
 	{
-		ArtistDao.getInstance().search(id, Artist.STORE_NAME, database, new DatabaseCursorCallback<Integer, Artist>()
+		ArtistDao.getInstance(database).search(id, Artist.STORE_NAME, new DatabaseCursorCallback<Integer, Artist>()
 		{
 			@Override
 			public void onSuccess(Cursor<Integer, Artist> result)
@@ -89,7 +88,7 @@ public class EditArtistBuilder
 	}
 	
 	private void setCountryDTO(){
-		CountryDao.getInstance().search(Country.STORE_NAME, database, new DatabaseCursorCallback<Integer, Country>()
+		CountryDao.getInstance(database).search(Country.STORE_NAME, new DatabaseCursorCallback<Integer, Country>()
 				{
 					@Override
 					public void onSuccess(Cursor<Integer, Country> result)
@@ -109,7 +108,7 @@ public class EditArtistBuilder
 	
 	private void setGenreDTO()
 	{
-		GenreDao.getInstance().search(Genre.STORE_NAME, database, new DatabaseCursorCallback<Integer, Genre>()
+		GenreDao.getInstance(database).search(Genre.STORE_NAME, new DatabaseCursorCallback<Integer, Genre>()
 		{
 
 			@Override

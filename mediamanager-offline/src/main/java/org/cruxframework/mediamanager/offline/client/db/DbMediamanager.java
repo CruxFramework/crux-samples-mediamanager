@@ -12,8 +12,9 @@ import org.cruxframework.mediamanager.offline.client.entity.User;
 import org.cruxframework.mediamanager.offline.client.error.ErrorHandler;
 
 /**
- * Class description: 
- * @author Bruno.Rafael
+ * Class description:Defines a database and its settings, with ErrorHandler and objectStores
+ *  
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 
 @DatabaseDef(

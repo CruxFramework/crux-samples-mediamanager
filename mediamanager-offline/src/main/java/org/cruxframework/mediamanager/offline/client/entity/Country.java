@@ -5,8 +5,9 @@ import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
 /**
- * Class description: 
- * @author Bruno.Rafael
+ * Class description: Defines an entity Country with the properties that must be stored in the database.
+ * 
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 
 @Store(Country.STORE_NAME)

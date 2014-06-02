@@ -13,7 +13,8 @@ import com.google.gwt.core.shared.GWT;
 
 /**This class is responsible for building an artist with the 
  * information provided by the DTO and execute database operations. 
- * Also, monitors, by doneX variables, whether the transactions database finished.
+ * Also, monitors, by doneX variables, if the transactions database finished.
+ * 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 public class ArtistBuilder
@@ -24,6 +25,11 @@ public class ArtistBuilder
 
 	public DbMediamanager database = GWT.create(DbMediamanager.class);
 	
+	
+	/** Constructs an Artist with information from the DTO and then stores it as a new entry in the database.
+	 * 
+	 * @param dto
+	 */
 	public ArtistBuilder(ArtistDTO dto)
 	{
 		artist = new Artist();
@@ -45,7 +51,7 @@ public class ArtistBuilder
 			public void onSuccess()
 			{
 				//Save Artist
-				ArtistDao.getInstance().save(artist, database, new DatabaseCallback()
+				ArtistDao.getInstance(database).save(artist, new DatabaseCallback()
 				{
 					@Override
 					public void onSuccess()
@@ -63,6 +69,12 @@ public class ArtistBuilder
 		});
 	}
 	
+	
+	/**Constructs an Artist with information from the DTO and then updates a record 
+	 * stored in the database by the id.
+	 * @param id
+	 * @param dto
+	 */
 	public ArtistBuilder(Integer id, ArtistDTO dto)
 	{
 		artist = new Artist();
@@ -86,7 +98,7 @@ public class ArtistBuilder
 			public void onSuccess()
 			{
 				//Save Artist
-				ArtistDao.getInstance().save(artist, database, new DatabaseCallback()
+				ArtistDao.getInstance(database).save(artist, new DatabaseCallback()
 				{
 					@Override
 					public void onSuccess()
@@ -104,7 +116,7 @@ public class ArtistBuilder
 	}
 	
 	private void searchId(){
-		ArtistDao.getInstance().search(artist.getName(), artist.STORE_NAME, database, new DatabaseRetrieveCallback<Artist>()
+		ArtistDao.getInstance(database).search(artist.getName(), Artist.STORE_NAME, new DatabaseRetrieveCallback<Artist>()
 		{
 			
 			@Override

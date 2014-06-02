@@ -4,8 +4,9 @@ import org.cruxframework.crux.core.client.Crux;
 import org.cruxframework.crux.core.client.db.DatabaseErrorHandler;
 
 /**
- * Class description: 
- * @author Bruno.Rafael
+ * Class description: Defines the error handling for database operations
+ * 
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 
 public class ErrorHandler implements DatabaseErrorHandler 

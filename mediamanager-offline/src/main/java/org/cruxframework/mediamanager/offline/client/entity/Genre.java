@@ -5,8 +5,9 @@ import org.cruxframework.mediamanager.core.client.dto.GenreDTO;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
 /**
- * Class description: 
- * @author Bruno.Rafael
+ * Class description: Defines an entity Genre with the properties that must be stored in the database.
+ * 
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 
 @Store(Genre.STORE_NAME)

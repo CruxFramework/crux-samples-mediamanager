@@ -14,15 +14,22 @@ import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 import com.google.gwt.user.client.Window;
 
 
-/** Contains implementations of operations on the databases
+/**Class descriptoin: Contains implementations of operations on the databases
+ * 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
-public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEntity>
+
+public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEntity<?>>
 {
 	
-	public void save(E entity, final Database database)
+
+	/**Saves an entity (E) in a database (database).
+	 * @param entity
+	 * @param database
+	 */
+	public void save(E entity)
 	{
-		database.put(new Object[]{entity}, entity.getStoreName(), new DatabaseCallback() 
+		getDatabase().put(new Object[]{entity}, entity.getStoreName(), new DatabaseCallback() 
 		{
 
 			@Override
@@ -40,31 +47,22 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 		});
 	}
 	
-	public void save(E entity, final Database database, DatabaseCallback callback )
+	/** Save an entity (E) in a Database (database) with DatabaseCallback (callback).
+	 * @param entity
+	 * @param database
+	 * @param callback
+	 */
+	
+	public void save(E entity, DatabaseCallback callback )
 	{
-		database.put(new Object[]{entity}, entity.getStoreName(), callback);
+		getDatabase().put(new Object[]{entity}, entity.getStoreName(), callback);
 	}
 	
-	public DTO find(Integer id, String store_name, final Database database)
-	{
-		database.get(id, store_name, new DatabaseRetrieveCallback<E>() 
-		{
-			@Override
-			public void onSuccess(E result) 
-			{
-				//Window.alert("Retorno do banco: "+result.getName());
-				
-			}
-			
-			@Override
-			public void onError(String message) 
-			{
-				super.onError(message);
-			}
-		});
-		return null;
-	}
-	
+	/** Delete an Entity (E) in a Database (database) with DatabaseCallback (callback).
+	 * @param id
+	 * @param store_name
+	 * @param database
+	 */
 	public void delete(Integer id, String store_name, final Database database) 
 	{
 		database.delete(id, store_name, new DatabaseCallback() 
@@ -84,29 +82,54 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 		});
 	}
 	
-	public void search(String store_name, final Database database, DatabaseCursorCallback<Integer, E> callback)
+	
+	/**Search all record of a ObjectStore and returns a Cursor.
+	 * @param store_name
+	 * @param database
+	 * @param callback
+	 */
+	public void search(String store_name, DatabaseCursorCallback<Integer, E> callback)
 	{
-		Transaction transaction = database.getTransaction(new String[]{store_name}, 
+		Transaction transaction = getDatabase().getTransaction(new String[]{store_name}, 
 				Transaction.Mode.readWrite);
 		ObjectStore<Integer, E> objStore = transaction.getObjectStore(store_name);
 		objStore.openCursor(callback);
 	}
 	
-	public void search(Integer id, String store_name, final Database database, DatabaseCursorCallback<Integer, E> callback)
+	/**Search Search a record (by id) in ObjectStore and returns a Cursor.
+	 * @param id
+	 * @param store_name
+	 * @param database
+	 * @param callback
+	 */
+	public void search(Integer id, String store_name, DatabaseCursorCallback<Integer, E> callback)
 	{
-		Transaction transaction = database.getTransaction(new String[]{store_name}, 
+		Transaction transaction = getDatabase().getTransaction(new String[]{store_name}, 
 				Transaction.Mode.readWrite);
 		ObjectStore<Integer, E> objStore = transaction.getObjectStore(store_name);
 		KeyRange<Integer> keyRange = objStore.getKeyRangeFactory().only(id);
 		objStore.openCursor(callback);
 	}
 	
-	public void search(String name, String store_name, final Database database, DatabaseRetrieveCallback<E> callback)
+	
+	/**Search a record search (by name) in ObjectStore and returns a Cursor.
+	 * @param name
+	 * @param store_name
+	 * @param database
+	 * @param callback
+	 */
+	public void search(String name, String store_name, DatabaseRetrieveCallback<E> callback)
 	{
-		Transaction transaction = database.getTransaction(new String[]{store_name}, 
+		Transaction transaction = getDatabase().getTransaction(new String[]{store_name}, 
 				Transaction.Mode.readWrite);
 		ObjectStore<Integer, E> objStore = transaction.getObjectStore(store_name);
 		Index<Integer, String, E> nameIndex = objStore.getIndex("name");
 		nameIndex.get(name, callback); 
 	}
+	
+	/*********************
+	 *Abstract Methods
+	 *********************/
+	protected abstract Database getDatabase();
+	
 }

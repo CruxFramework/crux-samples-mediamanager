@@ -3,11 +3,11 @@
  */
 package org.cruxframework.mediamanager.offline.client.reuse;
 
-import org.cruxframework.crux.core.client.db.annotation.Store.Indexed;
 import org.cruxframework.crux.core.client.db.annotation.Store.Key;
 import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 
 /**
+ * Class description: This abstract class defines the attributes that all entities must have.
  * @author Bruno Medeiros (bruno@triggolabs.com)
  *
  */
@@ -46,7 +46,7 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 	/**
 	 * @return the name
 	 */
-	@Indexed
+//	@Indexed(unique=true)
 	public String getName() 
 	{
 		return name;
