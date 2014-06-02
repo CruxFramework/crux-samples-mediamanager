@@ -15,22 +15,22 @@
 
 
 <!-- EditArtist -->
-	<replace-with class="org.cruxframework.mediamanager.client.rebind.jpa.EditArtist">
-		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" />
-	</replace-with>
-
-<!-- 	<replace-with class="org.cruxframework.mediamanager.client.rebind.offline.EditArtist"> -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.jpa.EditArtist"> -->
 <!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" /> -->
 <!-- 	</replace-with> -->
-	
-<!-- Artist -->
-	<replace-with class="org.cruxframework.mediamanager.client.rebind.jpa.Artist">
-		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" />
+
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.offline.EditArtist">
+		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" />
 	</replace-with>
 	
-<!-- 	<replace-with class="org.cruxframework.mediamanager.client.rebind.offline.Artist"> -->
+<!-- Artist -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.jpa.Artist"> -->
 <!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" /> -->
 <!-- 	</replace-with> -->
+	
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.offline.Artist">
+		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" />
+	</replace-with>
 
 
 

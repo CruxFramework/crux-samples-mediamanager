@@ -120,6 +120,7 @@ implements EditControllerInterface
 		}
 	}
 	
+	
 	@Override
 	public void completeInsert(EditOperation result)
 	{
@@ -132,6 +133,12 @@ implements EditControllerInterface
 				false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 	}
 	
+	@Override
+	public void completeUpdate()
+	{
+		MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+				false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+	}
 	
 	
 	/******************************************
