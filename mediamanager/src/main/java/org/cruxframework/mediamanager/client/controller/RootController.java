@@ -79,7 +79,8 @@ public class RootController extends AbstractController
 		});
 	}
 	
-	private void initDB(){
+	private void initDB()
+	{
 		Country c = new Country();
 		c.setName("Brasil");
 		c.setId(1);
@@ -134,7 +135,6 @@ public class RootController extends AbstractController
 		m1.setArtist(a1);
 		m1.setName("Pra Sempre: Década de 90");
 		MediaDao.getInstance().save(m1, database);
-		
 	}
 	
 }

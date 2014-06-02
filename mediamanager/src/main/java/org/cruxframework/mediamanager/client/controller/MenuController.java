@@ -141,7 +141,8 @@ public class MenuController
 		if((header.getStyleName()).indexOf("on") != -1)
 		{
 			header.removeStyleName("on");
-		}else{
+		}else
+		{
 			header.addStyleName("on");
 		}
 	}

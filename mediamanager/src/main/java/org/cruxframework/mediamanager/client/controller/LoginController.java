@@ -102,7 +102,8 @@ public class LoginController
 			{
 				((SimpleViewContainer) Screen.get("views")).showView("statistics");
 				LoginController.showMenu();
-			}else{
+			}else
+			{
 				WaitBox.hideAllDialogs();
 				MessageBox.show(null, DEFAULT_ERROR_SIGN_UP, MessageType.ERROR, true,
 						false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
