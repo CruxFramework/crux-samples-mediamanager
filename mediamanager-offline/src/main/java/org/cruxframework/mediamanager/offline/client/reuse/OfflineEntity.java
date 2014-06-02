@@ -8,7 +8,7 @@ import org.cruxframework.crux.core.client.db.annotation.Store.Key;
 import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 
 /**
- * @author bruno.rafael
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  *
  */
 public abstract class OfflineEntity<T extends AbstractDTO> 
@@ -30,14 +30,16 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 	 * @return the id
 	 */
 	@Key(autoIncrement = true)
-	public Integer getId() {
+	public Integer getId() 
+	{
 		return id;
 	}
 	
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Integer id) 
+	{
 		this.id = id;
 	}
 	
@@ -45,14 +47,16 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 	 * @return the name
 	 */
 	@Indexed
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
 	
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(String name) 
+	{
 		this.name = name;
 	}
 	

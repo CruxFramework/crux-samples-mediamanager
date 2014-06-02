@@ -23,7 +23,8 @@ public class User extends OfflineEntity<UserDTO>
 	 * Methods Abstract
 	 ******************************/
 	@Override
-	public String getStoreName() {
+	public String getStoreName()
+	{
 		return STORE_NAME;
 	}
 	@Override

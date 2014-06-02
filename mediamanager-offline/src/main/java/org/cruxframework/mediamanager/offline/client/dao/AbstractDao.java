@@ -15,7 +15,7 @@ import com.google.gwt.user.client.Window;
 
 
 /** Contains implementations of operations on the databases
- * @author bruno.rafael
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEntity>
 {
@@ -109,5 +109,4 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 		Index<Integer, String, E> nameIndex = objStore.getIndex("name");
 		nameIndex.get(name, callback); 
 	}
-	
 }

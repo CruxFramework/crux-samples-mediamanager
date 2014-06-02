@@ -26,7 +26,8 @@ public class Media extends OfflineEntity<MediaDTO>
 	 * Methods Abstract
 	 **********************************/
 	@Override
-	public String getStoreName() {
+	public String getStoreName()
+	{
 		return STORE_NAME;
 	}
 	

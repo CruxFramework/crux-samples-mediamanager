@@ -20,7 +20,8 @@ public class Artist extends OfflineEntity<ArtistDTO>
 	 * Methods Abstract
 	 **********************************/
 	@Override
-	public String getStoreName() {
+	public String getStoreName()
+	{
 		return STORE_NAME;
 	}
 	
@@ -50,28 +51,32 @@ public class Artist extends OfflineEntity<ArtistDTO>
 	/**
 	 * @return the country
 	 */
-	public Country getCountry() {
+	public Country getCountry()
+	{
 		return country;
 	}
 	
 	/**
 	 * @param country the country to set
 	 */
-	public void setCountry(Country country) {
+	public void setCountry(Country country)
+	{
 		this.country = country;
 	}
 	
 	/**
 	 * @return the genre
 	 */
-	public Genre getGenre() {
+	public Genre getGenre()
+	{
 		return genre;
 	}
 	
 	/**
 	 * @param genre the genre to set
 	 */
-	public void setGenre(Genre genre) {
+	public void setGenre(Genre genre)
+	{
 		this.genre = genre;
 	}
 }

@@ -20,8 +20,11 @@ import org.cruxframework.mediamanager.offline.client.entity.Genre;
 import com.google.gwt.core.shared.GWT;
 
 
-/** Builds a editArtist object with the necessary information
- * @author bruno.rafael 
+/** This class is responsible for building an editArtist with the 
+ * information provided by the DTO and execute database operations. 
+ * Also, monitors, by doneX variables, whether the transactions database finished.
+ * 
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  */
 public class EditArtistBuilder
 {	
@@ -41,7 +44,8 @@ public class EditArtistBuilder
 		open(id);
 	}
 	
-	private void open(final Integer id){
+	private void open(final Integer id)
+	{
 		this.database.open(new DatabaseCallback()
 		{
 			@Override
@@ -64,7 +68,8 @@ public class EditArtistBuilder
 	}
 	
 	
-	private void setArtistDTO(Integer id){
+	private void setArtistDTO(Integer id)
+	{
 		ArtistDao.getInstance().search(id, Artist.STORE_NAME, database, new DatabaseCursorCallback<Integer, Artist>()
 		{
 			@Override
@@ -102,7 +107,8 @@ public class EditArtistBuilder
 				});
 	}
 	
-	private void setGenreDTO(){
+	private void setGenreDTO()
+	{
 		GenreDao.getInstance().search(Genre.STORE_NAME, database, new DatabaseCursorCallback<Integer, Genre>()
 		{
 

@@ -5,7 +5,7 @@ import org.cruxframework.mediamanager.offline.client.dao.AbstractDao;
 import org.cruxframework.mediamanager.offline.client.entity.Genre;
 
 /**
- * @author bruno.rafael
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  * 
  */
 public class GenreDao extends AbstractDao<GenreDTO, Genre>

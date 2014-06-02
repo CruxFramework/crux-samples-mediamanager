@@ -28,6 +28,7 @@ import org.cruxframework.mediamanager.offline.client.error.ErrorHandler;
 			@ObjectStoreDef(targetClass = User.class)
 		}
 	)
-public interface DbMediamanager extends Database{
+public interface DbMediamanager extends Database
+{
 
 }

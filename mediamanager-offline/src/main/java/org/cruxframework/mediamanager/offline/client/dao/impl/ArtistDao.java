@@ -5,7 +5,7 @@ import org.cruxframework.mediamanager.offline.client.dao.AbstractDao;
 import org.cruxframework.mediamanager.offline.client.entity.Artist;
 
 /**
- * @author bruno.rafael
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  * 
  */
 public class ArtistDao extends AbstractDao<ArtistDTO, Artist>
@@ -18,7 +18,8 @@ public class ArtistDao extends AbstractDao<ArtistDTO, Artist>
 		
 	}
 	
-	public static ArtistDao getInstance(){
+	public static ArtistDao getInstance()
+	{
 		return INSTANCE;
 	}
 	

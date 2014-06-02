@@ -19,12 +19,14 @@ public class Country extends OfflineEntity<CountryDTO>
 	 * Methods Abstract
 	 **************/
 	@Override
-	public String getStoreName() {
+	public String getStoreName()
+	{
 		return STORE_NAME;
 	}
 	
 	@Override
-	public CountryDTO getDTORepresentation() {
+	public CountryDTO getDTORepresentation()
+	{
 		CountryDTO dto = new CountryDTO();
 		dto.setId(getId());
 		dto.setName(getName());

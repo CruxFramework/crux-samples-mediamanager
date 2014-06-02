@@ -8,15 +8,18 @@ import org.cruxframework.crux.core.client.db.DatabaseErrorHandler;
  * @author Bruno.Rafael
  */
 
-public class ErrorHandler implements DatabaseErrorHandler {
+public class ErrorHandler implements DatabaseErrorHandler 
+{
 
 	@Override
-	public void onError(String message) {
+	public void onError(String message) 
+	{
 		 Crux.getErrorHandler().handleError(message);
 	}
 
 	@Override
-	public void onError(String message, Throwable t) {
+	public void onError(String message, Throwable t) 
+	{
 		 Crux.getErrorHandler().handleError(message, t);
 	}
 

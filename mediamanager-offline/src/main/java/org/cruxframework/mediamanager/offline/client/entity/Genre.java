@@ -2,7 +2,6 @@ package org.cruxframework.mediamanager.offline.client.entity;
 
 import org.cruxframework.crux.core.client.db.annotation.Store;
 import org.cruxframework.mediamanager.core.client.dto.GenreDTO;
-import org.cruxframework.mediamanager.core.reuse.AbstractEntity;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
 /**
@@ -20,7 +19,8 @@ public class Genre extends OfflineEntity<GenreDTO>
 	 * Methods Abstract
 	 ******************/
 	@Override
-	public String getStoreName() {
+	public String getStoreName()
+	{
 		return STORE_NAME;
 	}
 	@Override

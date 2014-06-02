@@ -5,7 +5,7 @@ import org.cruxframework.mediamanager.offline.client.dao.AbstractDao;
 import org.cruxframework.mediamanager.offline.client.entity.Media;
 
 /**
- * @author bruno.rafael
+ * @author Bruno Medeiros (bruno@triggolabs.com)
  * 
  */
 public class MediaDao extends AbstractDao<MediaDTO, Media> 
