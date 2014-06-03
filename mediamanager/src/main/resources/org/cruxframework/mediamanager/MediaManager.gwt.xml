@@ -15,20 +15,20 @@
 
 
 <!-- EditArtist -->
-<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.jpa.EditArtist"> -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.EditArtistRest"> -->
 <!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" /> -->
 <!-- 	</replace-with> -->
 
-	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.offline.EditArtist">
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.EditArtistClientDB">
 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" />
 	</replace-with>
 	
 <!-- Artist -->
-<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.jpa.Artist"> -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.ArtistRest"> -->
 <!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" /> -->
 <!-- 	</replace-with> -->
 	
-	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.offline.Artist">
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.ArtistClientDB">
 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" />
 	</replace-with>
 
