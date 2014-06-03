@@ -1,7 +1,5 @@
 package org.cruxframework.mediamanager.offline.client.dao.impl;
 
-import javax.xml.crypto.Data;
-
 import org.cruxframework.crux.core.client.db.Database;
 import org.cruxframework.mediamanager.core.client.dto.GenreDTO;
 import org.cruxframework.mediamanager.offline.client.dao.AbstractDao;
