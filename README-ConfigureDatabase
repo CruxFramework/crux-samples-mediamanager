@@ -1,0 +1,51 @@
+Database
+
+Media Manager 1.0 utilizes as the persistence in database JPA with Hibernate implementation technology.
+Thus, it is possible to modify the choice of the database just modifying the configuration file.
+
+The Version 1.0 has the configuration of two SQL databases, HSQLDB and PostgreSQL. The HSQLDB (HyperSQL)
+is a database open sourcer developed using Java and do not need to be install. Already PostgreSQL 
+is a more robust database and data needs to be installed on the machine before running the code. 
+To learn more about installing PostgreSQL see (http://www.postgresql.org/download/).
+
+To choose which configuration database should be used when running the Media Manager, do:
+
+1º Configure the file "..\MediaManager\src\main\resources\hibernate.properties":
+
+* HSQLDB:
+  To use HSQLDB uncomment the code:
+  
+	# Configuração hsql
+	hibernate.dialect=org.hibernate.dialect.HSQLDialect
+	hibernate.connection.driver_class=org.hsqldb.jdbc.JDBCDriver
+	hibernate.connection.url=jdbc:hsqldb:hsql://localhost/xdb
+	hibernate.connection.username=SA
+	hibernate.connection.password=
+	
+* PostgreSQL:
+To use PostgreSQL uncomment the code:
+
+	# Configuração PostgreSQL
+	hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+	hibernate.connection.driver_class=org.postgresql.Driver
+	hibernate.connection.url=jdbc:postgresql://127.10.138.2:5432/jbossews
+	hibernate.connection.username=<username>
+	hibernate.connection.password=<password>
+
+2º Check the Listener "InitDBListener" in web.xml
+
+* HSQLDB:
+The listener must be uncommented so that the database be configured in the application execution.
+
+	<listener>
+		<listener> org.cruxframework.mediamanager.server.db.InitDBListener </ listener-class>
+	</listener>
+
+* PostgreSQL:
+
+The listener is not necessary, so just commented it:
+<!-- 
+	<listener>
+		<listener-class>org.cruxframework.mediamanager.server.db.InitDBListener</listener-class>
+	</listener> 
+-->
