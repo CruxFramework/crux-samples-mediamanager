@@ -14,22 +14,22 @@
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
 		<crux:formDisplay id="form">
 			
-			<crux:entry label="Media's Type:">
+			<crux:entry label="${mediaMessage.type}">
 				<gwt:listBox id="typeListBox"  styleName="sel-box" />
 			</crux:entry>
 			
-			<crux:entry label="Media's Name:">
+			<crux:entry label="${mediaMessage.name}">
 				<gwt:textBox id="nameTextBox"  styleName="txt-box" bindPath="name"/>
 			</crux:entry>
 			
-			<crux:entry label="Media's Artist:">
+			<crux:entry label="${mediaMessage.artist}">
 				<gwt:listBox id="artistListBox" styleName="sel-box" />
 			</crux:entry>
 			
 			<crux:entry horizontalAlignment="center">
 				<faces:navPanel id="buttons" styleName="crud-btns">
-					<faces:button id="insertButton" text="Add Media" onSelect="mediaController.insert" styleName="c-btn orange" />
-					<faces:button id="updateButton" text="Save Changes" onSelect="mediaController.update" styleName="c-btn orange" />
+					<faces:button id="insertButton" text="${mediaMessage.add}" onSelect="mediaController.insert" styleName="c-btn orange" />
+					<faces:button id="updateButton" text="${mediaMessage.save}" onSelect="mediaController.update" styleName="c-btn orange" />
 				</faces:navPanel> 
 			</crux:entry>
 			

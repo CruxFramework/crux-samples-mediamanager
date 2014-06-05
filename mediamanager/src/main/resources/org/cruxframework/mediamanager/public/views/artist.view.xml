@@ -14,22 +14,22 @@
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
 		<crux:formDisplay id="form">
 			
-			<crux:entry label="Artist's Name:">
+			<crux:entry label="${artistMessage.name}">
 				<gwt:textBox id="nameTextBox" bindPath="name" styleName="txt-box" />
 			</crux:entry>
 			
-			<crux:entry label="Artist's Country:">
+			<crux:entry label="${artistMessage.country}">
 				<gwt:listBox id="countryListBox" styleName="sel-box" />
 			</crux:entry>
 			
-			<crux:entry label="Artist's Genre:">
+			<crux:entry label="${artistMessage.genre}">
 				<gwt:listBox id="genereListBox" styleName="sel-box" />
 			</crux:entry>
 			
 			<crux:entry horizontalAlignment="center">
 				<faces:navPanel id="buttons" styleName="crud-btns">
-					<faces:button id="insertButton" text="Add Artist" onSelect="artistController.insert" styleName="c-btn orange" />
-					<faces:button id="updateButton" text="Save Changes" onSelect="artistController.update" styleName="c-btn orange" />
+					<faces:button id="insertButton" text="${artistMessage.add}" onSelect="artistController.insert" styleName="c-btn orange" />
+					<faces:button id="updateButton" text="${artistMessage.save}" onSelect="artistController.update" styleName="c-btn orange" />
 				</faces:navPanel> 
 			</crux:entry>
 			

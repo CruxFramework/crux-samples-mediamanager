@@ -16,7 +16,7 @@
 			<gwt:row>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalCDs" text="CDs Total"/>
+						<faces:label id="totalCDs" text="${statisticsMessage.cdTotal}"/>
 					</gwt:widget>
 				</gwt:cell>
 				<gwt:cell>
@@ -28,7 +28,7 @@
 			<gwt:row>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalCDBorroweds" text="CDs borrowed"/>
+						<faces:label id="totalCDBorroweds" text="${statisticsMessage.cdborrowed}"/>
 					</gwt:widget>
 				</gwt:cell>
 				<gwt:cell>
@@ -40,7 +40,7 @@
 			<gwt:row>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalCDsMoreThanOneMonth" text="More than one month"/>
+						<faces:label id="totalCDsMoreThanOneMonth" text="${statisticsMessage.cdmore}"/>
 					</gwt:widget>
 				</gwt:cell>
 				<gwt:cell>
@@ -59,7 +59,7 @@
 			<gwt:row>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalDVDs" text="DVDs Total"/>
+						<faces:label id="totalDVDs" text="${statisticsMessage.dvdTotal}"/>
 					</gwt:widget>
 				</gwt:cell>
 				<gwt:cell>
@@ -71,7 +71,7 @@
 			<gwt:row>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalDVDsBorroweds" text="DVDs borrowed"/>
+						<faces:label id="totalDVDsBorroweds" text="${statisticsMessage.dvdborrowed}"/>
 					</gwt:widget>
 				</gwt:cell>
 				<gwt:cell>
@@ -83,7 +83,7 @@
 			<gwt:row>
 				<gwt:cell>
 					<gwt:widget>
-						<faces:label id="totalDVDsMoreThanOneMonth" text="More than one month"/>
+						<faces:label id="totalDVDsMoreThanOneMonth" text="${statisticsMessage.dvdmore}"/>
 					</gwt:widget>
 				</gwt:cell>
 				<gwt:cell>

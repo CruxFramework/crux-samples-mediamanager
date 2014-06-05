@@ -15,13 +15,13 @@
 	<gwt:flowPanel id="outerPanel" styleName="content styled onlyone">
 		<crux:formDisplay id="form">
 
-			<crux:entry label="Name:">
+			<crux:entry label="${artistsMessage.name}">
 				<gwt:textBox id="nameTextBox" bindPath="name" styleName="txt-box last" />
 			</crux:entry>
 			
 			<crux:entry horizontalAlignment="center">
 				<faces:navPanel id="buttons" styleName="crud-btns">
-					<faces:button id="pesquisarButton" text="Search"
+					<faces:button id="pesquisarButton" text="${artistsMessage.search}"
 						onSelect="artistsController.search" styleName="c-btn orange" />
 				</faces:navPanel>
 			</crux:entry>
@@ -36,25 +36,25 @@
 			dataSource="artistDTODatasource" defaultSortingColumn="name"
 			defaultSortingType="ascending">
 			<crux:largeColumns>
-				<crux:dataColumn key="name" label="Name" />
-				<crux:dataColumn key="country.name" label="Country" />
-				<crux:dataColumn key="genre.name" label="Genre" />
-				<crux:widgetColumn key="actionColumn" label="Action">
+				<crux:dataColumn key="name" label="${artistsMessage.nameGrid}" />
+				<crux:dataColumn key="country.name" label="${artistsMessage.countryGrid}" />
+				<crux:dataColumn key="genre.name" label="${artistsMessage.genreGrid}" />
+				<crux:widgetColumn key="actionColumn" label="${artistsMessage.actionGrid}">
 					<gwt:flowPanel id="btnGroup" styleName="action-btns">
 						<crux:button id="edit" onSelect="artistsController.prepareForUpdate"
-							text="Edit" styleName="c-btn orange" />
+							text="${artistsMessage.editGrid}" styleName="c-btn orange" />
 						<crux:button id="delete" onSelect="artistsController.delete"
-							text="Delete" styleName="c-btn orange" />
+							text="${artistsMessage.deleteGrid}" styleName="c-btn orange" />
 					</gwt:flowPanel>
 				</crux:widgetColumn>
 			</crux:largeColumns>
 			<crux:smallColumns>
 				<crux:dataColumn key="name" label="Name" />
 				<crux:actionColumn key="actionEdit">
-					<crux:button id="deleteSmall" onSelect="artistsController.prepareForUpdate" text="Edit" styleName="c-btn orange device-small" />
+					<crux:button id="deleteSmall" onSelect="artistsController.prepareForUpdate" text="${artistsMessage.editGrid}" styleName="c-btn orange device-small" />
 				</crux:actionColumn>
 				<crux:actionColumn key="actionDelete">
-					<crux:button id="editSmall" onSelect="artistsController.delete" text="Delete" styleName="c-btn orange device-small" />
+					<crux:button id="editSmall" onSelect="artistsController.delete" text="${artistsMessage.deleteGrid}" styleName="c-btn orange device-small" />
 				</crux:actionColumn>
 			</crux:smallColumns>
 

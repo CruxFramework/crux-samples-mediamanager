@@ -30,16 +30,16 @@
 			<gwt:flowPanel id="formWrapper" styleName="c-formWrapper">
 				<crux:formDisplay id="form" >
 				
-					<crux:entry label="Login: ">
+					<crux:entry label="${loginMessage.login}">
 						<gwt:textBox id="loginTextBox" styleName="login-textbox" />
 					</crux:entry>
 					
-					<crux:entry label="Password: ">
+					<crux:entry label="${loginMessage.password}">
 						<gwt:passwordTextBox id="passwordTextBox" />
 					</crux:entry>
 					
 					<crux:entry horizontalAlignment="right">
-						<faces:button id="loginButton" text="Access my media" onSelect="loginController.login" styleName="c-loginButton" />
+						<faces:button id="loginButton" text="${loginMessage.loginButtun}" onSelect="loginController.login" styleName="c-loginButton" />
 					</crux:entry>
 					
 					<crux:entry>
@@ -47,7 +47,7 @@
 					</crux:entry>
 					
 					<crux:entry horizontalAlignment="right">
-						<faces:button id="signUpButton" text="Create an account" onSelect="loginController.createNewAccount" styleName="c-signUpButton" />
+						<faces:button id="signUpButton" text="${loginMessage.signUpButton}" onSelect="loginController.createNewAccount" styleName="c-signUpButton" />
 					</crux:entry>
 				
 				</crux:formDisplay>

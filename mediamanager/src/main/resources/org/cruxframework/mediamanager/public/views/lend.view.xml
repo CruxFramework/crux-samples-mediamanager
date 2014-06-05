@@ -13,28 +13,28 @@
 	<gwt:flowPanel id="outerPanel" styleName="content popup">
 		<crux:formDisplay id="form">
 			
-			<crux:entry label="Borrowed">
+			<crux:entry label="${lendMessage.borrowed}">
 				<gwt:checkBox id="borrowedCbx" bindPath="borrowed" onClick="mediasController.changeBorrowed" />
 			</crux:entry>
 			
 			
-			<crux:entry label="Name:">
+			<crux:entry label="${lendMessage.name}">
 				<gwt:textBox id="nameTxt" bindPath="person" />
 			</crux:entry>
 			
-			<crux:entry label="Date:">
+			<crux:entry label="${lendMessage.date}">
 				<crux:dateBox id="date" bindPath="date" />
 			</crux:entry>
 		
 			<crux:entry horizontalAlignment="center">
 				<faces:navPanel id="buttons" styleName="confirmButtons">
 					<faces:button id="saveBtn" 
-						text="Save" 
+						text="${lendMessage.save}" 
 						onSelect="mediasController.saveLend" 
 						styleName="c-btn stroke success right" />
 						
 					<faces:button id="cancelBtn" 
-						text="Cancel" 
+						text="${lendMessage.cancel}" 
 						onSelect="mediasController.cancelLend" 
 						styleName="c-btn stroke left" />
 						

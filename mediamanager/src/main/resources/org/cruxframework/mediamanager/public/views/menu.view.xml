@@ -14,14 +14,14 @@
 		<gwt:flowPanel id="menuWrapper" styleName="header-menu-wrapper">
 			<crux:anchor id="mmHeaderLogo" styleName="header-logo" href="" />
 			<faces:navPanel id="commandButtonNav" styleName="header-menu">
-				<faces:button id="StatsButton" text="Statistics" onSelect="menuController.stats" />
-				<faces:button id="addMediaButton" text="Add media" onSelect="menuController.addMedia" />
-				<faces:button id="addArtistButton" text="Add artist" onSelect="menuController.addArtist" />
-				<faces:button id="searchMediaButton" text="Search media" onSelect="menuController.searchMedia" />
-				<faces:button id="searchArtistButton" text="Search artist" onSelect="menuController.searchArtist" />
+				<faces:button id="StatsButton" text="${menuMessage.statistics}" onSelect="menuController.stats" />
+				<faces:button id="addMediaButton" text="${menuMessage.addMedia}" onSelect="menuController.addMedia" />
+				<faces:button id="addArtistButton" text="${menuMessage.addArtist}" onSelect="menuController.addArtist" />
+				<faces:button id="searchMediaButton" text="${menuMessage.searchMedia}" onSelect="menuController.searchMedia" />
+				<faces:button id="searchArtistButton" text="${menuMessage.searchArtist}" onSelect="menuController.searchArtist" />
 			</faces:navPanel>
 			<gwt:HTMLPanel id="mmLogoutWrapper" styleName="header-logout">
-				<faces:label id="loggedAsLabel" styleName="logout-label" text="Logged as: "/>
+				<faces:label id="loggedAsLabel" styleName="logout-label" text="${menuMessage.logged}"/>
 				<faces:label id="usernameLabel" styleName="logout-username" text="Admin "/>
 				<faces:button id="signOutButton" text="Sign Out" onSelect="menuController.signOut" styleName="c-btn orange logout-btn" />
 			</gwt:HTMLPanel>
