@@ -6,8 +6,6 @@
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cruxVersion>5.1.0-SNAPSHOT</cruxVersion>
-		<spring-version>4.0.2.RELEASE</spring-version>
 		<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
 		<webinf.folder>${webappDirectory}/WEB-INF/</webinf.folder>
 		<webinf.lib.folder>${webinf.folder}/lib/</webinf.lib.folder>
@@ -19,39 +17,10 @@
 
 	<dependencies>
 
-		<!-- Crux dependencies -->
-		<dependency>
-			<groupId>org.cruxframework</groupId>
-			<artifactId>crux-dev</artifactId>
-			<version>${cruxVersion}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.cruxframework</groupId>
-			<artifactId>crux-runtime</artifactId>
-			<version>${cruxVersion}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>javassist</artifactId>
-					<groupId>javassist</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.cruxframework</groupId>
-			<artifactId>crux-widgets</artifactId>
-			<version>${cruxVersion}</version>
-		</dependency>
-		<!-- TODO: GERAR UMA VERSAO EXTERNA DO SMARTFACES E REMOVER O 'SNAPSHOT' -->
-		<dependency>
-			<groupId>org.cruxframework</groupId>
-			<artifactId>crux-smart-faces</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.cruxframework</groupId>
 			<artifactId>mediamanager-core</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
