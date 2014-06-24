@@ -25,6 +25,7 @@ import org.cruxframework.crux.core.client.rpc.AsyncCallbackAdapter;
 import org.cruxframework.crux.core.client.screen.Screen;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
 import org.cruxframework.mediamanager.client.reuse.controller.AbstractController;
+import org.cruxframework.mediamanager.core.client.enums.MediaType;
 import org.cruxframework.mediamanager.core.client.service.LoginServiceAsync;
 import org.cruxframework.mediamanager.offline.client.dao.impl.ArtistDao;
 import org.cruxframework.mediamanager.offline.client.dao.impl.CountryDao;
@@ -52,15 +53,16 @@ public class RootController extends AbstractController
 	@Expose
 	public void onActivate()
 	{
-		database.open(new DatabaseCallback()
-		{
-			
-			@Override
-			public void onSuccess()
+		if (!database.isOpen()){
+			database.open(new DatabaseCallback()
 			{
-				initDB();
-			}
-		});
+				@Override
+				public void onSuccess()
+				{
+					initDB();
+				}
+			});
+		}
 		
 		loginServiceAsync.isSessionActive(new AsyncCallbackAdapter<Boolean>()
 		{
@@ -121,19 +123,21 @@ public class RootController extends AbstractController
 		ArtistDao.getInstance(database).save(a2);
 		
 		Media m = new Media();
-		m.setBorrowed(false);
+		m.setBorrowed(0);
 		m.setDate(new Date());
 		m.setId(1);
 		m.setArtist(a1);
 		m.setName("Esse Cara Sou Eu");
+		m.setType(MediaType.CD);
 		MediaDao.getInstance(database).save(m);
 		
 		Media m1 = new Media();
-		m1.setBorrowed(false);
+		m1.setBorrowed(1);
 		m1.setDate(new Date());
 		m1.setId(2);
 		m1.setArtist(a1);
-		m1.setName("Pra Sempre: Década de 90");
+		m1.setType(MediaType.DVD);
+		m1.setName("Pra Sempre Decada de 90");
 		MediaDao.getInstance(database).save(m1);
 	}
 	

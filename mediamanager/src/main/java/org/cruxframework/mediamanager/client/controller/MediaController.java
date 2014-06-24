@@ -26,9 +26,8 @@ import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.button.Button;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
-import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
+import org.cruxframework.mediamanager.client.proxy.MediaProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.EditController;
-import org.cruxframework.mediamanager.client.reuse.controller.WaitCallbackAdapter;
 import org.cruxframework.mediamanager.client.service.EditMediaServiceProxy;
 import org.cruxframework.mediamanager.client.service.MediaServiceProxy;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
@@ -51,6 +50,9 @@ public class MediaController extends EditController<MediaDTO>
 	@Inject
 	public EditMediaServiceProxy editMediaServiceProxy;
 	
+	@Inject
+	public MediaProxy mediaProxy;
+	
 	@Expose
 	public void onActivate(ViewActivateEvent event)
 	{
@@ -60,7 +62,8 @@ public class MediaController extends EditController<MediaDTO>
 		MediaDTO media = event.getParameterObject();
 		Integer identificator = media == null ? null : media.getId();
 		fillMediaTypeListBox((ListBox) view.getWidget("typeListBox"), media);
-		editMediaServiceProxy.get(identificator, new EditMediaCallback());
+//	 editMediaServiceProxy.get(identificator, new EditMediaCallback());
+		mediaProxy.get(identificator, this);
 	}
 	
 	/********************************************
@@ -147,32 +150,30 @@ public class MediaController extends EditController<MediaDTO>
 	}
 	
 	/****************************************
-	 * Callback classes
+	 * Callback
 	 *****************************************/
 	
-	private class EditMediaCallback extends WaitCallbackAdapter<EditMediaDTO>
+	public void editableState(EditMediaDTO result)
 	{
-		@Override
-		public void success(EditMediaDTO result)
+		BindableView<MediaDTO> view = View.of(MediaController.this);
+		MediaDTO media = result.getMedia();
+		Integer identificator = media == null ? null : media.getId();
+		
+		/* Adjust artistsViewAcessor state */
+		if (identificator != null)
 		{
-			BindableView<MediaDTO> view = View.of(MediaController.this);
-			MediaDTO media = result.getMedia();
-			Integer identificator = media == null ? null : media.getId();
-			
-			/* Adjust artistsViewAcessor state */
-			if (identificator != null)
-			{
-				editState(view);
-				view.setData(result.getMedia());
-			} else
-			{
-				insertState(view);
-				view.setData(getNewInstance());
-			}
-			
-			fillArtistListBox((ListBox) view.getWidget("artistListBox"), 
-				result.getArtists(), media);
+			editState(view);
+			view.setData(result.getMedia());
+		} 
+		else
+		{
+			insertState(view);
+			view.setData(getNewInstance());
 		}
+		
+		fillArtistListBox((ListBox) view.getWidget("artistListBox"), 
+			result.getArtists(), media);
+		WaitBox.hideAllDialogs();
 	}
 	
 	/********************************************
@@ -226,9 +227,8 @@ public class MediaController extends EditController<MediaDTO>
 	}
 
 	@Override
-	protected ArtistProxy<MediaDTO> getArtistProxy()
+	protected MediaProxy getServiceProxy()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return mediaProxy;
 	}
 }

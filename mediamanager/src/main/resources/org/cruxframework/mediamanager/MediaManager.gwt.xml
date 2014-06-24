@@ -12,16 +12,6 @@
 	<source path='client' />
 	<source path='shared' />
 	<public path='public' excludes='**/*.crux.xml,**/*.view.xml,**/*.template.xml,**/*.offline.xml' />
-
-
-<!-- EditArtist -->
-<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.EditArtistRest"> -->
-<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" /> -->
-<!-- 	</replace-with> -->
-
-	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.EditArtistClientDB">
-		<when-type-is class="org.cruxframework.mediamanager.client.proxy.EditArtistProxy" />
-	</replace-with>
 	
 <!-- Artist -->
 <!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.ArtistRest"> -->
@@ -33,6 +23,24 @@
 	</replace-with>
 
 
+<!-- Media -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.MediaRest"> -->
+<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.MediaProxy" /> -->
+<!-- 	</replace-with> -->
+
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.MediaClientDB">
+		<when-type-is class="org.cruxframework.mediamanager.client.proxy.MediaProxy" />
+	</replace-with>
+	
+
+<!-- Statistics -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.StatisticsRest"> -->
+<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.StatisticsProxy" /> -->
+<!-- 	</replace-with> -->
+		
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.StatisticsClientDB">
+		<when-type-is class="org.cruxframework.mediamanager.client.proxy.StatisticsProxy" />
+	</replace-with>
 
 	<!-- To enable super dev mode -->
 	<!--

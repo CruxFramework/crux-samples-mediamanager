@@ -26,10 +26,8 @@ import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.button.Button;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
-import org.cruxframework.mediamanager.client.proxy.EditArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.EditController;
 import org.cruxframework.mediamanager.client.service.ArtistServiceProxy;
-import org.cruxframework.mediamanager.core.client.controller.ArtistControllerInterface;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.core.client.dto.EditArtistDTO;
@@ -42,17 +40,14 @@ import com.google.gwt.user.client.ui.ListBox;
  * @author alexandre.costa
  */
 @Controller("artistController")
-public class ArtistController extends EditController<ArtistDTO> implements ArtistControllerInterface
+public class ArtistController extends EditController<ArtistDTO>
 {
 	//TODO remover esse artistserviceproxy
 	@Inject
 	public ArtistServiceProxy restServiceProxy;
 	
 	@Inject
-	public ArtistProxy<ArtistDTO> artistService;
-
-	@Inject
-	public EditArtistProxy editArtist;
+	public ArtistProxy artistService;
 	
 	@Expose
 	public void onActivate(ViewActivateEvent event)
@@ -62,13 +57,13 @@ public class ArtistController extends EditController<ArtistDTO> implements Artis
 		ArtistDTO artist = event.getParameterObject();
 		Integer identificator = artist == null ? null : artist.getId();
 		//editArtistServiceProxy.get(identificator, new EditAristCallback());
-		editArtist.editArtist(this, identificator);	
+		artistService.get(identificator, this);	
 	}
 	
 	/********************************************
 	 * Callback classes
 	 ********************************************/
-	@Override
+
 	public void editableState(EditArtistDTO result)
 	{
 		BindableView<ArtistDTO> view = View.of(ArtistController.this);
@@ -222,7 +217,7 @@ public class ArtistController extends EditController<ArtistDTO> implements Artis
 	}
 	
 	@Override
-	public ArtistProxy<ArtistDTO> getArtistProxy()
+	public ArtistProxy getServiceProxy()
 	{
 		return artistService;
 	}

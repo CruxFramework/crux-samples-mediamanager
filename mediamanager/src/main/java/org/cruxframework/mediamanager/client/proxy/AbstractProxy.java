@@ -13,30 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.cruxframework.mediamanager.offline.client.error;
+package org.cruxframework.mediamanager.client.proxy;
 
-import org.cruxframework.crux.core.client.Crux;
-import org.cruxframework.crux.core.client.db.DatabaseErrorHandler;
+import org.cruxframework.mediamanager.client.reuse.controller.AbstractController;
+import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 
-/**
- * Class description: Defines the error handling for database operations
- * 
+/**Class description: 
  * @author Bruno Medeiros (bruno@triggolabs.com)
+ *
  */
-
-public class ErrorHandler implements DatabaseErrorHandler 
+public interface AbstractProxy<T extends AbstractDTO>
 {
-
-	@Override
-	public void onError(String message) 
-	{
-		 Crux.getErrorHandler().handleError(message);
-	}
-
-	@Override
-	public void onError(String message, Throwable t) 
-	{
-		 Crux.getErrorHandler().handleError(message, t);
-	}
-
+	void get(Integer id, AbstractController controler);
+	void insert(T dto, AbstractController controller);
+	void update(Integer id , T dto, AbstractController controller);
 }

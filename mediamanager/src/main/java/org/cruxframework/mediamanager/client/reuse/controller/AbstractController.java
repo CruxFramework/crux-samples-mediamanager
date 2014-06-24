@@ -12,8 +12,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Claudio
  *
  */
-public abstract class AbstractController {
-	
+public abstract class AbstractController 
+{
 	public void animateContent()
 	{
 		Widget content = View.of(this).getWidget("outerPanel");

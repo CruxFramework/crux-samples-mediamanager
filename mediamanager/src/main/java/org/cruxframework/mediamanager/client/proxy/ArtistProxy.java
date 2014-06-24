@@ -1,7 +1,7 @@
 package org.cruxframework.mediamanager.client.proxy;
 
-import org.cruxframework.mediamanager.core.client.controller.EditControllerInterface;
-import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
+import org.cruxframework.mediamanager.client.controller.ArtistsController;
+import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 
 
 /**
@@ -12,10 +12,8 @@ import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
  *
  * @param <T extends AbstractDTO>
  */
-public interface ArtistProxy<T extends AbstractDTO>
+public interface ArtistProxy extends AbstractProxy<ArtistDTO>
 {
-	
-	void insert(EditControllerInterface controller, T dto);
-	void update(EditControllerInterface controller, Integer id , T dto);
-
+	void search(String name, ArtistsController controller);
+	void delete(ArtistDTO dto, ArtistsController controler);
 }

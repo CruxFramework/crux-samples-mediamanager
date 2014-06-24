@@ -36,7 +36,7 @@ public abstract class WaitCallbackAdapter<T extends Object>
 			success(result);
 		} finally
 		{
-			WaitBox.hideAllDialogs();
+//			WaitBox.hideAllDialogs();
 		}
 	}
 

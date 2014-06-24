@@ -43,13 +43,13 @@ public class PopulateDBListener implements ServletContextListener
 	private static final Logger LOGGER = 
 		Logger.getLogger(PopulateDBListener.class.getName());
 
-	@Override
+	//TODO tinha um overrride aki
 	public void contextDestroyed(ServletContextEvent arg0)
 	{
 		
 	}
 
-	@Override
+	//TODO tinhaum override aki
 	public void contextInitialized(ServletContextEvent event)
 	{
 		EntityManagerFactory emf = SpringUtils.get().getBean(

@@ -13,30 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.cruxframework.mediamanager.offline.client.error;
+package org.cruxframework.mediamanager.client.controller.callback;
 
-import org.cruxframework.crux.core.client.Crux;
-import org.cruxframework.crux.core.client.db.DatabaseErrorHandler;
+import org.cruxframework.mediamanager.client.controller.MediaController;
+import org.cruxframework.mediamanager.client.reuse.controller.CallbackAdapter;
+import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
 
-/**
- * Class description: Defines the error handling for database operations
- * 
+/**Class description: 
  * @author Bruno Medeiros (bruno@triggolabs.com)
+ *
  */
-
-public class ErrorHandler implements DatabaseErrorHandler 
+public class InsertMediaCallback extends CallbackAdapter<EditOperation>
 {
-
-	@Override
-	public void onError(String message) 
+	private final MediaController controller;
+	
+	public InsertMediaCallback(MediaController controller)
 	{
-		 Crux.getErrorHandler().handleError(message);
+		this.controller = controller;
 	}
-
+	
 	@Override
-	public void onError(String message, Throwable t) 
+	public void onComplete(EditOperation result)
 	{
-		 Crux.getErrorHandler().handleError(message, t);
+		controller.completeInsert(result);
 	}
-
 }

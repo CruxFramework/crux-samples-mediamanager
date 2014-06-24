@@ -42,6 +42,24 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 	{
 		return new ArrayList<T>(getMap().values());
 	}
+	
+	@Override
+	public void sort(String columnName, boolean ascending, boolean caseSensitive)
+	{
+		if (map != null && map.size() > 0)
+		{
+			super.sort(columnName, ascending, caseSensitive);
+		}
+	}
+	
+	@Override
+	public void sort(String columnName, boolean ascending)
+	{
+		if (map != null && map.size() > 0)
+		{
+			super.sort(columnName, ascending);
+		}
+	}
 
 	public void addValues(List<T> values)
 	{

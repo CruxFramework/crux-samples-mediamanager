@@ -20,23 +20,25 @@ import java.util.Date;
 import org.cruxframework.crux.core.client.controller.Controller;
 import org.cruxframework.crux.core.client.controller.Expose;
 import org.cruxframework.crux.core.client.ioc.Inject;
-import org.cruxframework.crux.core.client.rest.Callback;
 import org.cruxframework.crux.core.client.screen.views.BindView;
 import org.cruxframework.crux.core.client.screen.views.BindableView;
 import org.cruxframework.crux.core.client.screen.views.View;
 import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.core.client.screen.views.WidgetAccessor;
+import org.cruxframework.crux.smartfaces.client.dialog.Confirm;
 import org.cruxframework.crux.smartfaces.client.dialog.DialogViewContainer;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
+import org.cruxframework.crux.smartfaces.client.event.OkEvent;
+import org.cruxframework.crux.smartfaces.client.event.OkHandler;
 import org.cruxframework.crux.widgets.client.datebox.DateBox;
 import org.cruxframework.crux.widgets.client.deviceadaptivegrid.DeviceAdaptiveGrid;
 import org.cruxframework.crux.widgets.client.event.SelectEvent;
 import org.cruxframework.crux.widgets.client.grid.DataRow;
 import org.cruxframework.mediamanager.client.controller.datasource.MediaDTODatasource;
-import org.cruxframework.mediamanager.client.reuse.controller.CallbackAdapter;
+import org.cruxframework.mediamanager.client.proxy.MediaProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.SearchController;
 import org.cruxframework.mediamanager.client.service.MediaServiceProxy;
 import org.cruxframework.mediamanager.core.client.dto.MediaDTO;
@@ -63,6 +65,9 @@ public class MediasController extends SearchController<MediaDTO>
 	
 	@Inject
 	public MediaServiceProxy mediaServiceProxy;
+	
+	@Inject
+	public MediaProxy mediaProxy;
 	
 	@Expose
 	public void onActivate()
@@ -103,8 +108,28 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		String name = mediaViewWidgetAccessor.nameTextBox().getValue();
 		String person = mediaViewWidgetAccessor.personTextBox().getValue();
-		mediaServiceProxy.search(type, name, person, new SearchCallback());
+		//mediaServiceProxy.search(type, name, person, new SearchControllerCallback<MediaDTO>(this));
+		mediaProxy.search(type, name, person, this);
 	}
+	
+	@Expose
+	public void delete(SelectEvent selectEvent)
+	{
+		DataRow row = getResultGrid().getRow((Widget) selectEvent.getSource());
+		final MediaDTO dto = (MediaDTO) row.getBoundObject();
+		final MediasController controller = this;
+		Confirm.show(getConfirmDialogTitle(), getConfirmDialogMessage(), new OkHandler()
+		{
+			@Override
+			public void onOk(OkEvent event)
+			{
+				WaitBox.show("Wait");
+				//getRestServiceProxy().delete(dto, new DeleteCallback(dto));
+				mediaProxy.delete(dto, controller);
+			}
+		}, null);
+	}
+	
 	
 	@Expose
 	public void onActivateLendView(ViewActivateEvent event)
@@ -113,11 +138,12 @@ public class MediasController extends SearchController<MediaDTO>
 		DateBox dateBox = (DateBox) view.getWidget("date");
 		dateBox.getTextBox().setReadOnly(true);
 		dateBox.setFormat(
-			new org.cruxframework.crux.widgets.client.datebox.gwtoverride.DateBox.DefaultFormat(
+			new org.cruxframework.crux.widgets.client.datebox.DateBox.CruxDefaultFormat(
 				DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM)));
 		
 		MediaDTO media = event.getParameterObject();
-		mediaServiceProxy.get(media.getId(), new LendMediaCallback());
+		//mediaServiceProxy.get(media.getId(), new LendMediaCallback());
+		mediaProxy.getLend(media.getId(), this);
 	}
 	
 	@Expose
@@ -167,7 +193,8 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		if (validation == null)
 		{
-			mediaServiceProxy.update(dto.getId(), dto, new SaveLendCallback(dto));
+			//mediaServiceProxy.update(dto.getId(), dto, new SaveLendCallback(dto));
+			mediaProxy.lend(dto.getId(), dto, this);
 		} else
 		{
 			MessageBox.show(validation, MessageType.ERROR);
@@ -212,48 +239,59 @@ public class MediasController extends SearchController<MediaDTO>
 	 * Callback classes
 	 **********************************************/
 	
-	private class SaveLendCallback implements Callback<EditOperation>
+	public void saveLendState(MediaDTO dto, EditOperation result){
+		MediaDTODatasource datasource = 
+			(MediaDTODatasource) getResultGrid().getDataSource();
+		
+		datasource.add(dto);
+		getResultGrid().clear();
+		getResultGrid().loadData();
+		getResultGrid().refresh();
+		closeDialogViewContainer(View.of(MediasController.this));
+	}
+	
+//	private class SaveLendCallback implements Callback<EditOperation>
+//	{
+//		private final MediaDTO dto;
+//		
+//		public SaveLendCallback(MediaDTO dto)
+//		{
+//			this.dto = dto;
+//		}
+//		
+//		@Override
+//		public void onSuccess(EditOperation result)
+//		{
+//			
+//		}
+//		
+//		@Override
+//		public void onError(Exception e)
+//		{
+//			// TODO implementar
+//		}
+//	}
+	
+	
+	public void getLendState(MediaDTO result)
 	{
-		private final MediaDTO dto;
-		
-		public SaveLendCallback(MediaDTO dto)
+		BindableView<MediaDTO> view = View.of(MediasController.this);
+		view.setData(result);
+		if (result != null)
 		{
-			this.dto = dto;
-		}
-		
-		@Override
-		public void onSuccess(EditOperation result)
-		{
-			MediaDTODatasource datasource = 
-				(MediaDTODatasource) getResultGrid().getDataSource();
-			
-			datasource.add(dto);
-			getResultGrid().clear();
-			getResultGrid().loadData();
-			getResultGrid().refresh();
-			closeDialogViewContainer(View.of(MediasController.this));
-		}
-		
-		@Override
-		public void onError(Exception e)
-		{
-			// TODO implementar
+			updateBorrowedCheckBoxState(result.getBorrowed());
 		}
 	}
 	
-	private class LendMediaCallback extends CallbackAdapter<MediaDTO>
-	{
-		@Override
-		public void onComplete(MediaDTO result)
-		{
-			BindableView<MediaDTO> view = View.of(MediasController.this);
-			view.setData(result);
-			if (result != null)
-			{
-				updateBorrowedCheckBoxState(result.getBorrowed());
-			}
-		}
-	}
+	
+//	private class LendMediaCallback extends CallbackAdapter<MediaDTO>
+//	{
+//		@Override
+//		public void onComplete(MediaDTO result)
+//		{
+//			
+//		}
+//	}
 	
 	/***********************************************
 	 * WidgetAccessor interfaces
