@@ -1,10 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.cruxframework</groupId>
-  <artifactId>mediamanager-offline</artifactId>
-  <version>1.1-SNAPSHOT</version>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.cruxframework</groupId>
+	<artifactId>mediamanager-offline</artifactId>
+	<version>1.1-SNAPSHOT</version>
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
 		<webinf.folder>${webappDirectory}/WEB-INF/</webinf.folder>
@@ -16,7 +17,6 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.cruxframework</groupId>
 			<artifactId>mediamanager-core</artifactId>
@@ -57,7 +57,7 @@
 								</resource>
 							</resources>
 						</configuration>
-			          </execution>
+					</execution>
 					<execution>
 						<id>copy-classes</id>
 						<phase>process-classes</phase>
@@ -123,61 +123,61 @@
 			</activation>
 			<build>
 				<plugins>
-				<!-- Run Crux Compiler -->
-				<plugin>
-				    <artifactId>maven-antrun-plugin</artifactId>
-				    <version>1.6</version>
-				    <executions>
-				        <execution>
-					    	<id>crux-compiler</id>
-				            <phase>prepare-package</phase>
-				            <configuration>
-					    		<target>
-									<echo message="Running Crux Compiler..." />
-									<java classname="org.cruxframework.crux.tools.compile.CruxCompiler"
-										fork="true">
-										<classpath>
-											<path refid="maven.compile.classpath" />
-										</classpath>
-										<arg value="sourceDir" />
-										<arg value="${sourceDir}" />
-								
-										<arg value="webDir" />
-										<arg value="${webappDirectory}" />
-								
-										<arg value="resourcesDir" />
-										<arg value="${webinf.classes.folder}" />
-								
-										<arg value="outputDir" />
-										<arg value="${webappDirectory}" />
-								
-										<arg value="outputCharset" />
-										<arg value="UTF-8" />
-								
-										<arg value="-localWorkers" />
-										<arg value="2" />
-								
-										<arg value="-logLevel" />
-										<arg value="INFO" />
-								
-										<arg value="pageFileExtension" />
-										<arg value="html" />
-								
-										<arg value="-doNotPreCompileJavaSource" />
-								
-										<jvmarg value="-Xmx768M" />
-										<jvmarg value="-Xms256M" />
-										<jvmarg
-											value="-DCruxToolsConfig.compilerClass=org.cruxframework.crux.tools.compile.CruxModuleCompiler" />
-									</java>
-					    		</target>
-				            </configuration>
-				            <goals>
-				                <goal>run</goal>
-				            </goals>
-				       </execution>
-				   </executions>
-				</plugin>
+					<!-- Run Crux Compiler -->
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>crux-compiler</id>
+								<phase>prepare-package</phase>
+								<configuration>
+									<target>
+										<echo message="Running Crux Compiler..." />
+										<java classname="org.cruxframework.crux.tools.compile.CruxCompiler"
+											fork="true">
+											<classpath>
+												<path refid="maven.compile.classpath" />
+											</classpath>
+											<arg value="sourceDir" />
+											<arg value="${sourceDir}" />
+
+											<arg value="webDir" />
+											<arg value="${webappDirectory}" />
+
+											<arg value="resourcesDir" />
+											<arg value="${webinf.classes.folder}" />
+
+											<arg value="outputDir" />
+											<arg value="${webappDirectory}" />
+
+											<arg value="outputCharset" />
+											<arg value="UTF-8" />
+
+											<arg value="-localWorkers" />
+											<arg value="2" />
+
+											<arg value="-logLevel" />
+											<arg value="INFO" />
+
+											<arg value="pageFileExtension" />
+											<arg value="html" />
+
+											<arg value="-doNotPreCompileJavaSource" />
+
+											<jvmarg value="-Xmx768M" />
+											<jvmarg value="-Xms256M" />
+											<jvmarg
+												value="-DCruxToolsConfig.compilerClass=org.cruxframework.crux.tools.compile.CruxModuleCompiler" />
+										</java>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -199,7 +199,8 @@
 										<path refid="maven.compile.classpath" />
 									</classpath>
 								</taskdef>
-								<generateSchemas outputDir="${xsd.dir}" inputCharset="UTF-8">
+								<generateSchemas outputDir="${xsd.dir}"
+									inputCharset="UTF-8">
 									<classpath>
 										<path refid="maven.compile.classpath" />
 										<pathelement location="${sourceDir}" />
@@ -211,6 +212,6 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>	
-  
+	</profiles>
+
 </project>
