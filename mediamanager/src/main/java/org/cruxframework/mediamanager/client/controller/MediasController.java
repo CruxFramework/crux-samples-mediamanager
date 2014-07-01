@@ -40,7 +40,6 @@ import org.cruxframework.crux.widgets.client.grid.DataRow;
 import org.cruxframework.mediamanager.client.controller.datasource.MediaDTODatasource;
 import org.cruxframework.mediamanager.client.proxy.MediaProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.SearchController;
-import org.cruxframework.mediamanager.client.service.MediaServiceProxy;
 import org.cruxframework.mediamanager.core.client.dto.MediaDTO;
 import org.cruxframework.mediamanager.core.client.enums.MediaType;
 import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
@@ -62,9 +61,6 @@ public class MediasController extends SearchController<MediaDTO>
 {
 	@Inject
 	public MediasViewWidgetAccessor mediaViewWidgetAccessor;
-	
-	@Inject
-	public MediaServiceProxy mediaServiceProxy;
 	
 	@Inject
 	public MediaProxy mediaProxy;
@@ -108,7 +104,6 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		String name = mediaViewWidgetAccessor.nameTextBox().getValue();
 		String person = mediaViewWidgetAccessor.personTextBox().getValue();
-		//mediaServiceProxy.search(type, name, person, new SearchControllerCallback<MediaDTO>(this));
 		mediaProxy.search(type, name, person, this);
 	}
 	
@@ -124,7 +119,6 @@ public class MediasController extends SearchController<MediaDTO>
 			public void onOk(OkEvent event)
 			{
 				WaitBox.show("Wait");
-				//getRestServiceProxy().delete(dto, new DeleteCallback(dto));
 				mediaProxy.delete(dto, controller);
 			}
 		}, null);
@@ -142,7 +136,6 @@ public class MediasController extends SearchController<MediaDTO>
 				DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM)));
 		
 		MediaDTO media = event.getParameterObject();
-		//mediaServiceProxy.get(media.getId(), new LendMediaCallback());
 		mediaProxy.getLend(media.getId(), this);
 	}
 	
@@ -193,7 +186,6 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		if (validation == null)
 		{
-			//mediaServiceProxy.update(dto.getId(), dto, new SaveLendCallback(dto));
 			mediaProxy.lend(dto.getId(), dto, this);
 		} else
 		{
@@ -250,28 +242,6 @@ public class MediasController extends SearchController<MediaDTO>
 		closeDialogViewContainer(View.of(MediasController.this));
 	}
 	
-//	private class SaveLendCallback implements Callback<EditOperation>
-//	{
-//		private final MediaDTO dto;
-//		
-//		public SaveLendCallback(MediaDTO dto)
-//		{
-//			this.dto = dto;
-//		}
-//		
-//		@Override
-//		public void onSuccess(EditOperation result)
-//		{
-//			
-//		}
-//		
-//		@Override
-//		public void onError(Exception e)
-//		{
-//			// TODO implementar
-//		}
-//	}
-	
 	
 	public void getLendState(MediaDTO result)
 	{
@@ -283,15 +253,6 @@ public class MediasController extends SearchController<MediaDTO>
 		}
 	}
 	
-	
-//	private class LendMediaCallback extends CallbackAdapter<MediaDTO>
-//	{
-//		@Override
-//		public void onComplete(MediaDTO result)
-//		{
-//			
-//		}
-//	}
 	
 	/***********************************************
 	 * WidgetAccessor interfaces
@@ -336,9 +297,4 @@ public class MediasController extends SearchController<MediaDTO>
 		return mediaViewWidgetAccessor.tableGrid();
 	}
 
-	@Override
-	protected MediaServiceProxy getRestServiceProxy()
-	{
-		return mediaServiceProxy;
-	}
 }

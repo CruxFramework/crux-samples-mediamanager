@@ -23,7 +23,6 @@ import org.cruxframework.crux.core.client.db.DatabaseCountCallback;
 import org.cruxframework.crux.core.client.db.DatabaseCursorCallback;
 import org.cruxframework.mediamanager.client.controller.StatisticsController;
 import org.cruxframework.mediamanager.client.proxy.StatisticsProxy;
-import org.cruxframework.mediamanager.core.client.dto.MediaDTO;
 import org.cruxframework.mediamanager.core.client.dto.StatisticsDTO;
 import org.cruxframework.mediamanager.core.client.enums.MediaType;
 import org.cruxframework.mediamanager.offline.client.dao.impl.MediaDao;
@@ -35,7 +34,7 @@ import org.cruxframework.mediamanager.offline.client.entity.Media;
  * @author Bruno Medeiros (bruno@triggolabs.com)
  * 
  */
-public class StatisticsClientDB extends ServiceClientDB<MediaDTO> implements
+public class StatisticsClientDB extends ServiceClientDB implements
 	StatisticsProxy
 {
 	// private static final Logger LOGGER =
@@ -60,12 +59,6 @@ public class StatisticsClientDB extends ServiceClientDB<MediaDTO> implements
 				public void onSuccess()
 				{
 					countCDs(dto, controller);
-				}
-
-				@Override
-				public void onError(String message)
-				{
-					super.onError(message);
 				}
 			});
 		}

@@ -15,7 +15,6 @@
  */
 package org.cruxframework.mediamanager.client.proxyfactory.clientdb;
 
-import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 import org.cruxframework.mediamanager.offline.client.db.DbMediamanager;
 
 import com.google.gwt.core.client.GWT;
@@ -24,7 +23,7 @@ import com.google.gwt.core.client.GWT;
  * Class description: 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
-public abstract class ServiceClientDB<T extends AbstractDTO>
+public abstract class ServiceClientDB
 {
 	private final DbMediamanager database = GWT.create(DbMediamanager.class);
 

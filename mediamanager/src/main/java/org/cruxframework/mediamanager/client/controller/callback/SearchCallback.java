@@ -15,11 +15,11 @@ import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
  * @author Bruno Medeiros (bruno@triggolabs.com)
  *
  */
-public class SearchControllerCallback<T extends AbstractDTO>  implements Callback<List<T>>
+public class SearchCallback<T extends AbstractDTO>  implements Callback<List<T>>
 {
 	private final SearchController<T> controller;
 	
-	public SearchControllerCallback(SearchController<T> controller)
+	public SearchCallback(SearchController<T> controller)
 	{
 		this.controller = controller;
 	}

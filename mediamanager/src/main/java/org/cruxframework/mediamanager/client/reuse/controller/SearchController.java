@@ -12,7 +12,6 @@ import org.cruxframework.crux.widgets.client.deviceadaptivegrid.DeviceAdaptiveGr
 import org.cruxframework.crux.widgets.client.event.SelectEvent;
 import org.cruxframework.crux.widgets.client.grid.DataRow;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
-import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
 import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 
 import com.google.gwt.user.client.ui.Widget;
@@ -59,7 +58,7 @@ public abstract class SearchController<T extends AbstractDTO>
 			AbstractDTODatasource<T> datasource = 
 				(AbstractDTODatasource<T>) getResultGrid().getDataSource();
 			
-			getResultGrid().clear();
+			getResultGrid().clear(); 
 			datasource.clear();
 			datasource.addValues(result);
 			getResultGrid().loadData();
@@ -192,7 +191,7 @@ public abstract class SearchController<T extends AbstractDTO>
 	
 	protected abstract DeviceAdaptiveGrid getResultGrid();
 	
-	protected abstract RestServiceProxy<T> getRestServiceProxy();
+//	protected abstract RestServiceProxy<T> getRestServiceProxy();
 	
 	
 	/*******************************************

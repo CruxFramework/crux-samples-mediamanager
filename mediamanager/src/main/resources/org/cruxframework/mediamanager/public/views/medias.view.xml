@@ -8,7 +8,6 @@
 	useDataSource="mediaDTODatasource" 
 	title="Hello, Crux!">
 
-
 	<h1 class="view-title">Search media</h1>
 	<!-- Search panel -->
 	<gwt:flowPanel id="outerPanel" styleName="content styled">
@@ -38,8 +37,8 @@
 
 	<!-- Result Panel -->
 	<gwt:flowPanel id="resultPanel" styleName="content styled">
-		<crux:adaptiveGrid id="tableGrid" width="100%"
-			height="100" stretchColumns="true" autoLoadData="false" pageSize="10"
+		<crux:adaptiveGrid id="tableGrid" width="100%" 
+			height="100" stretchColumns="true" autoLoadData="false" pageSize="4"
 			dataSource="mediaDTODatasource" defaultSortingColumn="name"
 			defaultSortingType="ascending">
 			<crux:largeColumns>
@@ -72,7 +71,7 @@
 				</crux:actionColumn>
 			</crux:smallColumns>
 		</crux:adaptiveGrid>
+		<crux:randomPager  id="pager" pageable="tableGrid" enabled="true" />
 	</gwt:flowPanel>
-
 
 </v:view>

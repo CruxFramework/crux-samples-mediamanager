@@ -15,19 +15,19 @@
  */
 package org.cruxframework.mediamanager.client.controller.callback;
 
-import org.cruxframework.mediamanager.client.controller.MediaController;
 import org.cruxframework.mediamanager.client.reuse.controller.CallbackAdapter;
+import org.cruxframework.mediamanager.client.reuse.controller.EditController;
 import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
 
-/**Class description: 
+/**
+ * Class description: 
  * @author Bruno Medeiros (bruno@triggolabs.com)
- *
  */
-public class InsertMediaCallback extends CallbackAdapter<EditOperation>
+public class InsertCallback extends CallbackAdapter<EditOperation>
 {
-	private final MediaController controller;
+	private final EditController<?> controller;
 	
-	public InsertMediaCallback(MediaController controller)
+	public InsertCallback(EditController<?> controller)
 	{
 		this.controller = controller;
 	}

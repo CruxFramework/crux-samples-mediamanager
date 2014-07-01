@@ -24,12 +24,12 @@ import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
  * @author Bruno Medeiros (bruno@triggolabs.com)
  *
  */
-public class LendMediaCallback extends CallbackAdapter<EditOperation>
+public class LendCallback extends CallbackAdapter<EditOperation>
 {
 	private final MediasController controller;
 	private final MediaDTO dto;
 	
-	public LendMediaCallback(MediaDTO dto, MediasController controller)
+	public LendCallback(MediaDTO dto, MediasController controller)
 	{
 		this.controller = controller;
 		this.dto = dto;

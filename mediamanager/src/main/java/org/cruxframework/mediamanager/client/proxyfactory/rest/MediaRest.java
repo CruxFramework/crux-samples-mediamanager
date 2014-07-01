@@ -5,13 +5,13 @@ package org.cruxframework.mediamanager.client.proxyfactory.rest;
 
 import org.cruxframework.mediamanager.client.controller.MediaController;
 import org.cruxframework.mediamanager.client.controller.MediasController;
-import org.cruxframework.mediamanager.client.controller.callback.DeleteControllerCallback;
+import org.cruxframework.mediamanager.client.controller.callback.DeleteCallback;
 import org.cruxframework.mediamanager.client.controller.callback.EditMediaCallback;
 import org.cruxframework.mediamanager.client.controller.callback.GetLendCallback;
-import org.cruxframework.mediamanager.client.controller.callback.InsertMediaCallback;
-import org.cruxframework.mediamanager.client.controller.callback.LendMediaCallback;
-import org.cruxframework.mediamanager.client.controller.callback.SearchControllerCallback;
-import org.cruxframework.mediamanager.client.controller.callback.UpdateMediaCallback;
+import org.cruxframework.mediamanager.client.controller.callback.InsertCallback;
+import org.cruxframework.mediamanager.client.controller.callback.LendCallback;
+import org.cruxframework.mediamanager.client.controller.callback.SearchCallback;
+import org.cruxframework.mediamanager.client.controller.callback.UpdateCallback;
 import org.cruxframework.mediamanager.client.proxy.MediaProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.AbstractController;
 import org.cruxframework.mediamanager.client.service.EditMediaServiceProxy;
@@ -28,60 +28,60 @@ import com.google.gwt.core.client.GWT;
 public class MediaRest implements MediaProxy
 {
 	
-	private final MediaServiceProxy mediaServiceProxy = GWT.create(MediaServiceProxy.class);
+	private final MediaServiceProxy mediaServiceProxy = GWT
+		.create(MediaServiceProxy.class);
 
-	private final EditMediaServiceProxy editMediaServiceProxy = GWT.create(EditMediaServiceProxy.class);
+	private final EditMediaServiceProxy editMediaServiceProxy = GWT
+		.create(EditMediaServiceProxy.class);
 
-	
 	/********************************
-	 *Search
+	 * Search
 	 *******************************/
-	
+
 	@Override
-	public void search(MediaType type, String name, String person, MediasController controller)
+	public void search(MediaType type, String name, String person,
+		MediasController controller)
 	{
-		mediaServiceProxy.search(type, name, person, new SearchControllerCallback<MediaDTO>(controller));
+		mediaServiceProxy.search(type, name, person,
+			new SearchCallback<MediaDTO>(controller));
 	}
-	
-	
+
 	/********************************
 	 * Get
 	 *******************************/
-	
+
 	@Override
 	public void get(Integer identificator, AbstractController abstractController)
 	{
 		MediaController controller = (MediaController) abstractController;
-		getEditMediaServiceProxy().get(identificator, new EditMediaCallback(controller));
+		getEditMediaServiceProxy().get(identificator,
+			new EditMediaCallback(controller));
 	}
 
-	
-	
 	/********************************
 	 * Insert
 	 *******************************/
-	
+
 	@Override
 	public void insert(MediaDTO dto, AbstractController abstractController)
 	{
 		MediaController controller = (MediaController) abstractController;
-		getMediaServiceProxy().insert(dto, new InsertMediaCallback(controller));		
+		getMediaServiceProxy().insert(dto, new InsertCallback(controller));
 	}
 
-	
 	/********************************
 	 * Update
 	 *******************************/
 
 	@Override
-	public void update(Integer id, MediaDTO dto, AbstractController abstractController)
+	public void update(Integer id, MediaDTO dto,
+		AbstractController abstractController)
 	{
 		MediaController controller = (MediaController) abstractController;
-		getMediaServiceProxy().update(id, dto, new UpdateMediaCallback(controller));
+		getMediaServiceProxy().update(id, dto,
+			new UpdateCallback<MediaDTO>(controller));
 	}
-	
-	
-	
+
 	/********************************
 	 * Delete
 	 *******************************/
@@ -89,10 +89,10 @@ public class MediaRest implements MediaProxy
 	@Override
 	public void delete(MediaDTO dto, MediasController controller)
 	{
-		getMediaServiceProxy().delete(dto, new DeleteControllerCallback<MediaDTO>(dto, controller));
+		getMediaServiceProxy().delete(dto,
+			new DeleteCallback<MediaDTO>(dto, controller));
 	}
 
-	
 	/********************************
 	 * Lend
 	 *******************************/
@@ -100,26 +100,24 @@ public class MediaRest implements MediaProxy
 	@Override
 	public void lend(Integer id, MediaDTO dto, MediasController controller)
 	{
-		getMediaServiceProxy().update(id, dto, new LendMediaCallback(dto ,controller));
+		getMediaServiceProxy().update(id, dto,
+			new LendCallback(dto, controller));
 	}
-	
-	
-	
+
 	/********************************
 	 * Get
 	 *******************************/
-	
+
 	@Override
 	public void getLend(Integer identificator, MediasController controller)
 	{
-		getMediaServiceProxy().get(identificator, new GetLendCallback(controller));
+		getMediaServiceProxy().get(identificator,
+			new GetLendCallback(controller));
 	}
 
-	
 	/********************************
 	 * Utils
 	 *******************************/
-
 
 	/**
 	 * @return the mediaServiceProxy

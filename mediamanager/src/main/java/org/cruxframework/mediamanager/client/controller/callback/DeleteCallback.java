@@ -9,12 +9,12 @@ import org.cruxframework.mediamanager.client.reuse.controller.SearchController;
 import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
 
-public class DeleteControllerCallback<T extends AbstractDTO> implements Callback<EditOperation>
+public class DeleteCallback<T extends AbstractDTO> implements Callback<EditOperation>
 {
 	private final T dto;
 	private final SearchController<T> controller;
 	
-	public DeleteControllerCallback(T dto, SearchController<T> controller)
+	public DeleteCallback(T dto, SearchController<T> controller)
 	{
 		this.dto = dto;
 		this.controller = controller;

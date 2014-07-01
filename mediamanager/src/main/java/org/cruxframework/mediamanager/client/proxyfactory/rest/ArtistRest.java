@@ -2,11 +2,11 @@ package org.cruxframework.mediamanager.client.proxyfactory.rest;
 
 import org.cruxframework.mediamanager.client.controller.ArtistController;
 import org.cruxframework.mediamanager.client.controller.ArtistsController;
-import org.cruxframework.mediamanager.client.controller.callback.DeleteControllerCallback;
+import org.cruxframework.mediamanager.client.controller.callback.DeleteCallback;
 import org.cruxframework.mediamanager.client.controller.callback.EditArtistCallback;
-import org.cruxframework.mediamanager.client.controller.callback.InsertArtistCallback;
-import org.cruxframework.mediamanager.client.controller.callback.SearchControllerCallback;
-import org.cruxframework.mediamanager.client.controller.callback.UpdateArtistCallback;
+import org.cruxframework.mediamanager.client.controller.callback.InsertCallback;
+import org.cruxframework.mediamanager.client.controller.callback.SearchCallback;
+import org.cruxframework.mediamanager.client.controller.callback.UpdateCallback;
 import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.AbstractController;
 import org.cruxframework.mediamanager.client.service.ArtistServiceProxy;
@@ -32,28 +32,9 @@ public class ArtistRest implements ArtistProxy
 	public void insert(ArtistDTO dto, AbstractController abstractController)
 	{
 		ArtistController controller = (ArtistController) abstractController;
-		getRestServiceProxy().insert(dto, new InsertArtistCallback(controller));
+		getRestServiceProxy().insert(dto, new InsertCallback(controller));
 	}
 
-	
-	/********************
-	 * Callback
-	 *******************/
-//	private class InsertCallback extends CallbackAdapter<EditOperation>
-//	{
-//		private final EditControllerInterface controller;
-//		
-//		public InsertCallback(EditControllerInterface controller)
-//		{
-//			this.controller = controller;
-//		}
-//		
-//		@Override
-//		public void onComplete(EditOperation result)
-//		{
-//			controller.completeInsert(result);
-//		}
-//	}
 
 	/********************
 	 * Update
@@ -62,23 +43,8 @@ public class ArtistRest implements ArtistProxy
 	public void update(Integer id, ArtistDTO dto, AbstractController abstractController)
 	{
 		ArtistController controller = (ArtistController) abstractController;
-		getRestServiceProxy().update(id, dto, new UpdateArtistCallback(controller));
+		getRestServiceProxy().update(id, dto, new UpdateCallback<ArtistDTO>(controller));
 	}
-//	private class UpdateCallback extends CallbackAdapter<EditOperation>
-//	{
-//		EditControllerInterface controller;
-//		
-//		public UpdateCallback(EditControllerInterface controller)
-//		{
-//			this.controller = controller;
-//		}
-//		
-//		@Override
-//		public void onComplete(EditOperation result)
-//		{
-//			controller.completeUpdate();
-//		}
-//	}
 	
 
 	/********************************
@@ -90,7 +56,6 @@ public class ArtistRest implements ArtistProxy
 		ArtistController controller = (ArtistController) abstractController;
 		getEditArtistServiceProxy().get(identificator, new EditArtistCallback(controller));
 	}
-
 	
 	
 	/********************************
@@ -100,18 +65,17 @@ public class ArtistRest implements ArtistProxy
 	@Override
 	public void search(String name, ArtistsController controller)
 	{
-		getArtistServiceProxy().search(name, new SearchControllerCallback<ArtistDTO>(controller)); 
+		getArtistServiceProxy().search(name, new SearchCallback<ArtistDTO>(controller)); 
 	}
 
 
 	/********************************
 	 * Delete
 	 *******************************/
-	
 	@Override
 	public void delete(ArtistDTO dto, ArtistsController controller)
 	{
-		getRestServiceProxy().delete(dto, new DeleteControllerCallback<ArtistDTO>(dto, controller));
+		getRestServiceProxy().delete(dto, new DeleteCallback<ArtistDTO>(dto, controller));
 	}
 
 

@@ -28,8 +28,6 @@ import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.mediamanager.client.proxy.MediaProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.EditController;
-import org.cruxframework.mediamanager.client.service.EditMediaServiceProxy;
-import org.cruxframework.mediamanager.client.service.MediaServiceProxy;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.EditMediaDTO;
 import org.cruxframework.mediamanager.core.client.dto.MediaDTO;
@@ -45,12 +43,6 @@ import com.google.gwt.user.client.ui.ListBox;
 public class MediaController extends EditController<MediaDTO>
 {	
 	@Inject
-	public MediaServiceProxy restServiceProxy;
-	
-	@Inject
-	public EditMediaServiceProxy editMediaServiceProxy;
-	
-	@Inject
 	public MediaProxy mediaProxy;
 	
 	@Expose
@@ -62,7 +54,6 @@ public class MediaController extends EditController<MediaDTO>
 		MediaDTO media = event.getParameterObject();
 		Integer identificator = media == null ? null : media.getId();
 		fillMediaTypeListBox((ListBox) view.getWidget("typeListBox"), media);
-//	 editMediaServiceProxy.get(identificator, new EditMediaCallback());
 		mediaProxy.get(identificator, this);
 	}
 	
@@ -140,19 +131,6 @@ public class MediaController extends EditController<MediaDTO>
 		updateButton.setEnabled(false);
 	}
 	
-	@Override
-	protected boolean validate(MediaDTO mediaDTO)
-	{
-		return mediaDTO.getName() != null 
-			&& mediaDTO.getName().trim().length() > 0
-			&& mediaDTO.getArtist().getId() != null
-			&& mediaDTO.getType() != null;
-	}
-	
-	/****************************************
-	 * Callback
-	 *****************************************/
-	
 	public void editableState(EditMediaDTO result)
 	{
 		BindableView<MediaDTO> view = View.of(MediaController.this);
@@ -174,6 +152,15 @@ public class MediaController extends EditController<MediaDTO>
 		fillArtistListBox((ListBox) view.getWidget("artistListBox"), 
 			result.getArtists(), media);
 		WaitBox.hideAllDialogs();
+	}
+	
+	@Override
+	protected boolean validate(MediaDTO mediaDTO)
+	{
+		return mediaDTO.getName() != null 
+			&& mediaDTO.getName().trim().length() > 0
+			&& mediaDTO.getArtist().getId() != null
+			&& mediaDTO.getType() != null;
 	}
 	
 	/********************************************
@@ -214,12 +201,6 @@ public class MediaController extends EditController<MediaDTO>
 		dto.setArtist(artistDTO);
 	}
 	
-	@Override
-	protected MediaServiceProxy getRestServiceProxy()
-	{
-		return restServiceProxy;
-	}
-
 	@Override
 	protected MediaDTO getNewInstance()
 	{

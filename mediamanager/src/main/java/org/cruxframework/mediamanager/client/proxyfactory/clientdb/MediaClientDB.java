@@ -16,6 +16,8 @@
 package org.cruxframework.mediamanager.client.proxyfactory.clientdb;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.cruxframework.crux.core.client.db.Cursor;
@@ -37,13 +39,17 @@ import org.cruxframework.mediamanager.offline.client.entity.Artist;
 import org.cruxframework.mediamanager.offline.client.entity.Media;
 import org.cruxframework.mediamanager.offline.client.reuse.Utils;
 
+import com.google.gwt.user.client.Window;
+
+
 /**Class description: 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  *
  */
-
-public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaProxy
+public class MediaClientDB extends ServiceClientDB implements MediaProxy
 {
+	
+	private static final ArtistComparator ARTIST_COMPARATOR = new ArtistComparator();
 	
 	/***********************************************************
 	 * Insert
@@ -61,12 +67,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 				{
 					getMedia(dto, controller);
 				}
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
 			});
 		} 
 		else
@@ -80,7 +80,7 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	{
 		final Media media;
 		media = new Media();
-		media.setName(dto.getName());
+		media.setNameMedia(dto.getName());
 		media.setId(dto.getId());
 		media.setBorrowed(dto.getBorrowed() == true ? 1 : 0);
 		media.setDate(dto.getDate());
@@ -96,12 +96,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					media.setArtist(result);
 					saveInsert(media, controller);
 				}
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
 			});
 	}
 	
@@ -116,12 +110,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 			{
 				searchId(media, controller);				
 			}
-			@Override
-			public void onError(String message)
-			{
-				// TODO Auto-generated method stub
-				super.onError(message);
-			}
 		});
 	}
 	
@@ -130,7 +118,7 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	 */
 	private void searchId(final Media media, final MediaController controller)
 	{
-		MediaDao.getInstance(getDatabase()).search(media.getName(), "name",
+		MediaDao.getInstance(getDatabase()).search(media.getNameMedia(), "nameMedia",
 			new DatabaseRetrieveCallback<Media>()
 			{
 				@Override
@@ -139,6 +127,12 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					EditOperation edit = new EditOperation();
 					edit.setId(result.getId());
 					controller.completeInsert(edit);
+				}
+				@Override
+				public void onError(String message)
+				{
+					Window.alert("blaa");
+					super.onError(message);
 				}
 			});
 	}
@@ -159,12 +153,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 				{
 					doSearch(type, name, person, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					super.onError(message);
-				}
 			});
 		}
 		else
@@ -182,7 +170,7 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 		}
 		else if (!name.equals("") && person.equals("") && type == null)
 		{
-			search(name, "name", controller);
+			search(name, "nameMedia", controller);
 		}
 		else if (name.equals("") && !person.equals("") && type == null)
 		{
@@ -197,7 +185,7 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 		{
 			Object[] obj = new Object[] { new String(name), new String(type.name())};
 			Object[] objBound = new Object[] {new String(Utils.StringBound(name)), new String(Utils.StringBound(type.name()))};
-			search(obj, objBound, "nameType", controller);
+			search(obj, objBound, "nameMediaType", controller);
 		}
 	}
 
@@ -246,12 +234,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					}
 					
 				}
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
 			});
 	}
 
@@ -270,13 +252,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 						medias.add(result.getDTORepresentation());
 					}
 					controller.showSearchResult(medias);
-				}
-
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
 				}
 			});
 	}
@@ -302,17 +277,9 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					controller.showSearchResult(medias);
 				}
 			}
-
-			@Override
-			public void onError(String message)
-			{
-				// TODO Auto-generated method stub
-				super.onError(message);
-			}
 		});
 	}
 
-	
 	
 /***************************************************************
  * GET
@@ -332,11 +299,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 				public void onSuccess()
 				{
 					doGet(identificator, editMediaDTO ,controller);
-				}
-				@Override
-				public void onError(String message)
-				{
-					super.onError(message);
 				}
 			});
 			
@@ -372,12 +334,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 				editMediaDTO.setMedia(result.getDTORepresentation());
 				setArtist(editMediaDTO, controller);
 			}
-			@Override
-			public void onError(String message)
-			{
-				// TODO Auto-generated method stub
-				super.onError(message);
-			}
 		});
 	}
 
@@ -395,16 +351,13 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					artists.add(artist.getDTORepresentation());
 					result.continueCursor();
 				}
-				else{
+				else
+				{
+					// Sort List by Name
+					Collections.sort(artists, ARTIST_COMPARATOR);
 					editMediaDTO.setArtists(artists);
 					controller.editableState(editMediaDTO);
 				}
-			}
-			@Override
-			public void onError(String message)
-			{
-				// TODO Auto-generated method stub
-				super.onError(message);
 			}
 		});
 		
@@ -414,39 +367,47 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	 * Delete
 	 *****************************************/
 	@Override
-	public void delete(final MediaDTO dto, final MediasController controller) 
+	public void delete(final MediaDTO dto, final MediasController controller)
 	{
-		MediaDao.getInstance(getDatabase()).search(dto.getName(), "name", new DatabaseRetrieveCallback<Media>()
+		if (!getDatabase().isOpen())
 		{
-			@Override
-			public void onSuccess(Media result)
+			getDatabase().open(new DatabaseCallback()
 			{
-				if (result != null)
+
+				@Override
+				public void onSuccess()
 				{
-					MediaDao.getInstance(getDatabase()).delete(result.getId(), new DatabaseCallback()
-					{
-						@Override
-						public void onSuccess()
-						{
-							controller.showDeleteResult(dto);
-						}
-						@Override
-						public void onError(String message)
-						{
-							// TODO Auto-generated method stub
-							super.onError(message);
-						}
-					});
+					doDelete(dto, controller);
 				}
-			}
-			@Override
-			public void onError(String message)
+			});
+		}
+		else
+		{
+			doDelete(dto, controller);
+		}
+	}
+	
+	public void doDelete(final MediaDTO dto, final MediasController controller) 
+	{
+		MediaDao.getInstance(getDatabase()).search(dto.getName(), "nameMedia", new DatabaseRetrieveCallback<Media>()
 			{
-				// TODO Auto-generated method stub
-				super.onError(message);
-			}
-		});
-	};
+				@Override
+				public void onSuccess(Media result)
+				{
+					if (result != null)
+					{
+						MediaDao.getInstance(getDatabase()).delete(result.getId(), new DatabaseCallback()
+						{
+							@Override
+							public void onSuccess()
+							{
+								controller.showDeleteResult(dto);
+							}
+						});
+					}
+				}
+			});
+	}
 	
 	/***********************************************************
 	 * Update
@@ -465,13 +426,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 				{
 					doneUpdate(id, dto, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
 			});
 		}
 		else
@@ -484,7 +438,7 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	{
 		final Media media;
 		media = new Media();
-		media.setName(dto.getName());
+		media.setNameMedia(dto.getName());
 		media.setId(dto.getId());
 		media.setBorrowed(dto.getBorrowed() == true ? 1 : 0 );
 		media.setDate(dto.getDate());
@@ -500,14 +454,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 						media.setArtist(result);
 						save(media, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
-
 			});
 	}
 	
@@ -515,7 +461,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	{
 		MediaDao.getInstance(getDatabase()).save(media, new DatabaseCallback()
 		{
-			
 			@Override
 			public void onSuccess()
 			{
@@ -542,13 +487,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 				{
 					doneLend(id, dto, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
 			});
 		}
 		else
@@ -561,7 +499,7 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	{
 		final Media media;
 		media = new Media();
-		media.setName(dto.getName());
+		media.setNameMedia(dto.getName());
 		media.setId(dto.getId());
 		media.setBorrowed(dto.getBorrowed() == true ? 1 : 0 );
 		media.setDate(dto.getDate());
@@ -577,14 +515,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 						media.setArtist(result);
 						saveLend(media, dto, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
-
 			});
 	}
 	
@@ -592,7 +522,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 	{
 		MediaDao.getInstance(getDatabase()).save(media, new DatabaseCallback()
 		{
-			
 			@Override
 			public void onSuccess()
 			{
@@ -619,11 +548,6 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					{
 						setMedia(identificator, controller);
 					}
-					@Override
-					public void onError(String message)
-					{
-						super.onError(message);
-					}
 				});
 				
 			}
@@ -645,19 +569,19 @@ public class MediaClientDB extends ServiceClientDB<MediaDTO> implements MediaPro
 					mediaDTO = result.getDTORepresentation();
 					controller.getLendState(mediaDTO);
 				}
-				@Override
-				public void onError(String message)
-				{
-					// TODO Auto-generated method stub
-					super.onError(message);
-				}
 			});
 		}
 
 	
 	/***********************************************************
 	 * Util
-	 * @throws Exception 
 	 ***********************************************************/
-	
+	private static class ArtistComparator implements Comparator<ArtistDTO>
+	{
+		@Override
+		public int compare(ArtistDTO o1, ArtistDTO o2)
+		{
+			return o1.getName().compareToIgnoreCase(o2.getName());
+		}
+	}
 }

@@ -30,7 +30,6 @@ import org.cruxframework.crux.widgets.client.event.SelectEvent;
 import org.cruxframework.crux.widgets.client.grid.DataRow;
 import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.SearchController;
-import org.cruxframework.mediamanager.client.service.ArtistServiceProxy;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 
 import com.google.gwt.user.client.ui.TextBox;
@@ -45,9 +44,6 @@ public class ArtistsController extends SearchController<ArtistDTO>
 {
 	@Inject
 	public ArtistsView artistsViewAcessor;
-	
-	@Inject
-	public ArtistServiceProxy artistServiceProxy;
 	
 	@Inject
 	public ArtistProxy artistProxy;
@@ -68,7 +64,6 @@ public class ArtistsController extends SearchController<ArtistDTO>
 	{
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		String name = artistsViewAcessor.nameTextBox().getText();
-		//artistServiceProxy.search(name, new SearchControllerCallback<ArtistDTO>(this));
 		artistProxy.search(name, this);
 	}
 	
@@ -84,7 +79,6 @@ public class ArtistsController extends SearchController<ArtistDTO>
 			public void onOk(OkEvent event)
 			{
 				WaitBox.show("Wait");
-				//getRestServiceProxy().delete(dto, new DeleteCallback(dto));
 				artistProxy.delete(dto, controller);
 			}
 		}, null);
@@ -125,9 +119,4 @@ public class ArtistsController extends SearchController<ArtistDTO>
 		return artistsViewAcessor.tableGrid();
 	}
 
-	@Override
-	protected ArtistServiceProxy getRestServiceProxy()
-	{
-		return artistServiceProxy;
-	}
 }

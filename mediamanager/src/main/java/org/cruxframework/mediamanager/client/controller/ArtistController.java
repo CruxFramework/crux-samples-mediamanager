@@ -25,9 +25,9 @@ import org.cruxframework.crux.core.client.screen.views.View;
 import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.button.Button;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
+import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.mediamanager.client.proxy.ArtistProxy;
 import org.cruxframework.mediamanager.client.reuse.controller.EditController;
-import org.cruxframework.mediamanager.client.service.ArtistServiceProxy;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.core.client.dto.EditArtistDTO;
@@ -42,10 +42,6 @@ import com.google.gwt.user.client.ui.ListBox;
 @Controller("artistController")
 public class ArtistController extends EditController<ArtistDTO>
 {
-	//TODO remover esse artistserviceproxy
-	@Inject
-	public ArtistServiceProxy restServiceProxy;
-	
 	@Inject
 	public ArtistProxy artistService;
 	
@@ -53,17 +49,18 @@ public class ArtistController extends EditController<ArtistDTO>
 	public void onActivate(ViewActivateEvent event)
 	{
 		animateContent();
-		//WaitBox.show("Wait", DialogAnimation.fadeDownUp);
+		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		ArtistDTO artist = event.getParameterObject();
 		Integer identificator = artist == null ? null : artist.getId();
-		//editArtistServiceProxy.get(identificator, new EditAristCallback());
 		artistService.get(identificator, this);	
 	}
+
+	
 	
 	/********************************************
-	 * Callback classes
+	 * View state settings
 	 ********************************************/
-
+	
 	public void editableState(EditArtistDTO result)
 	{
 		BindableView<ArtistDTO> view = View.of(ArtistController.this);
@@ -75,44 +72,43 @@ public class ArtistController extends EditController<ArtistDTO>
 		{
 			editState(view);
 			view.setData(result.getArtist());
-		} else
+		}
+		else
 		{
 			insertState(view);
 			view.setData(getNewInstance());
 		}
-		
-		fillGenereListBox((ListBox) view.getWidget("genereListBox"), 
-			result.getGenres(), artist);
-		
-		fillCountryListBox((ListBox) view.getWidget("countryListBox"), 
-			result.getCountries(), artist);
+
+		fillGenereListBox((ListBox) view.getWidget("genereListBox"), result
+			.getGenres(), artist);
+
+		fillCountryListBox((ListBox) view.getWidget("countryListBox"), result
+			.getCountries(), artist);
 	}
-	
-	/********************************************
-	 * View state settings
-	 ********************************************/
 	
 	/**
 	 * Adjust artistsViewAcessor for update mode.
+	 * 
 	 * @param artistsViewAcessor artistsViewAcessor to be adjusted
 	 */
 	@Override
 	protected void editState(View view)
 	{
-		Button insertButton = (Button)view.getWidget("insertButton");
+		Button insertButton = (Button) view.getWidget("insertButton");
 		Button updateButton = (Button) view.getWidget("updateButton");
 		insertButton.setEnabled(false);
 		updateButton.setEnabled(true);
 	}
-	
+
 	/**
 	 * Adjust artistsViewAcessor for insert mode
+	 * 
 	 * @param artistsViewAcessor artistsViewAcessor to be adjusted
 	 */
 	@Override
 	protected void insertState(View view)
 	{
-		Button insertButton = (Button)view.getWidget("insertButton");
+		Button insertButton = (Button) view.getWidget("insertButton");
 		Button updateButton = (Button) view.getWidget("updateButton");
 		insertButton.setEnabled(true);
 		updateButton.setEnabled(false);
@@ -207,14 +203,6 @@ public class ArtistController extends EditController<ArtistDTO>
 			&& abstractDTO.getGenre().getId() != null;
 	}
 	
-	/**
-	 * @return the restServiceProxy
-	 */
-	@Override
-	public ArtistServiceProxy getRestServiceProxy()
-	{
-		return restServiceProxy;
-	}
 	
 	@Override
 	public ArtistProxy getServiceProxy()

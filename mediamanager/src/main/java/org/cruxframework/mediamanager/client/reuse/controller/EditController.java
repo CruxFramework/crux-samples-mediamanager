@@ -18,12 +18,10 @@ package org.cruxframework.mediamanager.client.reuse.controller;
 import org.cruxframework.crux.core.client.controller.Expose;
 import org.cruxframework.crux.core.client.screen.views.BindableView;
 import org.cruxframework.crux.core.client.screen.views.View;
-import org.cruxframework.crux.core.client.screen.views.ViewActivateEvent;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.mediamanager.client.proxy.AbstractProxy;
-import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
 import org.cruxframework.mediamanager.core.client.reuse.AbstractDTO;
 import org.cruxframework.mediamanager.core.client.reuse.EditOperation;
 
@@ -81,42 +79,9 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		}
 	}
 	
-	/******************************************
-	 * Utilities
-	 ******************************************/
-	
-	/**
-	 * Load most recent entity from persistence mechanism for updating. 
-	 * @param id entity id
-	 * @param view view
-	 */
-	protected void loadEntity(final Integer id, final BindableView<T> view)
-	{
-		getRestServiceProxy().get(id, new LoadEntityCallback(view));
-	}
-	
-	/**
-	 * Adjust view state for updating or inserting.
-	 * @param event view activate event
-	 */
-	@SuppressWarnings("unchecked")
-	protected void adjustViewState(ViewActivateEvent event)
-	{
-		T dto = (T) event.getParameterObject();
-		Integer id = dto == null ? null : dto.getId();
-		final BindableView<T> view = View.of(this);
-
-		if (id != null)
-		{
-			loadEntity(id, view);
-			editState(view);
-		} else
-		{
-			T newDTO = getNewInstance();
-			view.setData(newDTO);
-			insertState(view);
-		}
-	}
+	/****************************************
+	 * Complete Operation
+	 *****************************************/
 	
 	public void completeInsert(EditOperation result)
 	{
@@ -150,8 +115,6 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	 * Get the service proxy.
 	 * @return current proxy
 	 */
-	protected abstract RestServiceProxy<T> getRestServiceProxy();
-	
 	protected abstract AbstractProxy<T> getServiceProxy();
 
 
@@ -174,57 +137,6 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	{
 		
 	}
-	
-	/*********************************************
-	 * Callback classes
-	 *********************************************/
-	
-	private class LoadEntityCallback extends CallbackAdapter<T>
-	{
-		private final BindableView<T> view;
-		
-		public LoadEntityCallback(BindableView<T> view)
-		{
-			this.view = view;
-		}
-		
-		@Override
-		public void onComplete(T result)
-		{
-			view.setData(result);
-		}
-	}
-	
-//	private class InsertCallback extends CallbackAdapter<EditOperation>
-//	{
-//		private final BindableView<T> view;
-//		
-//		public InsertCallback(BindableView<T> view)
-//		{
-//			this.view = view;
-//		}
-//		
-//		@Override
-//		public void onComplete(EditOperation result)
-//		{
-//			Integer id = result.getId();
-//			T dto = view.getData();
-//			dto.setId(id);
-//			editState(view);
-//			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
-//					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-//		}
-//	}
-	
-//	private class UpdateCallback extends CallbackAdapter<EditOperation>
-//	{
-//		@Override
-//		public void onComplete(EditOperation result)
-//		{
-//			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
-//					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-//		}
-//	}
 	
 	/*********************************************
 	 * Confirm dialog messages

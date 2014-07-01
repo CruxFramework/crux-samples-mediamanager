@@ -1,6 +1,8 @@
 package org.cruxframework.mediamanager.client.proxyfactory.clientdb;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.cruxframework.crux.core.client.db.Cursor;
@@ -37,7 +39,7 @@ import com.google.gwt.user.client.Window;
  * 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
-public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements ArtistProxy
+public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 {
 
 	/*****************************************
@@ -59,12 +61,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					// Save Artist
 					saveInsert(dto, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					super.onError(message);
-				}
 			});
 		}
 		else
@@ -77,20 +73,49 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 	{
 		final Artist artist = getArtist(dto, null);
 		
-		ArtistDao.getInstance(getDatabase()).save(artist, new DatabaseCallback()
+		// Search Country
+		CountryDao.getInstance(getDatabase()).search(artist.getCountry().getId(),
+		new DatabaseRetrieveCallback<Country>()
 		{
+						
 			@Override
-			public void onSuccess()
+			public void onSuccess(Country result)
 			{
-				// This method is required to recover the "id" inserted into a database
-				// artist.
-				searchId(artist, controller);
+			artist.getCountry().setNameCountry(result.getNameCountry());
+			// Search Genre
+			GenreDao.getInstance(getDatabase()).search(artist.getGenre().getId(),
+				new DatabaseRetrieveCallback<Genre>()
+				{
+					
+					@Override
+					public void onSuccess(Genre result)
+					{
+						artist.getGenre().setNameGenre(result.getNameGenre());
+						// Save Artist
+						ArtistDao.getInstance(getDatabase()).save(artist,
+							new DatabaseCallback()
+							{
+								@Override
+								public void onSuccess()
+								{
+									// This method is required to recover the "id" inserted into a database
+									// artist.
+									searchId(artist, controller);
+								}
+							});
+					}
+					@Override
+					public void onError(String message)
+					{
+						Window.alert("Genre not found in the database !");
+						super.onError(message);
+					}
+				});
 			}
-
 			@Override
 			public void onError(String message)
 			{
-				// TODO melhorar o tratamento de error
+				Window.alert("Country not found in the database !");
 				super.onError(message);
 			}
 		});
@@ -101,7 +126,7 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 	 */
 	private void searchId(final Artist artist, final ArtistController controller)
 	{
-		ArtistDao.getInstance(getDatabase()).search(artist.getName(), "name",
+		ArtistDao.getInstance(getDatabase()).search(artist.getNameArtist(), "nameArtist",
 			new DatabaseRetrieveCallback<Artist>()
 			{
 
@@ -118,7 +143,7 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 	
 	
 	/*****************************************
-	 * Insert
+	 * Get
 	 *****************************************/
 	@Override
 	public void get(final Integer id, AbstractController abstractController)
@@ -140,11 +165,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					setCountryDTO(dto, controller);
 				}
 			}
-			@Override
-			public void onError(String message)
-			{
-				super.onError(message);
-			}
 		});
 	}
 	
@@ -158,12 +178,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 			{
 				dto.setArtist(result.getDTORepresentation());
 				setCountryDTO(dto, controller);
-			}
-			@Override
-			public void onError(String message)
-			{
-				// TODO Auto-generated method stub
-				super.onError(message);
 			}
 		}); 
 	}
@@ -184,6 +198,9 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 				}
 				else
 				{
+					// Sort List by Name
+					CountryComparator comparator = new CountryComparator();
+					Collections.sort(country, comparator);
 					dto.setCountries(country);
 					setGenreDTO(dto, controller);
 				}
@@ -206,6 +223,9 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					result.continueCursor();
 				} else
 				{
+					// Sort List by Name
+					GenreComparator comparator = new GenreComparator();
+					Collections.sort(genre, comparator);
 					dto.setGenres(genre);
 					//Send the return to Controller
 					controller.editableState(dto);
@@ -232,12 +252,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					// Save Artist
 					saveUpdate(id, dto, controller);
 				}
-
-				@Override
-				public void onError(String message)
-				{
-					super.onError(message);
-				}
 			});
 		}
 		else
@@ -259,7 +273,7 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 				@Override
 				public void onSuccess(Country result)
 				{
-					artist.getCountry().setName(result.getName());
+					artist.getCountry().setNameCountry(result.getNameCountry());
 					// Search Genre
 					GenreDao.getInstance(getDatabase()).search(artist.getGenre().getId(),
 						new DatabaseRetrieveCallback<Genre>()
@@ -268,7 +282,7 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 							@Override
 							public void onSuccess(Genre result)
 							{
-								artist.getGenre().setName(result.getName());
+								artist.getGenre().setNameGenre(result.getNameGenre());
 								// Save Artist
 								ArtistDao.getInstance(getDatabase()).save(artist,
 									new DatabaseCallback()
@@ -277,13 +291,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 										public void onSuccess()
 										{
 											controller.completeUpdate();
-										}
-
-										@Override
-										public void onError(String message)
-										{
-											// TODO Auto-generated method stub
-											super.onError(message);
 										}
 									});
 							}
@@ -303,7 +310,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					super.onError(message);
 				}
 			});
-			
 	}
 	
 	
@@ -338,12 +344,6 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 								{
 									controller.showDeleteResult(dto);
 								}
-
-								@Override
-								public void onError(String message)
-								{
-									super.onError(message);
-								}
 							});
 					}
 				}
@@ -365,19 +365,27 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					@Override
 					public void onSuccess()
 					{
-						doSearch(name, controller);
-					}
-		
-					@Override
-					public void onError(String message)
-					{
-						super.onError(message);
+						if (name.equals(""))
+						{
+							doSearch(name, controller);
+						}
+						else
+						{
+							doSearch(name, "nameArtist", controller);
+						}
 					}
 				});
 		}
 		else
 		{
-			doSearch(name, controller);
+			if (name.equals(""))
+			{
+				doSearch(name, controller);
+			}
+			else
+			{
+				doSearch(name, "nameArtist", controller);
+			}
 		}
 	}
 
@@ -394,14 +402,7 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					if ((result != null) && result.hasValue())
 					{
 						Artist artist = result.getValue();
-						if (name.equals(""))
-						{
-							artists.add(artist.getDTORepresentation());
-						}
-						else if (artist.getName().equals(name))
-						{
-							artists.add(artist.getDTORepresentation());
-						}
+						artists.add(artist.getDTORepresentation());
 						result.continueCursor();
 					}
 					else
@@ -410,6 +411,29 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 					}
 				}
 			});
+	}
+	
+	
+	private void doSearch(final String name, String index, final ArtistsController controller)
+	{
+		ArtistDao.getInstance(getDatabase()).searchLike(name, index, new DatabaseCursorCallback<String, Artist>()
+		{
+			private final List<ArtistDTO> artists = new ArrayList<ArtistDTO>();
+			@Override
+			public void onSuccess(Cursor<String, Artist> result)
+			{
+				if ((result != null) && result.hasValue())
+				{
+					Artist artist = result.getValue();
+					artists.add(artist.getDTORepresentation());
+					result.continueCursor();
+				}
+				else
+				{
+					controller.showSearchResult(artists);
+				}
+			}
+		});
 	}
 
 	/******************
@@ -420,7 +444,7 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 		Artist artist = new Artist();
 		artist = new Artist();
 		// Name
-		artist.setName(dto.getName());
+		artist.setNameArtist(dto.getName());
 		// Country
 		Country country = new Country();
 		country.setId(dto.getCountry().getId());
@@ -432,6 +456,24 @@ public class ArtistClientDB extends ServiceClientDB<ArtistDTO> implements Artist
 		// id
 		artist.setId(id);
 		return artist;
+	}
+	
+	private class GenreComparator implements Comparator<GenreDTO>
+	{
+		@Override
+		public int compare(GenreDTO o1, GenreDTO o2)
+		{
+			return o1.getName().compareToIgnoreCase(o2.getName());
+		}
+	}
+	
+	private class CountryComparator implements Comparator<CountryDTO>
+	{
+		@Override
+		public int compare(CountryDTO o1, CountryDTO o2)
+		{
+			return o1.getName().compareToIgnoreCase(o2.getName());
+		}
 	}
 
 }

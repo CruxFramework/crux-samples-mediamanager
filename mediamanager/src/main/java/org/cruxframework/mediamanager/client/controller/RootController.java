@@ -84,41 +84,41 @@ public class RootController extends AbstractController
 	private void initDB()
 	{
 		Country c = new Country();
-		c.setName("Brasil");
+		c.setNameCountry("Brasil");
 		c.setId(1);
 		CountryDao.getInstance(database).save(c);
 		
 		Country c1 = new Country();
-		c1.setName("Argentina");
+		c1.setNameCountry("Argentina");
 		c1.setId(2);
 		CountryDao.getInstance(database).save(c1);
 		
 		Country c2 = new Country();
-		c2.setName("Uruguai");
+		c2.setNameCountry("Uruguai");
 		c2.setId(3);
 		CountryDao.getInstance(database).save(c2);
 		
 		Genre g1 = new Genre();
-		g1.setName("Pop");
+		g1.setNameGenre("Pop");
 		g1.setId(1);
 		GenreDao.getInstance(database).save(g1);
 		
 		Genre g2 = new Genre();
-		g2.setName("Sertanejo");
+		g2.setNameGenre("Sertanejo");
 		g2.setId(2);
 		GenreDao.getInstance(database).save(g2);
 		
 		Artist a1 =  new Artist();
 		a1.setCountry(c);
 		a1.setGenre(g1);
-		a1.setName("Roberto Carlos");
+		a1.setNameArtist("Roberto Carlos");
 		a1.setId(1);
 		ArtistDao.getInstance(database).save(a1);
 		
 		Artist a2 =  new Artist();
 		a2.setCountry(c1);
 		a2.setGenre(g2);
-		a2.setName("Luan Santana");
+		a2.setNameArtist("Luan Santana");
 		a2.setId(2);
 		ArtistDao.getInstance(database).save(a2);
 		
@@ -127,7 +127,7 @@ public class RootController extends AbstractController
 		m.setDate(new Date());
 		m.setId(1);
 		m.setArtist(a1);
-		m.setName("Esse Cara Sou Eu");
+		m.setNameMedia("Esse Cara Sou Eu");
 		m.setType(MediaType.CD);
 		MediaDao.getInstance(database).save(m);
 		
@@ -137,7 +137,7 @@ public class RootController extends AbstractController
 		m1.setId(2);
 		m1.setArtist(a1);
 		m1.setType(MediaType.DVD);
-		m1.setName("Pra Sempre Decada de 90");
+		m1.setNameMedia("Pra Sempre Decada de 90");
 		MediaDao.getInstance(database).save(m1);
 	}
 	

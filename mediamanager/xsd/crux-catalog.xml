@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN" "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+	<uri name="http://www.cruxframework.org/crux" uri="platform:/resource/mediamanager/xsd/core.xsd"/>
+	<uri name="http://www.cruxframework.org/view" uri="platform:/resource/mediamanager/xsd/view.xsd"/>
+	<uri name="http://www.cruxframework.org/templates" uri="platform:/resource/mediamanager/xsd/template.xsd"/>
+	<uri name="http://www.w3.org/1999/xhtml" uri="platform:/resource/mediamanager/xsd/xhtml.xsd"/>
+	<uri name="http://www.cruxframework.org/crux/gwt" uri="platform:/resource/mediamanager/xsd/gwt.xsd"/>
+	<uri name="http://www.cruxframework.org/crux/widgets" uri="platform:/resource/mediamanager/xsd/widgets.xsd"/>
+	<uri name="http://www.cruxframework.org/crux/smart-faces" uri="platform:/resource/mediamanager/xsd/smart-faces.xsd"/>
+	<uri name="http://www.cruxframework.org/xdevice" uri="platform:/resource/mediamanager/xsd/xdevice.xsd"/>
+	<uri name="http://www.cruxframework.org/offline" uri="platform:/resource/mediamanager/xsd/offline.xsd"/>
+</catalog>
