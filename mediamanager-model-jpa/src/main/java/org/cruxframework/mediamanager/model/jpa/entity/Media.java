@@ -63,7 +63,7 @@ public class Media extends JpaEntity<MediaDTO> implements AbstractEntity<MediaDT
 	/**
 	 * @return the name
 	 */
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	public String getName()
 	{
 		return name;

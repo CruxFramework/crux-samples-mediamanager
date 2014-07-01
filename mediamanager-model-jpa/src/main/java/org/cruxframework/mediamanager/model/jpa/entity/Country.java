@@ -48,7 +48,7 @@ public class Country extends JpaEntity<CountryDTO>
 	/**
 	 * @return the name
 	 */
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	public String getName()
 	{
 		return name;
