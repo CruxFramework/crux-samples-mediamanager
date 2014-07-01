@@ -46,7 +46,7 @@ public class Country extends AbstractEntity<CountryDTO>
 	/**
 	 * @return the name
 	 */
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	public String getName()
 	{
 		return name;

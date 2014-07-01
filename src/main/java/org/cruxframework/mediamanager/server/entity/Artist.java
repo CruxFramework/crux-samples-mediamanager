@@ -92,7 +92,7 @@ public class Artist extends AbstractEntity<ArtistDTO>
 	/**
 	 * @return the name
 	 */
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	public String getName()
 	{
 		return name;

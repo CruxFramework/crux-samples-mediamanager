@@ -46,7 +46,7 @@ public class Genre extends AbstractEntity<GenreDTO>
 	/**
 	 * @return the name
 	 */
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	public String getName()
 	{
 		return name;
