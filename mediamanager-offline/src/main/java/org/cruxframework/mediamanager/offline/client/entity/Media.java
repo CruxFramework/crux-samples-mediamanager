@@ -39,7 +39,8 @@ public class Media extends OfflineEntity<MediaDTO>
 	private String person;
 	private Date date;
 	private Artist artist;
-
+	private String nameMedia;
+	
 	/**********************************
 	 * Methods Abstract
 	 **********************************/
@@ -54,7 +55,7 @@ public class Media extends OfflineEntity<MediaDTO>
 	{	
 		MediaDTO dto = new MediaDTO();
 		dto.setId(getId());
-		dto.setName(getName());
+		dto.setName(getNameMedia());
 		try
 		{
 			MediaType mt = MediaType.valueOf(getType());
@@ -157,6 +158,23 @@ public class Media extends OfflineEntity<MediaDTO>
 	{
 		String t = type.name();
 		this.type = t;
+	}
+	
+	/**
+	 * @return the name
+	 */
+	@Indexed()
+	public String getNameMedia() 
+	{
+		return nameMedia;
+	}
+	
+	/**
+	 * @param name the name to set
+	 */
+	public void setNameMedia(String name) 
+	{
+		this.nameMedia = name;
 	}
 
 }

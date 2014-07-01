@@ -16,6 +16,7 @@
 package org.cruxframework.mediamanager.offline.client.entity;
 
 import org.cruxframework.crux.core.client.db.annotation.Store;
+import org.cruxframework.crux.core.client.db.annotation.Store.Indexed;
 import org.cruxframework.mediamanager.core.client.dto.CountryDTO;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
@@ -30,6 +31,7 @@ public class Country extends OfflineEntity<CountryDTO>
 //implements AbstractEntity<CountryDTO>
 {
 	public static final String STORE_NAME = "country";
+	private String nameCountry;
 	
 	/****************
 	 * Methods Abstract
@@ -45,8 +47,25 @@ public class Country extends OfflineEntity<CountryDTO>
 	{
 		CountryDTO dto = new CountryDTO();
 		dto.setId(getId());
-		dto.setName(getName());
+		dto.setName(getNameCountry());
 		return dto;
+	}
+	
+	/**
+	 * @return the name
+	 */
+	@Indexed()
+	public String getNameCountry() 
+	{
+		return nameCountry;
+	}
+	
+	/**
+	 * @param name the name to set
+	 */
+	public void setNameCountry(String name) 
+	{
+		this.nameCountry = name;
 	}
 	
 }

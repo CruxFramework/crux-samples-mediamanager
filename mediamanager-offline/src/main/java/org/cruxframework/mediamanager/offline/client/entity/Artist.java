@@ -16,6 +16,7 @@
 package org.cruxframework.mediamanager.offline.client.entity;
 
 import org.cruxframework.crux.core.client.db.annotation.Store;
+import org.cruxframework.crux.core.client.db.annotation.Store.Indexed;
 import org.cruxframework.mediamanager.core.client.dto.ArtistDTO;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
@@ -29,6 +30,7 @@ import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 public class Artist extends OfflineEntity<ArtistDTO> 
 {
 	public static final String STORE_NAME = "artist";
+	private String nameArtist;
 	private Country country;
 	private Genre genre;
 		
@@ -46,7 +48,7 @@ public class Artist extends OfflineEntity<ArtistDTO>
 	{
 		ArtistDTO dto = new ArtistDTO();
 		dto.setId(getId());
-		dto.setName(getName());
+		dto.setName(getNameArtist());
 		
 		if (genre != null)
 		{
@@ -94,5 +96,22 @@ public class Artist extends OfflineEntity<ArtistDTO>
 	public void setGenre(Genre genre)
 	{
 		this.genre = genre;
+	}
+	
+	/**
+	 * @return the name
+	 */
+	@Indexed()
+	public String getNameArtist() 
+	{
+		return nameArtist;
+	}
+	
+	/**
+	 * @param name the name to set
+	 */
+	public void setNameArtist(String name) 
+	{
+		this.nameArtist = name;
 	}
 }

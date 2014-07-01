@@ -18,6 +18,7 @@ package org.cruxframework.mediamanager.offline.client.entity;
 
 
 import org.cruxframework.crux.core.client.db.annotation.Store;
+import org.cruxframework.crux.core.client.db.annotation.Store.Indexed;
 import org.cruxframework.mediamanager.core.client.dto.UserDTO;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
@@ -33,6 +34,7 @@ public class User extends OfflineEntity<UserDTO>
 //implements AbstractEntity<UserDTO> 
 {
 	public static final String STORE_NAME = "user";
+	private String nameUser;
 	private String login;
 	private String password;
 	
@@ -48,7 +50,7 @@ public class User extends OfflineEntity<UserDTO>
 	public UserDTO getDTORepresentation()
 	{
 		UserDTO dto = new UserDTO();
-		dto.setName(getName());
+		dto.setName(getNameUser());
 		dto.setLogin(getLogin());
 		dto.setPassword(getPassword());
 		return dto;
@@ -83,4 +85,21 @@ public class User extends OfflineEntity<UserDTO>
 	public void setPassword(String password) {
 		this.password = password;
 	}	
+	
+	/**
+	 * @return the name
+	 */
+	@Indexed()
+	public String getNameUser() 
+	{
+		return nameUser;
+	}
+	
+	/**
+	 * @param name the name to set
+	 */
+	public void setNameUser(String name) 
+	{
+		this.nameUser = name;
+	}
 }

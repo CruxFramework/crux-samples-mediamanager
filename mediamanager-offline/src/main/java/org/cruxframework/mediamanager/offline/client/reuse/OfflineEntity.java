@@ -28,7 +28,6 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 {
 	
 	private Integer id;
-	private String name;
 	
 	public abstract String getStoreName();
 	
@@ -42,7 +41,7 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 	 * @key autoIncrement = true
 	 * @return the id
 	 */
-	@Indexed
+	//@Indexed
 	@Key(autoIncrement = true)
 	public Integer getId() 
 	{
@@ -57,21 +56,6 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 		this.id = id;
 	}
 	
-	/**
-	 * @return the name
-	 */
-	@Indexed()
-	public String getName() 
-	{
-		return name;
-	}
-	
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) 
-	{
-		this.name = name;
-	}
+
 	
 }

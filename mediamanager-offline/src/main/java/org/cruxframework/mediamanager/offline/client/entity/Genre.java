@@ -16,6 +16,7 @@
 package org.cruxframework.mediamanager.offline.client.entity;
 
 import org.cruxframework.crux.core.client.db.annotation.Store;
+import org.cruxframework.crux.core.client.db.annotation.Store.Indexed;
 import org.cruxframework.mediamanager.core.client.dto.GenreDTO;
 import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 
@@ -30,7 +31,7 @@ public class Genre extends OfflineEntity<GenreDTO>
 //implements AbstractEntity<GenreDTO> 
 {
 	public static final String STORE_NAME = "ganre";
-	
+	private String nameGenre;
 	/******************
 	 * Methods Abstract
 	 ******************/
@@ -44,8 +45,25 @@ public class Genre extends OfflineEntity<GenreDTO>
 	{
 		GenreDTO dto = new GenreDTO();
 		dto.setId(getId());
-		dto.setName(getName());
+		dto.setName(getNameGenre());
 		return dto;
+	}
+	
+	/**
+	 * @return the name
+	 */
+	@Indexed()
+	public String getNameGenre() 
+	{
+		return nameGenre;
+	}
+	
+	/**
+	 * @param name the name to set
+	 */
+	public void setNameGenre(String name) 
+	{
+		this.nameGenre = name;
 	}
 	
 }

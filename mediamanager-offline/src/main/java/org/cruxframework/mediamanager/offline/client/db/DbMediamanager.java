@@ -38,11 +38,11 @@ import org.cruxframework.mediamanager.offline.client.error.ErrorHandler;
 		version = 1,
 		defaultErrorHandler = ErrorHandler.class,
 		objectStores = {
+			@ObjectStoreDef(targetClass = Artist.class),
 			@ObjectStoreDef(targetClass = Media.class, indexes = {
-				@IndexDef (name = "nameType", keyPath = {"name","type"}),
+				@IndexDef (name = "nameType", keyPath = {"nameMedia","type"}),
 				@IndexDef (name = "borrowedType", keyPath = {"borrowed","type"})				,
 				@IndexDef (name = "dateType", keyPath = {"date","type"})}),
-			@ObjectStoreDef(targetClass = Artist.class),
 			@ObjectStoreDef(targetClass = Country.class),
 			@ObjectStoreDef(targetClass = Genre.class),
 			@ObjectStoreDef(targetClass = User.class)
