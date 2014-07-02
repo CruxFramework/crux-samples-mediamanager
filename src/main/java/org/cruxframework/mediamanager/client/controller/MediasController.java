@@ -196,7 +196,7 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		if (dto.getDate() != null && dto.getDate().after(now))
 		{
-			return "Data maior que data atual";
+			return "The date you are trying to use is greater than the actual date.";
 		}
 		
 		return null;
