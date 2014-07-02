@@ -132,7 +132,7 @@ public class MediasController extends SearchController<MediaDTO>
 		DateBox dateBox = (DateBox) view.getWidget("date");
 		dateBox.getTextBox().setReadOnly(true);
 		dateBox.setFormat(
-			new org.cruxframework.crux.widgets.client.datebox.DateBox.CruxDefaultFormat(
+			new org.cruxframework.crux.widgets.client.datebox.gwtoverride.DateBox.DefaultFormat(
 				DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM)));
 		
 		MediaDTO media = event.getParameterObject();
@@ -215,7 +215,7 @@ public class MediasController extends SearchController<MediaDTO>
 		
 		if (dto.getDate() != null && dto.getDate().after(now))
 		{
-			return "Data maior que data atual";
+			return "The date you are trying to use is greater than the actual date.";
 		}
 		
 		return null;
