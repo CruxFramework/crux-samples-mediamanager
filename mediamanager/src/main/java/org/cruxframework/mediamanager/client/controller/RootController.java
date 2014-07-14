@@ -84,61 +84,182 @@ public class RootController extends AbstractController
 	private void initDB()
 	{
 		Country c = new Country();
-		c.setNameCountry("Brasil");
+		c.setNameCountry("Brazil");
 		c.setId(1);
 		CountryDao.getInstance(database).save(c);
 		
 		Country c1 = new Country();
-		c1.setNameCountry("Argentina");
+		c1.setNameCountry("England");
 		c1.setId(2);
 		CountryDao.getInstance(database).save(c1);
 		
 		Country c2 = new Country();
-		c2.setNameCountry("Uruguai");
+		c2.setNameCountry("France");
 		c2.setId(3);
 		CountryDao.getInstance(database).save(c2);
 		
+		Country c3 = new Country();
+		c3.setNameCountry("Itali");
+		c3.setId(4);
+		CountryDao.getInstance(database).save(c3);
+		
+		Country c4 = new Country();
+		c4.setNameCountry("Jamaica");
+		c4.setId(5);
+		CountryDao.getInstance(database).save(c4);
+		
+		Country c5 = new Country();
+		c5.setNameCountry("Mexico");
+		c5.setId(6);
+		CountryDao.getInstance(database).save(c5);
+		
+		Country c6 = new Country();
+		c6.setNameCountry("United States");
+		c6.setId(7);
+		CountryDao.getInstance(database).save(c6);
+		
 		Genre g1 = new Genre();
-		g1.setNameGenre("Pop");
+		g1.setNameGenre("Blues");
 		g1.setId(1);
 		GenreDao.getInstance(database).save(g1);
 		
 		Genre g2 = new Genre();
-		g2.setNameGenre("Sertanejo");
+		g2.setNameGenre("Country");
 		g2.setId(2);
 		GenreDao.getInstance(database).save(g2);
 		
+		Genre g3 = new Genre();
+		g3.setNameGenre("Electronic");
+		g3.setId(3);
+		GenreDao.getInstance(database).save(g3);
+		
+		Genre g4 = new Genre();
+		g4.setNameGenre("Jazz");
+		g4.setId(4);
+		GenreDao.getInstance(database).save(g4);
+		
+		Genre g5 = new Genre();
+		g5.setNameGenre("Reggae");
+		g5.setId(5);
+		GenreDao.getInstance(database).save(g5);
+		
+		Genre g6 = new Genre();
+		g6.setNameGenre("Rock");
+		g6.setId(6);
+		GenreDao.getInstance(database).save(g6);
+		
+		Genre g7 = new Genre();
+		g7.setNameGenre("World");
+		g7.setId(7);
+		GenreDao.getInstance(database).save(g7);
+		
+		Genre g8 = new Genre();
+		g8.setNameGenre("Metal");
+		g8.setId(4);
+		GenreDao.getInstance(database).save(g8);
+		
 		Artist a1 =  new Artist();
-		a1.setCountry(c);
-		a1.setGenre(g1);
-		a1.setNameArtist("Roberto Carlos");
+		a1.setCountry(c4);
+		a1.setGenre(g5);
+		a1.setNameArtist("Bob Marley");
 		a1.setId(1);
 		ArtistDao.getInstance(database).save(a1);
 		
 		Artist a2 =  new Artist();
 		a2.setCountry(c1);
-		a2.setGenre(g2);
-		a2.setNameArtist("Luan Santana");
+		a2.setGenre(g1);
+		a2.setNameArtist("Eric Clapton");
 		a2.setId(2);
 		ArtistDao.getInstance(database).save(a2);
+		
+		
+		Artist a3 =  new Artist();
+		a3.setCountry(c6);
+		a3.setGenre(g8);
+		a3.setNameArtist("Metallica");
+		a3.setId(3);
+		ArtistDao.getInstance(database).save(a3);
+		
+		Artist a4 =  new Artist();
+		a4.setCountry(c1);
+		a4.setGenre(g6);
+		a4.setNameArtist("The Beatles");
+		a4.setId(4);
+		ArtistDao.getInstance(database).save(a4);
 		
 		Media m = new Media();
 		m.setBorrowed(0);
 		m.setDate(new Date());
 		m.setId(1);
-		m.setArtist(a1);
-		m.setNameMedia("Esse Cara Sou Eu");
+		m.setArtist(a4);
+		m.setNameMedia("Abbey Road");
 		m.setType(MediaType.CD);
 		MediaDao.getInstance(database).save(m);
 		
 		Media m1 = new Media();
-		m1.setBorrowed(1);
+		m1.setBorrowed(0);
 		m1.setDate(new Date());
 		m1.setId(2);
-		m1.setArtist(a1);
-		m1.setType(MediaType.DVD);
-		m1.setNameMedia("Pra Sempre Decada de 90");
+		m1.setArtist(a2);
+		m1.setType(MediaType.CD);
+		m1.setNameMedia("Back Home");
 		MediaDao.getInstance(database).save(m1);
+		
+		Media m2 = new Media();
+		m2.setBorrowed(0);
+		m2.setDate(new Date());
+		m2.setId(3);
+		m2.setArtist(a4);
+		m2.setType(MediaType.CD);
+		m2.setNameMedia("Help!");
+		MediaDao.getInstance(database).save(m2);
+		
+		
+		Media m3 = new Media();
+		m3.setBorrowed(0);
+		m3.setDate(new Date());
+		m3.setId(4);
+		m3.setArtist(a3);
+		m3.setType(MediaType.CD);
+		m3.setNameMedia("Master of Puppets");
+		MediaDao.getInstance(database).save(m3);
+		
+		Media m4 = new Media();
+		m4.setBorrowed(0);
+		m4.setDate(new Date());
+		m4.setId(5);
+		m4.setArtist(a4);
+		m4.setType(MediaType.CD);
+		m4.setNameMedia("Sgt. Pepper's Lonely Hearts Club Band");
+		MediaDao.getInstance(database).save(m4);
+		
+		Media m5 = new Media();
+		m5.setBorrowed(0);
+		m5.setDate(new Date());
+		m5.setId(6);
+		m5.setArtist(a1);
+		m5.setType(MediaType.CD);
+		m5.setNameMedia("Soul Revolution");
+		MediaDao.getInstance(database).save(m5);
+		
+		Media m6 = new Media();
+		m6.setBorrowed(0);
+		m6.setDate(new Date());
+		m6.setId(7);
+		m6.setArtist(a3);
+		m6.setType(MediaType.DVD);
+		m6.setNameMedia("St. Anger");
+		MediaDao.getInstance(database).save(m6);
+		
+		Media m7 = new Media();
+		m7.setBorrowed(0);
+		m7.setDate(new Date());
+		m7.setId(8);
+		m7.setArtist(a4);
+		m7.setType(MediaType.DVD);
+		m7.setNameMedia("Yellow Submarine");
+		MediaDao.getInstance(database).save(m7);
+		
 	}
 	
 }

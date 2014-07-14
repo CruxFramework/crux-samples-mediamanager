@@ -240,18 +240,25 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	private void searchOnly(final String value, String index, final MediasController controller)
 	{
 		MediaDao.getInstance(getDatabase()).search(value, index,
-			new DatabaseRetrieveCallback<Media>()
+			new DatabaseCursorCallback<String, Media>()
 			{
 				private final ArrayList<MediaDTO> medias = new ArrayList<MediaDTO>();
-
+				
 				@Override
-				public void onSuccess(Media result)
+				public void onSuccess(Cursor<String, Media> result)
 				{
-					if (result != null)
+					if (result != null && result.hasValue())
 					{
-						medias.add(result.getDTORepresentation());
+						Media media = result.getValue();
+						medias.add(media.getDTORepresentation());
+						result.continueCursor();
 					}
-					controller.showSearchResult(medias);
+					else
+					{
+						controller.showSearchResult(medias);
+					}
+					
+					
 				}
 			});
 	}

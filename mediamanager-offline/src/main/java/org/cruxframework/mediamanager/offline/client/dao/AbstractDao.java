@@ -133,6 +133,26 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 		Index<Integer, String, E> nameIndex = objStore.getIndex(index);
 		nameIndex.get(value, callback);
 	}
+	
+	
+	/**
+	 * Search a record (by index) with an value (value) in Store and returns
+	 * a DatabaseCursorCallback.
+	 * @param value
+	 * @param index
+	 * @param callback
+	 */
+	public void search(String value, String index,
+		DatabaseCursorCallback<String, E> callback)
+	{
+		Transaction transaction = getDatabase().getTransaction(new String[]
+		{ getStoreName() }, Transaction.Mode.readOnly);
+		ObjectStore<Integer, E> objStore = transaction.getObjectStore(getStoreName());
+		Index<Integer, String, E> nameIndex = objStore.getIndex(index);
+		KeyRange<String> keyRange = nameIndex.getKeyRangeFactory().only(value);
+		nameIndex.openCursor(keyRange, callback);
+	}
+	
 
 	/**
 	 * Search all record search (by index) with a date is less then (value) in
@@ -201,7 +221,7 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 
 	
 	/**
-	 * Search all record with only  (id) in ObjectStore and returns a
+	 * Search all record with only (id) in ObjectStore and returns a
 	 * DatabaseCursor.
 	 * @param id
 	 * @param callback

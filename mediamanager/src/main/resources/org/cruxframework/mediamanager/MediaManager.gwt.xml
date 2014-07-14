@@ -14,9 +14,9 @@
 	<public path='public' excludes='**/*.crux.xml,**/*.view.xml,**/*.template.xml,**/*.offline.xml' />
 	
 <!-- Artist -->
-	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.ArtistRest">
-		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" />
-	</replace-with>
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.ArtistRest"> -->
+<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" /> -->
+<!-- 	</replace-with> -->
 	
 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.ArtistClientDB">
 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.ArtistProxy" />
@@ -24,9 +24,9 @@
 
 
 <!-- Media -->
-	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.MediaRest">
-		<when-type-is class="org.cruxframework.mediamanager.client.proxy.MediaProxy" />
-	</replace-with>
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.MediaRest"> -->
+<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.MediaProxy" /> -->
+<!-- 	</replace-with> -->
 
 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.MediaClientDB">
 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.MediaProxy" />
@@ -34,9 +34,9 @@
 	
 
 <!-- Statistics -->
-	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.StatisticsRest">
-		<when-type-is class="org.cruxframework.mediamanager.client.proxy.StatisticsProxy" />
-	</replace-with>
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.StatisticsRest"> -->
+<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.StatisticsProxy" /> -->
+<!-- 	</replace-with> -->
 		
 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.StatisticsClientDB">
 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.StatisticsProxy" />
