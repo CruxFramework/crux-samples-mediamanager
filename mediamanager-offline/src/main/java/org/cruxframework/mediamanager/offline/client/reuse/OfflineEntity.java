@@ -41,7 +41,7 @@ public abstract class OfflineEntity<T extends AbstractDTO>
 	 * @key autoIncrement = true
 	 * @return the id
 	 */
-	//@Indexed
+	@Indexed
 	@Key(autoIncrement = true)
 	public Integer getId() 
 	{

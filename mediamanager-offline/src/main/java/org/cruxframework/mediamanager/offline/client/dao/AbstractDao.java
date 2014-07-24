@@ -106,7 +106,7 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 	}
 
 	/**
-	 * Search a record (by id) in ObjectStore and returns a DatabaseCursor.
+	 * Search a record (by id) in ObjectStore and returns a DatabaseRetrieve.
 	 * 
 	 * @param id
 	 * @param callback
@@ -226,13 +226,13 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 	 * @param id
 	 * @param callback
 	 */
-	public void searchLike(Integer id,
+	public void searchLike(Integer id, String indexName,
 		DatabaseCursorCallback<Integer, E> callback)
 	{
 		Transaction transaction = getDatabase().getTransaction(new String[]
 		{ getStoreName() }, Transaction.Mode.readOnly);
 		ObjectStore<Integer, E> objStore = transaction.getObjectStore(getStoreName());
-		Index<Integer, Integer, E> index = objStore.getIndex("artist.id");
+		Index<Integer, Integer, E> index = objStore.getIndex(indexName);
 		KeyRange<Integer> keyRange = index.getKeyRangeFactory().only(id);
 		index.openCursor(keyRange, callback);
 	}

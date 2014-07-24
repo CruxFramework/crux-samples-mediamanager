@@ -320,7 +320,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 	@Override
 	public void delete(final ArtistDTO dto, final ArtistsController controller)
 	{
-		MediaDao.getInstance(getDatabase()).searchLike(dto.getId(),
+		MediaDao.getInstance(getDatabase()).searchLike(dto.getId(), "artist.id",
 			new DatabaseCursorCallback<Integer, Media>()
 			{
 
@@ -348,6 +348,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 					}
 				}
 			});
+		
 	}
 
 	
