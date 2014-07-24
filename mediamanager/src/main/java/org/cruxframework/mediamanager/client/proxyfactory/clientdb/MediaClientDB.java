@@ -185,7 +185,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 		{
 			Object[] obj = new Object[] { new String(name), new String(type.name())};
 			Object[] objBound = new Object[] {new String(Utils.StringBound(name)), new String(Utils.StringBound(type.name()))};
-			search(obj, objBound, "nameMediaType", controller);
+			search(obj, objBound, "nameType", controller);
 		}
 	}
 
