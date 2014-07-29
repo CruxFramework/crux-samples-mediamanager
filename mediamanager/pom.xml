@@ -214,6 +214,10 @@
 									<jvmarg value="-Xms256M" />
 									<arg value="-localWorkers" />
 									<arg value="4" />
+									<arg value="-gen" />
+									<arg value="generated"/>
+									
+									
 <!-- 									<arg value="-strict" /> -->
 
 <!-- 									<jvmarg value="-Xdebug" /> -->
