@@ -31,7 +31,7 @@ public class Country extends OfflineEntity<CountryDTO>
 //implements AbstractEntity<CountryDTO>
 {
 	public static final String STORE_NAME = "country";
-	private String nameCountry;
+	private String name;
 	
 	/****************
 	 * Methods Abstract
@@ -47,7 +47,7 @@ public class Country extends OfflineEntity<CountryDTO>
 	{
 		CountryDTO dto = new CountryDTO();
 		dto.setId(getId());
-		dto.setName(getNameCountry());
+		dto.setName(getName());
 		return dto;
 	}
 	
@@ -55,17 +55,17 @@ public class Country extends OfflineEntity<CountryDTO>
 	 * @return the name
 	 */
 	@Indexed()
-	public String getNameCountry() 
+	public String getName() 
 	{
-		return nameCountry;
+		return name;
 	}
 	
 	/**
 	 * @param name the name to set
 	 */
-	public void setNameCountry(String name) 
+	public void setName(String name) 
 	{
-		this.nameCountry = name;
+		this.name = name;
 	}
 	
 }

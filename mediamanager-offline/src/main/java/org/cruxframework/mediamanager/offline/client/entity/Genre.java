@@ -31,7 +31,7 @@ public class Genre extends OfflineEntity<GenreDTO>
 //implements AbstractEntity<GenreDTO> 
 {
 	public static final String STORE_NAME = "ganre";
-	private String nameGenre;
+	private String name;
 	/******************
 	 * Methods Abstract
 	 ******************/
@@ -45,7 +45,7 @@ public class Genre extends OfflineEntity<GenreDTO>
 	{
 		GenreDTO dto = new GenreDTO();
 		dto.setId(getId());
-		dto.setName(getNameGenre());
+		dto.setName(getName());
 		return dto;
 	}
 	
@@ -53,17 +53,17 @@ public class Genre extends OfflineEntity<GenreDTO>
 	 * @return the name
 	 */
 	@Indexed()
-	public String getNameGenre() 
+	public String getName() 
 	{
-		return nameGenre;
+		return name;
 	}
 	
 	/**
 	 * @param name the name to set
 	 */
-	public void setNameGenre(String name) 
+	public void setName(String name) 
 	{
-		this.nameGenre = name;
+		this.name = name;
 	}
 	
 }

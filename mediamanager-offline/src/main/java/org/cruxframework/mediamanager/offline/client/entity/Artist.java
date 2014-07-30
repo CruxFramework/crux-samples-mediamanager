@@ -30,7 +30,7 @@ import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
 public class Artist extends OfflineEntity<ArtistDTO> 
 {
 	public static final String STORE_NAME = "artist";
-	private String nameArtist;
+	private String name;
 	private Country country;
 	private Genre genre;
 		
@@ -48,7 +48,7 @@ public class Artist extends OfflineEntity<ArtistDTO>
 	{
 		ArtistDTO dto = new ArtistDTO();
 		dto.setId(getId());
-		dto.setName(getNameArtist());
+		dto.setName(getName());
 		
 		if (genre != null)
 		{
@@ -102,16 +102,16 @@ public class Artist extends OfflineEntity<ArtistDTO>
 	 * @return the name
 	 */
 	@Indexed()
-	public String getNameArtist() 
+	public String getName() 
 	{
-		return nameArtist;
+		return name;
 	}
 	
 	/**
 	 * @param name the name to set
 	 */
-	public void setNameArtist(String name) 
+	public void setName(String name) 
 	{
-		this.nameArtist = name;
+		this.name = name;
 	}
 }

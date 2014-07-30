@@ -81,7 +81,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 			@Override
 			public void onSuccess(Country result)
 			{
-			artist.getCountry().setNameCountry(result.getNameCountry());
+			artist.getCountry().setName(result.getName());
 			// Search Genre
 			GenreDao.getInstance(getDatabase()).search(artist.getGenre().getId(),
 				new DatabaseRetrieveCallback<Genre>()
@@ -90,7 +90,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 					@Override
 					public void onSuccess(Genre result)
 					{
-						artist.getGenre().setNameGenre(result.getNameGenre());
+						artist.getGenre().setName(result.getName());
 						// Save Artist
 						ArtistDao.getInstance(getDatabase()).save(artist,
 							new DatabaseCallback()
@@ -126,7 +126,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 	 */
 	private void searchId(final Artist artist, final ArtistController controller)
 	{
-		ArtistDao.getInstance(getDatabase()).search(artist.getNameArtist(), "nameArtist",
+		ArtistDao.getInstance(getDatabase()).search(artist.getName(), "nameArtist",
 			new DatabaseRetrieveCallback<Artist>()
 			{
 
@@ -273,7 +273,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 				@Override
 				public void onSuccess(Country result)
 				{
-					artist.getCountry().setNameCountry(result.getNameCountry());
+					artist.getCountry().setName(result.getName());
 					// Search Genre
 					GenreDao.getInstance(getDatabase()).search(artist.getGenre().getId(),
 						new DatabaseRetrieveCallback<Genre>()
@@ -282,7 +282,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 							@Override
 							public void onSuccess(Genre result)
 							{
-								artist.getGenre().setNameGenre(result.getNameGenre());
+								artist.getGenre().setName(result.getName());
 								// Save Artist
 								ArtistDao.getInstance(getDatabase()).save(artist,
 									new DatabaseCallback()
@@ -445,7 +445,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 		Artist artist = new Artist();
 		artist = new Artist();
 		// Name
-		artist.setNameArtist(dto.getName());
+		artist.setName(dto.getName());
 		// Country
 		Country country = new Country();
 		country.setId(dto.getCountry().getId());

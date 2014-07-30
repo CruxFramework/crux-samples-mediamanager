@@ -34,7 +34,7 @@ public class User extends OfflineEntity<UserDTO>
 //implements AbstractEntity<UserDTO> 
 {
 	public static final String STORE_NAME = "user";
-	private String nameUser;
+	private String name;
 	private String login;
 	private String password;
 	
@@ -50,7 +50,7 @@ public class User extends OfflineEntity<UserDTO>
 	public UserDTO getDTORepresentation()
 	{
 		UserDTO dto = new UserDTO();
-		dto.setName(getNameUser());
+		dto.setName(getName());
 		dto.setLogin(getLogin());
 		dto.setPassword(getPassword());
 		return dto;
@@ -90,16 +90,16 @@ public class User extends OfflineEntity<UserDTO>
 	 * @return the name
 	 */
 	@Indexed()
-	public String getNameUser() 
+	public String getName() 
 	{
-		return nameUser;
+		return name;
 	}
 	
 	/**
 	 * @param name the name to set
 	 */
-	public void setNameUser(String name) 
+	public void setName(String name) 
 	{
-		this.nameUser = name;
+		this.name = name;
 	}
 }

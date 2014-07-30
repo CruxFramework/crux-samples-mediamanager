@@ -80,7 +80,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	{
 		final Media media;
 		media = new Media();
-		media.setNameMedia(dto.getName());
+		media.setName(dto.getName());
 		media.setId(dto.getId());
 		media.setBorrowed(dto.getBorrowed() == true ? 1 : 0);
 		media.setDate(dto.getDate());
@@ -118,7 +118,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	 */
 	private void searchId(final Media media, final MediaController controller)
 	{
-		MediaDao.getInstance(getDatabase()).search(media.getNameMedia(), "nameMedia",
+		MediaDao.getInstance(getDatabase()).search(media.getName(), "nameMedia",
 			new DatabaseRetrieveCallback<Media>()
 			{
 				@Override
@@ -445,7 +445,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	{
 		final Media media;
 		media = new Media();
-		media.setNameMedia(dto.getName());
+		media.setName(dto.getName());
 		media.setId(dto.getId());
 		media.setBorrowed(dto.getBorrowed() == true ? 1 : 0 );
 		media.setDate(dto.getDate());
@@ -506,7 +506,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	{
 		final Media media;
 		media = new Media();
-		media.setNameMedia(dto.getName());
+		media.setName(dto.getName());
 		media.setId(dto.getId());
 		media.setBorrowed(dto.getBorrowed() == true ? 1 : 0 );
 		media.setDate(dto.getDate());

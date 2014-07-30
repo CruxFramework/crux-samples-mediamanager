@@ -133,7 +133,7 @@ public class MediasController extends SearchController<MediaDTO>
 		dateBox.getTextBox().setReadOnly(true);
 		dateBox.setFormat(
 			new org.cruxframework.crux.widgets.client.datebox.DateBox.CruxDefaultFormat(
-				DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM)));
+				DateTimeFormat.getFormat(PredefinedFormat.DATE_SHORT)));
 		
 		MediaDTO media = event.getParameterObject();
 		mediaProxy.getLend(media.getId(), this);
