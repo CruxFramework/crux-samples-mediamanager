@@ -64,6 +64,7 @@ public class User extends OfflineEntity<UserDTO>
 	/**
 	 * @return the login
 	 */
+	@Indexed()
 	public String getLogin() {
 		return login;
 	}
@@ -76,6 +77,7 @@ public class User extends OfflineEntity<UserDTO>
 	/**
 	 * @return the password
 	 */
+	@Indexed()
 	public String getPassword() {
 		return password;
 	}

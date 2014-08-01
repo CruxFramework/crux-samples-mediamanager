@@ -221,6 +221,30 @@ public abstract class AbstractDao<DTO extends AbstractDTO, E extends OfflineEnti
 
 	
 	/**
+	 * Search a set of records in the database through a Object. This Object
+	 * contains a set of values to be compared with records database. 
+	 * 
+	 * indexCom determines the index compound set in database statement.
+	 * 
+	 * @param value
+	 * @param objBound
+	 * @param indexComp 
+	 * @param callback
+	 */
+	public void searchObjectOnly(Object[] obj, String indexComp, 
+		DatabaseCountCallback callback)
+	{
+		Transaction transaction = getDatabase().getTransaction(new String[]
+		{ getStoreName() }, Transaction.Mode.readWrite);
+		ObjectStore<Integer, E> objStore = transaction.getObjectStore(getStoreName());
+		Index<Integer, Object[], E> indexComps = objStore.getIndex(indexComp);
+		KeyRange<Object[]> keyRange = indexComps.getKeyRangeFactory().only(
+			obj);
+		indexComps.count(keyRange, callback);
+	}
+	
+	
+	/**
 	 * Search all record with only (id) in ObjectStore and returns a
 	 * DatabaseCursor.
 	 * @param id

@@ -45,10 +45,11 @@ import org.cruxframework.mediamanager.offline.client.error.ErrorHandler;
 				@IndexDef (name = "dateType", keyPath = {"date","type"})}),
 			@ObjectStoreDef(targetClass = Country.class),
 			@ObjectStoreDef(targetClass = Genre.class),
-			@ObjectStoreDef(targetClass = User.class)
+			@ObjectStoreDef(targetClass = User.class, indexes = {
+				@IndexDef (name = "loginPassword", keyPath = {"login","password"})
+			})
 		}
 	)
 public interface DbMediamanager extends Database
 {
-//	@IndexDef (name = "dataType", keyPath = {"data","type"})
 }
