@@ -19,11 +19,11 @@ import org.cruxframework.crux.core.client.controller.Controller;
 import org.cruxframework.crux.core.client.controller.Expose;
 import org.cruxframework.crux.core.client.css.animation.StandardAnimation;
 import org.cruxframework.crux.core.client.ioc.Inject;
-import org.cruxframework.crux.core.client.rpc.AsyncCallbackAdapter;
 import org.cruxframework.crux.core.client.screen.Screen;
 import org.cruxframework.crux.core.client.screen.views.SingleViewContainer;
 import org.cruxframework.crux.core.client.screen.views.View;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
+import org.cruxframework.mediamanager.client.proxy.LoginProxy;
 import org.cruxframework.mediamanager.core.client.service.LoginServiceAsync;
 
 import com.google.gwt.user.client.ui.Widget;
@@ -37,6 +37,9 @@ public class MenuController
 {	
 	@Inject
 	public LoginServiceAsync loginServiceAsync;
+	
+	@Inject
+	public LoginProxy loginProxy;
 
 	@Expose
 	public void onActivate()
@@ -82,32 +85,12 @@ public class MenuController
 	@Expose
 	public void signOut()
 	{
-		loginServiceAsync.logout(new LogoutCallback());
+		loginProxy.logout(this);
 	}
 	
-	private static void hideMenu()
+	public static void hideMenu()
 	{
 		Screen.get("menuView").setVisible(false);
-	}
-	
-	/*********************************************
-	 * Callback classes
-	 *********************************************/
-	
-	private class LogoutCallback extends AsyncCallbackAdapter<Void>
-	{
-		@Override
-		public void onComplete(Void result)
-		{
-			((SingleViewContainer) Screen.get("views")).showView("login");
-			hideMenu();
-		}
-		
-		@Override
-		public void onError(Throwable e)
-		{
-			animateMenuIn();
-		}
 	}
 	
 	/*********************************************

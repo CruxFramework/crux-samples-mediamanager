@@ -170,7 +170,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 		}
 		else if (!name.equals("") && person.equals("") && type == null)
 		{
-			search(name, "nameMedia", controller);
+			search(name, "name", controller);
 		}
 		else if (name.equals("") && !person.equals("") && type == null)
 		{
@@ -396,7 +396,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	
 	public void doDelete(final MediaDTO dto, final MediasController controller) 
 	{
-		MediaDao.getInstance(getDatabase()).search(dto.getName(), "nameMedia", new DatabaseRetrieveCallback<Media>()
+		MediaDao.getInstance(getDatabase()).search(dto.getName(), "name", new DatabaseRetrieveCallback<Media>()
 			{
 				@Override
 				public void onSuccess(Media result)

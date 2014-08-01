@@ -27,11 +27,10 @@ import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 import org.cruxframework.crux.smartfaces.client.dialog.animation.DialogAnimation;
 import org.cruxframework.crux.widgets.client.simplecontainer.SimpleViewContainer;
-import org.cruxframework.mediamanager.core.client.service.LoginServiceAsync;
+import org.cruxframework.mediamanager.client.proxy.LoginProxy;
 
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -47,7 +46,10 @@ public class LoginController
 	private static final String DEFAULT_ERROR_SIGN_UP = "Username and password invalid!";
 	
 	@Inject
-	public LoginServiceAsync loginServiceAsync;
+	public LoginProxy loginProxy;
+	
+	private TextBox loginTextBox;
+	private PasswordTextBox passwrodTextBox;
 	
 	/**
 	 * Process user login.
@@ -57,13 +59,13 @@ public class LoginController
 	{
 		/* Get login and password */
 		View view = View.of(this);
-		final TextBox loginTextBox = (TextBox) view.getWidget("loginTextBox");
-		final PasswordTextBox passwrodTextBox = 
+		loginTextBox = (TextBox) view.getWidget("loginTextBox");
+		passwrodTextBox = 
 			(PasswordTextBox)view.getWidget("passwordTextBox");
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		/* invoke login service */
-		loginServiceAsync.login(loginTextBox.getValue(), passwrodTextBox.getValue(), 
-			new LoginCallback(loginTextBox, passwrodTextBox));
+		
+		loginProxy.login(loginTextBox.getValue(), passwrodTextBox.getValue(), this);
 	}
 	
 	@Expose
@@ -81,43 +83,30 @@ public class LoginController
 	}
 	
 	/*****************************************
-	 * Callback classes
+	 * Callback States
 	 *****************************************/
 	
-	private class LoginCallback implements AsyncCallback<Boolean>
+	public void LoginSuccessState(Boolean result)
 	{
-		private final TextBox loginTextBox;
-		private final PasswordTextBox passwrodTextBox;
-		
-		public LoginCallback(TextBox loginTextBox, PasswordTextBox passwrodTextBox)
+		if (result)
 		{
-			this.loginTextBox = loginTextBox;
-			this.passwrodTextBox = passwrodTextBox;
-		}
-		
-		@Override
-		public void onSuccess(Boolean result)
+			((SimpleViewContainer) Screen.get("views")).showView("statistics");
+			LoginController.showMenu();
+		}else
 		{
-			if (result)
-			{
-				((SimpleViewContainer) Screen.get("views")).showView("statistics");
-				LoginController.showMenu();
-			}else
-			{
-				WaitBox.hideAllDialogs();
-				MessageBox.show(null, DEFAULT_ERROR_SIGN_UP, MessageType.ERROR, true,
-						false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-			}
-		}
-		
-		@Override
-		public void onFailure(Throwable caught)
-		{
-			Window.alert("Log in unsuccessful");
-			loginTextBox.setValue("");
-			passwrodTextBox.setValue("");
+			WaitBox.hideAllDialogs();
+			MessageBox.show(null, DEFAULT_ERROR_SIGN_UP, MessageType.ERROR, true,
+					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
 		}
 	}
+	
+	public void LoginFailueState(Throwable caught)
+	{
+		Window.alert("Log in unsuccessful");
+		this.loginTextBox.setValue("");
+		this.passwrodTextBox.setValue("");
+	}
+	
 	
 	/******************************************
 	 * Utilities

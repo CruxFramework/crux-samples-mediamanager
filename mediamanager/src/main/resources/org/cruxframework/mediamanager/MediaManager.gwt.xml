@@ -41,6 +41,15 @@
 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.StatisticsClientDB">
 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.StatisticsProxy" />
 	</replace-with>
+	
+<!-- Login -->
+<!-- 	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.rest.LoginRPC"> -->
+<!-- 		<when-type-is class="org.cruxframework.mediamanager.client.proxy.LoginProxy" /> -->
+<!-- 	</replace-with> -->
+		
+	<replace-with class="org.cruxframework.mediamanager.client.proxyfactory.clientdb.LoginClientDB">
+		<when-type-is class="org.cruxframework.mediamanager.client.proxy.LoginProxy" />
+	</replace-with>
 
 	<!-- To enable super dev mode -->
 	<!--
@@ -51,7 +60,7 @@
     <set-property name="device.features" value="largeDisplayMouse"/>
      -->
      
-<!--      <set-property name="device.features" value="smallDisplayTouch"/> -->
+     <set-property name="device.features" value="smallDisplayTouch"/>
 <!--      <set-property name="device.features" value="largeDisplayMouse"/> -->
 
 	<!-- To enable logging -->

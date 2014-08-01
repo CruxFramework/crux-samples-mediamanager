@@ -11,7 +11,6 @@
 		
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700|Clicker+Script' rel='stylesheet' type='text/css' />
 	</head>
-	
 	<body>
 		<script type="text/javascript" src="../mediamanager/mediamanager.nocache.js"></script>
 		
@@ -28,6 +27,8 @@
 		</crux:simpleViewContainer>
 		
 		<crux:simpleViewContainer id="views" />
+		
+		
 		
 	</body>
 </html>
