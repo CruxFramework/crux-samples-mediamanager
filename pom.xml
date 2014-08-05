@@ -11,7 +11,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cruxVersion>5.1.1</cruxVersion>
+		<cruxVersion>5.1.2</cruxVersion>
 		<spring-version>4.0.2.RELEASE</spring-version>
 		<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
 		<webinf.folder>${webappDirectory}/WEB-INF/</webinf.folder>
