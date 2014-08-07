@@ -725,19 +725,19 @@ targetNamespace="http://www.cruxframework.org/crux/smart-faces" >
 </xs:annotation>
 </xs:element>
 </xs:choice>
+<xs:attribute name="autoLoadData" type="xs:boolean" >
+<xs:annotation>
+<xs:documentation>If true, ask bound datasource for data when widget is created.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
 <xs:attribute name="pageSize" type="xs:int" >
 <xs:annotation>
 <xs:documentation>The number of widgets that is loaded from the datasource on each data request.</xs:documentation>
 </xs:annotation>
 </xs:attribute>
-<xs:attribute name="dataObject" type="xs:string" use="required" >
+<xs:attribute name="dataSource" type="xs:string" use="required" >
 <xs:annotation>
-<xs:documentation>Identify the object type provided by the DataProvider. Use the annotation @DataObject to create an identifier to your types.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="autoLoadData" type="xs:boolean" default="false" >
-<xs:annotation>
-<xs:documentation>If true, ask bound DataProvider for data when widget is created.</xs:documentation>
+<xs:documentation>The datasource that provides data for this widget.</xs:documentation>
 </xs:annotation>
 </xs:attribute>
 <xs:attribute name="id" type="xs:string" use="required" >

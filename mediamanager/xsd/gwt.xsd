@@ -6525,6 +6525,8 @@ targetNamespace="http://www.cruxframework.org/crux/gwt" >
 </xs:attribute>
 <xs:attribute name="textAlignment" type="org_cruxframework_crux_gwt_rebind_ValueBoxBaseFactory_TextAlign" >
 </xs:attribute>
+<xs:attribute name="placeHolder" type="xs:string" >
+</xs:attribute>
 <xs:attribute name="readOnly" type="xs:boolean" >
 </xs:attribute>
 <xs:attribute name="alignment" type="org_cruxframework_crux_gwt_rebind_ValueBoxBaseFactory_TextAlign" >
@@ -6866,6 +6868,8 @@ targetNamespace="http://www.cruxframework.org/crux/gwt" >
 <xs:attribute name="value" type="xs:string" >
 </xs:attribute>
 <xs:attribute name="textAlignment" type="org_cruxframework_crux_gwt_rebind_ValueBoxBaseFactory_TextAlign" >
+</xs:attribute>
+<xs:attribute name="placeHolder" type="xs:string" >
 </xs:attribute>
 <xs:attribute name="readOnly" type="xs:boolean" >
 </xs:attribute>
@@ -8199,6 +8203,8 @@ targetNamespace="http://www.cruxframework.org/crux/gwt" >
 <xs:attribute name="value" type="xs:string" >
 </xs:attribute>
 <xs:attribute name="textAlignment" type="org_cruxframework_crux_gwt_rebind_ValueBoxBaseFactory_TextAlign" >
+</xs:attribute>
+<xs:attribute name="placeHolder" type="xs:string" >
 </xs:attribute>
 <xs:attribute name="readOnly" type="xs:boolean" >
 </xs:attribute>

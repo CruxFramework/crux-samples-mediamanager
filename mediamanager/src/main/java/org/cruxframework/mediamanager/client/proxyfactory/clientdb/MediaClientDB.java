@@ -39,8 +39,6 @@ import org.cruxframework.mediamanager.offline.client.entity.Artist;
 import org.cruxframework.mediamanager.offline.client.entity.Media;
 import org.cruxframework.mediamanager.offline.client.reuse.Utils;
 
-import com.google.gwt.user.client.Window;
-
 
 /**Class description: 
  * @author Bruno Medeiros (bruno@triggolabs.com)
@@ -118,7 +116,7 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 	 */
 	private void searchId(final Media media, final MediaController controller)
 	{
-		MediaDao.getInstance(getDatabase()).search(media.getName(), "nameMedia",
+		MediaDao.getInstance(getDatabase()).search(media.getName(), "name",
 			new DatabaseRetrieveCallback<Media>()
 			{
 				@Override
@@ -131,7 +129,6 @@ public class MediaClientDB extends ServiceClientDB implements MediaProxy
 				@Override
 				public void onError(String message)
 				{
-					Window.alert("blaa");
 					super.onError(message);
 				}
 			});

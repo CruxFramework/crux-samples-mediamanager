@@ -356,9 +356,9 @@ div#legend div.hint {
 <script type="text/javascript">
 <!--
 /* IDs of XML Instance Representation boxes */
-var xiBoxes = new Array('element_includes_xibox', 'element_excludes_xibox', 'element_include_xibox', 'element_exclude_xibox', 'type_Includes_xibox', 'type_Excludes_xibox', 'type_Include_xibox', 'type_Exclude_xibox', 'element_offlineScreen_xibox', 'type_OfflineScreen_xibox');
+var xiBoxes = new Array('element_offlineContent_xibox', 'type_OfflineContent_xibox', 'element_offlineScreen_xibox', 'type_OfflineScreen_xibox');
 /* IDs of Schema Component Representation boxes */
-var scBoxes = new Array('schema_scbox', 'element_includes_scbox', 'element_excludes_scbox', 'element_include_scbox', 'element_exclude_scbox', 'type_Includes_scbox', 'type_Excludes_scbox', 'type_Include_scbox', 'type_Exclude_scbox', 'element_offlineScreen_scbox', 'type_OfflineScreen_scbox');
+var scBoxes = new Array('schema_scbox', 'element_offlineContent_scbox', 'type_OfflineContent_scbox', 'element_offlineScreen_scbox', 'type_OfflineScreen_scbox');
 
 /**
  * Can get the ID of the button controlling
@@ -706,19 +706,7 @@ if (gc != null) {
 <a href="#SchemaDeclarations">Elements</a>
 <ul>
 <li>
-<a href="#element_exclude">Element: <strong>exclude</strong>
-</a>
-</li>
-<li>
-<a href="#element_excludes">Element: <strong>excludes</strong>
-</a>
-</li>
-<li>
-<a href="#element_include">Element: <strong>include</strong>
-</a>
-</li>
-<li>
-<a href="#element_includes">Element: <strong>includes</strong>
+<a href="#element_offlineContent">Element: <strong>offlineContent</strong>
 </a>
 </li>
 <li>
@@ -763,115 +751,12 @@ setState('schema_scbox', false);
 <h2>
 <a name="SchemaDeclarations">Elements</a>
 </h2>
-<h3>Element: <a class="name" name="element_exclude">exclude</a>
+<h3>Element: <a class="name" name="element_offlineContent">offlineContent</a>
 </h3>
 <table class="properties">
 <tr>
 <th>Name</th>
-<td>exclude</td>
-</tr>
-<tr>
-<th>Documentation</th>
-<td>Specify which resources must be excluded from cache on appCache manifest file.</td>
-</tr>
-</table>
-<div class="sample box">
-<div>
-<input style="display: none" onclick="switchState('element_exclude_xibox'); return false;" class="control" id="element_exclude_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
-</div>
-<div class="contents" id="element_exclude_xibox">
-<div style="margin-left: 0em">&lt;exclude<br />
-<span style="margin-left: 0.5em"> path="<span class="type">
-<a title="Find out namespace of 'xs' prefix" href="#ns_xs">xs</a>:string</span> <span class="occurs">[1]</span>"</span>/&gt; </div>
-</div>
-<script type="text/javascript">
-<!--
-setState('element_exclude_xibox', true);
-// -->
-</script>
-</div>
-<div class="schemaComponent box">
-<div>
-<input style="display: none" onclick="switchState('element_exclude_scbox'); return false;" class="control" id="element_exclude_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
-</div>
-<div class="contents" id="element_exclude_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">exclude</span>" <span class="scTag">type</span>="<span class="scContent">
-<span class="type">
-<a href="#type_Exclude" title="Jump to &quot;Exclude&quot; type definition.">Exclude</a>
-</span>
-</span>"/&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('element_exclude_scbox', false);
-// -->
-</script>
-</div>
-<div style="text-align: right; clear: both;">
-<a href="#top">top</a>
-</div>
-<hr />
-<h3>Element: <a class="name" name="element_excludes">excludes</a>
-</h3>
-<table class="properties">
-<tr>
-<th>Name</th>
-<td>excludes</td>
-</tr>
-<tr>
-<th>Documentation</th>
-<td>Specify which resources must be excluded from cache on appCache manifest file.</td>
-</tr>
-</table>
-<div class="sample box">
-<div>
-<input style="display: none" onclick="switchState('element_excludes_xibox'); return false;" class="control" id="element_excludes_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
-</div>
-<div class="contents" id="element_excludes_xibox">
-<div style="margin-left: 0em">&lt;excludes&gt; <br />
-<span style="margin-left: 1.5em" class="other">&lt;!-- Mixed content --&gt;</span>
-<br />
-<span style="margin-left: 1.5em" class="group">Start Choice <span class="occurs">[0..*]</span>
-</span>
-<br />
-<div style="margin-left: 3em">&lt;<a href="#element_exclude" title="Jump to &quot;exclude&quot; element declaration.">exclude</a>&gt; ... &lt;/<a href="#element_exclude" title="Jump to &quot;exclude&quot; element declaration.">exclude</a>&gt; <span class="occurs">[1]</span>
-</div>
-<span style="margin-left: 1.5em" class="group">End Choice</span>
-<br />&lt;/excludes&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('element_excludes_xibox', true);
-// -->
-</script>
-</div>
-<div class="schemaComponent box">
-<div>
-<input style="display: none" onclick="switchState('element_excludes_scbox'); return false;" class="control" id="element_excludes_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
-</div>
-<div class="contents" id="element_excludes_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">excludes</span>" <span class="scTag">type</span>="<span class="scContent">
-<span class="type">
-<a href="#type_Excludes" title="Jump to &quot;Excludes&quot; type definition.">Excludes</a>
-</span>
-</span>"/&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('element_excludes_scbox', false);
-// -->
-</script>
-</div>
-<div style="text-align: right; clear: both;">
-<a href="#top">top</a>
-</div>
-<hr />
-<h3>Element: <a class="name" name="element_include">include</a>
-</h3>
-<table class="properties">
-<tr>
-<th>Name</th>
-<td>include</td>
+<td>offlineContent</td>
 </tr>
 <tr>
 <th>Documentation</th>
@@ -880,88 +765,33 @@ setState('element_excludes_scbox', false);
 </table>
 <div class="sample box">
 <div>
-<input style="display: none" onclick="switchState('element_include_xibox'); return false;" class="control" id="element_include_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
+<input style="display: none" onclick="switchState('element_offlineContent_xibox'); return false;" class="control" id="element_offlineContent_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
 </div>
-<div class="contents" id="element_include_xibox">
-<div style="margin-left: 0em">&lt;include<br />
-<span style="margin-left: 0.5em"> path="<span class="type">
+<div class="contents" id="element_offlineContent_xibox">
+<div style="margin-left: 0em">&lt;offlineContent<br />
+<span style="margin-left: 0.5em"> resourceName="<span class="type">
 <a title="Find out namespace of 'xs' prefix" href="#ns_xs">xs</a>:string</span> <span class="occurs">[1]</span>"</span>/&gt; </div>
 </div>
 <script type="text/javascript">
 <!--
-setState('element_include_xibox', true);
+setState('element_offlineContent_xibox', true);
 // -->
 </script>
 </div>
 <div class="schemaComponent box">
 <div>
-<input style="display: none" onclick="switchState('element_include_scbox'); return false;" class="control" id="element_include_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
+<input style="display: none" onclick="switchState('element_offlineContent_scbox'); return false;" class="control" id="element_offlineContent_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
 </div>
-<div class="contents" id="element_include_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">include</span>" <span class="scTag">type</span>="<span class="scContent">
+<div class="contents" id="element_offlineContent_scbox">
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">offlineContent</span>" <span class="scTag">type</span>="<span class="scContent">
 <span class="type">
-<a href="#type_Include" title="Jump to &quot;Include&quot; type definition.">Include</a>
+<a href="#type_OfflineContent" title="Jump to &quot;OfflineContent&quot; type definition.">OfflineContent</a>
 </span>
 </span>"/&gt;</div>
 </div>
 <script type="text/javascript">
 <!--
-setState('element_include_scbox', false);
-// -->
-</script>
-</div>
-<div style="text-align: right; clear: both;">
-<a href="#top">top</a>
-</div>
-<hr />
-<h3>Element: <a class="name" name="element_includes">includes</a>
-</h3>
-<table class="properties">
-<tr>
-<th>Name</th>
-<td>includes</td>
-</tr>
-<tr>
-<th>Documentation</th>
-<td>Points to a resource on the application that must be manually insert into the application cache manifest list.</td>
-</tr>
-</table>
-<div class="sample box">
-<div>
-<input style="display: none" onclick="switchState('element_includes_xibox'); return false;" class="control" id="element_includes_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
-</div>
-<div class="contents" id="element_includes_xibox">
-<div style="margin-left: 0em">&lt;includes&gt; <br />
-<span style="margin-left: 1.5em" class="other">&lt;!-- Mixed content --&gt;</span>
-<br />
-<span style="margin-left: 1.5em" class="group">Start Choice <span class="occurs">[0..*]</span>
-</span>
-<br />
-<div style="margin-left: 3em">&lt;<a href="#element_include" title="Jump to &quot;include&quot; element declaration.">include</a>&gt; ... &lt;/<a href="#element_include" title="Jump to &quot;include&quot; element declaration.">include</a>&gt; <span class="occurs">[1]</span>
-</div>
-<span style="margin-left: 1.5em" class="group">End Choice</span>
-<br />&lt;/includes&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('element_includes_xibox', true);
-// -->
-</script>
-</div>
-<div class="schemaComponent box">
-<div>
-<input style="display: none" onclick="switchState('element_includes_scbox'); return false;" class="control" id="element_includes_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
-</div>
-<div class="contents" id="element_includes_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">includes</span>" <span class="scTag">type</span>="<span class="scContent">
-<span class="type">
-<a href="#type_Includes" title="Jump to &quot;Includes&quot; type definition.">Includes</a>
-</span>
-</span>"/&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('element_includes_scbox', false);
+setState('element_offlineContent_scbox', false);
 // -->
 </script>
 </div>
@@ -997,9 +827,7 @@ setState('element_includes_scbox', false);
 <span style="margin-left: 1.5em" class="group">Start Choice <span class="occurs">[0..*]</span>
 </span>
 <br />
-<div style="margin-left: 3em">&lt;<a href="#element_includes" title="Jump to &quot;includes&quot; element declaration.">includes</a>&gt; ... &lt;/<a href="#element_includes" title="Jump to &quot;includes&quot; element declaration.">includes</a>&gt; <span class="occurs">[1]</span>
-</div>
-<div style="margin-left: 3em">&lt;<a href="#element_excludes" title="Jump to &quot;excludes&quot; element declaration.">excludes</a>&gt; ... &lt;/<a href="#element_excludes" title="Jump to &quot;excludes&quot; element declaration.">excludes</a>&gt; <span class="occurs">[1]</span>
+<div style="margin-left: 3em">&lt;<a href="#element_offlineContent" title="Jump to &quot;offlineContent&quot; element declaration.">offlineContent</a>&gt; ... &lt;/<a href="#element_offlineContent" title="Jump to &quot;offlineContent&quot; element declaration.">offlineContent</a>&gt; <span class="occurs">[1]</span>
 </div>
 <span style="margin-left: 1.5em" class="group">End Choice</span>
 <br />&lt;/offlineScreen&gt;</div>
@@ -1034,7 +862,7 @@ setState('element_offlineScreen_scbox', false);
 <h2>
 <a name="SchemaDefinitions">Global Definitions</a>
 </h2>
-<h3>Complex Type: <a class="name" name="type_Exclude">Exclude</a>
+<h3>Complex Type: <a class="name" name="type_OfflineContent">OfflineContent</a>
 </h3>
 <table class="hierarchy">
 <tr>
@@ -1049,208 +877,37 @@ setState('element_offlineScreen_scbox', false);
 <table class="properties">
 <tr>
 <th>Name</th>
-<td>Exclude</td>
+<td>OfflineContent</td>
 </tr>
 </table>
 <div class="sample box">
 <div>
-<input style="display: none" onclick="switchState('type_Exclude_xibox'); return false;" class="control" id="type_Exclude_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
+<input style="display: none" onclick="switchState('type_OfflineContent_xibox'); return false;" class="control" id="type_OfflineContent_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
 </div>
-<div class="contents" id="type_Exclude_xibox">
+<div class="contents" id="type_OfflineContent_xibox">
 <div style="margin-left: 0em">&lt;...<br />
-<span style="margin-left: 0.5em"> path="<span class="type">
+<span style="margin-left: 0.5em"> resourceName="<span class="type">
 <a title="Find out namespace of 'xs' prefix" href="#ns_xs">xs</a>:string</span> <span class="occurs">[1]</span>"</span>/&gt; </div>
 </div>
 <script type="text/javascript">
 <!--
-setState('type_Exclude_xibox', true);
+setState('type_OfflineContent_xibox', true);
 // -->
 </script>
 </div>
 <div class="schemaComponent box">
 <div>
-<input style="display: none" onclick="switchState('type_Exclude_scbox'); return false;" class="control" id="type_Exclude_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
+<input style="display: none" onclick="switchState('type_OfflineContent_scbox'); return false;" class="control" id="type_OfflineContent_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
 </div>
-<div class="contents" id="type_Exclude_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:complexType</span> <span class="scTag">name</span>="<span class="scContent">Exclude</span>" <span class="scTag">mixed</span>="<span class="scContent">true</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">path</span>" <span class="scTag">type</span>="<span class="scContent">
+<div class="contents" id="type_OfflineContent_scbox">
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:complexType</span> <span class="scTag">name</span>="<span class="scContent">OfflineContent</span>" <span class="scTag">mixed</span>="<span class="scContent">true</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">resourceName</span>" <span class="scTag">type</span>="<span class="scContent">
 <span class="type">
 <a title="Find out namespace of 'xs' prefix" href="#ns_xs">xs</a>:string</span>
 </span>" <span class="scTag">use</span>="<span class="scContent">required</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>
 </div>
 <script type="text/javascript">
 <!--
-setState('type_Exclude_scbox', false);
-// -->
-</script>
-</div>
-<div style="text-align: right; clear: both;">
-<a href="#top">top</a>
-</div>
-<hr />
-<h3>Complex Type: <a class="name" name="type_Excludes">Excludes</a>
-</h3>
-<table class="hierarchy">
-<tr>
-<th>Super-types:</th>
-<td>None</td>
-</tr>
-<tr>
-<th>Sub-types:</th>
-<td>None</td>
-</tr>
-</table>
-<table class="properties">
-<tr>
-<th>Name</th>
-<td>Excludes</td>
-</tr>
-</table>
-<div class="sample box">
-<div>
-<input style="display: none" onclick="switchState('type_Excludes_xibox'); return false;" class="control" id="type_Excludes_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
-</div>
-<div class="contents" id="type_Excludes_xibox">
-<div style="margin-left: 0em">&lt;...&gt; <br />
-<span style="margin-left: 1.5em" class="other">&lt;!-- Mixed content --&gt;</span>
-<br />
-<span style="margin-left: 1.5em" class="group">Start Choice <span class="occurs">[0..*]</span>
-</span>
-<br />
-<div style="margin-left: 3em">&lt;<a href="#element_exclude" title="Jump to &quot;exclude&quot; element declaration.">exclude</a>&gt; ... &lt;/<a href="#element_exclude" title="Jump to &quot;exclude&quot; element declaration.">exclude</a>&gt; <span class="occurs">[1]</span>
-</div>
-<span style="margin-left: 1.5em" class="group">End Choice</span>
-<br />&lt;/...&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('type_Excludes_xibox', true);
-// -->
-</script>
-</div>
-<div class="schemaComponent box">
-<div>
-<input style="display: none" onclick="switchState('type_Excludes_scbox'); return false;" class="control" id="type_Excludes_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
-</div>
-<div class="contents" id="type_Excludes_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:complexType</span> <span class="scTag">name</span>="<span class="scContent">Excludes</span>" <span class="scTag">mixed</span>="<span class="scContent">true</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:choice</span> <span class="scTag">minOccurs</span>="<span class="scContent">0</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent">
-<a href="#element_exclude" title="Jump to &quot;exclude&quot; element declaration.">exclude</a>
-</span>"/&gt;</div>&lt;/<span class="scTag">xs:choice</span>&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('type_Excludes_scbox', false);
-// -->
-</script>
-</div>
-<div style="text-align: right; clear: both;">
-<a href="#top">top</a>
-</div>
-<hr />
-<h3>Complex Type: <a class="name" name="type_Include">Include</a>
-</h3>
-<table class="hierarchy">
-<tr>
-<th>Super-types:</th>
-<td>None</td>
-</tr>
-<tr>
-<th>Sub-types:</th>
-<td>None</td>
-</tr>
-</table>
-<table class="properties">
-<tr>
-<th>Name</th>
-<td>Include</td>
-</tr>
-</table>
-<div class="sample box">
-<div>
-<input style="display: none" onclick="switchState('type_Include_xibox'); return false;" class="control" id="type_Include_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
-</div>
-<div class="contents" id="type_Include_xibox">
-<div style="margin-left: 0em">&lt;...<br />
-<span style="margin-left: 0.5em"> path="<span class="type">
-<a title="Find out namespace of 'xs' prefix" href="#ns_xs">xs</a>:string</span> <span class="occurs">[1]</span>"</span>/&gt; </div>
-</div>
-<script type="text/javascript">
-<!--
-setState('type_Include_xibox', true);
-// -->
-</script>
-</div>
-<div class="schemaComponent box">
-<div>
-<input style="display: none" onclick="switchState('type_Include_scbox'); return false;" class="control" id="type_Include_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
-</div>
-<div class="contents" id="type_Include_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:complexType</span> <span class="scTag">name</span>="<span class="scContent">Include</span>" <span class="scTag">mixed</span>="<span class="scContent">true</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">path</span>" <span class="scTag">type</span>="<span class="scContent">
-<span class="type">
-<a title="Find out namespace of 'xs' prefix" href="#ns_xs">xs</a>:string</span>
-</span>" <span class="scTag">use</span>="<span class="scContent">required</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('type_Include_scbox', false);
-// -->
-</script>
-</div>
-<div style="text-align: right; clear: both;">
-<a href="#top">top</a>
-</div>
-<hr />
-<h3>Complex Type: <a class="name" name="type_Includes">Includes</a>
-</h3>
-<table class="hierarchy">
-<tr>
-<th>Super-types:</th>
-<td>None</td>
-</tr>
-<tr>
-<th>Sub-types:</th>
-<td>None</td>
-</tr>
-</table>
-<table class="properties">
-<tr>
-<th>Name</th>
-<td>Includes</td>
-</tr>
-</table>
-<div class="sample box">
-<div>
-<input style="display: none" onclick="switchState('type_Includes_xibox'); return false;" class="control" id="type_Includes_xibox_button" type="button" /> <span class="caption">XML Instance Representation</span>
-</div>
-<div class="contents" id="type_Includes_xibox">
-<div style="margin-left: 0em">&lt;...&gt; <br />
-<span style="margin-left: 1.5em" class="other">&lt;!-- Mixed content --&gt;</span>
-<br />
-<span style="margin-left: 1.5em" class="group">Start Choice <span class="occurs">[0..*]</span>
-</span>
-<br />
-<div style="margin-left: 3em">&lt;<a href="#element_include" title="Jump to &quot;include&quot; element declaration.">include</a>&gt; ... &lt;/<a href="#element_include" title="Jump to &quot;include&quot; element declaration.">include</a>&gt; <span class="occurs">[1]</span>
-</div>
-<span style="margin-left: 1.5em" class="group">End Choice</span>
-<br />&lt;/...&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('type_Includes_xibox', true);
-// -->
-</script>
-</div>
-<div class="schemaComponent box">
-<div>
-<input style="display: none" onclick="switchState('type_Includes_scbox'); return false;" class="control" id="type_Includes_scbox_button" type="button" /> <span class="caption">Schema Component Representation</span>
-</div>
-<div class="contents" id="type_Includes_scbox">
-<div style="margin-left: 0em">&lt;<span class="scTag">xs:complexType</span> <span class="scTag">name</span>="<span class="scContent">Includes</span>" <span class="scTag">mixed</span>="<span class="scContent">true</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:choice</span> <span class="scTag">minOccurs</span>="<span class="scContent">0</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent">
-<a href="#element_include" title="Jump to &quot;include&quot; element declaration.">include</a>
-</span>"/&gt;</div>&lt;/<span class="scTag">xs:choice</span>&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>
-</div>
-<script type="text/javascript">
-<!--
-setState('type_Includes_scbox', false);
+setState('type_OfflineContent_scbox', false);
 // -->
 </script>
 </div>
@@ -1292,9 +949,7 @@ setState('type_Includes_scbox', false);
 <span style="margin-left: 1.5em" class="group">Start Choice <span class="occurs">[0..*]</span>
 </span>
 <br />
-<div style="margin-left: 3em">&lt;<a href="#element_includes" title="Jump to &quot;includes&quot; element declaration.">includes</a>&gt; ... &lt;/<a href="#element_includes" title="Jump to &quot;includes&quot; element declaration.">includes</a>&gt; <span class="occurs">[1]</span>
-</div>
-<div style="margin-left: 3em">&lt;<a href="#element_excludes" title="Jump to &quot;excludes&quot; element declaration.">excludes</a>&gt; ... &lt;/<a href="#element_excludes" title="Jump to &quot;excludes&quot; element declaration.">excludes</a>&gt; <span class="occurs">[1]</span>
+<div style="margin-left: 3em">&lt;<a href="#element_offlineContent" title="Jump to &quot;offlineContent&quot; element declaration.">offlineContent</a>&gt; ... &lt;/<a href="#element_offlineContent" title="Jump to &quot;offlineContent&quot; element declaration.">offlineContent</a>&gt; <span class="occurs">[1]</span>
 </div>
 <span style="margin-left: 1.5em" class="group">End Choice</span>
 <br />&lt;/...&gt;</div>
@@ -1311,10 +966,7 @@ setState('type_OfflineScreen_xibox', true);
 </div>
 <div class="contents" id="type_OfflineScreen_scbox">
 <div style="margin-left: 0em">&lt;<span class="scTag">xs:complexType</span> <span class="scTag">name</span>="<span class="scContent">OfflineScreen</span>" <span class="scTag">mixed</span>="<span class="scContent">true</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:choice</span> <span class="scTag">minOccurs</span>="<span class="scContent">0</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent">
-<a href="#element_includes" title="Jump to &quot;includes&quot; element declaration.">includes</a>
-</span>"/&gt;</div>
-<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent">
-<a href="#element_excludes" title="Jump to &quot;excludes&quot; element declaration.">excludes</a>
+<a href="#element_offlineContent" title="Jump to &quot;offlineContent&quot; element declaration.">offlineContent</a>
 </span>"/&gt;</div>&lt;/<span class="scTag">xs:choice</span>&gt;</div>
 <div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">moduleName</span>" <span class="scTag">type</span>="<span class="scContent">
 <span class="type">

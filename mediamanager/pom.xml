@@ -297,6 +297,9 @@
 									<arg value="-moduleName" />
 									<arg value="mediamanager" />
 
+									<arg value="-bindAddress" />
+									<arg value="0.0.0.0" />
+
 									<jvmarg value="-Xmx768M" />
 									<jvmarg value="-Xms256M" />
 								</java>

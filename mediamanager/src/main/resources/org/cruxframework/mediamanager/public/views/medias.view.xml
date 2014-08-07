@@ -37,7 +37,7 @@
 
 	<!-- Result Panel -->
 	<gwt:flowPanel id="resultPanel" styleName="content styled">
-		<crux:adaptiveGrid id="tableGrid" width="100%" 
+		<crux:adaptiveGrid id="tableGrid" width="100%"  detailDialogTitle="Details"
 			height="100" stretchColumns="true" autoLoadData="false" pageSize="4"
 			dataSource="mediaDTODatasource" defaultSortingColumn="name"
 			defaultSortingType="ascending">

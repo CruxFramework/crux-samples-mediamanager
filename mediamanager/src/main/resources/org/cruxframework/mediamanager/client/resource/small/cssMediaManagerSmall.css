@@ -450,6 +450,20 @@ html, body
 	color: #000;
 }
 
+.detail-key, .detail-value  {
+	font-size: 18px;
+	margin-bottom: 8px;
+}
+
+.detail-key {
+	font-weight: bold;
+}
+
+.grid-detail-dialogbox .gwt-InlineLabel {
+	font-size: 17px;
+	color: #c73e0d;
+} 
+
 .device-small
 {
 	margin-top:8px;

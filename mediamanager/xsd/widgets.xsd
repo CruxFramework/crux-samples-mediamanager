@@ -1101,6 +1101,8 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 </xs:attribute>
 <xs:attribute name="textAlignment" type="org_cruxframework_crux_gwt_rebind_ValueBoxBaseFactory_TextAlign" >
 </xs:attribute>
+<xs:attribute name="placeHolder" type="xs:string" >
+</xs:attribute>
 <xs:attribute name="readOnly" type="xs:boolean" >
 </xs:attribute>
 <xs:attribute name="alignment" type="org_cruxframework_crux_gwt_rebind_ValueBoxBaseFactory_TextAlign" >
@@ -1605,6 +1607,100 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 </xs:annotation>
 </xs:attribute>
 </xs:complexType>
+<xs:element name="dialogBox" type="TdialogBox">
+<xs:annotation>
+<xs:documentation>A Dialog box that can display one widget inside a dialog window.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="TdialogBox">
+<xs:sequence>
+<xs:group ref="c:widgets"  minOccurs="0" maxOccurs="1">
+<xs:annotation>
+<xs:documentation>Accepts any valid widget</xs:documentation>
+</xs:annotation>
+</xs:group>
+</xs:sequence>
+<xs:attribute name="movable" type="xs:boolean" default="true" >
+<xs:annotation>
+<xs:documentation>If true, the window can be dragged on the screen</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="resizable" type="xs:boolean" default="false" >
+<xs:annotation>
+<xs:documentation>If true, the window can be resized</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="closable" type="xs:boolean" default="true" >
+<xs:annotation>
+<xs:documentation>If true, a close button will be available at the dialog&apos;s top bar to close the window</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="title" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the Dialog title.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="id" type="xs:string" use="required" >
+<xs:annotation>
+<xs:documentation>Sets the identifier used to reference this widget on the crux view. </xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="width" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the object&apos;s width, in CSS units (e.g. &quot;10px&quot;, &quot;1em&quot;). This width does not include decorations such as border, margin, and padding.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="height" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the object&apos;s height, in CSS units (e.g. &quot;10px&quot;, &quot;1em&quot;). This height does not include decorations such as border, margin, and padding.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="styleName" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Clears all of the element&apos;s style names and sets it to the given style.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="visible" type="xs:boolean" >
+<xs:annotation>
+<xs:documentation>Sets whether this object is visible. true to show the object, false to hide it</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="tooltip" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the HTML title property associated with this object. The title is the &apos;tool-tip&apos; displayed to users when they hover over the object.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="style" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the HTML style property of the widget&apos;s element</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="viewPermission" type="xs:string" >
+<xs:annotation>
+<xs:documentation>A role that must be checked to verify if user can see this widget on the Screen. You must define a RoleManager to handle these permission validations.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onLoadWidget" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onLoadWidget event. This event is fired when the widget is loaded into its parent view.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onAttach" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is attached to the DOM in the browser.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onDettach" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is removed from the DOM in the browser.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onClose" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onClose event. This event is fired when the widget is closed.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+</xs:complexType>
 <xs:element name="singleSelect" type="TsingleSelect">
 </xs:element>
 <xs:complexType name="TsingleSelect">
@@ -1816,8 +1912,6 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 <xs:attribute name="defaultSortingColumn" type="xs:string" >
 </xs:attribute>
 <xs:attribute name="defaultSortingType" type="org_cruxframework_crux_widgets_client_grid_Grid_SortingType" default="ascending" >
-</xs:attribute>
-<xs:attribute name="keepEditorOnClickDisabledRows" type="xs:boolean" default="false" >
 </xs:attribute>
 <xs:attribute name="dataSource" type="xs:string" >
 </xs:attribute>
@@ -2082,8 +2176,6 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 </xs:attribute>
 <xs:attribute name="caseSensitive" type="xs:boolean" default="false" >
 </xs:attribute>
-<xs:attribute name="keepEditorOnClickDisabledRows" type="xs:boolean" default="false" >
-</xs:attribute>
 <xs:attribute name="dataSource" type="xs:string" >
 </xs:attribute>
 <xs:attribute name="id" type="xs:string" use="required" >
@@ -2303,75 +2395,6 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 <xs:annotation>
 <xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is removed from the DOM in the browser.</xs:documentation>
 </xs:annotation>
-</xs:attribute>
-</xs:complexType>
-<xs:element name="topTollBar" type="TtopTollBar">
-</xs:element>
-<xs:complexType name="TtopTollBar">
-<xs:sequence>
-<xs:element name="grip" minOccurs="1" maxOccurs="unbounded" type="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_GripProcessor">
-</xs:element>
-<xs:element name="canvas" minOccurs="1" maxOccurs="unbounded" type="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_CanvasProcessor">
-</xs:element>
-</xs:sequence>
-<xs:attribute name="gripHeight" type="xs:int" use="required" >
-</xs:attribute>
-<xs:attribute name="id" type="xs:string" use="required" >
-<xs:annotation>
-<xs:documentation>Sets the identifier used to reference this widget on the crux view. </xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="width" type="xs:string" >
-<xs:annotation>
-<xs:documentation>Sets the object&apos;s width, in CSS units (e.g. &quot;10px&quot;, &quot;1em&quot;). This width does not include decorations such as border, margin, and padding.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="height" type="xs:string" >
-<xs:annotation>
-<xs:documentation>Sets the object&apos;s height, in CSS units (e.g. &quot;10px&quot;, &quot;1em&quot;). This height does not include decorations such as border, margin, and padding.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="styleName" type="xs:string" >
-<xs:annotation>
-<xs:documentation>Clears all of the element&apos;s style names and sets it to the given style.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="visible" type="xs:boolean" >
-<xs:annotation>
-<xs:documentation>Sets whether this object is visible. true to show the object, false to hide it</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="tooltip" type="xs:string" >
-<xs:annotation>
-<xs:documentation>Sets the HTML title property associated with this object. The title is the &apos;tool-tip&apos; displayed to users when they hover over the object.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="style" type="xs:string" >
-<xs:annotation>
-<xs:documentation>Sets the HTML style property of the widget&apos;s element</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="viewPermission" type="xs:string" >
-<xs:annotation>
-<xs:documentation>A role that must be checked to verify if user can see this widget on the Screen. You must define a RoleManager to handle these permission validations.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="onLoadWidget" >
-<xs:annotation>
-<xs:documentation>Inform the handler for onLoadWidget event. This event is fired when the widget is loaded into its parent view.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="onAttach" >
-<xs:annotation>
-<xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is attached to the DOM in the browser.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="onDettach" >
-<xs:annotation>
-<xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is removed from the DOM in the browser.</xs:documentation>
-</xs:annotation>
-</xs:attribute>
-<xs:attribute name="onSelection" >
 </xs:attribute>
 </xs:complexType>
 <xs:element name="styledPanel" type="TstyledPanel">
@@ -2918,7 +2941,7 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 <xs:element name="numberTextBox" type="TnumberTextBox">
 </xs:element>
 <xs:complexType name="TnumberTextBox">
-<xs:attribute name="value" type="xs:string" >
+<xs:attribute name="value" type="xs:int" >
 </xs:attribute>
 <xs:attribute name="maxLength" type="xs:int" >
 </xs:attribute>
@@ -3289,6 +3312,75 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 <xs:attribute name="onSelection" >
 </xs:attribute>
 </xs:complexType>
+<xs:element name="topToolBar" type="TtopToolBar">
+</xs:element>
+<xs:complexType name="TtopToolBar">
+<xs:sequence>
+<xs:element name="grip" minOccurs="1" maxOccurs="unbounded" type="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_GripProcessor">
+</xs:element>
+<xs:element name="canvas" minOccurs="1" maxOccurs="unbounded" type="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_CanvasProcessor">
+</xs:element>
+</xs:sequence>
+<xs:attribute name="gripHeight" type="xs:int" use="required" >
+</xs:attribute>
+<xs:attribute name="id" type="xs:string" use="required" >
+<xs:annotation>
+<xs:documentation>Sets the identifier used to reference this widget on the crux view. </xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="width" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the object&apos;s width, in CSS units (e.g. &quot;10px&quot;, &quot;1em&quot;). This width does not include decorations such as border, margin, and padding.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="height" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the object&apos;s height, in CSS units (e.g. &quot;10px&quot;, &quot;1em&quot;). This height does not include decorations such as border, margin, and padding.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="styleName" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Clears all of the element&apos;s style names and sets it to the given style.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="visible" type="xs:boolean" >
+<xs:annotation>
+<xs:documentation>Sets whether this object is visible. true to show the object, false to hide it</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="tooltip" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the HTML title property associated with this object. The title is the &apos;tool-tip&apos; displayed to users when they hover over the object.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="style" type="xs:string" >
+<xs:annotation>
+<xs:documentation>Sets the HTML style property of the widget&apos;s element</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="viewPermission" type="xs:string" >
+<xs:annotation>
+<xs:documentation>A role that must be checked to verify if user can see this widget on the Screen. You must define a RoleManager to handle these permission validations.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onLoadWidget" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onLoadWidget event. This event is fired when the widget is loaded into its parent view.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onAttach" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is attached to the DOM in the browser.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onDettach" >
+<xs:annotation>
+<xs:documentation>Inform the handler for onLoadWidget event. This event is fired every time the widget is removed from the DOM in the browser.</xs:documentation>
+</xs:annotation>
+</xs:attribute>
+<xs:attribute name="onSelection" >
+</xs:attribute>
+</xs:complexType>
 <xs:element name="horizontalSwapViewContainer" type="ThorizontalSwapViewContainer">
 </xs:element>
 <xs:complexType name="ThorizontalSwapViewContainer">
@@ -3467,8 +3559,6 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 <xs:attribute name="freezeHeaders" type="xs:boolean" default="false" >
 </xs:attribute>
 <xs:attribute name="caseSensitive" type="xs:boolean" default="false" >
-</xs:attribute>
-<xs:attribute name="keepEditorOnClickDisabledRows" type="xs:boolean" default="false" >
 </xs:attribute>
 <xs:attribute name="dataSource" type="xs:string" >
 </xs:attribute>
@@ -4160,6 +4250,24 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 <xs:attribute name="active" type="xs:boolean" default="false" >
 </xs:attribute>
 </xs:complexType>
+<xs:complexType name="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_CanvasProcessor">
+<xs:sequence>
+<xs:group ref="c:widgets"  minOccurs="0" maxOccurs="unbounded">
+<xs:annotation>
+<xs:documentation>Accepts any valid widget</xs:documentation>
+</xs:annotation>
+</xs:group>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_GripProcessor">
+<xs:sequence>
+<xs:group ref="c:widgets"  minOccurs="1" maxOccurs="1">
+<xs:annotation>
+<xs:documentation>Accepts any valid widget</xs:documentation>
+</xs:annotation>
+</xs:group>
+</xs:sequence>
+</xs:complexType>
 <xs:complexType name="org_cruxframework_crux_widgets_rebind_storyboard_StoryboardFactory_ItemProcessor">
 <xs:sequence>
 <xs:group ref="c:widgets" >
@@ -4198,24 +4306,6 @@ targetNamespace="http://www.cruxframework.org/crux/widgets" >
 </xs:attribute>
 <xs:attribute name="location" type="org_cruxframework_crux_widgets_client_transferlist_TransferList_ItemLocation" use="required" >
 </xs:attribute>
-</xs:complexType>
-<xs:complexType name="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_CanvasProcessor">
-<xs:sequence>
-<xs:group ref="c:widgets"  minOccurs="0" maxOccurs="unbounded">
-<xs:annotation>
-<xs:documentation>Accepts any valid widget</xs:documentation>
-</xs:annotation>
-</xs:group>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="org_cruxframework_crux_widgets_rebind_toptoolbar_TopToolBarFactory_GripProcessor">
-<xs:sequence>
-<xs:group ref="c:widgets"  minOccurs="1" maxOccurs="1">
-<xs:annotation>
-<xs:documentation>Accepts any valid widget</xs:documentation>
-</xs:annotation>
-</xs:group>
-</xs:sequence>
 </xs:complexType>
 <xs:complexType name="org_cruxframework_crux_widgets_rebind_stackmenu_StackMenuFactory_StackMenuItemProcessor">
 <xs:sequence>

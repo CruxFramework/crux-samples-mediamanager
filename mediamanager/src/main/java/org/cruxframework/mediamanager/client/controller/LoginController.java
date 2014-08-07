@@ -56,7 +56,7 @@ public class LoginController
 	 */
 	@Expose
 	public void login()
-	{
+	{	
 		/* Get login and password */
 		View view = View.of(this);
 		loginTextBox = (TextBox) view.getWidget("loginTextBox");
@@ -81,6 +81,7 @@ public class LoginController
 		animateIntroduction();
 		animateFormWrapper();
 	}
+	
 	
 	/*****************************************
 	 * Callback States

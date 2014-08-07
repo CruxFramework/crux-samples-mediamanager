@@ -126,7 +126,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 	 */
 	private void searchId(final Artist artist, final ArtistController controller)
 	{
-		ArtistDao.getInstance(getDatabase()).search(artist.getName(), "nameArtist",
+		ArtistDao.getInstance(getDatabase()).search(artist.getName(), "name",
 			new DatabaseRetrieveCallback<Artist>()
 			{
 
@@ -372,7 +372,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 						}
 						else
 						{
-							doSearch(name, "nameArtist", controller);
+							doSearch(name, "name", controller);
 						}
 					}
 				});
@@ -385,7 +385,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 			}
 			else
 			{
-				doSearch(name, "nameArtist", controller);
+				doSearch(name, "name", controller);
 			}
 		}
 	}

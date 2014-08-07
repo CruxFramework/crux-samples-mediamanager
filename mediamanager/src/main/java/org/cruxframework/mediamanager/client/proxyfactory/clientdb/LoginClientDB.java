@@ -84,7 +84,7 @@ public class LoginClientDB extends ServiceClientDB implements LoginProxy
 					}
 					else
 					{
-						controller.LoginFailueState(null);
+						controller.LoginSuccessState(false);
 					}
 				}
 			});
