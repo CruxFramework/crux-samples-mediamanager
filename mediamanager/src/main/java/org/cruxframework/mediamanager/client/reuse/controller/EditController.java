@@ -49,8 +49,10 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		
 		if (!validate(dto))
 		{
-			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
+			MessageBox msg = MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
 					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+			msg.getElement().setId("msg_fill_all_fields_insert");
+		
 		} else
 		{
 			//getRestServiceProxy().insert(dto, new InsertCallback(view));
@@ -70,8 +72,9 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		
 		if (!validate(dto))
 		{
-			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
+			MessageBox msg = MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
 					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+			msg.getElement().setId("msg_fill_all_fields_update");
 		} else
 		{
 			//getRestServiceProxy().update(dto.getId(), dto, new UpdateCallback());
@@ -90,14 +93,17 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 		T dto = view.getData();
 		dto.setId(id);
 		editState(view);
-		MessageBox.show(null, "Successfully saved!", MessageType.SUCCESS, true,
+		
+		MessageBox msg = MessageBox.show(null, "Successfully saved!", MessageType.SUCCESS, true,
 				false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+		msg.getElement().setId("msg_sucessfully_completeInsert");
 	}
 	
 	public void completeUpdate()
 	{
-		MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
+		MessageBox msg =  MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
 				false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+		msg.getElement().setId("msg_sucessfully_completeUpdate");
 	}
 	
 	
