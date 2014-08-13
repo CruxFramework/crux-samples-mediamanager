@@ -8,7 +8,6 @@
 	<packaging>war</packaging>
 	<description>Crux Sample</description>
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cruxVersion>5.1.2</cruxVersion>
@@ -22,9 +21,15 @@
 		<xsd.dir>${basedir}/xsd</xsd.dir>
 	</properties>
 
+	<scm>
+		<connection>scm:svn:http://crux-projects.googlecode.com/svn/branches/mediamanager/1.0</connection>
+		<developerConnection>scm:svn:https://crux-projects.googlecode.com/svn/branches/mediamanager/1.0</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://code.google.com/p/crux-projects/source/checkout</url>
+	</scm>
+
 	<dependencies>
-
-
+		
 		<!-- Crux dependencies -->
 		<dependency>
 			<groupId>org.cruxframework</groupId>
@@ -47,7 +52,6 @@
 			<artifactId>crux-widgets</artifactId>
 			<version>${cruxVersion}</version>
 		</dependency>
-		<!-- TODO: GERAR UMA VERSAO EXTERNA DO SMARTFACES E REMOVER O 'SNAPSHOT' -->
 		<dependency>
 			<groupId>org.cruxframework</groupId>
 			<artifactId>crux-smart-faces</artifactId>
@@ -83,15 +87,15 @@
 
 		<!-- Hibernate dependencies -->
 		<dependency>
-  		<groupId>org.hibernate</groupId>
-  		<artifactId>hibernate-entitymanager</artifactId>
-  		<version>4.3.4.Final</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.hibernate</groupId>
-  		<artifactId>hibernate-validator</artifactId>
-  		<version>5.1.0.Final</version>
-  	</dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.4.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.0.Final</version>
+		</dependency>
 
 		<!-- C2P0 dependencies -->
 		<dependency>
@@ -106,7 +110,6 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-
 
 		<!-- PostgresSQL dependencies -->
 		<dependency>
@@ -136,7 +139,7 @@
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-		
+
 		<!-- tests -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -144,27 +147,29 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.8</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>br.ufmg.dcc.saotome</groupId>
+			<artifactId>beholder</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>br.ufmg.dcc.saotome</groupId>
+			<artifactId>beholder-selenium</artifactId>
+			<version>1.3.3</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<finalName>mediamanager</finalName>
-	
-		<plugins>	
-		
-			<!-- test report -->
-			<plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-surefire-plugin</artifactId>
-                 <version>2.17</version>
-                 <dependencies>
-	                 <dependency>
-						<groupId>org.apache.maven.surefire</groupId>
-						<artifactId>surefire-junit4</artifactId>
-						<version>2.17</version>
-					</dependency>
-				</dependencies>
-             </plugin>
+
+		<plugins>
 		
 			<!-- Compile -->
 			<plugin>
@@ -176,6 +181,77 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			
+			<!-- test report -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit4</artifactId>
+						<version>2.17</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			
+			<!--  
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			-->
+		
+			<!-- tomcat plugin configuration for integration tests  -->
+			<plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+        	<execution>
+        		<id>run-application</id>
+        		<phase>pre-integration-test</phase>
+        		<goals>
+							<goal>deploy-only</goal>
+        		</goals>
+        		<configuration>
+        			<url>http://halley.sysmap.com.br:8082/manager/text</url>
+       				<username>admin</username>
+       				<password>admin</password>
+        		</configuration>
+        	</execution>
+        </executions>
+      </plugin>
+      
+      <!-- integration tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.17</version>
+        <configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+		
+			
+			
 
 			<!-- Update webapp folders -->
 			<plugin>
@@ -297,7 +373,7 @@
 									<jvmarg value="-Xms256M" />
 									<arg value="-localWorkers" />
 									<arg value="4" />
-<!-- 									<arg value="-strict" /> -->
+									<!-- <arg value="-strict" /> -->
 
 									<!-- use these parameters if you want to modify GWT output settings 
 										<arg value="-style"/> <arg value="DETAILED"/> <arg value="-logLevel"/> <arg 
@@ -384,4 +460,3 @@
 		</profile>
 	</profiles>
 </project>
-		
