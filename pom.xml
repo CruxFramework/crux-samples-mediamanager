@@ -219,7 +219,7 @@
         		<id>run-application</id>
         		<phase>pre-integration-test</phase>
         		<goals>
-							<goal>deploy-only</goal>
+							<goal>redeploy-only</goal>
         		</goals>
         		<configuration>
         			<url>http://halley.sysmap.com.br:8082/manager/text</url>
