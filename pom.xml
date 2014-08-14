@@ -225,6 +225,7 @@
         			<url>http://halley.sysmap.com.br:8082/manager/text</url>
        				<username>admin</username>
        				<password>admin</password>
+       				<update>true</update>
         		</configuration>
         	</execution>
         </executions>
