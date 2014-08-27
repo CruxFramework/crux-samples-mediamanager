@@ -28,8 +28,8 @@ public class PVSearchArtist
 	@DataProvider(name = "PV001_SearchArtist")
 	public static Object[][] PV001_SearchArtist()
 	{
-		return new Object[][] { { "CT001", "Mega death", new Artist("Mega death", "United States", "Metal") },
-				{ "CT002", "Mega", new Artist("Mega death", "United States", "Metal") }, };
+		return new Object[][] { { "CT001", "Artista01P006", new Artist("Artista01P006","Mexico","Metal")},
+				{ "CT002", "Artista02P006", new Artist("Artista02P006","England","Jazz") }, };
 	}
 
 	@DataProvider(name = "PV002_ArtistNoExist")
@@ -41,22 +41,20 @@ public class PVSearchArtist
 	@DataProvider(name = "PV003_DeleteArtist")
 	public static Object[][] PV003_DeleteArtist()
 	{
-		return new Object[][] { { "CT001", "James Brown" }, };
+		return new Object[][] { { "CT001", "ArtistForDelete" }, };
 	}
 
 	@DataProvider(name = "PV004_EditAndSearchArtist")
 	public static Object[][] PV004_EditAndSearchArtist()
 	{
 		return new Object[][] {
-		// {"CT001", new Artist("Red Hot Chili Pepers","United States","Rock"), new
-		// Artist("Mamonas Assassinas","Jamaica","Metal")},
-		{ "CT001", new Artist("Metallica", "United States", "Metal"), new Artist("Mamonas Assassinas", "Jamaica", "Blues") }, };
+		{ "CT001", new Artist("ArtistForEdit", "United States", "Metal"), new Artist("Mamonas Assassinas", "Jamaica", "Blues") }, };
 	}
 
 	@DataProvider(name = "PV005_ChangeValuesSearch")
 	public static Object[][] PV005_ChangeValuesSearch()
 	{
 		return new Object[][] { { "CT001", "Artista01P006", "Artista02P006",
-				new Artist("Artista01P006", "United States", "Metal"), new Artist("Artista02P006", "United States", "Metal") }, };
+				new Artist("Artista01P006", "Mexico", "Metal"), new Artist("Artista02P006", "England", "Jazz") }, };
 	}
 }

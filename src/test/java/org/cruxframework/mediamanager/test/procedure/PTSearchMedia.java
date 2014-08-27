@@ -42,9 +42,8 @@ public class PTSearchMedia
 	public static LineTableSearchMedia searchMedia(QueryMedia queryMedia)
 	{
 		LineTableSearchMedia lsm = new LineTableSearchMedia();
-		screenSearchMedia = new ScreenSearchMedia();
 		PTSearchMedia.populateFieldsQuery(queryMedia);
-		screenSearchMedia.getBtnSearch().click();
+		getScreenSearchMedia().getBtnSearch().click();
 
 		try
 		{
@@ -52,50 +51,47 @@ public class PTSearchMedia
 		}
 		catch (NoSuchElementException e)
 		{
-			// TODO guilherme.alecrim: exceção calada
+			System.out.println("A sua pesquisa de Media não retornou nenhum resultado.");
 		}
 		return lsm;
 	}
 
-	public static String editMedia(QueryMedia queryMedia, Media newValues) throws InterruptedException
+	public static String editMedia(QueryMedia queryMedia, Media newValues) 
 	{
 		String sucessEditMedia = null;
 		searchMedia(queryMedia);
-		screenSearchMedia.getBtnEdit().click();
+		getScreenSearchMedia().getBtnEdit().click();
 		PTAddMedia.populateFields(newValues);
 		PTAddMedia.getScreenAddMedia().getBtnSaveChanges().click();
-		sucessEditMedia = PTAddMedia.getScreenAddMedia().getPopUpSuccessfullySavedSaveChanges().getDivText().getText();
-		PTAddMedia.getScreenAddMedia().getPopUpSuccessfullySavedSaveChanges().getBtnOk().click();
+		sucessEditMedia = PTAddMedia.getScreenAddMedia().getPopUp().getMenssagePopUp();
+		PTAddMedia.getScreenAddMedia().getPopUp().confirmPopUp();
 		return sucessEditMedia;
 	}
 
 	public static String deleteMedia(QueryMedia queryMedia)
 	{
-		screenSearchMedia = new ScreenSearchMedia();
 		String sucessOnDelete = null;
 		PTSearchMedia.searchMedia(queryMedia);
-		screenSearchMedia.getBtnDelete().click();
-		screenSearchMedia.getPopUpDelete().getBtnOk().click();
-		sucessOnDelete = screenSearchMedia.getPopUpSucessDelete().getDivText().getText();
-		screenSearchMedia.getPopUpSucessDelete().getBtnOk().click();
+		getScreenSearchMedia().getBtnDelete().click();
+		getScreenSearchMedia().getPopUpDelete().confirmPopUp();
+		sucessOnDelete = getScreenSearchMedia().getPopUpSucessDelete().getMenssagePopUp();
+		getScreenSearchMedia().getPopUpSucessDelete().confirmPopUp();
 		return sucessOnDelete;
 	}
 
 	public static String deleteAndSearhcMedia(QueryMedia queryMedia)
 	{
 		String noResultsFound = null;
-		screenSearchMedia = new ScreenSearchMedia();
 		PTSearchMedia.deleteMedia(queryMedia);
 		PTSearchMedia.searchMedia(queryMedia);
-		noResultsFound = screenSearchMedia.getPopUpNoResultsFound(1).getDivText().getText();
-		screenSearchMedia.getPopUpNoResultsFound(1).getBtnOk().click();
+		noResultsFound = getScreenSearchMedia().getPopUpNoResultsFound().getMenssagePopUp();
+		getScreenSearchMedia().getPopUpNoResultsFound().confirmPopUp();
 		return noResultsFound;
 	}
 
-	public static Media editAndSearchMedia(Media media, Media newValues) throws InterruptedException
+	public static Media editAndSearchMedia(Media media, Media newValues)
 	{
 		LineTableSearchMedia lsm = new LineTableSearchMedia();
-		screenSearchMedia = new ScreenSearchMedia();
 		QueryMedia queryMedia = new QueryMedia(media.getType(), media.getName(), "");
 		PTSearchMedia.editMedia(queryMedia, newValues);
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -107,41 +103,39 @@ public class PTSearchMedia
 
 	public static void populateFieldsQuery(QueryMedia queryMedia)
 	{
-		screenSearchMedia.getType().select(queryMedia.getType());
-		screenSearchMedia.getName().fill(queryMedia.getName());
-		screenSearchMedia.getBorrowed().fill(queryMedia.getBorrowed());
+		getScreenSearchMedia().getType().select(queryMedia.getType());
+		getScreenSearchMedia().getName().fill(queryMedia.getName());
+		getScreenSearchMedia().getBorrowed().fill(queryMedia.getBorrowed());
 	}
 
 	public static LineTableSearchMedia getFirstLineSearch()
 	{
 		LineTableSearchMedia lsm = new LineTableSearchMedia();
 		Media m = new Media();
-		m.setType(screenSearchMedia.getTableResult().getCell(2, 1).getText());
-		m.setName(screenSearchMedia.getTableResult().getCell(2, 2).getText());
-		m.setArtist(screenSearchMedia.getTableResult().getCell(2, 3).getText());
+		m.setType(getScreenSearchMedia().getTableResult().getCell(2, 1).getText());
+		m.setName(getScreenSearchMedia().getTableResult().getCell(2, 2).getText());
+		m.setArtist(getScreenSearchMedia().getTableResult().getCell(2, 3).getText());
 		lsm.setMedia(m);
-		lsm.setPerson(screenSearchMedia.getTableResult().getCell(2, 4).getText());
+		lsm.setPerson(getScreenSearchMedia().getTableResult().getCell(2, 4).getText());
 		return lsm;
 	}
 
-	public static void lendMedia(QueryMedia queryMedia, String nameLend, String dateLend) throws InterruptedException
+	public static void lendMedia(QueryMedia queryMedia, String nameLend, String dateLend) 
 	{
 		PTSearchMedia.searchMedia(queryMedia);
-		screenSearchMedia = new ScreenSearchMedia();
-		screenSearchMedia.getBtnLend().click();
-		screenSearchMedia.getLendMedia().getCbBorrowed().check();
-		screenSearchMedia.getLendMedia().getTxtName().fill(nameLend);
-		screenSearchMedia.getLendMedia().getTxtDate().click();
+		getScreenSearchMedia().getBtnLend().click();
+		getScreenSearchMedia().getLendMedia().getCbBorrowed().check();
+		getScreenSearchMedia().getLendMedia().getTxtName().fill(nameLend);
+		getScreenSearchMedia().getLendMedia().getTxtDate().click();
 		PTSearchMedia.fillDate(dateLend);
-		screenSearchMedia.getLendMedia().getBtnSave().click();
+		getScreenSearchMedia().getLendMedia().getBtnSave().click();
 	}
 
 	public static void lendMediaUnborrowed(QueryMedia queryMedia)
 	{
-		screenSearchMedia = new ScreenSearchMedia();
 		PTSearchMedia.searchMedia(queryMedia);
-		PTSearchMedia.getScreenSearchMedia().getBtnLend().click();
-		PTSearchMedia.getScreenSearchMedia().getLendMedia().getCbBorrowed().uncheck();
+		getScreenSearchMedia().getBtnLend().click();
+		getScreenSearchMedia().getLendMedia().getCbBorrowed().uncheck();
 	}
 
 	private static void fillDate(String date)
@@ -248,7 +242,6 @@ public class PTSearchMedia
 	 */
 	private static int getMonth(String yearMonth)
 	{
-		// TODO switch para string
 		String month = yearMonth.substring(5, 8);
 		if (month.equals("Jan"))
 		{
@@ -302,6 +295,17 @@ public class PTSearchMedia
 
 	public static ScreenSearchMedia getScreenSearchMedia()
 	{
+		if (screenSearchMedia == null )
+		{
+			screenSearchMedia = new ScreenSearchMedia();
+		}
 		return screenSearchMedia;
+	}
+	
+	public static String searchMediaWithNotExist(QueryMedia query)
+	{
+		PTSearchMedia.searchMedia(query);
+		String noResultsFound = PTSearchMedia.getScreenSearchMedia().getPopUpNoResultsFound().getMenssagePopUp();
+		return noResultsFound;
 	}
 }

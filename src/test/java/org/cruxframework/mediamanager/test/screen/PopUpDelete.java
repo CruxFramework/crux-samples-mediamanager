@@ -27,16 +27,35 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 public class PopUpDelete extends PopUp
 {
 	private Button btnCancel;
-
-	public PopUpDelete()
+	private String xpathBntCancel;
+	
+	public PopUpDelete(String superXpath, String xpathMsg,  String xpathBtnOk, String xpathBtnCancel)
 	{
-		super("/html/body/div[7]/div/div/div[2]/div/div", "/html/body/div[7]/div/div/div[2]/div/nav/button");
+		super(superXpath,xpathMsg,xpathBtnOk);
 		btnCancel = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		this.xpathBntCancel = xpathBtnCancel;
 	}
 
 	public Button getBtnCancel()
 	{
-		btnCancel.loadByXPath("/html/body/div[7]/div/div/div[2]/div/nav/button[2]");
+		btnCancel.loadByXPath(getXpathBntCancel());
 		return btnCancel;
+	}
+	
+	public void CancelPopUp()
+	{
+		if(isDisplayedPopUp())
+		{
+			getBtnCancel().click();
+		}
+	
+	}
+
+	public String getXpathBntCancel() {
+		return xpathBntCancel;
+	}
+
+	public void setXpathBntCancel(String xpathBntCancel) {
+		this.xpathBntCancel = xpathBntCancel;
 	}
 }

@@ -69,4 +69,9 @@ public class QueryMedia
 	{
 		this.borrowed = borrowed;
 	}
+	
+	@Override
+	public String toString() {
+		return type + "-" + name + "-" + borrowed; 
+	}
 }

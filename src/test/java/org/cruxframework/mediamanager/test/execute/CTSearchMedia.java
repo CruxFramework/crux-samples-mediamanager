@@ -35,18 +35,22 @@ import org.testng.annotations.Test;
 @Test(groups = { "mediaManager", "searchMedia" }, priority = 6)
 public class CTSearchMedia
 {
+	
+
+	
+	
 	/**
 	 * Pesquisa por uma media que consta na base de dados, e verifica se esta media é exibida na tabela de resultados.
 	 * @param ct
 	 * @param media
 	 * @param query
-	 * @throws InterruptedException
 	 */
-	@Test(enabled = true, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P001_SearchMediaWhitExist(final String ct, Media media, QueryMedia query) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class, groups = { "branch,searchMedia" })
+	public void P001_SearchMediaWhitExist(final String ct, Media media, QueryMedia query)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		Media resultSearch = PTSearchMedia.searchMedia(query).getMedia();
+		LineTableSearchMedia ltsm = PTSearchMedia.searchMedia(query);
+		Media resultSearch = ltsm.getMedia();
 		Assert.assertEquals(resultSearch, media);
 	}
 
@@ -55,14 +59,12 @@ public class CTSearchMedia
 	 * exibodo.
 	 * @param ct
 	 * @param query
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV002_SearchMediaWhitNotExist", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P002_SearchMediaWhitNotExist(final String ct, QueryMedia query) throws InterruptedException
+	public void P002_SearchMediaWhitNotExist(final String ct, QueryMedia query) 
 	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		PTSearchMedia.searchMedia(query);
-		String noResultsFound = PTSearchMedia.getScreenSearchMedia().getPopUpNoResultsFound(0).getDivText().getText();
+		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);		
+		String noResultsFound = PTSearchMedia.searchMediaWithNotExist(query);
 		Assert.assertEquals(noResultsFound, "No results found.");
 	}
 
@@ -71,10 +73,9 @@ public class CTSearchMedia
 	 * @param ct
 	 * @param query
 	 * @param newValues
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV003_EditMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P003_EditMedia(final String ct, QueryMedia query, Media newValues) throws InterruptedException
+	public void P003_EditMedia(final String ct, QueryMedia query, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String sucessEditMedia = PTSearchMedia.editMedia(query, newValues);
@@ -85,10 +86,9 @@ public class CTSearchMedia
 	 * Deleta uma media e verifica se o pop up com a mensage "Record successfully deleted!" é exibido
 	 * @param ct
 	 * @param query
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV004_DeleteMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P004_DeleteMedia(final String ct, QueryMedia query) throws InterruptedException
+	public void P004_DeleteMedia(final String ct, QueryMedia query)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String sucessOnDelete = PTSearchMedia.deleteMedia(query);
@@ -101,10 +101,9 @@ public class CTSearchMedia
 	 * @param ct
 	 * @param media
 	 * @param newValues
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV005_EditAndSearchMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P005_EditAndSearchMedia(final String ct, Media media, Media newValues) throws InterruptedException
+	public void P005_EditAndSearchMedia(final String ct, Media media, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		media = PTSearchMedia.editAndSearchMedia(media, newValues);
@@ -115,10 +114,9 @@ public class CTSearchMedia
 	 * Deleta uma media e realiza uma busca para verificar se a media foi devidamente deletada da base de dados.
 	 * @param ct
 	 * @param query
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV006_DeleteAndSearchMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P006_DeleteAndSearchMedia(final String ct, QueryMedia query) throws InterruptedException
+	public void P006_DeleteAndSearchMedia(final String ct, QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String noResultsFound = PTSearchMedia.deleteAndSearhcMedia(query);
@@ -131,10 +129,9 @@ public class CTSearchMedia
 	 * @param query
 	 * @param name
 	 * @param date
-	 * @throws InterruptedException
 	 */
-	@Test(enabled = false, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P007_LendBorrwed(final String ct, QueryMedia query, String name, String date) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
+	public void P007_LendBorrwed(final String ct, QueryMedia query, String name, String date)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(query, name, date);
@@ -147,10 +144,9 @@ public class CTSearchMedia
 	 * preenchimento.
 	 * @param ct
 	 * @param query
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV008_LendOnBorred", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P008_LendOnBorred(final String ct, QueryMedia query) throws InterruptedException
+	public void P008_LendOnBorred(final String ct, QueryMedia query) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMediaUnborrowed(query);
@@ -164,10 +160,9 @@ public class CTSearchMedia
 	 * @param query
 	 * @param name
 	 * @param date
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV009_InvalidDate", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P009_InvalidDate(final String ct, QueryMedia query, String name, String date) throws InterruptedException
+	public void P009_InvalidDate(final String ct, QueryMedia query, String name, String date)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(query, name, date);
@@ -175,9 +170,10 @@ public class CTSearchMedia
 		Assert.assertEquals(msg, "The date you are trying to use is greater than the actual date.");
 	}
 
-	@Test(enabled = false, dataProvider = "PV010_ChangeValuesOfSearch", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
+	
+	@Test(enabled = true, dataProvider = "PV010_ChangeValuesOfSearch", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
 	public void P010_ChangeValuesOfSearch(final String ct, QueryMedia firstQuery, QueryMedia secondQuery,
-			LineTableSearchMedia resultFirstQuery, LineTableSearchMedia resultSecondQuery) throws InterruptedException
+			LineTableSearchMedia resultFirstQuery, LineTableSearchMedia resultSecondQuery) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		LineTableSearchMedia lt = PTSearchMedia.searchMedia(firstQuery);

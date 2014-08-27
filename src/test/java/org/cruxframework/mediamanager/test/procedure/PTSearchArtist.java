@@ -36,19 +36,19 @@ public class PTSearchArtist
 	 */
 	public static Artist searchArtist(String name)
 	{
-		Artist a = new Artist();
-		screenSearchArtist = new ScreenSearchArtist();
-		screenSearchArtist.getTxtName().fill(name);
-		screenSearchArtist.getBtnSearch().click();
+		Artist artist = new Artist();
+		getScreenSearchArtist().getTxtName().fill(name);
+		getScreenSearchArtist().getBtnSearch().click();
 		try
 		{
-			a = screenSearchArtist.getFirstItemSearchTable();
+			artist = getScreenSearchArtist().getFirstItemSearchTable();
 		}
 		catch (NoSuchElementException e)
 		{
-			a = null;
+			System.out.println("NoSuchElementException: não foi encontrado artista como nome: " + name);
+			
 		}
-		return a;
+		return artist;
 	}
 
 	/** 
@@ -57,23 +57,23 @@ public class PTSearchArtist
 	 */
 	public static String getMessageNoResultsNotFound()
 	{
-		String msg = screenSearchArtist.getPopUpNoResultsFound().getDivText().getText();
-		screenSearchArtist.getPopUpNoResultsFound().getBtnOk().click();
+		String msg = getScreenSearchArtist().getPopUpNoResultsFound().getMenssagePopUp();
+		getScreenSearchArtist().getPopUpNoResultsFound().confirmPopUp();
 		return msg;
 	}
 
 	/** 
-	 * Busca pelo artista a, e edita suas informações conforme as do artista b
-	 * @param a
-	 * @param b
+	 * Busca pelo artista artist, e edita suas informações com os valores de newValues
+	 * @param artist : artista que será adicionado
+	 * @param newValues: novos valores que serão alterados no artista recém adicionado
 	 */
-	public static void editArtist(Artist a, Artist b)
+	public static void editArtist(Artist artist, Artist newValues)
 	{
-		PTSearchArtist.searchArtist(a.getName());
-		screenSearchArtist.getBtnEditArtist().click();
-		PTAddArtist.populateFields(b);
+		PTSearchArtist.searchArtist(artist.getName());
+		getScreenSearchArtist().getBtnEditArtist().click();
+		PTAddArtist.populateFields(newValues);
 		PTAddArtist.getScreenAddArtist().getBtnSaveChanges().click();
-		PTAddArtist.getScreenAddArtist().getPopUpSuccessfullySavedSaveChanges().getBtnOk().click();
+		PTAddArtist.getScreenAddArtist().getPopUp().getBtnOk().click();
 	}
 
 	/** 
@@ -84,27 +84,34 @@ public class PTSearchArtist
 	public static String deleteArtist(String nameArtist)
 	{
 		searchArtist(nameArtist);
-		screenSearchArtist.getBtnDeleteArtist().click();
-		screenSearchArtist.getPopUpDelete().getBtnOk().click();
-		return screenSearchArtist.getPopUpSucessDelete().getDivText().getText();
+		getScreenSearchArtist().getBtnDeleteArtist().click();
+		getScreenSearchArtist().getPopUpDelete().confirmPopUp();
+		String msg = getScreenSearchArtist().getPopUpSucessDelete().getMenssagePopUp();
+		getScreenSearchArtist().getPopUpSucessDelete().confirmPopUp();
+		return msg;
 	}
 
-	/** 
-	 * Rertorna o titulo da pagina, Search Artist
-	 * @return
-	 */
-	public static String getPageTitle()
-	{
-		screenSearchArtist = new ScreenSearchArtist();
-		return screenSearchArtist.getPageTitle().getName();
-	}
 
 	public static ScreenSearchArtist getScreenSearchArtist()
 	{
+		if(screenSearchArtist == null)
+		{
+			screenSearchArtist = new ScreenSearchArtist();
+		}
 		return screenSearchArtist;
 	}
 
-	public static void includeArtistsinToDataBase() throws InterruptedException
+	public static boolean isDisplayedPopUp()
+	{
+		return getScreenSearchArtist().getPopUpNoResultsFound().isDisplayedPopUp();
+	}
+	
+	public static boolean isDisplayedPopUpSucessDelete()
+	{
+		return getScreenSearchArtist().getPopUpSucessDelete().isDisplayedPopUp();
+	}
+	
+	public static void includeArtistsinToDataBase() 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		PTAddArtist.addArtist(new Artist("artista2", "Brazil", "Country"));

@@ -36,7 +36,7 @@ public class LendMedia
 	private Button btnSave;
 	private Table tbHeaderCalendar;
 	private Table tbDayCalendar;
-	private PopUpDateInvalid popUpDateInvalid;
+	private PopUp popUpDateInvalid;
 
 	public LendMedia()
 	{
@@ -47,7 +47,13 @@ public class LendMedia
 		btnSave = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		tbHeaderCalendar = SetUp.BUILDER.uiComponentBuilderInstance().tableInstance();
 		tbDayCalendar = SetUp.BUILDER.uiComponentBuilderInstance().tableInstance();
-		popUpDateInvalid = new PopUpDateInvalid();
+		
+		// TODO: Implementar quando pop estiver sendo exibido.s
+		popUpDateInvalid = new PopUp(
+				"",
+				"",
+				""
+				);
 	}
 
 	public Checkbox getCbBorrowed()
@@ -64,7 +70,7 @@ public class LendMedia
 
 	public TextField getTxtDate()
 	{
-		txtDate.loadById("lend_date");
+		txtDate.loadById("_mask_1");
 		return txtDate;
 	}
 
@@ -92,7 +98,7 @@ public class LendMedia
 		return tbDayCalendar;
 	}
 
-	public PopUpDateInvalid getPopUpDateInvalid()
+	public PopUp getPopUpDateInvalid()
 	{
 		return popUpDateInvalid;
 	}

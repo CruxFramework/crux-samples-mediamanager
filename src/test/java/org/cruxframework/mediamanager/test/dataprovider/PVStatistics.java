@@ -52,12 +52,12 @@ public class PVStatistics
 				{ "CT011", new Media("CD", "Statistics5", "Artista01P006"), CDS_BORROWED, BORROWED },
 				{ "CT012", new Media("DVD", "Statistics6", "Artista01P006"), DVDS_BORROWED, BORROWED },
 
-				{ "CT009", new Media("CD", "Statistics1", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{ "CT010", new Media("CD", "Statistics2", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{ "CT011", new Media("DVD", "Statistics3", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{ "CT012", new Media("DVD", "Statistics4", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{ "CT011", new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{ "CT012", new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH } };
+				{ "CT013", new Media("CD", "Statistics1", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+				{ "CT014", new Media("CD", "Statistics2", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+				{ "CT015", new Media("DVD", "Statistics3", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+				{ "CT016", new Media("DVD", "Statistics4", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+				{ "CT017", new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+				{ "CT018", new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH } };
 	}
 
 	@DataProvider(name = "PV002")

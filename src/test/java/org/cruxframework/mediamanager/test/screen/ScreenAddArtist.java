@@ -17,7 +17,6 @@ package org.cruxframework.mediamanager.test.screen;
 
 import org.cruxframework.mediamanager.test.procedure.SetUp;
 
-import br.ufmg.dcc.saotome.beholder.ui.GenericComponent;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 import br.ufmg.dcc.saotome.beholder.ui.form.Select;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
@@ -35,34 +34,25 @@ public class ScreenAddArtist
 	private Select selectFieldGenre;
 	private Button btnAddArtist;
 	private Button btnSaveChanges;
-	private GenericComponent pageTitle;
-
-	private PopUpSuccessfullySaved popUpSuccessfullySavedAddArtist;
-	private PopUpSuccessfullySaved popUpSuccessfullySavedSaveChanges;
-
+	private PopUp popUp;
+	
+	
 	public ScreenAddArtist()
 	{
-		pageTitle = SetUp.BUILDER.uiComponentBuilderInstance().genericComponentInstance();
 		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
 		selectFieldCountry = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		selectFieldGenre = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		btnAddArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		btnSaveChanges = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-
-		// TODO: popUpSuccessfullySavedAddArtist = new PopUpSuccessfullySavedAdd();
-		popUpSuccessfullySavedAddArtist = new PopUpSuccessfullySaved(0);
-		popUpSuccessfullySavedSaveChanges = new PopUpSuccessfullySaved(1);
+		popUp = new PopUp("/html/body/div[5]/div","/html/body/div[5]/div/div/div[2]/div/div","/html/body/div[5]/div/div/div[2]/div/button");
 	}
 
-	public PopUpSuccessfullySaved getPopUpSuccessfullySavedAddArtist()
+	public PopUp getPopUp()
 	{
-		return popUpSuccessfullySavedAddArtist;
+		
+		return popUp;
 	}
 
-	public PopUpSuccessfullySaved getPopUpSuccessfullySavedSaveChanges()
-	{
-		return popUpSuccessfullySavedSaveChanges;
-	}
 
 	public TextField getName()
 	{
@@ -71,13 +61,15 @@ public class ScreenAddArtist
 	}
 
 	public Select getCountry()
-	{
+	{	
+		selectFieldCountry = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		selectFieldCountry.loadById("artist_countryListBox");
 		return selectFieldCountry;
 	}
 
 	public Select getGenre()
 	{
+		selectFieldGenre = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		selectFieldGenre.loadById("artist_genereListBox");
 		return selectFieldGenre;
 	}
@@ -94,10 +86,6 @@ public class ScreenAddArtist
 		return btnSaveChanges;
 	}
 
-	public GenericComponent getPageTitle()
-	{
-		pageTitle.loadByXPath("/html/body/div[3]/div[2]/div/h1");
-		pageTitle.setName("Add artist");
-		return pageTitle;
-	}
+	
+	
 }

@@ -43,14 +43,14 @@ public class CTAddMedia
 	 * Adiciona uma media e verifica se o pop up com a mensagem de "Successfully saved!" esta sendo exibido
 	 * @param ct
 	 * @param media
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV001_Medias", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P001_AddMedia(final String ct, Media media) throws InterruptedException
+	public void P001_AddMedia(final String ct, Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgSucess = PTAddMedia.addMedia(media);
 		Assert.assertEquals(msgSucess, "Successfully saved!");
+		Assert.assertEquals(PTAddMedia.isDisplayedPopUp(), false);
 	}
 
 	/** 
@@ -58,10 +58,9 @@ public class CTAddMedia
 	 * @param ct
 	 * @param media
 	 * @param newValues
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV002_SaveChanges", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P002_SaveChanges(final String ct, Media media, Media newValues) throws InterruptedException
+	public void P002_SaveChanges(final String ct, Media media, Media newValues) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgSaveChanges = PTAddMedia.saveChanges(media, newValues);
@@ -72,10 +71,9 @@ public class CTAddMedia
 	 * Adiciona uma media e verifica se ela consta na base de dados.
 	 * @param ct
 	 * @param media
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV003_AddAndSearchMedia", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P003_AddAndSearchMedia(final String ct, Media media) throws InterruptedException
+	public void P003_AddAndSearchMedia(final String ct, Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		PTAddMedia.addMedia(media);
@@ -90,10 +88,9 @@ public class CTAddMedia
 	 * @param ct
 	 * @param media
 	 * @param newValues
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV004_ChangeAndSearchMedia", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P004_ChangeAndSearchMedia(final String ct, Media media, Media newValues) throws InterruptedException
+	public void P004_ChangeAndSearchMedia(final String ct, Media media, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		PTAddMedia.saveChanges(media, newValues);
@@ -107,10 +104,9 @@ public class CTAddMedia
 	 * Adiciona uma media, deixando algum campo da tela sem preencher.
 	 * @param ct
 	 * @param media
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV005_FieldCleanToAdd", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P005_FieldCleanToAdd(final String ct, Media media) throws InterruptedException
+	public void P005_FieldCleanToAdd(final String ct, Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgFillAllFields = PTAddMedia.addMedia(media);
@@ -122,10 +118,9 @@ public class CTAddMedia
 	 * @param ct
 	 * @param media
 	 * @param newValues
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV006_FieldCleanToChange", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P006_FieldCleanToChange(final String ct, Media media, Media newValues) throws InterruptedException
+	public void P006_FieldCleanToChange(final String ct, Media media, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgFillAllFields = PTAddMedia.saveChanges(media, newValues);

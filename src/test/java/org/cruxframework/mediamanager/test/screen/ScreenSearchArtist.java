@@ -19,7 +19,6 @@ import org.cruxframework.mediamanager.test.model.Artist;
 import org.cruxframework.mediamanager.test.procedure.SetUp;
 
 import br.ufmg.dcc.saotome.beholder.ui.Div;
-import br.ufmg.dcc.saotome.beholder.ui.GenericComponent;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
@@ -30,19 +29,17 @@ import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 // TODO guilherme.alecrim: documentar classe e métodos
 public class ScreenSearchArtist
 {
-	private GenericComponent pageTitle;
 	private TextField txtName;
 	private Button btnSearch;
 	private Artist lineTable;
 	private Button btnEditArtist;
 	private Button btnDeleteArtist;
 	private PopUpDelete popUpDelete;
-	private PopUpSucessDelete popUpSucessDelete;
-	private PopUpNoResultsFound popUpNoResultsFound;
+	private PopUp popUpSucessDelete;
+	private PopUp popUpNoResultsFound;
 
 	public ScreenSearchArtist()
 	{
-		pageTitle = SetUp.BUILDER.uiComponentBuilderInstance().genericComponentInstance();
 		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
 		btnSearch = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 
@@ -50,10 +47,24 @@ public class ScreenSearchArtist
 		btnEditArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		btnDeleteArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 
-		popUpDelete = new PopUpDelete();
-		popUpSucessDelete = new PopUpSucessDelete();
-		popUpNoResultsFound = new PopUpNoResultsFound(0);
-
+		popUpDelete = new PopUpDelete("/html/body/div[5]/div",
+				"/html/body/div[5]/div/div/div[2]/div/div", 
+				"/html/body/div[5]/div/div/div[2]/div/nav/button ",
+				"/html/body/div[5]/div/div/div[2]/div/nav/button[2]"
+				);
+	
+		popUpNoResultsFound = new PopUp(
+				"/html/body/div[4]/div",
+				"/html/body/div[4]/div/div/div[2]/div/div",
+				"/html/body/div[4]/div/div/div[2]/div/button"
+				);
+		
+		popUpSucessDelete = new PopUp(
+				"/html/body/div[4]/div",
+				"/html/body/div[4]/div/div/div[2]/div/div",
+				"/html/body/div[4]/div/div/div[2]/div/button"
+				);
+	
 	}
 
 	public TextField getTxtName()
@@ -93,25 +104,21 @@ public class ScreenSearchArtist
 	}
 
 	public PopUpDelete getPopUpDelete()
-	{
+	{		
 		return popUpDelete;
 	}
 
-	public PopUpSucessDelete getPopUpSucessDelete()
+	public PopUp getPopUpSucessDelete()
 	{
 		return popUpSucessDelete;
 	}
 
-	public PopUpNoResultsFound getPopUpNoResultsFound()
+	public PopUp getPopUpNoResultsFound()
 	{
+//		popUpNoResultsFound.setSuperXpath("/html/body/div[4]/div");
+//		popUpNoResultsFound.setXpathBtnOk("/html/body/div[4]/div/div/div[2]/div/button");
+//		popUpNoResultsFound.setXpathDivText("/html/body/div[4]/div/div/div[2]/div/div");
 		return popUpNoResultsFound;
-	}
-
-	public GenericComponent getPageTitle()
-	{
-		pageTitle.loadByXPath("/html/body/div[3]/div[2]/div/h1");
-		pageTitle.setName("Search artist");
-		return pageTitle;
 	}
 
 }

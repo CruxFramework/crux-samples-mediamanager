@@ -34,8 +34,7 @@ public class ScreenAddMedia
 	private Button btnAddArtist;
 	private Button btnSaveChanges;
 
-	private PopUpSuccessfullySaved popUpSuccessfullySavedAdd;
-	private PopUpSuccessfullySaved popUpSuccessfullySavedSaveChanges;
+	private PopUp popUp;
 
 	public ScreenAddMedia()
 	{
@@ -44,12 +43,14 @@ public class ScreenAddMedia
 		mediaArtist = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		btnAddArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		btnSaveChanges = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		popUpSuccessfullySavedAdd = new PopUpSuccessfullySaved(0);
-		popUpSuccessfullySavedSaveChanges = new PopUpSuccessfullySaved(1);
+		popUp = new PopUp("/html/body/div[5]/div",
+				"/html/body/div[5]/div/div/div[2]/div/div",
+				"/html/body/div[5]/div/div/div[2]/div/button");
 	}
 
 	public Select getMediaType()
-	{
+	{	
+		mediaType = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		mediaType.loadById("media_typeListBox");
 		return mediaType;
 	}
@@ -62,6 +63,7 @@ public class ScreenAddMedia
 
 	public Select getMediaArtist()
 	{
+		mediaArtist = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		mediaArtist.loadById("media_artistListBox");
 		return mediaArtist;
 	}
@@ -78,13 +80,9 @@ public class ScreenAddMedia
 		return btnSaveChanges;
 	}
 
-	public PopUpSuccessfullySaved getPopUpSuccessfullySavedAddArtist()
+	public PopUp getPopUp()
 	{
-		return popUpSuccessfullySavedAdd;
+		return popUp;
 	}
 
-	public PopUpSuccessfullySaved getPopUpSuccessfullySavedSaveChanges()
-	{
-		return popUpSuccessfullySavedSaveChanges;
-	}
 }

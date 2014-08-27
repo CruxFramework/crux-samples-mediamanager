@@ -17,6 +17,7 @@ package org.cruxframework.mediamanager.test.procedure;
 
 import org.cruxframework.mediamanager.test.screen.ScreenLogin;
 import org.cruxframework.mediamanager.test.util.EnumMenu;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 
@@ -28,43 +29,34 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 public class Navegation
 {
 	private static ScreenLogin login;
-	private static Button menu;
 
-	public static void loginSucess(String user, String password) throws InterruptedException
+	public static void loginSucess(String user, String password)
 	{
-		login = new ScreenLogin();
-		login.getLogin().fill(user);
-		login.getPassword().fill(password);
-		login.getAcess().click();
-		Thread.sleep(5000);
+		getScreenLogin().getLogin().fill(user);
+		getScreenLogin().getPassword().fill(password);
+		getScreenLogin().getAcess().click();
+		waitInitiate();
 	}
 
-	public static String loginFail(String user, String password) throws InterruptedException
+	public static String loginFail(String user, String password) 
 	{
-		login = new ScreenLogin();
-		login.getLogin().fill(user);
-		login.getPassword().fill(password);
-		login.getAcess().click();
-		String loginInvalid = login.getPopUpPasswordInvalid().getDivText().getText();
-		login.getPopUpPasswordInvalid().getBtnOk().click();
+		loginSucess(user,password);
+		String loginInvalid = getScreenLogin().getPopUpPasswordInvalid().getMenssagePopUp();
+		getScreenLogin().getPopUpPasswordInvalid().confirmPopUp();
 		return loginInvalid;
 	}
 
 	public static void signOut()
 	{
-		login.signOut().click();
+		getScreenLogin().signOut().click();
+		waitInitiate();
 	}
 
-	public static void acessMenu(EnumMenu menuOption) throws InterruptedException
+	public static void acessMenu(EnumMenu menuOption)
 	{
-		SetUp.DRIVER.navigate().refresh();
-		menu = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		Thread.sleep(5000);
-		loadyByMenuOption(menuOption);
-	}
-
-	private static void loadyByMenuOption(EnumMenu menuOption) throws InterruptedException
-	{
+		refreshBrowser();
+		Button menu = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		waitInitiate();
 		switch (menuOption)
 		{
 			case ADD_ARTIST:
@@ -85,11 +77,42 @@ public class Navegation
 				break;
 		}
 		menu.click();
-		waitFields();
+		waitInitiate();
+		
+		
 	}
 
-	public static void waitFields() throws InterruptedException
+	
+
+	public static void waitInitiate() 
 	{
-		Thread.sleep(5000);
+		
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static ScreenLogin getScreenLogin()
+	{
+		if(login == null)
+		{
+			login = new ScreenLogin();
+		}
+		return login; 
+	}
+	
+	
+	public static void refreshBrowser()
+	{
+		SetUp.DRIVER.navigate().refresh();
+	}
+	
+	
+	public static void webDriverWait()
+	{
+		new WebDriverWait(SetUp.DRIVER, 5);
 	}
 }

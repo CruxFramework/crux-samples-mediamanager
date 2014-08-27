@@ -13,8 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.cruxframework.mediamanager.test.screen;
 
+
+package org.cruxframework.mediamanager.test.screen;
 import org.cruxframework.mediamanager.test.procedure.SetUp;
 
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
@@ -31,7 +32,7 @@ public class ScreenLogin
 	private TextField password;
 	private Button acess;
 	private Button logoff;
-	private PopUpPasswordInvalid popUpPasswordInvalid;
+	private PopUp popUpPasswordInvalid;
 
 	public ScreenLogin()
 	{
@@ -39,7 +40,11 @@ public class ScreenLogin
 		password = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
 		acess = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		logoff = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		popUpPasswordInvalid = new PopUpPasswordInvalid();
+		popUpPasswordInvalid = new PopUp(
+				"/html/body/div[5]/div",
+				"/html/body/div[5]/div/div/div[2]/div/div",
+				"/html/body/div[5]/div/div/div[2]/div/button"		
+				);
 	}
 
 	public TextField getLogin()
@@ -66,8 +71,8 @@ public class ScreenLogin
 		return logoff;
 	}
 
-	public PopUpPasswordInvalid getPopUpPasswordInvalid()
-	{
+	public PopUp getPopUpPasswordInvalid()
+	{										
 		return popUpPasswordInvalid;
 	}
 }

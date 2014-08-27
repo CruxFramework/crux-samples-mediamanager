@@ -16,6 +16,7 @@
 package org.cruxframework.mediamanager.test.screen;
 
 import org.cruxframework.mediamanager.test.procedure.SetUp;
+import org.openqa.selenium.NoSuchElementException;
 
 import br.ufmg.dcc.saotome.beholder.ui.Div;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
@@ -31,58 +32,89 @@ public class PopUp
 	private Button btnOk;
 	private Div divText;
 	private String xpathBtnOk;
-	private String xpathDivText;
+	private String xpathMsg;
+	private String superXpath; 
+	
+	
 
-	public PopUp(final String xpathDivText, final String xpathBtnOk)
+	public PopUp(String superXpath, String xpathMsg,  String xpathBtnOk)
 	{
 		divText = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
 		btnOk = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		this.xpathBtnOk = xpathBtnOk;
-		this.xpathDivText = xpathDivText;
+		this.xpathMsg = xpathMsg;
+		this.superXpath = superXpath;
 	}
-
-	public PopUp()
-	{
-		divText = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		btnOk = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		this.xpathBtnOk = new String();
-		this.xpathDivText = new String();
-	}
+	
+	
+	
 
 	public Div getDivText()
 	{
-		divText.loadByXPath(xpathDivText);
+		divText.loadByXPath(getXpathDivText());
 		return divText;
 	}
 
 	public Button getBtnOk()
 	{
-		btnOk.loadByXPath(xpathBtnOk);
+		btnOk.loadByXPath(getXpathBtnOk());
 		return btnOk;
 	}
 
 	public String getXpathBtnOk()
-	{
+	{		
 		return xpathBtnOk;
 	}
 
 	public void setXpathBtnOk(String xpathBtnOk)
-	{
+	{		
 		this.xpathBtnOk = xpathBtnOk;
 	}
 
 	public String getXpathDivText()
 	{
-		return xpathDivText;
+		return xpathMsg;
 	}
 
 	public void setXpathDivText(String xpathDivText)
 	{
-		this.xpathDivText = xpathDivText;
+		this.xpathMsg = xpathDivText;
 	}
 
-	public void isDiplayed()
-	{
+	public  boolean isDisplayedPopUp()
+	{	
+		try {
+			Div popUp = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
+			popUp.loadByXPath(getSuperXpath());
+			return true; 
+		} catch (NoSuchElementException e) 
+		{	
+			return false; 
+		}
+		 
+	}
 
+	public String getSuperXpath()
+	{
+		return superXpath;
+	}
+
+	public void setSuperXpath(String xpathPopUp)
+	{
+		this.superXpath = xpathPopUp;
+	}
+	
+	public void confirmPopUp()
+	{
+		if(isDisplayedPopUp())
+		{				
+			getBtnOk().click();
+		}
+	}
+	public String getMenssagePopUp()
+	{
+		return getDivText().getText();
 	}
 }
+
+	

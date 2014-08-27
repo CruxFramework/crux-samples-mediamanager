@@ -17,6 +17,7 @@ package org.cruxframework.mediamanager.test.execute;
 
 import org.cruxframework.mediamanager.test.dataprovider.PVLogin;
 import org.cruxframework.mediamanager.test.procedure.Navegation;
+import org.cruxframework.mediamanager.test.procedure.PTStatistics;
 import org.cruxframework.mediamanager.test.procedure.SetUp;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -38,10 +39,9 @@ public class CTLogin
 	 * @param ct
 	 * @param user
 	 * @param password
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV001_LoginFail", dataProviderClass = PVLogin.class, groups = { "branch" })
-	public void P001_LoginFail(final String ct, String user, String password) throws InterruptedException
+	public void P001_LoginFail(final String ct, String user, String password)  
 	{
 		SetUp.DRIVER.navigate().refresh();
 		String loginFail = Navegation.loginFail(user, password);
@@ -53,12 +53,11 @@ public class CTLogin
 	 * @param ct
 	 * @param user
 	 * @param password
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV001_LoginSucess", dataProviderClass = PVLogin.class, groups = { "branch" })
-	public void P002_LoginSucess(final String ct, String user, String password) throws InterruptedException
+	public void P002_LoginSucess(final String ct, String user, String password)  
 	{
 		Navegation.loginSucess(user, password);
-		Assert.assertEquals(SetUp.BROWSER.isTextPresent("Statistics"), true);
+		Assert.assertEquals(PTStatistics.getNameScreenStatistics(), "Statistics");
 	}
 }

@@ -38,10 +38,9 @@ public class CTSearchArtist
 	 * @param ct
 	 * @param nameArtist
 	 * @param artist
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV001_SearchArtist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P001_SearchArtist(final String ct, String nameArtist, Artist artist) throws InterruptedException
+	public void P001_SearchArtist(final String ct, String nameArtist, Artist artist)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		Artist resultSearch = PTSearchArtist.searchArtist(nameArtist);
@@ -52,15 +51,15 @@ public class CTSearchArtist
 	 * Pesquisa por um artista que não existe na base e valida se o pop up com a mensagem "No results found." é exibido.
 	 * @param ct
 	 * @param nameArtist
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV002_ArtistNoExist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P002_ArtistNoExist(final String ct, String nameArtist) throws InterruptedException
+	public void P002_ArtistNoExist(final String ct, String nameArtist)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		PTSearchArtist.searchArtist(nameArtist);
 		String msgNotFound = PTSearchArtist.getMessageNoResultsNotFound();
 		Assert.assertEquals(msgNotFound, "No results found.");
+		Assert.assertEquals(PTSearchArtist.isDisplayedPopUp(), false);
 	}
 
 	/**
@@ -68,14 +67,15 @@ public class CTSearchArtist
 	 * exibido
 	 * @param ct
 	 * @param nameArtist
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV003_DeleteArtist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P003_DeleteArtist(final String ct, String nameArtist) throws InterruptedException
+	public void P003_DeleteArtist(final String ct, String nameArtist)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		String sucess = PTSearchArtist.deleteArtist(nameArtist);
 		Assert.assertEquals(sucess, "Record successfully deleted!");
+		Assert.assertEquals(PTSearchArtist.isDisplayedPopUpSucessDelete(), false);
+		
 	}
 
 	/**
@@ -84,30 +84,29 @@ public class CTSearchArtist
 	 * @param ct
 	 * @param artist
 	 * @param newValues
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV004_EditAndSearchArtist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P004_EditAndSearchArtist(final String ct, Artist artist, Artist newValues) throws InterruptedException
+	public void P004_EditAndSearchArtist(final String ct, Artist artist, Artist newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		PTSearchArtist.editArtist(artist, newValues);
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		PTSearchArtist.searchArtist(artist.getName());
-		String msgNotFound = PTSearchArtist.getScreenSearchArtist().getPopUpNoResultsFound().getDivText().getText();
-		PTSearchArtist.getScreenSearchArtist().getPopUpNoResultsFound().getBtnOk().click();
+		String msgNotFound = PTSearchArtist.getScreenSearchArtist().getPopUpNoResultsFound().getMenssagePopUp();
+		PTSearchArtist.getScreenSearchArtist().getPopUpNoResultsFound().confirmPopUp();
 		Assert.assertEquals(msgNotFound, "No results found.");
 		Artist resultSearch = PTSearchArtist.searchArtist(newValues.getName());
 		Assert.assertEquals(newValues, resultSearch);
 	}
 
-	@Test(enabled = false, dataProvider = "PV005_ChangeValuesSearch", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
+	@Test(enabled = true, dataProvider = "PV005_ChangeValuesSearch", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
 	public void P005_ChangeValuesSearch(String ct, String firstQuery, String secondQuery, Artist resultFirstQuery,
-			Artist resultSecondQuery) throws InterruptedException
+			Artist resultSecondQuery)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		Artist fq = PTSearchArtist.searchArtist(firstQuery);
-		Assert.assertEquals(fq, resultFirstQuery);
+		Assert.assertEquals(resultFirstQuery, fq );
 		Artist sq = PTSearchArtist.searchArtist(secondQuery);
-		Assert.assertEquals(sq, resultSecondQuery);
+		Assert.assertEquals(resultSecondQuery,sq);
 	}
 }

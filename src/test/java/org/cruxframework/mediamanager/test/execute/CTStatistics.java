@@ -36,7 +36,7 @@ public class CTStatistics
 {
 
 	@BeforeGroups(groups = "statistics", alwaysRun = true)
-	public void restart() throws InterruptedException
+	public void restart()  
 	{
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
@@ -47,11 +47,10 @@ public class CTStatistics
 	 * @param media
 	 * @param statistic
 	 * @param typeStatistic
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV001", dataProviderClass = PVStatistics.class, groups = { "branch" })
 	public void P001_IncrementStatistic(final String ct, Media media, EnumStatistics statistic,
-			EnumTypeStatistic typeStatistic) throws InterruptedException
+			EnumTypeStatistic typeStatistic) 
 	{
 		int totalBefore = PTStatistics.getValueStatistics(statistic);
 		PTStatistics.incrementStatistic(media, typeStatistic);
@@ -66,11 +65,10 @@ public class CTStatistics
 	 * @param media
 	 * @param statistic
 	 * @param typeStatistic
-	 * @throws InterruptedException
 	 */
 	@Test(enabled = true, dataProvider = "PV002", dataProviderClass = PVStatistics.class, groups = { "branch" })
 	public void P002_DecrementStatistic(final String ct, Media media, EnumStatistics statistic,
-			EnumTypeStatistic typeStatistic) throws InterruptedException
+			EnumTypeStatistic typeStatistic)  
 	{
 		int totalBefore = PTStatistics.getValueStatistics(statistic);
 		PTStatistics.decrementStatistic(media, typeStatistic);

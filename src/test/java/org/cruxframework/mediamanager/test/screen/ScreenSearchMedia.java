@@ -39,9 +39,9 @@ public class ScreenSearchMedia
 	private Button btnDelete;
 	private Button btnLend;
 
-	private PopUpNoResultsFound popUpNoResultsFound;
+	private PopUp popUpNoResultsFound;
 	private PopUpDelete popUpDelete;
-	private PopUpSucessDelete popUpSucessDelete;
+	private PopUp popUpSucessDelete;
 	private LendMedia lendMedia;
 
 	public ScreenSearchMedia()
@@ -54,14 +54,33 @@ public class ScreenSearchMedia
 		btnEdit = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		btnDelete = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		btnLend = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		popUpNoResultsFound = new PopUpNoResultsFound(0);
-		popUpDelete = new PopUpDelete();
-		popUpSucessDelete = new PopUpSucessDelete();
+		
+		popUpNoResultsFound = new PopUp(
+				"/html/body/div[4]/div",
+				"/html/body/div[4]/div/div/div[2]/div/div",
+				"/html/body/div[4]/div/div/div[2]/div/button"
+				);
+		
+		popUpDelete = new PopUpDelete("/html/body/div[5]/div",
+				"/html/body/div[5]/div/div/div[2]/div/div", 
+				"/html/body/div[5]/div/div/div[2]/div/nav/button ",
+				"/html/body/div[5]/div/div/div[2]/div/nav/button[2]"
+				);
+		
+		
+		popUpSucessDelete = new PopUp(
+				"/html/body/div[4]/div",
+				"/html/body/div[4]/div/div/div[2]/div/div",
+				"/html/body/div[4]/div/div/div[2]/div/button"
+				);
+		
+		
 		lendMedia = new LendMedia();
 	}
 
 	public Select getType()
 	{
+		type = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
 		type.loadById("medias_typeListBox");
 		return type;
 	}
@@ -90,9 +109,8 @@ public class ScreenSearchMedia
 		return tableResult;
 	}
 
-	public PopUpNoResultsFound getPopUpNoResultsFound(int option)
+	public PopUp getPopUpNoResultsFound()
 	{
-		popUpNoResultsFound = new PopUpNoResultsFound(option);
 		return popUpNoResultsFound;
 	}
 
@@ -119,7 +137,7 @@ public class ScreenSearchMedia
 		return popUpDelete;
 	}
 
-	public PopUpSucessDelete getPopUpSucessDelete()
+	public PopUp getPopUpSucessDelete()
 	{
 		return popUpSucessDelete;
 	}

@@ -32,6 +32,7 @@ public class ScreenStatistics
 	private Div divDVDsTotal;
 	private Div divDVDsBorrowed;
 	private Div divMoreThanOneMonthDVD;
+	private Div nameSreen;
 
 	public ScreenStatistics()
 	{
@@ -41,6 +42,7 @@ public class ScreenStatistics
 		divDVDsTotal = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
 		divDVDsBorrowed = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
 		divMoreThanOneMonthDVD = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
+		nameSreen= SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
 	}
 
 	public Div getDivCdsTotal()
@@ -77,5 +79,12 @@ public class ScreenStatistics
 	{
 		divMoreThanOneMonthDVD.loadById("statistics_forgottenDVDsLabel");
 		return divMoreThanOneMonthDVD;
+	}
+	
+	public String getNameScreen()
+	{
+		nameSreen.loadByXPath("/html/body/div[3]/div[2]/div");
+		String name = nameSreen.getText().substring(0, 10);
+		return name;
 	}
 }

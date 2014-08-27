@@ -34,8 +34,8 @@ public class PVAddMedia
 	@DataProvider(name = "PV002_SaveChanges")
 	public static Object[][] PV002_SaveChanges()
 	{
-		return new Object[][] { { "CT001", new Media("CD", "Evil Empire", "Test5"),
-				new Media("DVD", "Unplugged MTV", "Mega death") } };
+		return new Object[][] { { "CT001", new Media("CD", "Evil Empire", "Artista01P006"),
+				new Media("DVD", "Unplugged MTV", "Artista02P006") } };
 	}
 
 	@DataProvider(name = "PV003_AddAndSearchMedia")
@@ -47,15 +47,15 @@ public class PVAddMedia
 	@DataProvider(name = "PV004_ChangeAndSearchMedia")
 	public static Object[][] PV004_ChangeAndSearchMedia()
 	{
-		return new Object[][] { { "CT001", new Media("CD", "NameMediaTest4", "Artista01P006"),
-				new Media("DVD", "EditNameMediaTest4", "Artista01P006") } };
+		return new Object[][] { { "CT001", new Media("CD", "MediaForEdit3", "Artista01P006"),
+				new Media("DVD", "EditNameMediaTest4", "Artista02P006") } };
 	}
 
 	@DataProvider(name = "PV005_FieldCleanToAdd")
 	public static Object[][] PV005_FieldCleanToAdd()
 	{
 		return new Object[][] { { "CT001", new Media("", "", "") }, { "CT002", new Media("", "Media", "") },
-				{ "CT003", new Media("", "", "Teste3") }, { "CT004", new Media("CD", "", "") } };
+				{ "CT003", new Media("", "", "Artista01P006") }, { "CT004", new Media("CD", "", "") } };
 	}
 
 	@DataProvider(name = "PV006_FieldCleanToChange")

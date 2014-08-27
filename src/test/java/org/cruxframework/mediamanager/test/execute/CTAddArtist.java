@@ -36,36 +36,33 @@ import org.testng.annotations.Test;
  * 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: completar comentário dos métodos
 @Test(groups = { "mediaManager", "addArtist" }, priority = 3)
 public class CTAddArtist
 {
 
 	/**
 	 * Adiciona um artista e verifica se o pop up com a mensagem "Successfully saved!" esta sendo exibido
-	 * @param ct
+	 * @param ct :  codigo do caso de teste
 	 * @param artist
-	 * @throws InterruptedException
 	 */
-	@Test(enabled = true, dataProvider = "PV001_Artists", dataProviderClass = PVAddArtist.class, groups = { "MM_1.0" })
-	public void P001_AddArtist(final String ct, Artist artist) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV001_Artists", dataProviderClass = PVAddArtist.class)
+	public void P001_AddArtist(final String ct, Artist artist)
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
-		Thread.sleep(6000);
 		String msgSucess = PTAddArtist.addArtist(artist);
 		Assert.assertEquals(msgSucess, "Successfully saved!");
+		Assert.assertEquals(PTAddArtist.isDisplayedPopUpSavedAddArtist(), false);
 	}
 
 	/**
 	 * Adiciona um artista e logo em seguida altera os dados e verifica se os pop up com a mensagem "Successfully saved!"
 	 * foi exibido.
-	 * @param ct
-	 * @param artist
-	 * @param newValues
-	 * @throws InterruptedException
+	 * @param ct :  codigo do caso de teste
+	 * @param artist: dados do artista que será adicionado
+	 * @param newValues valores que serão utilizados para alterar os dados do artista recém adicionado
 	 */
-	@Test(enabled = true, dataProvider = "PV002_AddAndChangeArtists", dataProviderClass = PVAddArtist.class, groups = { "MM_1.0" })
-	public void P002_AddAndSaveChanges(final String ct, Artist artist, Artist newValues) throws InterruptedException
+	@Test(enabled = false, dataProvider = "PV002_AddAndChangeArtists", dataProviderClass = PVAddArtist.class)
+	public void P002_AddAndSaveChanges(final String ct, Artist artist, Artist newValues) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String sucessChange = PTAddArtist.addAndChangerArtist(artist, newValues);
@@ -74,12 +71,11 @@ public class CTAddArtist
 
 	/**
 	 * Adiciona um artista e logo em seguida realiza uma busca para verificar se o artista adicionado consta na base.
-	 * @param ct
-	 * @param artist
-	 * @throws InterruptedException
+	 * @param ct: codigo do caso de teste
+	 * @param artist: dados do artista que será adicionado
 	 */
-	@Test(enabled = true, dataProvider = "PV003_AddAndSearchArtists", dataProviderClass = PVAddArtist.class, groups = { "MM_1.0" })
-	public void P003_AddArtistAndSearchArtist(final String ct, Artist artist) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV003_AddAndSearchArtists", dataProviderClass = PVAddArtist.class)
+	public void P003_AddArtistAndSearchArtist(final String ct, Artist artist) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		PTAddArtist.addArtist(artist);
@@ -91,13 +87,12 @@ public class CTAddArtist
 	/**
 	 * Modifica os dados de um artista e logo em seguida realiza uma busca para verificar se os dados foram devidamente
 	 * alterados na base.
-	 * @param ct
-	 * @param artist
-	 * @param newValues
-	 * @throws InterruptedException
+	 * @param ct: codigo do caso de teste
+	 * @param artist: dados do artista que será adicionado
+	 * @param newValues: valores que serão utilizados para alterar os dados do artista recém adicionado 
 	 */
-	@Test(enabled = true, dataProvider = "PV004_ChangeAndSearchArtist", dataProviderClass = PVAddArtist.class, groups = { "MM_1.0" })
-	public void P004_ChangeAndSearchArtist(final String ct, Artist artist, Artist newValues) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV004_ChangeAndSearchArtist", dataProviderClass = PVAddArtist.class)
+	public void P004_ChangeAndSearchArtist(final String ct, Artist artist, Artist newValues)
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		PTAddArtist.addAndChangerArtist(artist, newValues);
@@ -109,12 +104,11 @@ public class CTAddArtist
 	/**
 	 * Adiciona um artista deixando alguns campos sem preencher, verificando se o pop up com a mensgem "Fill all fields."
 	 * é exibido
-	 * @param ct
-	 * @param artist
-	 * @throws InterruptedException
+	 * @param ct :  codigo do caso de teste
+	 * @param artist: dados do artista que será adicionado
 	 */
-	@Test(enabled = true, dataProvider = "PV005_FieldCleanToAdd", dataProviderClass = PVAddArtist.class, groups = { "MM_1.0" })
-	public void P005_FieldCleanToAdd(final String ct, Artist artist) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV005_FieldCleanToAdd", dataProviderClass = PVAddArtist.class)
+	public void P005_FieldCleanToAdd(final String ct, Artist artist) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String msgFillAllFields = PTAddArtist.addArtist(artist);
@@ -124,16 +118,18 @@ public class CTAddArtist
 	/**
 	 * Modifica os dados de um artista deixando alguns campos sem preencher, verificando se o pop up com a mensgem
 	 * "Fill all fields." é exibido
-	 * @param ct
-	 * @param artist
-	 * @param newValues
-	 * @throws InterruptedException
+	 * @param ct :  codigo do caso de teste
+	 * @param artist: dados do artista que será adicionado
+	 * @param newValues:  valores que serão utilizados para alterar os dados do artista recém adicionado
 	 */
-	@Test(enabled = true, dataProvider = "PV006_FieldCleanToChange", dataProviderClass = PVAddArtist.class, groups = { "MM_1.0" })
-	public void P006_FieldCleanToChange(final String ct, Artist artist, Artist newValues) throws InterruptedException
+	@Test(enabled = true, dataProvider = "PV006_FieldCleanToChange", dataProviderClass = PVAddArtist.class)
+	public void P006_FieldCleanToChange(final String ct, Artist artist, Artist newValues) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String msgFillAllFields = PTAddArtist.addAndChangerArtist(artist, newValues);
 		Assert.assertEquals(msgFillAllFields, "Fill all fields.");
+		Assert.assertEquals(PTAddArtist.isDisplayedPopUpSavedAddArtist(), false);
+		
+		
 	}
 }

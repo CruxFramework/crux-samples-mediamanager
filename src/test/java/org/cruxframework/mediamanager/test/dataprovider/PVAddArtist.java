@@ -29,8 +29,6 @@ public class PVAddArtist
 	public static Object[][] PV001_Artists()
 	{
 		return new Object[][] { { "CT001", new Artist("Mega death", "United States", "Metal") },
-				{ "CT002", new Artist("James Brown", "United States", "Blues") },
-				{ "CT003", new Artist("Red Hot Chili Pepers", "United States", "Rock") },
 		};
 	}
 
@@ -65,9 +63,10 @@ public class PVAddArtist
 	@DataProvider(name = "PV006_FieldCleanToChange")
 	public static Object[][] PV006_FieldCleanToChange()
 	{
-		return new Object[][] { { "CT001", new Artist("Artista01P006", "United States", "Metal"), new Artist("", "", "") },
-				{ "CT002", new Artist("Artista02P006", "United States", "Metal"), new Artist("preenchido", "", "") },
-				{ "CT003", new Artist("Artista03P006", "United States", "Metal"), new Artist("", "Brazil", "") },
-				{ "CT004", new Artist("Artista04P006", "United States", "Metal"), new Artist("", "", "Blues") } };
+		return new Object[][] { 
+				{ "CT001", new Artist("A1P006", "United States", "Metal"), new Artist("", "", "") },
+				{ "CT002", new Artist("A2P006", "United States", "Metal"), new Artist("preenchido", "", "") },
+				{ "CT003", new Artist("A3P006", "United States", "Metal"), new Artist("", "Brazil", "") },
+				{ "CT004", new Artist("A4P006", "United States", "Metal"), new Artist("", "", "Blues") } };
 	}
 }

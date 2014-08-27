@@ -33,11 +33,14 @@ public class PTStatistics
 
 	public static ScreenStatistics getScreenStatistics()
 	{
-		screenStatistics = new ScreenStatistics();
+		if (screenStatistics == null)
+		{
+			screenStatistics = new ScreenStatistics();
+		}
 		return screenStatistics;
 	}
 
-	public static void incrementStatistic(Media media, EnumTypeStatistic statistic) throws InterruptedException
+	public static void incrementStatistic(Media media, EnumTypeStatistic statistic) 
 	{
 		switch (statistic)
 		{
@@ -55,7 +58,7 @@ public class PTStatistics
 		}
 	}
 
-	public static void decrementStatistic(Media media, EnumTypeStatistic statistic) throws InterruptedException
+	public static void decrementStatistic(Media media, EnumTypeStatistic statistic)  
 	{
 		switch (statistic)
 		{
@@ -78,51 +81,58 @@ public class PTStatistics
 		switch (statistic)
 		{
 			case CDS_TOTAL:
-				return Integer.parseInt(PTStatistics.getScreenStatistics().getDivCdsTotal().getText());
+				return Integer.parseInt(getScreenStatistics().getDivCdsTotal().getText());
 			case CDS_BORROWED:
-				return Integer.parseInt(PTStatistics.getScreenStatistics().getDivCdsBorrowed().getText());
+				return Integer.parseInt(getScreenStatistics().getDivCdsBorrowed().getText());
 			case CD_MORE_THAN_ONE_MONTH:
-				return Integer.parseInt(PTStatistics.getScreenStatistics().getDivMoreThanOneMonthCD().getText());
+				return Integer.parseInt(getScreenStatistics().getDivMoreThanOneMonthCD().getText());
 			case DVDS_TOTAL:
-				return Integer.parseInt(PTStatistics.getScreenStatistics().getDivDVDsTotal().getText());
+				return Integer.parseInt(getScreenStatistics().getDivDVDsTotal().getText());
 			case DVDS_BORROWED:
-				return Integer.parseInt(PTStatistics.getScreenStatistics().getDivDVDsBorrowed().getText());
+				return Integer.parseInt(getScreenStatistics().getDivDVDsBorrowed().getText());
 			case DVDS_MORE_THAN_ONE_MONTH:
-				return Integer.parseInt(PTStatistics.getScreenStatistics().getDivMoreThanOneMonthDVD().getText());
+				return Integer.parseInt(getScreenStatistics().getDivMoreThanOneMonthDVD().getText());
 			default:
 				return -1;
 		}
 	}
 
-	private static void incrementTotal(Media media) throws InterruptedException
+	public static String getNameScreenStatistics()
+	{
+		return getScreenStatistics().getNameScreen();
+	}
+	
+	
+	private static void incrementTotal(Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		PTAddMedia.addMedia(media);
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
-	private static void incrementTotalBorrowed(Media media) throws InterruptedException
+	
+	private static void incrementTotalBorrowed(Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 Jun 20");
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
-	private static void incrementMoreThanOneMonth(Media media) throws InterruptedException
+	private static void incrementMoreThanOneMonth(Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 May 3");
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
-	private static void decrementTotal(Media media) throws InterruptedException
+	private static void decrementTotal(Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.deleteMedia(new QueryMedia(media.getType(), media.getName(), ""));
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
-	private static void decrementTotalBorrowed(Media media) throws InterruptedException
+	private static void decrementTotalBorrowed(Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMediaUnborrowed(new QueryMedia(media.getType(), media.getName(), "André Luiz"));
@@ -130,10 +140,12 @@ public class PTStatistics
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
-	private static void decrementMoreThanOneMonth(Media media) throws InterruptedException
+	private static void decrementMoreThanOneMonth(Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 Jul 3");
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
+	
+	
 }

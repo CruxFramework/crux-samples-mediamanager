@@ -32,56 +32,67 @@ public class PTAddArtist
 	 * @param artist
 	 * @return
 	 */
-	public static String addArtist(Artist artist)
-	{
-		screenAddArtist = new ScreenAddArtist();
+	public static String addArtist(Artist artist) 
+	{		
+		
 		populateFields(artist);
-		screenAddArtist.getBtnAddArtist().click();
-		String msg = screenAddArtist.getPopUpSuccessfullySavedAddArtist().getDivText().getText();
-		screenAddArtist.getPopUpSuccessfullySavedAddArtist().getBtnOk().click();
+		getScreenAddArtist().getBtnAddArtist().click();
+		String msg = getScreenAddArtist().getPopUp().getMenssagePopUp();
+		getScreenAddArtist().getPopUp().confirmPopUp();	
+		Navegation.waitInitiate();
 		return msg;
 	}
 
-	/** 
-	 * Rertorna o titulo da pagina, Add Artist
-	 * @return
-	 */
-	public static String getPageTitle()
-	{
-		screenAddArtist = new ScreenAddArtist();
-		return screenAddArtist.getPageTitle().getName();
-	}
 
 	/** 
 	 * Dado um artista, preenche os campos da tela Add artists
 	 * @param artist
 	 */
 	public static void populateFields(Artist artist)
-	{
-		screenAddArtist = new ScreenAddArtist();
-		screenAddArtist.getName().fill(artist.getName());
-		screenAddArtist.getCountry().select(artist.getCountry());
-		screenAddArtist.getGenre().select(artist.getGenre());
+	{	
+			getScreenAddArtist().getName().fill(artist.getName());
+			getScreenAddArtist().getCountry().select(artist.getCountry());
+			getScreenAddArtist().getGenre().select(artist.getGenre());
 	}
 
 	/** 
 	 * Adiciona o artista a e depois modifica os seus dados pelos dados do artista b
 	 * @param artist
 	 * @param newValues
-	 * @return
+	 * @return 
 	 */
 	public static String addAndChangerArtist(Artist artist, Artist newValues)
 	{
 		PTAddArtist.addArtist(artist);
 		PTAddArtist.populateFields(newValues);
-		screenAddArtist.getBtnSaveChanges().click();
-		String sucessChage = screenAddArtist.getPopUpSuccessfullySavedSaveChanges().getDivText().getText();
-		screenAddArtist.getPopUpSuccessfullySavedSaveChanges().getBtnOk().click();
+		getScreenAddArtist().getBtnSaveChanges().click();
+		String sucessChage = getScreenAddArtist().getPopUp().getMenssagePopUp();
+		getScreenAddArtist().getPopUp().confirmPopUp();
 		return sucessChage;
 	}
 
+	/**
+	 * 
+	 */
+	public static boolean isDisplayedPopUpSavedAddArtist()
+	{
+		return getScreenAddArtist().getPopUp().isDisplayedPopUp();
+	}
+	
+	
+
+	
+	
+	
+	
+	
 	public static ScreenAddArtist getScreenAddArtist()
 	{
+		if(screenAddArtist == null)
+		{
+			screenAddArtist = new ScreenAddArtist();
+		}
 		return screenAddArtist;
 	}
+	
 }

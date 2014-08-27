@@ -34,11 +34,10 @@ public class PTAddMedia
 	 */
 	public static String addMedia(Media media)
 	{
-		screenAddMedia = new ScreenAddMedia();
 		PTAddMedia.populateFields(media);
-		screenAddMedia.getBtnAddArtist().click();
-		String msgSucess = screenAddMedia.getPopUpSuccessfullySavedAddArtist().getDivText().getText();
-		screenAddMedia.getPopUpSuccessfullySavedAddArtist().getBtnOk().click();
+		getScreenAddMedia().getBtnAddArtist().click();
+		String msgSucess = getScreenAddMedia().getPopUp().getMenssagePopUp();
+		getScreenAddMedia().getPopUp().confirmPopUp();
 		return msgSucess;
 	}
 
@@ -52,9 +51,9 @@ public class PTAddMedia
 	{
 		PTAddMedia.addMedia(media);
 		PTAddMedia.populateFields(newValues);
-		screenAddMedia.getBtnSaveChanges().click();
-		String msgSaveChange = screenAddMedia.getPopUpSuccessfullySavedSaveChanges().getDivText().getText();
-		screenAddMedia.getPopUpSuccessfullySavedSaveChanges().getBtnOk().click();
+		getScreenAddMedia().getBtnSaveChanges().click();
+		String msgSaveChange = getScreenAddMedia().getPopUp().getMenssagePopUp();
+		getScreenAddMedia().getPopUp().confirmPopUp();
 		return msgSaveChange;
 	}
 
@@ -64,14 +63,27 @@ public class PTAddMedia
 	 */
 	public static void populateFields(Media media)
 	{
-		screenAddMedia = new ScreenAddMedia();
-		screenAddMedia.getMediaType().select(media.getType());
-		screenAddMedia.getMediaName().fill(media.getName());
-		screenAddMedia.getMediaArtist().select(media.getArtist());
+		getScreenAddMedia().getMediaType().select(media.getType());
+		getScreenAddMedia().getMediaName().fill(media.getName());
+		getScreenAddMedia().getMediaArtist().select(media.getArtist());
 	}
 
+	/**
+	 * Verifica a presença de um popUp na tela
+	 * @return true caso o popup esta sendo exibido, ou false caso contrario
+	 * 
+	 */
+	public static boolean isDisplayedPopUp()
+	{
+		return getScreenAddMedia().getPopUp().isDisplayedPopUp();
+	}
+	
 	public static ScreenAddMedia getScreenAddMedia()
 	{
+		if (screenAddMedia == null )
+		{
+			screenAddMedia = new ScreenAddMedia();
+		}
 		return screenAddMedia;
 	}
 }
