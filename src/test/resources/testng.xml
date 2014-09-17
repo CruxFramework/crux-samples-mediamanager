@@ -2,27 +2,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Testes Funcionais Media Manager">
 
-	<!-- <parameter name="parameters" value="browser=CHROME;chromeDriverBin=D:\workspaces\testescrux\test-media-manager\drivers\chromedriver.exe;chromeBin=C:\Program 
+	<!-- Execute test in Chrome -->
+	<!-- <parameter name="parameters" value="browser=CHROME;chromeDriverBin=.\drivers\chromedriver.exe;chromeBin=C:\Program 
 		Files (x86)\Google\Chrome\Application\chrome.exe"/> -->
 
+	<!-- Execute test in firefox -->
 	<parameter name="parameters" value="browser=FIREFOX;profile=C:\Users\guilherme.alecrim\AppData\Roaming\Mozilla\Firefox\Profiles\1plzdzxc.beholder" />
 
-	<!-- <parameter name="parameters" value="browser=IE;ieDriverBin=D:\workspaces\testescrux\test-media-manager\drivers\IE.exe"/> -->
+	<!-- Execute test in IE -->
+	<!-- <parameter name="parameters" value="browser=IE;ieDriverBin=.\drivers\IE.exe"/> -->
 
 	<test name="TF - Media Manager">
-
-		<parameter name="url" value="http://halley.sysmap.com.br:8082/mediamanager/mediamanager/index.html" />
-
+		<parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" />			
 		<groups>
 			<run>
-				<!-- Executa todos os testes -->
+				<!-- Execute all tests -->
 				<include name="mediaManager" />
-
-				<!-- Executa somente os casos de testes do trunck -->
-				<!-- <include name="trunck"/> -->
-
-				<!-- Executa somente os cassos de testes do brach -->
-				<!-- <include name="branch"/> -->
 			</run>
 		</groups>
 
@@ -33,9 +28,9 @@
 		<classes>
 			<class name="org.cruxframework.mediamanager.test.execute.CTConfiguration" />
 			<class name="org.cruxframework.mediamanager.test.execute.CTLogin" />
-			<class name="org.cruxframework.mediamanager.test.execute.CTAddArtist" />
-			<class name="org.cruxframework.mediamanager.test.execute.CTAddMedia" />
-			<class name="org.cruxframework.mediamanager.test.execute.CTSearchArtist" />
+  	     	<class name="org.cruxframework.mediamanager.test.execute.CTAddArtist" />
+ 		 	<class name="org.cruxframework.mediamanager.test.execute.CTAddMedia" /> 
+			<class name="org.cruxframework.mediamanager.test.execute.CTSearchArtist" /> 
 			<class name="org.cruxframework.mediamanager.test.execute.CTSearchMedia" />
 			<class name="org.cruxframework.mediamanager.test.execute.CTStatistics" />
 		</classes>
