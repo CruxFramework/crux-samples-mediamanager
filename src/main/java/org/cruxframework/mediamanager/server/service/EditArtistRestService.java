@@ -22,7 +22,7 @@ import org.cruxframework.crux.core.server.rest.annotation.RestService;
 import org.cruxframework.crux.core.shared.rest.RestException;
 import org.cruxframework.crux.core.shared.rest.annotation.GET;
 import org.cruxframework.crux.core.shared.rest.annotation.Path;
-import org.cruxframework.crux.core.shared.rest.annotation.QueryParam;
+import org.cruxframework.crux.core.shared.rest.annotation.PathParam;
 import org.cruxframework.mediamanager.server.entity.Artist;
 import org.cruxframework.mediamanager.server.entity.Country;
 import org.cruxframework.mediamanager.server.entity.Genre;
@@ -45,7 +45,7 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(value =  WebApplicationContext.SCOPE_REQUEST)
 @RestService("editArtistService")
-@Path("editartist")
+@Path("editartists")
 public class EditArtistRestService
 {
 	@Autowired
@@ -58,8 +58,8 @@ public class EditArtistRestService
 	private ArtistDAOImpl artistDAOImpl;
 	
 	@GET
-	@Path("get")
-	public EditArtistDTO get(@QueryParam("id") Integer id) throws RestException
+	@Path("{id}")
+	public EditArtistDTO get(@PathParam("id") Integer id) throws RestException
 	{
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
 		orderings.add(new OrderBy("name"));

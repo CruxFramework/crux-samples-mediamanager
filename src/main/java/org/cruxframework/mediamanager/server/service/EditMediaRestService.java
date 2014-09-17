@@ -22,7 +22,7 @@ import org.cruxframework.crux.core.server.rest.annotation.RestService;
 import org.cruxframework.crux.core.shared.rest.RestException;
 import org.cruxframework.crux.core.shared.rest.annotation.GET;
 import org.cruxframework.crux.core.shared.rest.annotation.Path;
-import org.cruxframework.crux.core.shared.rest.annotation.QueryParam;
+import org.cruxframework.crux.core.shared.rest.annotation.PathParam;
 import org.cruxframework.mediamanager.server.entity.Artist;
 import org.cruxframework.mediamanager.server.entity.Media;
 import org.cruxframework.mediamanager.server.entity.dao.impl.ArtistDAOImpl;
@@ -43,7 +43,7 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(value =  WebApplicationContext.SCOPE_REQUEST)
 @RestService("editMediaService")
-@Path("editmedia")
+@Path("editmedias")
 public class EditMediaRestService
 {
 	@Autowired
@@ -53,8 +53,8 @@ public class EditMediaRestService
 	private ArtistDAOImpl artistDAOImpl;
 	
 	@GET
-	@Path("get")
-	public EditMediaDTO get(@QueryParam("id")Integer id) throws RestException
+	@Path("{id}")
+	public EditMediaDTO get(@PathParam("id")Integer id) throws RestException
 	{
 		MediaDTO mediaDTO = null;
 		

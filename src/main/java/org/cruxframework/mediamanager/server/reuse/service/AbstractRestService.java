@@ -111,7 +111,6 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 	 * @throws RestException
 	 */
 	@POST
-	@Path("new")
 	@Transactional
 	public EditOperation insert(D dto) throws RestException
 	{
@@ -140,9 +139,9 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 	 * @throws RestException
 	 */
 	@DELETE
-	@Path("delete")
+	@Path("{id}")
 	@Transactional
-	public EditOperation delete(D dto) throws RestException
+	public EditOperation delete(@PathParam("id")Integer id, D dto) throws RestException
 	{
 		try
 		{

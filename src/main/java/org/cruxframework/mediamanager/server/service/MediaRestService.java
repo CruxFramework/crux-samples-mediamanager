@@ -46,7 +46,7 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(value =  WebApplicationContext.SCOPE_REQUEST)
 @RestService("mediaService")
-@Path("media")
+@Path("medias")
 public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 {
 	@Autowired
@@ -56,7 +56,6 @@ public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 	private ArtistDAOImpl artistDAOImpl;
 	
 	@GET
-	@Path("search")
 	public List<MediaDTO> search(
 		@QueryParam("type") MediaType type, 
 		@QueryParam("name") String name, 

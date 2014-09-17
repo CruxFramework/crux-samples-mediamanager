@@ -49,7 +49,7 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(value =  WebApplicationContext.SCOPE_REQUEST)
 @RestService("artistService")
-@Path("artist")
+@Path("artists")
 public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 {
 	@Autowired
@@ -65,7 +65,6 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 	private MediaDAOImpl mediaDAOImpl;
 	
 	@GET
-	@Path("search")
 	public List<ArtistDTO> search(@QueryParam("name") String name) 
 		throws RestException
 	{

@@ -82,7 +82,7 @@ public abstract class SearchController<T extends AbstractDTO>
 			public void onOk(OkEvent event)
 			{
 				WaitBox.show("Wait");
-				getRestServiceProxy().delete(dto, new DeleteCallback(dto));
+				getRestServiceProxy().delete(dto.getId(), dto, new DeleteCallback(dto));
 			}
 		}, null);
 	}

@@ -29,5 +29,5 @@ public interface RestServiceProxy<T extends AbstractDTO> extends RestProxy
 	void get(Integer id, Callback<T> callback);
 	void update(Integer id, T dto, Callback<EditOperation> callback);
 	void insert(T dto, Callback<EditOperation> callback);
-	void delete(T dto, Callback<EditOperation> callback);
+	void delete(Integer id, T dto, Callback<EditOperation> callback);
 }
