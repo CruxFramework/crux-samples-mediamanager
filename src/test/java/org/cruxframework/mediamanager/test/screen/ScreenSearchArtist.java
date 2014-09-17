@@ -23,12 +23,15 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: 
+ * Class description: This class represent the screen Search Artist
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class ScreenSearchArtist
 {
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private TextField txtName;
 	private Button btnSearch;
 	private Artist lineTable;
@@ -38,6 +41,9 @@ public class ScreenSearchArtist
 	private PopUp popUpSucessDelete;
 	private PopUp popUpNoResultsFound;
 
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public ScreenSearchArtist()
 	{
 		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
@@ -66,6 +72,11 @@ public class ScreenSearchArtist
 				);
 	
 	}
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 
 	public TextField getTxtName()
 	{

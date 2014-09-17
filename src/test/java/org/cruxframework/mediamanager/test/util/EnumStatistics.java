@@ -16,11 +16,12 @@
 package org.cruxframework.mediamanager.test.util;
 
 /**
- * Class description: 
+ * Class description: This enum represent the options of statistics 
  * @author guilherme.alecrim
  */
 // TODO guilherme.alecrim: documentar classe e métodos
 public enum EnumStatistics
 {
-	CDS_TOTAL, CDS_BORROWED, CD_MORE_THAN_ONE_MONTH, DVDS_TOTAL, DVDS_BORROWED, DVDS_MORE_THAN_ONE_MONTH;
+	CDS_TOTAL, CDS_BORROWED, CD_MORE_THAN_ONE_MONTH, 
+	DVDS_TOTAL, DVDS_BORROWED, DVDS_MORE_THAN_ONE_MONTH;
 }

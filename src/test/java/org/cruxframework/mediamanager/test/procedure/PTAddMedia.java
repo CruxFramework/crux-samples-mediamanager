@@ -19,18 +19,17 @@ import org.cruxframework.mediamanager.test.model.Media;
 import org.cruxframework.mediamanager.test.screen.ScreenAddMedia;
 
 /**
- * Class description: 
+ * Class description: This class implements the  procedures in 'Add Media' screen
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class PTAddMedia
 {
 	private static ScreenAddMedia screenAddMedia;
 
 	/** 
-	 * adicionar uma media
-	 * @param media
-	 * @return
+	 * Add a media
+	 * @param media: media for add in database
+	 * @return: menssage of sucess 'Successfully saved!'
 	 */
 	public static String addMedia(Media media)
 	{
@@ -42,10 +41,10 @@ public class PTAddMedia
 	}
 
 	/** 
-	 * adiciona uma media e logo em seguida altera os dados adicionados
-	 * @param media
-	 * @param newValues
-	 * @return
+	 * Add a media and after change your data 
+	 * @param media: media for add 
+	 * @param newValues: new values for media
+	 * @return menssage of sucess 'Successfully saved!'
 	 */
 	public static String saveChanges(Media media, Media newValues)
 	{
@@ -58,8 +57,8 @@ public class PTAddMedia
 	}
 
 	/** 
-	 * preenche os campos da tela de Add Media
-	 * @param media
+	 * Filled of field 'Add Media' screen 
+	 * @param media: values for fill the fields
 	 */
 	public static void populateFields(Media media)
 	{
@@ -69,15 +68,20 @@ public class PTAddMedia
 	}
 
 	/**
-	 * Verifica a presença de um popUp na tela
-	 * @return true caso o popup esta sendo exibido, ou false caso contrario
-	 * 
+	 * Check if the pop up is displayed
+	 * @return true:  pop up  is displayed 
+	 * false:  pop up not is  displayed
 	 */
 	public static boolean isDisplayedPopUp()
 	{
 		return getScreenAddMedia().getPopUp().isDisplayedPopUp();
 	}
 	
+	
+	/**
+	 * instantiates the object ScreenAddMedia
+	 * @return: ScreenAddMedia instatiates
+	 */
 	public static ScreenAddMedia getScreenAddMedia()
 	{
 		if (screenAddMedia == null )

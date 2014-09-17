@@ -22,18 +22,25 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: 
+ * Class description: This class represent the screen Login
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class ScreenLogin
 {
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private TextField login;
 	private TextField password;
 	private Button acess;
 	private Button logoff;
 	private PopUp popUpPasswordInvalid;
 
+	
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public ScreenLogin()
 	{
 		login = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
@@ -46,6 +53,10 @@ public class ScreenLogin
 				"/html/body/div[5]/div/div/div[2]/div/button"		
 				);
 	}
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 
 	public TextField getLogin()
 	{

@@ -24,23 +24,21 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Class description: Esta classe realiza os testes da tela Search Artist e assume que os artistas adicionados pelos
- * casos de testes CTAddArtist estão cadastrados na base.
- * 
+ *Class description: This class performs the tests  of the "Search Artist " screen. 
+ *The providers of inputs  are methods of class PVSearchArtist
+ * @see { org.cruxframework.mediamanager.test.dataprovider.PVSearchArtist}
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: completar comentário de métodos
 @Test(groups = { "mediaManager", "searchArtist" }, priority = 5)
 public class CTSearchArtist
 {
 	/**
-	 * Pesquisa por um artista cadastrado e verifica se ele esta sendo retornado na tabela de resultado.
-	 * @param ct
-	 * @param nameArtist
-	 * @param artist
+	 * Search for a registered artist and check if it is being displayed in the result table.
+	 * @param nameArtist: artist name to search
+	 * @param artist: artist expected with result of the search
 	 */
-	@Test(enabled = true, dataProvider = "PV001_SearchArtist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P001_SearchArtist(final String ct, String nameArtist, Artist artist)  
+	@Test(enabled = true, dataProvider = "PV001_SearchArtist", dataProviderClass = PVSearchArtist.class)
+	public void P001_SearchArtist( String nameArtist, Artist artist)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		Artist resultSearch = PTSearchArtist.searchArtist(nameArtist);
@@ -48,12 +46,11 @@ public class CTSearchArtist
 	}
 
 	/**
-	 * Pesquisa por um artista que não existe na base e valida se o pop up com a mensagem "No results found." é exibido.
-	 * @param ct
-	 * @param nameArtist
+	 *Search for an artist that does not exist in the base and validates the pop up with the message "No results found." is displayed.
+	 * @param nameArtist: artist name to search
 	 */
-	@Test(enabled = true, dataProvider = "PV002_ArtistNoExist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P002_ArtistNoExist(final String ct, String nameArtist)  
+	@Test(enabled = true, dataProvider = "PV002_ArtistNoExist", dataProviderClass = PVSearchArtist.class)
+	public void P002_ArtistNoExist( String nameArtist)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		PTSearchArtist.searchArtist(nameArtist);
@@ -63,13 +60,11 @@ public class CTSearchArtist
 	}
 
 	/**
-	 * Pesquisa por um artista e o deleta, e verificando se ao pop up com a mensagem "Record successfully deleted!" foi
-	 * exibido
-	 * @param ct
-	 * @param nameArtist
+	 *Delete an artist  and check the pop up with  the message   "Record successfully deleted" was displayed
+	 * @param nameArtist: artist name to search
 	 */
-	@Test(enabled = true, dataProvider = "PV003_DeleteArtist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P003_DeleteArtist(final String ct, String nameArtist)  
+	@Test(enabled = true, dataProvider = "PV003_DeleteArtist", dataProviderClass = PVSearchArtist.class)
+	public void P003_DeleteArtist( String nameArtist)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		String sucess = PTSearchArtist.deleteArtist(nameArtist);
@@ -79,14 +74,13 @@ public class CTSearchArtist
 	}
 
 	/**
-	 * Pesquisa por um artista e edita seus dados, logo em seguida é feita uma nova pesquisa para validar se os dados
-	 * foram devidamente modificados.
-	 * @param ct
-	 * @param artist
-	 * @param newValues
+	 *Search for an artist and edit your data, then immediately a new search is 
+	 *performed to validate if the data was properly modified.
+	 * @param artist: artist to be  search
+	 * @param newValues: new values for artist searched
 	 */
-	@Test(enabled = true, dataProvider = "PV004_EditAndSearchArtist", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P004_EditAndSearchArtist(final String ct, Artist artist, Artist newValues)  
+	@Test(enabled = true, dataProvider = "PV004_EditAndSearchArtist", dataProviderClass = PVSearchArtist.class)
+	public void P004_EditAndSearchArtist( Artist artist, Artist newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);
 		PTSearchArtist.editArtist(artist, newValues);
@@ -99,8 +93,15 @@ public class CTSearchArtist
 		Assert.assertEquals(newValues, resultSearch);
 	}
 
-	@Test(enabled = true, dataProvider = "PV005_ChangeValuesSearch", dataProviderClass = PVSearchArtist.class, groups = { "branch" })
-	public void P005_ChangeValuesSearch(String ct, String firstQuery, String secondQuery, Artist resultFirstQuery,
+	/**
+	 * Conducts two surveys in sequence to see if the results table has been updated.
+	 * @param firstQuery: first query 
+	 * @param secondQuery: second query
+	 * @param resultFirstQuery: result expected in the first query
+	 * @param resultSecondQuery: result expected in the second query
+	 */
+	@Test(enabled = true, dataProvider = "PV005_ChangeValuesSearch", dataProviderClass = PVSearchArtist.class)
+	public void P005_ChangeValuesSearch(String firstQuery, String secondQuery, Artist resultFirstQuery,
 			Artist resultSecondQuery)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_ARTIST);

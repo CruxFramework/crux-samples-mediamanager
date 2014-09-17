@@ -20,12 +20,16 @@ import org.cruxframework.mediamanager.test.procedure.SetUp;
 import br.ufmg.dcc.saotome.beholder.ui.Div;
 
 /**
- * Class description: 
+ * Class description: This class represent the screen Statistics
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class ScreenStatistics
 {
+	
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private Div divCdsTotal;
 	private Div divCdsBorrowed;
 	private Div divMoreThanOneMonthCD;
@@ -34,6 +38,10 @@ public class ScreenStatistics
 	private Div divMoreThanOneMonthDVD;
 	private Div nameSreen;
 
+	
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public ScreenStatistics()
 	{
 		divCdsTotal = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
@@ -44,6 +52,12 @@ public class ScreenStatistics
 		divMoreThanOneMonthDVD = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
 		nameSreen= SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
 	}
+
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 
 	public Div getDivCdsTotal()
 	{

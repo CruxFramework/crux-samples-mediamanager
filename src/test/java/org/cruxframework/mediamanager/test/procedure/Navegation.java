@@ -17,26 +17,37 @@ package org.cruxframework.mediamanager.test.procedure;
 
 import org.cruxframework.mediamanager.test.screen.ScreenLogin;
 import org.cruxframework.mediamanager.test.util.EnumMenu;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 
 /**
- * Class description: Procedimentos  simulam da davegação do usuario pelo sistema. 
+ * Class description: This class implements the procedures which simulate the
+ *  navegation of user by system 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class Navegation
 {
 	private static ScreenLogin login;
 
+	/**
+	 * Realize login with sucess in media manager 
+	 * @param user: valid login  of  user, e.g admin
+	 * @param password: password valid of  user, e.g admin 
+	 */
 	public static void loginSucess(String user, String password)
 	{
 		getScreenLogin().getLogin().fill(user);
 		getScreenLogin().getPassword().fill(password);
 		getScreenLogin().getAcess().click();
-		waitInitiate();
+		waitFiveSeconds();
 	}
+	
+	/**
+	 * Realize login with insucess in media manager 
+	 * @param user: invalid login  of  user, e.g userInvalid
+	 * @param password: invalid password of user, e.g invalidPass123
+	 * @return
+	 */
 
 	public static String loginFail(String user, String password) 
 	{
@@ -46,17 +57,25 @@ public class Navegation
 		return loginInvalid;
 	}
 
+	/**
+	 * Exit media manager , click in button singOut  
+	 */
 	public static void signOut()
 	{
 		getScreenLogin().signOut().click();
-		waitInitiate();
+		waitFiveSeconds();
 	}
+	
 
+	/**
+	 * Acess a option of menu
+	 * @param menuOption
+	 */
 	public static void acessMenu(EnumMenu menuOption)
 	{
 		refreshBrowser();
 		Button menu = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		waitInitiate();
+		waitFiveSeconds();
 		switch (menuOption)
 		{
 			case ADD_ARTIST:
@@ -77,14 +96,17 @@ public class Navegation
 				break;
 		}
 		menu.click();
-		waitInitiate();
+		waitFiveSeconds();
 		
 		
 	}
 
 	
 
-	public static void waitInitiate() 
+	/**
+	 * Stop current thread in 5 seconds, for wait  loading browser.	
+	 */
+	public static void waitFiveSeconds() 
 	{
 		
 		try {
@@ -111,8 +133,5 @@ public class Navegation
 	}
 	
 	
-	public static void webDriverWait()
-	{
-		new WebDriverWait(SetUp.DRIVER, 5);
-	}
+
 }

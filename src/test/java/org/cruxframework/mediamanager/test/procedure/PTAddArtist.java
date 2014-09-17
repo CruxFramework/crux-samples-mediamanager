@@ -19,18 +19,17 @@ import org.cruxframework.mediamanager.test.model.Artist;
 import org.cruxframework.mediamanager.test.screen.ScreenAddArtist;
 
 /**
- * Class description: 
+ * Class description:  This class implements the  procedures in 'Add Artist' screen
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class PTAddArtist
 {
 	private static ScreenAddArtist screenAddArtist;
 
 	/** 
-	 * Adiciona um artista
-	 * @param artist
-	 * @return
+	 * Add an artist 
+	 * @param artist: Artist for add in data base
+	 * @return: message of success to add artist 'Successfully saved!'
 	 */
 	public static String addArtist(Artist artist) 
 	{		
@@ -39,14 +38,14 @@ public class PTAddArtist
 		getScreenAddArtist().getBtnAddArtist().click();
 		String msg = getScreenAddArtist().getPopUp().getMenssagePopUp();
 		getScreenAddArtist().getPopUp().confirmPopUp();	
-		Navegation.waitInitiate();
+		Navegation.waitFiveSeconds();
 		return msg;
 	}
 
 
 	/** 
-	 * Dado um artista, preenche os campos da tela Add artists
-	 * @param artist
+	 * Populate the fields of 'Add Artist' screen
+	 * @param artist: values for fill the fields
 	 */
 	public static void populateFields(Artist artist)
 	{	
@@ -56,10 +55,10 @@ public class PTAddArtist
 	}
 
 	/** 
-	 * Adiciona o artista a e depois modifica os seus dados pelos dados do artista b
-	 * @param artist
-	 * @param newValues
-	 * @return 
+	 * Add a  artist and change yours data
+	 * @param artist: artist for add 
+	 * @param newValues: values for change data of artist 
+	 * @return message of success 'Successfully saved!'
 	 */
 	public static String addAndChangerArtist(Artist artist, Artist newValues)
 	{
@@ -71,8 +70,11 @@ public class PTAddArtist
 		return sucessChage;
 	}
 
+
 	/**
-	 * 
+	 * Check if the pop   with message 'Successfully saved!' is displayed
+	 * @return true:  pop up  is displayed 
+	 * false:  pop up not is  displayed
 	 */
 	public static boolean isDisplayedPopUpSavedAddArtist()
 	{
@@ -85,7 +87,10 @@ public class PTAddArtist
 	
 	
 	
-	
+	/** 
+	 * instance the object ScreenAddArtist
+	 * @return: ScreenAddArtist instance
+	 */
 	public static ScreenAddArtist getScreenAddArtist()
 	{
 		if(screenAddArtist == null)

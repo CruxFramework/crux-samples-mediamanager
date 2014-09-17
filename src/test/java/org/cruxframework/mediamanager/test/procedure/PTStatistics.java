@@ -23,14 +23,14 @@ import org.cruxframework.mediamanager.test.util.EnumStatistics;
 import org.cruxframework.mediamanager.test.util.EnumTypeStatistic;
 
 /**
- * Class description: 
+ * Class description: This class implements the procedures for 'Statistics' screen
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class PTStatistics
 {
 	private static ScreenStatistics screenStatistics;
 
+	
 	public static ScreenStatistics getScreenStatistics()
 	{
 		if (screenStatistics == null)
@@ -40,6 +40,11 @@ public class PTStatistics
 		return screenStatistics;
 	}
 
+	/**
+	 * Increment the value of the one statistic 
+	 * @param media : media for add in the data base
+	 * @param statistic: statistic for increment e.g total, borrowed or more than one month
+	 */
 	public static void incrementStatistic(Media media, EnumTypeStatistic statistic) 
 	{
 		switch (statistic)
@@ -58,6 +63,11 @@ public class PTStatistics
 		}
 	}
 
+	/**
+	 * Decrement the value of the one statistic 
+	 * @param media:  media for remove in the data base
+	 * @param statistic: statistic for decrement e.g total, borrowed or more than one month
+	 */
 	public static void decrementStatistic(Media media, EnumTypeStatistic statistic)  
 	{
 		switch (statistic)
@@ -76,6 +86,11 @@ public class PTStatistics
 		}
 	}
 
+	/**
+	 * Get value of statistic  in the screen Statistics
+	 * @param statistic: statistic desired
+	 * @return: value correspondent of statistic desired
+	 */
 	public static int getValueStatistics(EnumStatistics statistic)
 	{
 		switch (statistic)
@@ -103,6 +118,11 @@ public class PTStatistics
 	}
 	
 	
+	
+	/**
+	 * Increment value of statistic Total
+	 * @param media: media for add in the data base
+	 */
 	private static void incrementTotal(Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
@@ -110,6 +130,10 @@ public class PTStatistics
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
+	/**
+	 * Increment value of statistic Total Borrowed
+	 * @param media: media for borrowed  
+	 */
 	
 	private static void incrementTotalBorrowed(Media media) 
 	{
@@ -118,6 +142,10 @@ public class PTStatistics
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
+	/**
+	 * Increment value of statistic More Than One Month
+	 * @param media:  media for borrowed  more than one month
+	 */
 	private static void incrementMoreThanOneMonth(Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -125,6 +153,10 @@ public class PTStatistics
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
+	/**
+	 * Decrement value of statistic Total
+	 * @param media:  media for remove in the data base
+	 */
 	private static void decrementTotal(Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -132,6 +164,10 @@ public class PTStatistics
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
+	/**
+	 * Decrement value of statistic Total Borrowed
+	 * @param media: media for remove in the data base
+	 */
 	private static void decrementTotalBorrowed(Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -140,6 +176,10 @@ public class PTStatistics
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
+	/**
+	 * Decrement value of statistic More Than On eMonth
+	 * @param media: media for remove in the data base
+	 */
 	private static void decrementMoreThanOneMonth(Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);

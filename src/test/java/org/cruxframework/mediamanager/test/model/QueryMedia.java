@@ -16,12 +16,16 @@
 package org.cruxframework.mediamanager.test.model;
 
 /**
- * Class description: 
+ * Class description: This class represent a field of 'Search Media' screen
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class QueryMedia
 {
+	/*
+	 * type: Type of media, e.g CD or DVD
+	 * name: Name of media, e.g Yellow Submarine
+	 * borrowed: Client with media been borrowed, e.g Guilherme
+	 */
 	private String type;
 	private String name;
 	private String borrowed;

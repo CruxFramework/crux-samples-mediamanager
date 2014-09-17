@@ -20,36 +20,43 @@ import org.cruxframework.mediamanager.test.procedure.SetUp;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 
 /**
- * Class description: 
+ * Class description: This class represent the pop up Delete
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class PopUpDelete extends PopUp
 {
+	/*
+	 * This pop up contain all elements of the class pop up, more the button cancel
+	 */
 	private Button btnCancel;
 	private String xpathBntCancel;
 	
+	
+	/**
+	 * Initialize the elements of pop up delete
+	 * @param superXpath: xpath of the pop up father 
+	 * @param xpathMsg: xpath of message 
+	 * @param xpathBtnOk : xpath of button ok
+	 * @param xpathBtnCancel: xpath of button cancel
+	 */
 	public PopUpDelete(String superXpath, String xpathMsg,  String xpathBtnOk, String xpathBtnCancel)
 	{
 		super(superXpath,xpathMsg,xpathBtnOk);
 		btnCancel = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
 		this.xpathBntCancel = xpathBtnCancel;
 	}
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 
 	public Button getBtnCancel()
 	{
 		btnCancel.loadByXPath(getXpathBntCancel());
 		return btnCancel;
 	}
-	
-	public void CancelPopUp()
-	{
-		if(isDisplayedPopUp())
-		{
-			getBtnCancel().click();
-		}
-	
-	}
+
 
 	public String getXpathBntCancel() {
 		return xpathBntCancel;
@@ -57,5 +64,19 @@ public class PopUpDelete extends PopUp
 
 	public void setXpathBntCancel(String xpathBntCancel) {
 		this.xpathBntCancel = xpathBntCancel;
+	}
+	
+	
+	/**
+	 * Click in button cancel
+	 */
+
+	public void CancelPopUp()
+	{
+		if(isDisplayedPopUp())
+		{
+			getBtnCancel().click();
+		}
+	
 	}
 }

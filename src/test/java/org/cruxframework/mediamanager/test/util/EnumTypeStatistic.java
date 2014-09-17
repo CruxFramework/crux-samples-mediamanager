@@ -16,7 +16,7 @@
 package org.cruxframework.mediamanager.test.util;
 
 /**
- * Class description: 
+ * Class description: This enum represent the options of types of statistics
  * @author guilherme.alecrim
  */
 // TODO guilherme.alecrim: documentar classe e métodos

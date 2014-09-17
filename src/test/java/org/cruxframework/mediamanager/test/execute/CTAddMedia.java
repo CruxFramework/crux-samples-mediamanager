@@ -26,26 +26,21 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Class description: Esta classe realiza os casos de testes para tela Add media do Media Manager. Seus casos de testes
- * dependem, dos artista adicinados pelos CTAddArtist
- * 
- * Ao final destes testes serão incluindos na base as seguintes medias: - Black Rain - MEDIA EDITADA
- * 
- * Estas medias serão utilizados para os testes de Search Media
- * 
+ *Class description: This class performs the test cases to "Add media" screen. 
+ *Their test cases depend of the artists added by in the "Add Artist" screen
+ *The providers of inputs  are methods of class PVAddArtist class 
+ * @see { org.cruxframework.mediamanager.test.dataprovider.PVAddMedia }
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: completar comentário dos métodos
 @Test(groups = { "mediaManager", "addMedia" }, priority = 4)
 public class CTAddMedia
 {
 	/** 
-	 * Adiciona uma media e verifica se o pop up com a mensagem de "Successfully saved!" esta sendo exibido
-	 * @param ct
-	 * @param media
+	 * Adds a media and Checks if the pop-up with a MESSAGE of "saved successfully!" this being displayed 
+	 * @param media :media which be will added
 	 */
-	@Test(enabled = true, dataProvider = "PV001_Medias", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P001_AddMedia(final String ct, Media media) 
+	@Test(enabled = true, dataProvider = "PV001_Medias", dataProviderClass = PVAddMedia.class)
+	public void P001_AddMedia(Media media) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgSucess = PTAddMedia.addMedia(media);
@@ -54,13 +49,12 @@ public class CTAddMedia
 	}
 
 	/** 
-	 * Realiza o processo de adicionar uma media e logo em seguida alterar os dados que foram adicionados
-	 * @param ct
-	 * @param media
-	 * @param newValues
+	 * Adds a media and then immediately change the data that have been added
+	 * @param media : media which be will added
+	 * @param newValues: new values for media added 
 	 */
-	@Test(enabled = true, dataProvider = "PV002_SaveChanges", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P002_SaveChanges(final String ct, Media media, Media newValues) 
+	@Test(enabled = true, dataProvider = "PV002_SaveChanges", dataProviderClass = PVAddMedia.class)
+	public void P002_AddAndChangeMedia( Media media, Media newValues) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgSaveChanges = PTAddMedia.saveChanges(media, newValues);
@@ -68,12 +62,11 @@ public class CTAddMedia
 	}
 
 	/** 
-	 * Adiciona uma media e verifica se ela consta na base de dados.
-	 * @param ct
-	 * @param media
+	 * Add a media and check if it  appears  in data base
+	 * @param media : media which be will added
 	 */
-	@Test(enabled = true, dataProvider = "PV003_AddAndSearchMedia", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P003_AddAndSearchMedia(final String ct, Media media)  
+	@Test(enabled = true, dataProvider = "PV003_AddAndSearchMedia", dataProviderClass = PVAddMedia.class)
+	public void P003_AddAndSearchMedia( Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		PTAddMedia.addMedia(media);
@@ -84,13 +77,12 @@ public class CTAddMedia
 	}
 
 	/** 
-	 * Modifica uma media e verifica se as alterações feitas, constam na base de dados
-	 * @param ct
-	 * @param media
-	 * @param newValues
+	 *  Modifies a media and verifies that the changes made ​​appears in the database.
+	 * @param media:  media which be will added
+	 * @param newValues: new values for media added 
 	 */
-	@Test(enabled = true, dataProvider = "PV004_ChangeAndSearchMedia", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P004_ChangeAndSearchMedia(final String ct, Media media, Media newValues)  
+	@Test(enabled = true, dataProvider = "PV004_ChangeAndSearchMedia", dataProviderClass = PVAddMedia.class)
+	public void P004_ChangeAndSearchMedia(Media media, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		PTAddMedia.saveChanges(media, newValues);
@@ -101,12 +93,11 @@ public class CTAddMedia
 	}
 
 	/** 
-	 * Adiciona uma media, deixando algum campo da tela sem preencher.
-	 * @param ct
-	 * @param media
+	 *Leave without filling some fields when adding  media and check if pop up "Fill all fields." is displayed
+	 * @param media:  media which be will added
 	 */
-	@Test(enabled = true, dataProvider = "PV005_FieldCleanToAdd", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P005_FieldCleanToAdd(final String ct, Media media)  
+	@Test(enabled = true, dataProvider = "PV005_FieldCleanToAdd", dataProviderClass = PVAddMedia.class)
+	public void P005_FieldCleanToAdd( Media media)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgFillAllFields = PTAddMedia.addMedia(media);
@@ -114,13 +105,12 @@ public class CTAddMedia
 	}
 
 	/** 
-	 * Modifica os dados de uma media, e tenta salvar as alterações deixando algum campo sem preencher.
-	 * @param ct
-	 * @param media
-	 * @param newValues
+	 * Add media and try to change your attributes leaving some field without fill 
+	 * @param media: media which be will added
+	 * @param newValues: new values for media added 
 	 */
-	@Test(enabled = true, dataProvider = "PV006_FieldCleanToChange", dataProviderClass = PVAddMedia.class, groups = { "branch" })
-	public void P006_FieldCleanToChange(final String ct, Media media, Media newValues)  
+	@Test(enabled = true, dataProvider = "PV006_FieldCleanToChange", dataProviderClass = PVAddMedia.class)
+	public void P006_FieldCleanToChange( Media media, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		String msgFillAllFields = PTAddMedia.saveChanges(media, newValues);

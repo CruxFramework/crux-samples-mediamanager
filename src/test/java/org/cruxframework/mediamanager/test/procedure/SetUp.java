@@ -26,10 +26,9 @@ import br.ufmg.dcc.saotome.beholder.selenium.SeleniumController;
 
 
 /**
- * Class description: Classe prove o medoto basico basico para iniciar o browser e instanciar web elements
+ * This class implements the method setup used for initiate the browser and instantiate the web elements
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar métodos
 public class SetUp
 {
 	public static Browser BROWSER;

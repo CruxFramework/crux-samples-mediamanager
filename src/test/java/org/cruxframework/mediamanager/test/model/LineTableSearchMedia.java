@@ -16,12 +16,17 @@
 package org.cruxframework.mediamanager.test.model;
 
 /**
- * Class description: 
+ * Class description: Represent a line of the result table of 'Search Media' screen
+ *  One line of the result table is  compost  by attributes of a 
+ *  media and a client witch borrowed the media (column person) 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class LineTableSearchMedia
 {
+	/*
+	 * Media, are the columns, Type, Name and  Artist
+	 *  Person is client witch borrowed the media, column Person    
+	 */
 	private Media media;
 	private String person;
 

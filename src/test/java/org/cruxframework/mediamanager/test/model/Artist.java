@@ -16,12 +16,16 @@
 package org.cruxframework.mediamanager.test.model;
 
 /**
- * Class description: 
+ * Class description: This class represent  an artist with attributes name, country and genre 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class Artist
 {
+	/*
+	 * name: nome of artists. e.g Guilherme
+	 * country: coutry of artist e.g Brazil
+	 * genre: genre of artist e.g Rock
+	 */
 	private String name;
 	private String country;
 	private String genre;
@@ -32,6 +36,7 @@ public class Artist
 		country = new String();
 		genre = new String();
 	}
+
 
 	public Artist(String name, String country, String genre)
 	{
@@ -69,7 +74,9 @@ public class Artist
 	{
 		this.genre = genre;
 	}
-
+    /**
+     * Compare  name, country and genre between two artists
+     */
 	@Override
 	public boolean equals(Object obj)
 	{

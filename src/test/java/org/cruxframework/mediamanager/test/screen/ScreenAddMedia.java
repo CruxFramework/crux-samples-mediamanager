@@ -22,12 +22,15 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Select;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: Esta classe representa a tela de adicionar media. Possui apenas metodos de acesso aos WebElements
+ * Class description: This class represent the screen Add Media
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar métodos
 public class ScreenAddMedia
 {
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private Select mediaType;
 	private TextField mediaName;
 	private Select mediaArtist;
@@ -36,6 +39,9 @@ public class ScreenAddMedia
 
 	private PopUp popUp;
 
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public ScreenAddMedia()
 	{
 		mediaType = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
@@ -48,6 +54,11 @@ public class ScreenAddMedia
 				"/html/body/div[5]/div/div/div[2]/div/button");
 	}
 
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 	public Select getMediaType()
 	{	
 		mediaType = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();

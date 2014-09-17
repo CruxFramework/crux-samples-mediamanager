@@ -27,10 +27,12 @@ import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 /**
- * Class description:
+ * Class description: This class performs tests in Statistics screen , this tests insert or delete data in 
+ * database and check if statistics  was updates
+ * The providers of inputs  are methods of class PVStatistics
+ * @see { org.cruxframework.mediamanager.test.dataprovider.PVStatistics}
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 @Test(groups = { "mediaManager", "statistics" }, priority = 7)
 public class CTStatistics
 {
@@ -42,14 +44,13 @@ public class CTStatistics
 	}
 
 	/** 
-	 * Verifica se dado uma modificação na base de dados, as estatisticas estão sendo devidemente incrementadas.
-	 * @param ct
-	 * @param media
-	 * @param statistic
-	 * @param typeStatistic
+	 * Given a insertion in the database, the statistics are being updated.
+	 * @param media: Media with insert in data base
+	 * @param statistic: Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
+	 * @param typeStatistic: Type of statistic, e.g is Total, Borrowed of More than one month
 	 */
-	@Test(enabled = true, dataProvider = "PV001", dataProviderClass = PVStatistics.class, groups = { "branch" })
-	public void P001_IncrementStatistic(final String ct, Media media, EnumStatistics statistic,
+	@Test(enabled = true, dataProvider = "PV001", dataProviderClass = PVStatistics.class)
+	public void P001_IncrementStatistic( Media media, EnumStatistics statistic,
 			EnumTypeStatistic typeStatistic) 
 	{
 		int totalBefore = PTStatistics.getValueStatistics(statistic);
@@ -60,14 +61,13 @@ public class CTStatistics
 	}
 
 	/** 
-	 * Verifica se dado uma modificação na base de dados, as estatisticas estão sendo devidemente decrentadas.
-	 * @param ct
-	 * @param media
-	 * @param statistic
-	 * @param typeStatistic
+	 * Given a decrease in the database, the statistics are being updated
+	 * @param media: Media with insert in data base
+	 * @param statistic: Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
+	 * @param typeStatistic: Type of statistic, e.g is Total, Borrowed of More than one month
 	 */
-	@Test(enabled = true, dataProvider = "PV002", dataProviderClass = PVStatistics.class, groups = { "branch" })
-	public void P002_DecrementStatistic(final String ct, Media media, EnumStatistics statistic,
+	@Test(enabled = true, dataProvider = "PV002", dataProviderClass = PVStatistics.class)
+	public void P002_DecrementStatistic( Media media, EnumStatistics statistic,
 			EnumTypeStatistic typeStatistic)  
 	{
 		int totalBefore = PTStatistics.getValueStatistics(statistic);

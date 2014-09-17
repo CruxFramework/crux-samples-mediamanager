@@ -16,12 +16,19 @@
 package org.cruxframework.mediamanager.test.model;
 
 /**
- * Class description: 
+ * Class description: This class represent a media with  attributes, type, name and artist. 
+
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class Media
 {
+	
+	/*
+     * type: CD or DVD
+     * name: nome of the media 
+     * artist: artist with publish the media
+     */
+	
 	private String type;
 	private String name;
 	private String artist;

@@ -23,12 +23,15 @@ import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 import br.ufmg.dcc.saotome.beholder.ui.table.Table;
 
 /**
- * Class description: 
+ * Class description: This class represent the screen Lend Media 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class LendMedia
 {
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private Checkbox cbBorrowed;
 	private TextField txtName;
 	private TextField txtDate;
@@ -38,6 +41,9 @@ public class LendMedia
 	private Table tbDayCalendar;
 	private PopUp popUpDateInvalid;
 
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public LendMedia()
 	{
 		cbBorrowed = SetUp.BUILDER.uiComponentBuilderInstance().checkboxInstance();
@@ -55,6 +61,11 @@ public class LendMedia
 				""
 				);
 	}
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 
 	public Checkbox getCbBorrowed()
 	{

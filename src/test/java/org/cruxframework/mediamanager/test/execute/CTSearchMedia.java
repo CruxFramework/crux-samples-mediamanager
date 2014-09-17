@@ -26,27 +26,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Class description: Esta classe realiza os testes da tela Search media e assume que as medias adicionadas pelos casos
- * de testes CTAddMedia constam na base de dados.
- * 
+ *Class description: This class performs the tests  of the "Search Media " screen. 
+ *The providers of inputs  are methods of class PVSearchMedia
+ * @see { org.cruxframework.mediamanager.test.dataprovider.PVSearchMedia}
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: completar comentário de métodos
 @Test(groups = { "mediaManager", "searchMedia" }, priority = 6)
 public class CTSearchMedia
 {
 	
-
-	
-	
 	/**
-	 * Pesquisa por uma media que consta na base de dados, e verifica se esta media é exibida na tabela de resultados.
-	 * @param ct
-	 * @param media
-	 * @param query
+	 * Search for an average contained in the database, and checks if media is displayed in the results table.
+	 * @param media: media expected in the search
+	 * @param query: attributes of the search 
 	 */
-	@Test(enabled = true, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class, groups = { "branch,searchMedia" })
-	public void P001_SearchMediaWhitExist(final String ct, Media media, QueryMedia query)  
+	@Test(enabled = true, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class)
+	public void P001_SearchMediaWhitExist( Media media, QueryMedia query)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		LineTableSearchMedia ltsm = PTSearchMedia.searchMedia(query);
@@ -55,13 +50,11 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Pesquisa por uma media que não consta na base de dados e verifica se o pop up com a mensagem "No results found." é
-	 * exibodo.
-	 * @param ct
-	 * @param query
+	 * Search by a media that is not in the database and verifies that the pop up with the message "No results found." is displayed.
+	 * @param query: attributes of the search 
 	 */
-	@Test(enabled = true, dataProvider = "PV002_SearchMediaWhitNotExist", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P002_SearchMediaWhitNotExist(final String ct, QueryMedia query) 
+	@Test(enabled = true, dataProvider = "PV002_SearchMediaWhitNotExist", dataProviderClass = PVSearchMedia.class)
+	public void P002_SearchMediaWhitNotExist(QueryMedia query) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);		
 		String noResultsFound = PTSearchMedia.searchMediaWithNotExist(query);
@@ -69,13 +62,12 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Edita os dados de uma media e verifica se o pop up com a mensagem "Successfully saved!" é exibido.
-	 * @param ct
-	 * @param query
-	 * @param newValues
+	 * Edit data from a media and verifies if the pop up with the message "Successfully saved!" is displayed.
+	 * @param query:  attributes of the search 
+	 * @param newValues: new values for media searched 
 	 */
-	@Test(enabled = true, dataProvider = "PV003_EditMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P003_EditMedia(final String ct, QueryMedia query, Media newValues)  
+	@Test(enabled = true, dataProvider = "PV003_EditMedia", dataProviderClass = PVSearchMedia.class)
+	public void P003_EditMedia( QueryMedia query, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String sucessEditMedia = PTSearchMedia.editMedia(query, newValues);
@@ -83,12 +75,11 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Deleta uma media e verifica se o pop up com a mensage "Record successfully deleted!" é exibido
-	 * @param ct
-	 * @param query
+	 * Deletes a media and verifies that pop up with the mensage "Record successfully deleted!"  is displayed
+	 * @param query: attributes of the search 
 	 */
-	@Test(enabled = true, dataProvider = "PV004_DeleteMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P004_DeleteMedia(final String ct, QueryMedia query)  
+	@Test(enabled = true, dataProvider = "PV004_DeleteMedia", dataProviderClass = PVSearchMedia.class)
+	public void P004_DeleteMedia(QueryMedia query)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String sucessOnDelete = PTSearchMedia.deleteMedia(query);
@@ -96,14 +87,12 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Edita os dados de uma media e realiza uma busca para verificar se os dados foram devidamente alterados na base de
-	 * dados .
-	 * @param ct
-	 * @param media
-	 * @param newValues
+	 *Edit data from a media and conducts a search to verify that the data was performs changed in the database.
+	 * @param media: media for edit
+	 * @param newValues: new values for media
 	 */
-	@Test(enabled = true, dataProvider = "PV005_EditAndSearchMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P005_EditAndSearchMedia(final String ct, Media media, Media newValues)  
+	@Test(enabled = true, dataProvider = "PV005_EditAndSearchMedia", dataProviderClass = PVSearchMedia.class)
+	public void P005_EditAndSearchMedia( Media media, Media newValues)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		media = PTSearchMedia.editAndSearchMedia(media, newValues);
@@ -111,12 +100,11 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Deleta uma media e realiza uma busca para verificar se a media foi devidamente deletada da base de dados.
-	 * @param ct
-	 * @param query
+	 *Delete a media and conducts a search to see if the media is performs deleted from the database.
+	 * @param query: media for delete
 	 */
-	@Test(enabled = true, dataProvider = "PV006_DeleteAndSearchMedia", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P006_DeleteAndSearchMedia(final String ct, QueryMedia query)
+	@Test(enabled = true, dataProvider = "PV006_DeleteAndSearchMedia", dataProviderClass = PVSearchMedia.class)
+	public void P006_DeleteAndSearchMedia( QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String noResultsFound = PTSearchMedia.deleteAndSearhcMedia(query);
@@ -124,14 +112,13 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Realiza o procedimento de emprestar uma media
-	 * @param ct
-	 * @param query
-	 * @param name
-	 * @param date
+	 * Borrow one media. 
+	 * @param query: attributes of the search 
+	 * @param name: client name 
+	 * @param date: date of the borrow
 	 */
-	@Test(enabled = true, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P007_LendBorrwed(final String ct, QueryMedia query, String name, String date)  
+	@Test(enabled = true, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class)
+	public void P007_LendBorrwed( QueryMedia query, String name, String date)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(query, name, date);
@@ -140,13 +127,11 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Verifica se o não preenchimento do checkBox "Borrowed" da tela LendMedia bloqueia os demais campos para
-	 * preenchimento.
-	 * @param ct
-	 * @param query
+	 * Check if not marking the checkbox "Borrowed" lock the others inputs of the LendMedia  screen 
+	 * @param query:  attributes of the search 
 	 */
-	@Test(enabled = true, dataProvider = "PV008_LendOnBorred", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P008_LendOnBorred(final String ct, QueryMedia query) 
+	@Test(enabled = true, dataProvider = "PV008_LendOnBorred", dataProviderClass = PVSearchMedia.class)
+	public void P008_LendOnBorred(QueryMedia query) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMediaUnborrowed(query);
@@ -155,14 +140,13 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Verifica se na tela LendMedia ao preencher uma data maior que a data atual é exibido o pop up.
-	 * @param ct
-	 * @param query
-	 * @param name
-	 * @param date
+	 * Checks whether the LendMedia screen  fill a larger date than the current is displayed the date pop up.
+	 * @param query: attributes of the search 
+	 * @param name: client name 
+	 * @param date: date of the borrow
 	 */
-	@Test(enabled = true, dataProvider = "PV009_InvalidDate", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P009_InvalidDate(final String ct, QueryMedia query, String name, String date)  
+	@Test(enabled = true, dataProvider = "PV009_InvalidDate", dataProviderClass = PVSearchMedia.class)
+	public void P009_InvalidDate(QueryMedia query, String name, String date)  
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(query, name, date);
@@ -170,9 +154,15 @@ public class CTSearchMedia
 		Assert.assertEquals(msg, "The date you are trying to use is greater than the actual date.");
 	}
 
-	
-	@Test(enabled = true, dataProvider = "PV010_ChangeValuesOfSearch", dataProviderClass = PVSearchMedia.class, groups = { "branch" })
-	public void P010_ChangeValuesOfSearch(final String ct, QueryMedia firstQuery, QueryMedia secondQuery,
+	/**
+	 * Performs two search in sequence and checks if the result table has been updated with the results of the second search .
+	 * @param firstQuery: First search
+	 * @param secondQuery: Second search
+	 * @param resultFirstQuery: Result expect of first search
+	 * @param resultSecondQuery: Result expect of second search
+	 */
+	@Test(enabled = true, dataProvider = "PV010_ChangeValuesOfSearch", dataProviderClass = PVSearchMedia.class)
+	public void P010_ChangeValuesOfSearch(QueryMedia firstQuery, QueryMedia secondQuery,
 			LineTableSearchMedia resultFirstQuery, LineTableSearchMedia resultSecondQuery) 
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);

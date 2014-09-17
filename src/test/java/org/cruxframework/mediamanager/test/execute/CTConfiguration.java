@@ -24,20 +24,20 @@ import org.cruxframework.mediamanager.test.procedure.SetUp;
 import org.cruxframework.mediamanager.test.util.EnumMenu;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 /**
- * Class description: Classe que irá executar os parametros de configuração para
- * os testes
- * 
+ *Class description: This class will perform the configuration parameters for the tests, 
+ *such as adding data in the database, and set the parameters of the browser and the builder. 
+ *It is will be executed before all tests. 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: comentar classe e métodos
-
+@Test(priority = 1)
 public class CTConfiguration
 {
 	/**
-	 * Instancia o BROWSER  e o BUILDER
-	 * @param url: URL da aplicação 
+	 * This method instantiates the browser with the url of the system, the url is passed within  testng.xml file
+	 * @param url: url of the application 
 	 * @throws Exception
 	 */
 	@BeforeTest(alwaysRun = true)
@@ -45,22 +45,28 @@ public class CTConfiguration
 	public void setUp(String url) throws Exception
 	{
 		SetUp.setUP(url);
-		cadastrarMassaDeDados();
+		registeringMassData();
 		
 	}
 	
 
-
-	public void cadastrarMassaDeDados() 
+	/**
+	 * This method acess the system and insert some datas necessary for some  tests
+	 */
+	public void registeringMassData() 
 	{
 		Navegation.loginSucess("admin", "admin");
-		System.out.println(">>>>>> adicinando artistas ...");
+		System.out.println(">>>>>> adding  artists ...");
 		artists();
-		System.out.println(">>>>>> adicinando medias ...");
+		System.out.println(">>>>>> adding medias ...");
 		medias();
 		Navegation.signOut();		
-		System.out.println(">>>>>> Dados cadastrados com sucesso. Executando testes...");
+		System.out.println(">>>>>> Sucess at  add data. Executing tests ...");
 	}
+	
+	/**
+	 * Execute procedures for add artists
+	 */
 	
 	public void artists()
 	{
@@ -73,7 +79,9 @@ public class CTConfiguration
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		PTAddArtist.addArtist(new Artist("ArtistForEdit","United States","Metal"));
 	}
-	
+	/**
+	 * Execute procedures for add medias
+	 */
 	public void medias()
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);

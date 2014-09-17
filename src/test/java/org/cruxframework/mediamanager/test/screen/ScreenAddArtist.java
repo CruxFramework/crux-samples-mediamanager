@@ -22,13 +22,15 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Select;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: Esta classe representa a tela de adicionar artista. Possui apenas metodos de acesso aos
- * WebElements
+ * Class description: This class represent the screen Add Artist
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar métodos
 public class ScreenAddArtist
 {
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private TextField txtName;
 	private Select selectFieldCountry;
 	private Select selectFieldGenre;
@@ -37,6 +39,9 @@ public class ScreenAddArtist
 	private PopUp popUp;
 	
 	
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public ScreenAddArtist()
 	{
 		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
@@ -47,6 +52,11 @@ public class ScreenAddArtist
 		popUp = new PopUp("/html/body/div[5]/div","/html/body/div[5]/div/div/div[2]/div/div","/html/body/div[5]/div/div/div[2]/div/button");
 	}
 
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 	public PopUp getPopUp()
 	{
 		

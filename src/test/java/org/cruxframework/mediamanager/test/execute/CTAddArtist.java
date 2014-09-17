@@ -25,15 +25,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * Class description: Esta classe contêm os casos de testes para a tela Add artist do Media Manager, Os testes foram
- * definidos com prioridade 1 (primeiros testes a serem executados), pois todos os outros casos de testes dependem dos
- * artistas que são adicionados por estes casos de testes.
- * 
- * Ao final destes testes serão incluidos na base os seguintes artistas: - Test5 - Teste3 - Artista Editado -
- * Artista01P006 - Artista02P006 - Artista03P006 - Artista04P006
- * 
- * Estes artistas serão utilizados para os testes de Search Artist e Add Media
- * 
+ * Class description: This class contains test cases for the screen  "Add Artist" 
+ * The providers of inputs  are methods of class PVAddArtist class 
+ * @see {org.cruxframework.mediamanager.test.dataprovider.PVAddArtist }
  * @author guilherme.alecrim
  */
 @Test(groups = { "mediaManager", "addArtist" }, priority = 3)
@@ -41,12 +35,12 @@ public class CTAddArtist
 {
 
 	/**
-	 * Adiciona um artista e verifica se o pop up com a mensagem "Successfully saved!" esta sendo exibido
-	 * @param ct :  codigo do caso de teste
-	 * @param artist
+	 * Adds an artist and verifies that the pop up with the message 
+	 * "Successfully saved!" is being displayed
+	 * @param artist: Artist to be added
 	 */
 	@Test(enabled = true, dataProvider = "PV001_Artists", dataProviderClass = PVAddArtist.class)
-	public void P001_AddArtist(final String ct, Artist artist)
+	public void P001_AddArtist( Artist artist)
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String msgSucess = PTAddArtist.addArtist(artist);
@@ -55,27 +49,25 @@ public class CTAddArtist
 	}
 
 	/**
-	 * Adiciona um artista e logo em seguida altera os dados e verifica se os pop up com a mensagem "Successfully saved!"
-	 * foi exibido.
-	 * @param ct :  codigo do caso de teste
-	 * @param artist: dados do artista que será adicionado
-	 * @param newValues valores que serão utilizados para alterar os dados do artista recém adicionado
+	 * Adds an artist and then immediately changes the data and verifies that 
+	 * pop up with the message "Successfully saved!" was displayed.
+	 * @param artist: Artist data to be added 
+	 * @param NewValues ​:​values ​​to be used to change the data of the artist wich was added
 	 */
 	@Test(enabled = false, dataProvider = "PV002_AddAndChangeArtists", dataProviderClass = PVAddArtist.class)
-	public void P002_AddAndSaveChanges(final String ct, Artist artist, Artist newValues) 
+	public void P002_AddAndSaveChanges( Artist artist, Artist newValues) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String sucessChange = PTAddArtist.addAndChangerArtist(artist, newValues);
 		Assert.assertEquals(sucessChange, "Successfully saved!");
 	}
 
-	/**
-	 * Adiciona um artista e logo em seguida realiza uma busca para verificar se o artista adicionado consta na base.
-	 * @param ct: codigo do caso de teste
-	 * @param artist: dados do artista que será adicionado
-	 */
+	/** 
+	* Adds an artist and then immediately performs a search to check if the artist added contained in the data base. 
+	* @param artist:  data of  artist that will be added 
+	*/
 	@Test(enabled = true, dataProvider = "PV003_AddAndSearchArtists", dataProviderClass = PVAddArtist.class)
-	public void P003_AddArtistAndSearchArtist(final String ct, Artist artist) 
+	public void P003_AddArtistAndSearchArtist( Artist artist) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		PTAddArtist.addArtist(artist);
@@ -84,15 +76,13 @@ public class CTAddArtist
 		Assert.assertEquals(artist, resultSearch);
 	}
 
-	/**
-	 * Modifica os dados de um artista e logo em seguida realiza uma busca para verificar se os dados foram devidamente
-	 * alterados na base.
-	 * @param ct: codigo do caso de teste
-	 * @param artist: dados do artista que será adicionado
-	 * @param newValues: valores que serão utilizados para alterar os dados do artista recém adicionado 
+	/** 
+	 * Modifies the data of an artist and then  performs a search to verify that the data was properly changed in the data base. 
+	 * @param artist: Data of artist to be added 
+	 * @paramNewValues​​: values ​​to be used to change the data of the newly added artist 
 	 */
 	@Test(enabled = true, dataProvider = "PV004_ChangeAndSearchArtist", dataProviderClass = PVAddArtist.class)
-	public void P004_ChangeAndSearchArtist(final String ct, Artist artist, Artist newValues)
+	public void P004_ChangeAndSearchArtist( Artist artist, Artist newValues)
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		PTAddArtist.addAndChangerArtist(artist, newValues);
@@ -101,29 +91,26 @@ public class CTAddArtist
 		Assert.assertEquals(newValues, resultSearch);
 	}
 
-	/**
-	 * Adiciona um artista deixando alguns campos sem preencher, verificando se o pop up com a mensgem "Fill all fields."
-	 * é exibido
-	 * @param ct :  codigo do caso de teste
-	 * @param artist: dados do artista que será adicionado
+	/** 
+	 * Leave some fields without filling, making sure the pop up with mensgem "Fill all fields." 
+	 * is displayed 
+	 * @param artist:  data fields to be filled 
 	 */
 	@Test(enabled = true, dataProvider = "PV005_FieldCleanToAdd", dataProviderClass = PVAddArtist.class)
-	public void P005_FieldCleanToAdd(final String ct, Artist artist) 
+	public void P005_FieldCleanToAdd( Artist artist) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String msgFillAllFields = PTAddArtist.addArtist(artist);
 		Assert.assertEquals(msgFillAllFields, "Fill all fields.");
 	}
 
-	/**
-	 * Modifica os dados de um artista deixando alguns campos sem preencher, verificando se o pop up com a mensgem
-	 * "Fill all fields." é exibido
-	 * @param ct :  codigo do caso de teste
-	 * @param artist: dados do artista que será adicionado
-	 * @param newValues:  valores que serão utilizados para alterar os dados do artista recém adicionado
-	 */
+	/** 
+	 * Leave some fields without filling to modify the data of an artist added and check if pop up   "Fill all fields." is displayed 
+	 * @param artist: Artist to  be added 
+	 * @param NewValues​​: values ​​to be used to change the data of the newly added artist 
+	 */ 
 	@Test(enabled = true, dataProvider = "PV006_FieldCleanToChange", dataProviderClass = PVAddArtist.class)
-	public void P006_FieldCleanToChange(final String ct, Artist artist, Artist newValues) 
+	public void P006_FieldCleanToChange( Artist artist, Artist newValues) 
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
 		String msgFillAllFields = PTAddArtist.addAndChangerArtist(artist, newValues);

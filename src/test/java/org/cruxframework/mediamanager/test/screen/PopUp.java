@@ -22,13 +22,16 @@ import br.ufmg.dcc.saotome.beholder.ui.Div;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 
 /**
- * Class description: Define os elementos basicos que um pop up tem, que são um texto e um botao de confirmação. Todas
- * as classes pop up devem estender essa classe
+ *  This class represent a pop up  
+ *  All class pop up should extends this class 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar métodos
 public class PopUp
 {
+	/*
+	 * This parameters equivalent   to the basic elements in pop up, such as button ok and one message
+	 * This element are providers by Beholder  Framework 
+	 */
 	private Button btnOk;
 	private Div divText;
 	private String xpathBtnOk;
@@ -36,7 +39,10 @@ public class PopUp
 	private String superXpath; 
 	
 	
-
+	/*
+	 *  constructor  initialize all elements 
+	 */
+	
 	public PopUp(String superXpath, String xpathMsg,  String xpathBtnOk)
 	{
 		divText = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
@@ -46,7 +52,10 @@ public class PopUp
 		this.superXpath = superXpath;
 	}
 	
-	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 	
 
 	public Div getDivText()
@@ -61,6 +70,9 @@ public class PopUp
 		return btnOk;
 	}
 
+	/*
+	 * this accessors return the xpath of the componets of the pop up 
+	 */
 	public String getXpathBtnOk()
 	{		
 		return xpathBtnOk;
@@ -80,6 +92,23 @@ public class PopUp
 	{
 		this.xpathMsg = xpathDivText;
 	}
+	
+	
+
+
+	public String getSuperXpath()
+	{
+		return superXpath;
+	}
+
+	public void setSuperXpath(String xpathPopUp)
+	{
+		this.superXpath = xpathPopUp;
+	}
+	
+	/**
+	 * check if pop up is displayed 
+	 */
 
 	public  boolean isDisplayedPopUp()
 	{	
@@ -93,17 +122,10 @@ public class PopUp
 		}
 		 
 	}
-
-	public String getSuperXpath()
-	{
-		return superXpath;
-	}
-
-	public void setSuperXpath(String xpathPopUp)
-	{
-		this.superXpath = xpathPopUp;
-	}
 	
+	/**
+	 * Confirm pop up, ie, click in button ok
+	 */
 	public void confirmPopUp()
 	{
 		if(isDisplayedPopUp())
@@ -111,6 +133,10 @@ public class PopUp
 			getBtnOk().click();
 		}
 	}
+	/**
+	 * Get the message of pop up
+	 * @return the message of pop up
+	 */
 	public String getMenssagePopUp()
 	{
 		return getDivText().getText();

@@ -23,12 +23,15 @@ import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 import br.ufmg.dcc.saotome.beholder.ui.table.Table;
 
 /**
- * Class description: 
+ * Class description: This class represent the screen Search Artist
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class ScreenSearchMedia
 {
+	/*
+	 * This parameters equivalent   the elements in screen  
+	 * This element are providers by Beholder  Framework
+	 */
 	private Select type;
 	private TextField name;
 	private TextField borrowed;
@@ -44,6 +47,10 @@ public class ScreenSearchMedia
 	private PopUp popUpSucessDelete;
 	private LendMedia lendMedia;
 
+	
+	/*
+	 *  constructor  initialize all elements 
+	 */
 	public ScreenSearchMedia()
 	{
 		type = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
@@ -77,6 +84,12 @@ public class ScreenSearchMedia
 		
 		lendMedia = new LendMedia();
 	}
+
+	
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element
+	 * this scan is necessary because the element can not is displayed in screen to the access
+	 */
 
 	public Select getType()
 	{

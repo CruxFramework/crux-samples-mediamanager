@@ -21,75 +21,101 @@ import org.cruxframework.mediamanager.test.model.QueryMedia;
 import org.testng.annotations.DataProvider;
 
 /**
- * Class description: 
+ * Class description:  This class contains methods that return the inputs for testing the class CTSearchMedia
+ * for each method of test exist a method provider of input, the name of a methods provider reference 
+ * a method of test, e.g the method PV001_LoginFail in class PVLogin provide input for test P001_LoginFail in class CTLogin
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: comentar classe e métodos
 public class PVSearchMedia
 {
+	
+	/*
+	 * Each method of this class returns an array object, 
+	 * each row of this array represents an input to 
+	 * a method of testing
+	 */
+	
 	@DataProvider(name = "PV001_SearchMediaWhitExist")
 	public static Object[][] PV001_SearchMediaWhitExist()
 	{
-		return new Object[][] { { "CT001", new Media("CD", "MediaForSearch", "Artista01P006"), new QueryMedia("", "MediaForSearch", "") },
-				{ "CT002", new Media("CD", "MediaForSearch", "Artista01P006"), new QueryMedia("", "MediaForS", "") } };
+		return new Object[][] { 
+				{  new Media("CD", "MediaForSearch", "Artista01P006"), new QueryMedia("", "MediaForSearch", "") },
+				{  new Media("CD", "MediaForSearch", "Artista01P006"), new QueryMedia("", "MediaForS", "") } };
 	}
 
 	@DataProvider(name = "PV002_SearchMediaWhitNotExist")
 	public static Object[][] PV002_SearchMediaWhitNotExist()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("DVD", "NOT EXIST", "") } };
+		return new Object[][] { 
+				{ new QueryMedia("DVD", "NOT EXIST", "") } 
+				};
 	}
 
 	@DataProvider(name = "PV003_EditMedia")
 	public static Object[][] PV003_EditMedia()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("DVD", "MediaForEdit", ""),
-				new Media("CD", "EditMediaDirt", "Artista02P006") } };
+		return new Object[][] { 
+				{  new QueryMedia("DVD", "MediaForEdit", ""), new Media("CD", "EditMediaDirt", "Artista02P006") } 
+				};
 	}
 
 	@DataProvider(name = "PV004_DeleteMedia")
 	public static Object[][] PV004_DeleteMedia()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("", "MediaForDelete1", "") } };
+		return new Object[][] { 
+				{  new QueryMedia("", "MediaForDelete1", "") }
+				};
 	}
 
 	@DataProvider(name = "PV005_EditAndSearchMedia")
 	public static Object[][] PV005_EditAndSearchMedia()
 	{
-		return new Object[][] { { "CT001", new Media("DVD", "MediaForEdit2", "Artista01P006"),
-				new Media("DVD", "MEDIA EDITADA", "Artista02P006") } };
+		return new Object[][] { 
+				{  new Media("DVD", "MediaForEdit2", "Artista01P006"), 	new Media("DVD", "MEDIA EDITADA", "Artista02P006") }
+				};
 	}
 
 	@DataProvider(name = "PV006_DeleteAndSearchMedia")
 	public static Object[][] PV006_DeleteAndSearchMedia()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("", "MediaForDelete2", "") } };
+		return new Object[][] { 
+				{  new QueryMedia("", "MediaForDelete2", "") }
+				};
 	}
 
 	@DataProvider(name = "PV007_LendBorrwed")
 	public static Object[][] PV007_LendBorrwed()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("DVD", "MediaForBorrowed", ""), "Guilherme Alecrim", "2014 Jun 5" } };
+		return new Object[][] { 
+				{  new QueryMedia("DVD", "MediaForBorrowed", ""), "Guilherme Alecrim", "2014 Jun 5" } 
+				};
 	}
 
 	@DataProvider(name = "PV008_LendOnBorred")
 	public static Object[][] PV008_LendOnBorred()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("DVD", "MediaForBorrowed", "") } };
+		return new Object[][] { 
+				{ new QueryMedia("DVD", "MediaForBorrowed", "") } 
+				};
 	}
 
 	@DataProvider(name = "PV009_InvalidDate")
 	public static Object[][] PV009_InvalidDate()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("DVD", "MediaForBorrowed", ""), "André Luiz", "2015 Jun 5" } };
+		return new Object[][] { 
+				{  new QueryMedia("DVD", "MediaForBorrowed", ""), "André Luiz", "2015 Jun 5" } 
+				};
 	}
 
 	@DataProvider(name = "PV010_ChangeValuesOfSearch")
 	public static Object[][] P010_ChangeValuesOfSearch()
 	{
-		return new Object[][] { { "CT001", new QueryMedia("CD", "MediaForSearch", ""),
+		return new Object[][] { 
+				{new QueryMedia("CD", "MediaForSearch", ""),
 				new QueryMedia("DVD", "MediaForSearch2", ""),
 				new LineTableSearchMedia(new Media("CD", "MediaForSearch", "Artista01P006"), ""),
-				new LineTableSearchMedia(new Media("DVD", "MediaForSearch2", "Artista02P006"), "") } };
+				new LineTableSearchMedia(new Media("DVD", "MediaForSearch2", "Artista02P006"), "") } 
+				
+		};
 	}
 }

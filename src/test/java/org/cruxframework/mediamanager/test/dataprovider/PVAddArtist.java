@@ -19,23 +19,30 @@ import org.cruxframework.mediamanager.test.model.Artist;
 import org.testng.annotations.DataProvider;
 
 /**
- * Class description: Massa de dados para os testes de Add Artist  
+ * Class description: This class contains methods that return the inputs for testing the class CTAddArtist
+ * for each method of test exist a method provider of input, the name of a methods provider reference 
+ * a method of test, e.g the method PV001_LoginFail in class PVLogin provide input for test P001_LoginFail in class CTLogin
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim : comentar métodos
 public class PVAddArtist
 {
+	/*
+	 * Each method of this class returns an array object, 
+	 * each row of this array represents an input to 
+	 * a method of testing
+	 */
+	
 	@DataProvider(name = "PV001_Artists")
 	public static Object[][] PV001_Artists()
 	{
-		return new Object[][] { { "CT001", new Artist("Mega death", "United States", "Metal") },
+		return new Object[][] { { new Artist("Mega death", "United States", "Metal") },
 		};
 	}
 
 	@DataProvider(name = "PV002_AddAndChangeArtists")
 	public static Object[][] PV002_AddAndChangeArtists()
 	{
-		return new Object[][] { { "CT001", new Artist("Alice in Chains", "United States", "Metal"),
+		return new Object[][] { {  new Artist("Alice in Chains", "United States", "Metal"),
 				new Artist("Edit Artist", "France", "Rock") },
 		};
 	}
@@ -43,30 +50,35 @@ public class PVAddArtist
 	@DataProvider(name = "PV003_AddAndSearchArtists")
 	public static Object[][] PV003_AddAndSearchArtists()
 	{
-		return new Object[][] { { "CT001", new Artist("Teste3", "United States", "Metal") } };
+		return new Object[][] { {  new Artist("Teste3", "United States", "Metal") } };
 	}
 
 	@DataProvider(name = "PV004_ChangeAndSearchArtist")
 	public static Object[][] PV004_ChangeAndSearchArtist()
 	{
-		return new Object[][] { { "CT001", new Artist("Test4", "United States", "Metal"),
-				new Artist("Test5", "England", "Reggae") } };
+		return new Object[][] { 
+				{new Artist("Test4", "United States", "Metal"),
+				new Artist("Test5", "England", "Reggae") } 
+				};
 	}
 
 	@DataProvider(name = "PV005_FieldCleanToAdd")
 	public static Object[][] PV005_FieldCleanToAdd()
 	{
-		return new Object[][] { { "CT001", new Artist("", "", "") }, { "CT002", new Artist("preenchido", "", "") },
-				{ "CT003", new Artist("", "Brazil", "") }, { "CT004", new Artist("", "", "Blues") } };
+		return new Object[][] {
+				{new Artist("", "", "") }, 
+				{  new Artist("preenchido", "", "") },
+				{  new Artist("", "Brazil", "") },
+				{  new Artist("", "", "Blues") } };
 	}
 
 	@DataProvider(name = "PV006_FieldCleanToChange")
 	public static Object[][] PV006_FieldCleanToChange()
 	{
 		return new Object[][] { 
-				{ "CT001", new Artist("A1P006", "United States", "Metal"), new Artist("", "", "") },
-				{ "CT002", new Artist("A2P006", "United States", "Metal"), new Artist("preenchido", "", "") },
-				{ "CT003", new Artist("A3P006", "United States", "Metal"), new Artist("", "Brazil", "") },
-				{ "CT004", new Artist("A4P006", "United States", "Metal"), new Artist("", "", "Blues") } };
+				{  new Artist("A1P006", "United States", "Metal"), new Artist("", "", "") },
+				{  new Artist("A2P006", "United States", "Metal"), new Artist("preenchido", "", "") },
+				{  new Artist("A3P006", "United States", "Metal"), new Artist("", "Brazil", "") },
+				{  new Artist("A4P006", "United States", "Metal"), new Artist("", "", "Blues") } };
 	}
 }

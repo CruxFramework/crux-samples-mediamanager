@@ -17,22 +17,20 @@ package org.cruxframework.mediamanager.test.procedure;
 
 import org.cruxframework.mediamanager.test.model.Artist;
 import org.cruxframework.mediamanager.test.screen.ScreenSearchArtist;
-import org.cruxframework.mediamanager.test.util.EnumMenu;
 import org.openqa.selenium.NoSuchElementException;
 
 /**
- * Class description: 
+ * Class description: This class implements the  procedures in 'Search Artist' screen
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class PTSearchArtist
 {
 	private static ScreenSearchArtist screenSearchArtist;
 
 	/** 
-	 * Realiza uma pesquisa pelo nome do artista, se o artista não existir retorna null;
-	 * @param name
-	 * @return
+	 * Search for one artist by the name
+	 * @param name: name of artist 
+	 * @return artist searched
 	 */
 	public static Artist searchArtist(String name)
 	{
@@ -52,8 +50,8 @@ public class PTSearchArtist
 	}
 
 	/** 
-	 * Retorna a menssagem "No Results Not Found." e confirma o pop up
-	 * @return
+	 * Confirm the pop up with message "No Results Not Found."
+	 * @return message "No Results Not Found."
 	 */
 	public static String getMessageNoResultsNotFound()
 	{
@@ -63,9 +61,9 @@ public class PTSearchArtist
 	}
 
 	/** 
-	 * Busca pelo artista artist, e edita suas informações com os valores de newValues
-	 * @param artist : artista que será adicionado
-	 * @param newValues: novos valores que serão alterados no artista recém adicionado
+	 * Search by artist and edit your datas with new values 
+	 * @param artist :  artist for search 
+	 * @param newValues: new values or artist searched 
 	 */
 	public static void editArtist(Artist artist, Artist newValues)
 	{
@@ -77,9 +75,9 @@ public class PTSearchArtist
 	}
 
 	/** 
-	 * Realiza o procedimento de deletar um artista
-	 * @param nameArtist
-	 * @return
+	 * Delete one artist
+	 * @param nameArtist: name of artist for delete
+	 * @return: message success to delete
 	 */
 	public static String deleteArtist(String nameArtist)
 	{
@@ -92,6 +90,10 @@ public class PTSearchArtist
 	}
 
 
+	/**
+	 * instantiate the screenSearchArtist
+	 * @return: screenSearchArtist instantiate
+	 */
 	public static ScreenSearchArtist getScreenSearchArtist()
 	{
 		if(screenSearchArtist == null)
@@ -101,21 +103,26 @@ public class PTSearchArtist
 		return screenSearchArtist;
 	}
 
+	/**
+	 * Check if pop up 'No Results Found' is displayed  
+	 * @return true:  pop up  is displayed 
+	 * false:  pop up not is  displayed
+	 */
 	public static boolean isDisplayedPopUp()
 	{
 		return getScreenSearchArtist().getPopUpNoResultsFound().isDisplayedPopUp();
 	}
 	
+	/**
+	 * Check if pop up 'Success Delete' is displayed 
+	 * @return true:  pop up  is displayed 
+	 * false:  pop up not is  displayed
+	 */
 	public static boolean isDisplayedPopUpSucessDelete()
 	{
 		return getScreenSearchArtist().getPopUpSucessDelete().isDisplayedPopUp();
 	}
 	
-	public static void includeArtistsinToDataBase() 
-	{
-		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
-		PTAddArtist.addArtist(new Artist("artista2", "Brazil", "Country"));
-		Navegation.acessMenu(EnumMenu.ADD_ARTIST);
-		PTAddArtist.addArtist(new Artist("artista3", "Mexico", "Reggae"));
-	}
+	
+
 }

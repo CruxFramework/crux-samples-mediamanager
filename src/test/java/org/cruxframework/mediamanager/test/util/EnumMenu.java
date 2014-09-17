@@ -16,10 +16,10 @@
 package org.cruxframework.mediamanager.test.util;
 
 /**
- * Class description:
+ * Class description: This enum represent the  options of menu
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
+
 public enum EnumMenu
 {
 	ADD_ARTIST, SEARCH_ARTIST, ADD_MEDIA, SEARCH_MEDIA, STATISTICS;

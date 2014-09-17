@@ -26,18 +26,17 @@ import br.ufmg.dcc.saotome.beholder.ui.table.Cell;
 import br.ufmg.dcc.saotome.beholder.ui.table.Cell.Coordinate;
 
 /**
- * Class description:
+ * Class description: This class implements the  procedures in 'Search Media' screen
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
 public class PTSearchMedia
 {
 	private static ScreenSearchMedia screenSearchMedia;
 
 	/**
-	 * Retorna a primeira media no resultado de uma busca, ou null caso a busca não retorne nenhum resultado.
-	 * @param queryMedia
-	 * @return
+	 * Returns the first media in a search result, or null if the search does not return any results.
+	 * @param queryMedia: parameter for search media
+	 * @return LineTableSearchMedia: result of search 
 	 */
 	public static LineTableSearchMedia searchMedia(QueryMedia queryMedia)
 	{
@@ -51,11 +50,16 @@ public class PTSearchMedia
 		}
 		catch (NoSuchElementException e)
 		{
-			System.out.println("A sua pesquisa de Media não retornou nenhum resultado.");
+			System.out.println("No results find in your search");
 		}
 		return lsm;
 	}
-
+	/**
+	 * Search for a media and change yours values 
+	 * @param queryMedia: parameter for search media
+	 * @param newValues: new values for search media
+	 * @return message sucess to edit media
+	 */
 	public static String editMedia(QueryMedia queryMedia, Media newValues) 
 	{
 		String sucessEditMedia = null;
@@ -68,6 +72,11 @@ public class PTSearchMedia
 		return sucessEditMedia;
 	}
 
+	/**
+	 * Delete one media 
+	 * @param queryMedia: parameter for search media
+	 * @return message of success to delete media
+	 */
 	public static String deleteMedia(QueryMedia queryMedia)
 	{
 		String sucessOnDelete = null;
@@ -79,6 +88,11 @@ public class PTSearchMedia
 		return sucessOnDelete;
 	}
 
+	/**
+	 * Check if media deleted was exclude of the data base
+	 * @param queryMedia : media for delete
+	 * @return: message 'No Results Found'
+	 */
 	public static String deleteAndSearhcMedia(QueryMedia queryMedia)
 	{
 		String noResultsFound = null;
@@ -89,6 +103,12 @@ public class PTSearchMedia
 		return noResultsFound;
 	}
 
+	/**
+	 * Check if changes in media occurs in database
+	 * @param media: current parameters of the media 
+	 * @param newValues: new values for media
+	 * @return: media searched in 'Search Media' screens
+	 */
 	public static Media editAndSearchMedia(Media media, Media newValues)
 	{
 		LineTableSearchMedia lsm = new LineTableSearchMedia();
@@ -101,13 +121,21 @@ public class PTSearchMedia
 		return lsm.getMedia();
 	}
 
-	public static void populateFieldsQuery(QueryMedia queryMedia)
+	/**
+	 * Fill fields of 'Search Media' screen
+	 * @param values: values to fill  
+	 */
+	public static void populateFieldsQuery(QueryMedia values)
 	{
-		getScreenSearchMedia().getType().select(queryMedia.getType());
-		getScreenSearchMedia().getName().fill(queryMedia.getName());
-		getScreenSearchMedia().getBorrowed().fill(queryMedia.getBorrowed());
+		getScreenSearchMedia().getType().select(values.getType());
+		getScreenSearchMedia().getName().fill(values.getName());
+		getScreenSearchMedia().getBorrowed().fill(values.getBorrowed());
 	}
 
+	/**
+	 * Realize one search 
+	 * @return the first result of a search 
+	 */
 	public static LineTableSearchMedia getFirstLineSearch()
 	{
 		LineTableSearchMedia lsm = new LineTableSearchMedia();
@@ -120,6 +148,12 @@ public class PTSearchMedia
 		return lsm;
 	}
 
+	/**
+	 * Lend one media
+	 * @param queryMedia: parameters of search
+	 * @param nameLend: name of the client which borrowed media
+	 * @param dateLend: date of the lend media
+	 */
 	public static void lendMedia(QueryMedia queryMedia, String nameLend, String dateLend) 
 	{
 		PTSearchMedia.searchMedia(queryMedia);
@@ -131,6 +165,10 @@ public class PTSearchMedia
 		getScreenSearchMedia().getLendMedia().getBtnSave().click();
 	}
 
+	/**
+	 * Unborrowed media
+	 * @param queryMedia: parameter for search media.  
+	 */
 	public static void lendMediaUnborrowed(QueryMedia queryMedia)
 	{
 		PTSearchMedia.searchMedia(queryMedia);
@@ -138,57 +176,38 @@ public class PTSearchMedia
 		getScreenSearchMedia().getLendMedia().getCbBorrowed().uncheck();
 	}
 
-	private static void fillDate(String date)
-	{
-		int year = getYear(date);
-		int month = getMonth(date);
-		int day = Integer.parseInt(date.substring(9));
-		selectYearOrMonth(year, false);
-		selectYearOrMonth(month, true);
-		selectDay(day);
-	}
-
 	/**
-	 * seleciona um dia no calendario trandando os casos em que um dia pode aparecer mais dia vez em um mês - dias (1-10)
-	 * e (20-31) podem aparecer no inicio e no fim do mês
-	 * @param strDay
+	 * Instance screenSearchMedia
+	 * @return screenSearchMedia
 	 */
-	private static void selectDay(int strDay)
-	{
-		Coordinate c = null;
-		boolean stop = false;
-		for (int i = 2; i < 8; i++)
-		{
-			for (int j = 1; j < 8; j++)
-			{
-				Cell dayCell = screenSearchMedia.getLendMedia().getTbDayCalendar().getCell(i, j);
-				int day = Integer.parseInt(dayCell.getText());
-				if (strDay == day)
-				{
-					c = new Coordinate(i, j);
-					if (strDay < 10)
-					{
-						stop = true;
-						break;
-					}
-					else if ((strDay > 20 && strDay < 31))
-					{
-						continue;
-					}
-				}
-			}
-			if (stop)
-			{
-				break;
-			}
-		}
-		screenSearchMedia.getLendMedia().getTbDayCalendar().getCell(c).click();
-	}
 
+	public static ScreenSearchMedia getScreenSearchMedia()
+	{
+		if (screenSearchMedia == null )
+		{
+			screenSearchMedia = new ScreenSearchMedia();
+		}
+		return screenSearchMedia;
+	}
+	
+	public static String searchMediaWithNotExist(QueryMedia query)
+	{
+		PTSearchMedia.searchMedia(query);
+		String noResultsFound = PTSearchMedia.getScreenSearchMedia().getPopUpNoResultsFound().getMenssagePopUp();
+		return noResultsFound;
+	}
+	
+	
+	/* 
+	 * ********************************************************
+	 * This auxiliary methods for fill date to lend media screen
+	 * ********************************************************
+	 */
+	
 	/** 
-	 * seleciona no calendario um mes ou um ano, por default seleciona um ano
-	 * @param yearOrMonth
-	 * @param optionMonth
+	 * Browse in the calendar to find month or year
+	 * @param yearOrMonth: year or month for select 
+	 * @param optionMonth: month for select
 	 */
 	private static void selectYearOrMonth(int yearOrMonth, boolean optionMonth)
 	{
@@ -225,24 +244,82 @@ public class PTSearchMedia
 	}
 
 	/** 
-	 * pega o ano que esta no calendario
-	 * @param yearMonth
-	 * @return
+	 * Get year string composed by year and month in the header of  calendar 
+	 * @param yearMonth: string year month in the header of calendar 
+	 * @return: year 
 	 */
 	private static Integer getYear(String yearMonth)
 	{
 		Integer year = Integer.parseInt(yearMonth.substring(0, 4));
 		return year;
 	}
-
-	/** 
-	 * pega o mes que esta no calendario
-	 * @param yearMonth
-	 * @return
+	
+	/**
+	 * Fill fiedl date
+	 * @param date: date in format dd/mm/yyyy
 	 */
-	private static int getMonth(String yearMonth)
+	private static void fillDate(String date)
 	{
-		String month = yearMonth.substring(5, 8);
+		int year = getYear(date);
+		int month = getMonth(date);
+		int day = Integer.parseInt(date.substring(9));
+		selectYearOrMonth(year, false);
+		selectYearOrMonth(month, true);
+		selectDay(day);
+	}
+
+	/**
+	 * Select one day in calendar
+	 * @param strDay: day for select 
+	 */
+	private static void selectDay(int strDay)
+	{
+		Coordinate c = null;
+		boolean stop = false;
+		for (int i = 2; i < 8; i++)
+		{
+			for (int j = 1; j < 8; j++)
+			{
+				Cell dayCell = screenSearchMedia.getLendMedia().getTbDayCalendar().getCell(i, j);
+				int day = Integer.parseInt(dayCell.getText());
+				if (strDay == day)
+				{
+					c = new Coordinate(i, j);
+					/*
+					 * cases one day is displayed more than once in matrix of moth
+					 * e.g day 1, can is displayed in begin and the end of the matrix month
+					 */
+					if (strDay < 10)
+					{
+						stop = true;
+						break;
+					}
+					/*
+					 * case interval of day 20 - 31 is displayed more that once in the matrix month
+					 * e.g day 31 of the current month and day 31 month before 
+					 */
+					else if ((strDay > 20 && strDay < 31))
+					{
+						continue;
+					}
+				}
+			}
+			if (stop)
+			{
+				break;
+			}
+		}
+		screenSearchMedia.getLendMedia().getTbDayCalendar().getCell(c).click();
+	}
+	
+	/** 
+	 * Map the month in calendar for a option integer  
+	 * @param calendarMonth: String which represent month in the calendar
+	 * @return: option integer equivalent to month.
+	 */
+	private static int getMonth(String calendarMonth)
+	{
+		String month = calendarMonth.substring(5, 8);
 		if (month.equals("Jan"))
 		{
 			return 1;
@@ -293,19 +370,4 @@ public class PTSearchMedia
 		}
 	}
 
-	public static ScreenSearchMedia getScreenSearchMedia()
-	{
-		if (screenSearchMedia == null )
-		{
-			screenSearchMedia = new ScreenSearchMedia();
-		}
-		return screenSearchMedia;
-	}
-	
-	public static String searchMediaWithNotExist(QueryMedia query)
-	{
-		PTSearchMedia.searchMedia(query);
-		String noResultsFound = PTSearchMedia.getScreenSearchMedia().getPopUpNoResultsFound().getMenssagePopUp();
-		return noResultsFound;
-	}
 }
