@@ -23,29 +23,21 @@ import org.cruxframework.mediamanager.test.util.EnumStatistics;
 import org.cruxframework.mediamanager.test.util.EnumTypeStatistic;
 
 /**
- * Class description: This class implements the procedures for 'Statistics' screen
+ * Class description: This class implements the procedures for 'Statistics' screen.
+ * 
  * @author guilherme.alecrim
  */
 public class PTStatistics
 {
 	private static ScreenStatistics screenStatistics;
 
-	
-	public static ScreenStatistics getScreenStatistics()
-	{
-		if (screenStatistics == null)
-		{
-			screenStatistics = new ScreenStatistics();
-		}
-		return screenStatistics;
-	}
-
 	/**
-	 * Increment the value of the one statistic 
-	 * @param media : media for add in the data base
-	 * @param statistic: statistic for increment e.g total, borrowed or more than one month
+	 * Increment the value of the one statistic.
+	 * 
+	 * @param media media for add in the data base
+	 * @param statistic statistic for increment e.g total, borrowed or more than one month
 	 */
-	public static void incrementStatistic(Media media, EnumTypeStatistic statistic) 
+	public static void incrementStatistic(Media media, EnumTypeStatistic statistic)
 	{
 		switch (statistic)
 		{
@@ -64,11 +56,12 @@ public class PTStatistics
 	}
 
 	/**
-	 * Decrement the value of the one statistic 
-	 * @param media:  media for remove in the data base
-	 * @param statistic: statistic for decrement e.g total, borrowed or more than one month
+	 * Decrement the value of the one statistic.
+	 * 
+	 * @param media media for remove in the data base
+	 * @param statistic statistic for decrement e.g total, borrowed or more than one month
 	 */
-	public static void decrementStatistic(Media media, EnumTypeStatistic statistic)  
+	public static void decrementStatistic(Media media, EnumTypeStatistic statistic)
 	{
 		switch (statistic)
 		{
@@ -87,9 +80,10 @@ public class PTStatistics
 	}
 
 	/**
-	 * Get value of statistic  in the screen Statistics
-	 * @param statistic: statistic desired
-	 * @return: value correspondent of statistic desired
+	 * Get value of statistic in the screen Statistics.
+	 * 
+	 * @param statistic statistic desired
+	 * @return value correspondent of statistic desired
 	 */
 	public static int getValueStatistics(EnumStatistics statistic)
 	{
@@ -112,18 +106,21 @@ public class PTStatistics
 		}
 	}
 
+	/**
+	 * Get screen name.
+	 * @return name
+	 */
 	public static String getNameScreenStatistics()
 	{
 		return getScreenStatistics().getNameScreen();
 	}
-	
-	
-	
+
 	/**
 	 * Increment value of statistic Total
+	 * 
 	 * @param media: media for add in the data base
 	 */
-	private static void incrementTotal(Media media) 
+	private static void incrementTotal(Media media)
 	{
 		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
 		PTAddMedia.addMedia(media);
@@ -132,10 +129,10 @@ public class PTStatistics
 
 	/**
 	 * Increment value of statistic Total Borrowed
-	 * @param media: media for borrowed  
+	 * 
+	 * @param media: media for borrowed
 	 */
-	
-	private static void incrementTotalBorrowed(Media media) 
+	private static void incrementTotalBorrowed(Media media)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 Jun 20");
@@ -144,9 +141,10 @@ public class PTStatistics
 
 	/**
 	 * Increment value of statistic More Than One Month
-	 * @param media:  media for borrowed  more than one month
+	 * 
+	 * @param media: media for borrowed more than one month
 	 */
-	private static void incrementMoreThanOneMonth(Media media)  
+	private static void incrementMoreThanOneMonth(Media media)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 May 3");
@@ -155,9 +153,10 @@ public class PTStatistics
 
 	/**
 	 * Decrement value of statistic Total
-	 * @param media:  media for remove in the data base
+	 * 
+	 * @param media: media for remove in the data base
 	 */
-	private static void decrementTotal(Media media)  
+	private static void decrementTotal(Media media)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.deleteMedia(new QueryMedia(media.getType(), media.getName(), ""));
@@ -166,9 +165,10 @@ public class PTStatistics
 
 	/**
 	 * Decrement value of statistic Total Borrowed
+	 * 
 	 * @param media: media for remove in the data base
 	 */
-	private static void decrementTotalBorrowed(Media media) 
+	private static void decrementTotalBorrowed(Media media)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMediaUnborrowed(new QueryMedia(media.getType(), media.getName(), "André Luiz"));
@@ -178,14 +178,22 @@ public class PTStatistics
 
 	/**
 	 * Decrement value of statistic More Than On eMonth
+	 * 
 	 * @param media: media for remove in the data base
 	 */
-	private static void decrementMoreThanOneMonth(Media media)  
+	private static void decrementMoreThanOneMonth(Media media)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 Jul 3");
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 	
-	
+	private static ScreenStatistics getScreenStatistics()
+	{
+		if (screenStatistics == null)
+		{
+			screenStatistics = new ScreenStatistics();
+		}
+		return screenStatistics;
+	}
 }

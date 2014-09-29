@@ -28,15 +28,19 @@ import org.cruxframework.mediamanager.client.service.StatisticsServiceAsync;
 import org.cruxframework.mediamanager.shared.dto.StatisticsDTO;
 
 /**
- * Class description: 
+ * Class description: Statistics view controller.
+ * 
  * @author alexandre.costa
  */
 @Controller("statisticsController")
 public class StatisticsController extends AbstractController
 {
 	@Inject
-	public StatisticsServiceAsync statisticsServiceAsync;
-	
+	private StatisticsServiceAsync statisticsServiceAsync;
+
+	/**
+	 * Handles view activate event. Loads statistics. 
+	 */
 	@Expose
 	public void onActivate()
 	{
@@ -46,35 +50,35 @@ public class StatisticsController extends AbstractController
 		{
 			@Override
 			public void onComplete(StatisticsDTO result)
-			{	
+			{
 				WaitBox.hideAllDialogs();
 				View view = View.of(StatisticsController.this);
-				((Label)view.getWidget("totalCDsLabel")).setText(
-					result.getTotalCDs().toString());
-				
-				((Label)view.getWidget("borrowedCDsLabel")).setText(
-					result.getBorrowedCDs().toString());
-				
-				((Label)view.getWidget("forgottenCDsLabel")).setText(
-					result.getForgottenCDs().toString());
-				
-				((Label)view.getWidget("totalDVDsLabel")).setText(
-					result.getTotalDVDs().toString());
-				
-				((Label)view.getWidget("borrowedDVDsLabel")).setText(
-					result.getBorrowedDVDs().toString());
-				
-				((Label)view.getWidget("forgottenDVDsLabel")).setText(
-					result.getForgottenDVDs().toString());
-				
+				((Label) view.getWidget("totalCDsLabel")).setText(result.getTotalCDs().toString());
+				((Label) view.getWidget("borrowedCDsLabel")).setText(result.getBorrowedCDs().toString());
+				((Label) view.getWidget("forgottenCDsLabel")).setText(result.getForgottenCDs().toString());
+				((Label) view.getWidget("totalDVDsLabel")).setText(result.getTotalDVDs().toString());
+				((Label) view.getWidget("borrowedDVDsLabel")).setText(result.getBorrowedDVDs().toString());
+				((Label) view.getWidget("forgottenDVDsLabel")).setText(result.getForgottenDVDs().toString());
 			}
-			
+
 			@Override
-			public void onError(Throwable e) 
+			public void onError(Throwable e)
 			{
 				WaitBox.hideAllDialogs();
 				super.onError(e);
 			}
 		});
+	}
+	
+	/***********************************************
+	 * Getters and setters
+	 **********************************************/
+	
+	/**
+	 * @param statisticsServiceAsync the statisticsServiceAsync to set
+	 */
+	public void setStatisticsServiceAsync(StatisticsServiceAsync statisticsServiceAsync)
+	{
+		this.statisticsServiceAsync = statisticsServiceAsync;
 	}
 }

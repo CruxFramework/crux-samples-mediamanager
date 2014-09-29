@@ -19,9 +19,11 @@ import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.DataResource;
 
 /**
+ * Class description: Resources class. 
+ * 
  * @author Claudio Junior
- *
  */
+// CHECKSTYLE:OFF
 public interface MediaManagerResourcesCommon extends ClientBundle
 {
 	@Source("svg-icon-locker.svg")
@@ -50,5 +52,4 @@ public interface MediaManagerResourcesCommon extends ClientBundle
 	
 	@Source("svg-icon-close.svg")
 	DataResource svgIconClose();
-	
 }

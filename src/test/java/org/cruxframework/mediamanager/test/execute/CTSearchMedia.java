@@ -26,22 +26,23 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- *Class description: This class performs the tests  of the "Search Media " screen. 
- *The providers of inputs  are methods of class PVSearchMedia
+ * Class description: This class performs the tests of the "Search Media " screen. The providers of inputs are methods of class
+ * PVSearchMedia
+ * 
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVSearchMedia}
  * @author guilherme.alecrim
  */
 @Test(groups = { "mediaManager", "searchMedia" }, priority = 6)
 public class CTSearchMedia
 {
-	
 	/**
 	 * Search for an average contained in the database, and checks if media is displayed in the results table.
-	 * @param media: media expected in the search
-	 * @param query: attributes of the search 
+	 * 
+	 * @param media media expected in the search
+	 * @param query attributes of the search
 	 */
 	@Test(enabled = true, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class)
-	public void P001_SearchMediaWhitExist( Media media, QueryMedia query)  
+	public void p001SearchMediaWhitExist(Media media, QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		LineTableSearchMedia ltsm = PTSearchMedia.searchMedia(query);
@@ -51,23 +52,25 @@ public class CTSearchMedia
 
 	/**
 	 * Search by a media that is not in the database and verifies that the pop up with the message "No results found." is displayed.
-	 * @param query: attributes of the search 
+	 * 
+	 * @param query attributes of the search
 	 */
 	@Test(enabled = true, dataProvider = "PV002_SearchMediaWhitNotExist", dataProviderClass = PVSearchMedia.class)
-	public void P002_SearchMediaWhitNotExist(QueryMedia query) 
+	public void p002SearchMediaWhitNotExist(QueryMedia query)
 	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);		
+		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String noResultsFound = PTSearchMedia.searchMediaWithNotExist(query);
 		Assert.assertEquals(noResultsFound, "No results found.");
 	}
 
 	/**
 	 * Edit data from a media and verifies if the pop up with the message "Successfully saved!" is displayed.
-	 * @param query:  attributes of the search 
-	 * @param newValues: new values for media searched 
+	 * 
+	 * @param query attributes of the search
+	 * @param newValues new values for media searched
 	 */
 	@Test(enabled = true, dataProvider = "PV003_EditMedia", dataProviderClass = PVSearchMedia.class)
-	public void P003_EditMedia( QueryMedia query, Media newValues)  
+	public void p003EditMedia(QueryMedia query, Media newValues)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String sucessEditMedia = PTSearchMedia.editMedia(query, newValues);
@@ -75,11 +78,12 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Deletes a media and verifies that pop up with the mensage "Record successfully deleted!"  is displayed
-	 * @param query: attributes of the search 
+	 * Deletes a media and verifies that pop up with the message "Record successfully deleted!" is displayed.
+	 * 
+	 * @param query attributes of the search
 	 */
 	@Test(enabled = true, dataProvider = "PV004_DeleteMedia", dataProviderClass = PVSearchMedia.class)
-	public void P004_DeleteMedia(QueryMedia query)  
+	public void p004DeleteMedia(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String sucessOnDelete = PTSearchMedia.deleteMedia(query);
@@ -87,12 +91,13 @@ public class CTSearchMedia
 	}
 
 	/**
-	 *Edit data from a media and conducts a search to verify that the data was performs changed in the database.
-	 * @param media: media for edit
-	 * @param newValues: new values for media
+	 * Edit data from a media and conducts a search to verify that the data was performs changed in the database.
+	 * 
+	 * @param media media for edit
+	 * @param newValues new values for media
 	 */
 	@Test(enabled = true, dataProvider = "PV005_EditAndSearchMedia", dataProviderClass = PVSearchMedia.class)
-	public void P005_EditAndSearchMedia( Media media, Media newValues)  
+	public void p005EditAndSearchMedia(Media media, Media newValues)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		media = PTSearchMedia.editAndSearchMedia(media, newValues);
@@ -100,11 +105,12 @@ public class CTSearchMedia
 	}
 
 	/**
-	 *Delete a media and conducts a search to see if the media is performs deleted from the database.
-	 * @param query: media for delete
+	 * Delete a media and conducts a search to see if the media is performs deleted from the database.
+	 * 
+	 * @param query media for delete
 	 */
 	@Test(enabled = true, dataProvider = "PV006_DeleteAndSearchMedia", dataProviderClass = PVSearchMedia.class)
-	public void P006_DeleteAndSearchMedia( QueryMedia query)
+	public void p006DeleteAndSearchMedia(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		String noResultsFound = PTSearchMedia.deleteAndSearhcMedia(query);
@@ -112,13 +118,14 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Borrow one media. 
-	 * @param query: attributes of the search 
-	 * @param name: client name 
-	 * @param date: date of the borrow
+	 * Borrow one media.
+	 * 
+	 * @param query attributes of the search
+	 * @param name client name
+	 * @param date date of the borrow
 	 */
 	@Test(enabled = true, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class)
-	public void P007_LendBorrwed( QueryMedia query, String name, String date)  
+	public void p007LendBorrwed(QueryMedia query, String name, String date)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(query, name, date);
@@ -127,11 +134,12 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Check if not marking the checkbox "Borrowed" lock the others inputs of the LendMedia  screen 
-	 * @param query:  attributes of the search 
+	 * Check if not marking the checkbox "Borrowed" lock the others inputs of the LendMedia screen.
+	 * 
+	 * @param query attributes of the search
 	 */
 	@Test(enabled = true, dataProvider = "PV008_LendOnBorred", dataProviderClass = PVSearchMedia.class)
-	public void P008_LendOnBorred(QueryMedia query) 
+	public void p008LendOnBorred(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMediaUnborrowed(query);
@@ -140,13 +148,14 @@ public class CTSearchMedia
 	}
 
 	/**
-	 * Checks whether the LendMedia screen  fill a larger date than the current is displayed the date pop up.
-	 * @param query: attributes of the search 
-	 * @param name: client name 
-	 * @param date: date of the borrow
+	 * Checks whether the LendMedia screen fill a larger date than the current is displayed the date pop up.
+	 * 
+	 * @param query attributes of the search
+	 * @param name client name
+	 * @param date date of the borrow
 	 */
 	@Test(enabled = true, dataProvider = "PV009_InvalidDate", dataProviderClass = PVSearchMedia.class)
-	public void P009_InvalidDate(QueryMedia query, String name, String date)  
+	public void p009InvalidDate(QueryMedia query, String name, String date)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		PTSearchMedia.lendMedia(query, name, date);
@@ -156,14 +165,15 @@ public class CTSearchMedia
 
 	/**
 	 * Performs two search in sequence and checks if the result table has been updated with the results of the second search .
-	 * @param firstQuery: First search
-	 * @param secondQuery: Second search
-	 * @param resultFirstQuery: Result expect of first search
-	 * @param resultSecondQuery: Result expect of second search
+	 * 
+	 * @param firstQuery First search
+	 * @param secondQuery Second search
+	 * @param resultFirstQuery Result expect of first search
+	 * @param resultSecondQuery Result expect of second search
 	 */
 	@Test(enabled = true, dataProvider = "PV010_ChangeValuesOfSearch", dataProviderClass = PVSearchMedia.class)
-	public void P010_ChangeValuesOfSearch(QueryMedia firstQuery, QueryMedia secondQuery,
-			LineTableSearchMedia resultFirstQuery, LineTableSearchMedia resultSecondQuery) 
+	public void p010ChangeValuesOfSearch(QueryMedia firstQuery, QueryMedia secondQuery, LineTableSearchMedia resultFirstQuery,
+	    LineTableSearchMedia resultSecondQuery)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
 		LineTableSearchMedia lt = PTSearchMedia.searchMedia(firstQuery);

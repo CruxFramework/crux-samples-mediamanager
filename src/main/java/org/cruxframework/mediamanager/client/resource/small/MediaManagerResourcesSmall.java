@@ -22,9 +22,11 @@ import org.cruxframework.mediamanager.client.resource.common.MediaManagerResourc
 import com.google.gwt.resources.client.DataResource;
 
 /**
+ * Class description: Resources class. 
+ * 
  * @author Claudio Junior
- *
  */
+// CHECKSTYLE:OFF
 @Resource(value="mediaManagerResources", supportedDevices={Device.smallDisplayArrows, Device.smallDisplayTouch})
 public interface MediaManagerResourcesSmall extends MediaManagerResourcesCommon
 {

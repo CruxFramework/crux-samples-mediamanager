@@ -21,13 +21,41 @@ import org.cruxframework.mediamanager.client.reuse.controller.EditOperation;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Class description: Interface for REST operations. 
+ * 
+ * @param <T> DTO class
+ * 
  * @author alexandre.costa
  */
 public interface RestServiceProxy<T extends AbstractDTO> extends RestProxy
 {
+	/**
+	 * Get a resource by id.
+	 * @param id resource id
+	 * @param callback callback object
+	 */
 	void get(Integer id, Callback<T> callback);
+
+	/**
+	 * Updates a resource.
+	 * @param id resource id
+	 * @param dto resource object
+	 * @param callback callback object
+	 */
 	void update(Integer id, T dto, Callback<EditOperation> callback);
+
+	/**
+	 * Create a new resource.
+	 * @param dto resource to be created. 
+	 * @param callback callback object
+	 */
 	void insert(T dto, Callback<EditOperation> callback);
+
+	/**
+	 * Removes a resource.
+	 * @param id resource id
+	 * @param dto resource to be removed
+	 * @param callback callback object
+	 */
 	void delete(Integer id, T dto, Callback<EditOperation> callback);
 }

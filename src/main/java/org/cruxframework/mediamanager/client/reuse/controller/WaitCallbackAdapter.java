@@ -20,11 +20,12 @@ import org.cruxframework.crux.core.client.rest.Callback;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
 
 /**
- * Class description: 
+ * Class description: Callback for async operations. Closes wait box on success or on error. 
+ * 
  * @author alexandre.costa
+ * @param <T> return object type
  */
-public abstract class WaitCallbackAdapter<T extends Object> 
-	implements Callback<T>
+public abstract class WaitCallbackAdapter<T extends Object> implements Callback<T>
 {
 	protected abstract void success(T result);
 
@@ -34,7 +35,8 @@ public abstract class WaitCallbackAdapter<T extends Object>
 		try
 		{
 			success(result);
-		} finally
+		}
+		finally
 		{
 			WaitBox.hideAllDialogs();
 		}
@@ -46,7 +48,7 @@ public abstract class WaitCallbackAdapter<T extends Object>
 		WaitBox.hideAllDialogs();
 		error(e);
 	}
-	
+
 	protected void error(Exception e)
 	{
 		Crux.getErrorHandler().handleError(e.getLocalizedMessage(), e);

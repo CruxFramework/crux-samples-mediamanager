@@ -21,6 +21,7 @@ import org.cruxframework.crux.core.server.rest.core.registry.RestServiceFactoryI
 
 /**
  * Class description: Crux -> Springframework integration.
+ * 
  * @author alexandre.costa
  */
 public class SpringServiceFactory extends RestServiceFactoryImpl
@@ -28,7 +29,7 @@ public class SpringServiceFactory extends RestServiceFactoryImpl
 	@Override
 	public Object getService(Class<?> serviceClass)
 	{
-		return  SpringUtils.get().getBean(serviceClass);
+		return SpringUtils.get().getBean(serviceClass);
 	}
 
 	@Override

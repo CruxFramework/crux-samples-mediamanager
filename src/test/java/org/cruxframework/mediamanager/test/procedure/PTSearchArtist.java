@@ -20,16 +20,18 @@ import org.cruxframework.mediamanager.test.screen.ScreenSearchArtist;
 import org.openqa.selenium.NoSuchElementException;
 
 /**
- * Class description: This class implements the  procedures in 'Search Artist' screen
+ * Class description: This class implements the procedures in 'Search Artist' screen.
+ * 
  * @author guilherme.alecrim
  */
 public class PTSearchArtist
 {
 	private static ScreenSearchArtist screenSearchArtist;
 
-	/** 
-	 * Search for one artist by the name
-	 * @param name: name of artist 
+	/**
+	 * Search for one artist by the name.
+	 * 
+	 * @param name name of artist
 	 * @return artist searched
 	 */
 	public static Artist searchArtist(String name)
@@ -44,13 +46,14 @@ public class PTSearchArtist
 		catch (NoSuchElementException e)
 		{
 			System.out.println("NoSuchElementException: não foi encontrado artista como nome: " + name);
-			
+
 		}
 		return artist;
 	}
 
-	/** 
-	 * Confirm the pop up with message "No Results Not Found."
+	/**
+	 * Confirm the pop up with message "No Results Not Found.".
+	 * 
 	 * @return message "No Results Not Found."
 	 */
 	public static String getMessageNoResultsNotFound()
@@ -60,10 +63,11 @@ public class PTSearchArtist
 		return msg;
 	}
 
-	/** 
-	 * Search by artist and edit your datas with new values 
-	 * @param artist :  artist for search 
-	 * @param newValues: new values or artist searched 
+	/**
+	 * Search by artist and edit your datas with new values.
+	 * 
+	 * @param artist artist for search
+	 * @param newValues new values or artist searched
 	 */
 	public static void editArtist(Artist artist, Artist newValues)
 	{
@@ -74,10 +78,11 @@ public class PTSearchArtist
 		PTAddArtist.getScreenAddArtist().getPopUp().getBtnOk().click();
 	}
 
-	/** 
-	 * Delete one artist
-	 * @param nameArtist: name of artist for delete
-	 * @return: message success to delete
+	/**
+	 * Delete one artist.
+	 * 
+	 * @param nameArtist name of artist for delete
+	 * @return success delete message
 	 */
 	public static String deleteArtist(String nameArtist)
 	{
@@ -89,14 +94,14 @@ public class PTSearchArtist
 		return msg;
 	}
 
-
 	/**
-	 * instantiate the screenSearchArtist
-	 * @return: screenSearchArtist instantiate
+	 * instantiate the screenSearchArtist.
+	 * 
+	 * @return screenSearchArtist instantiate
 	 */
 	public static ScreenSearchArtist getScreenSearchArtist()
 	{
-		if(screenSearchArtist == null)
+		if (screenSearchArtist == null)
 		{
 			screenSearchArtist = new ScreenSearchArtist();
 		}
@@ -104,25 +109,22 @@ public class PTSearchArtist
 	}
 
 	/**
-	 * Check if pop up 'No Results Found' is displayed  
-	 * @return true:  pop up  is displayed 
-	 * false:  pop up not is  displayed
+	 * Check if pop up 'No Results Found' is displayed.
+	 * 
+	 * @return true: pop up is displayed false: pop up not is displayed
 	 */
 	public static boolean isDisplayedPopUp()
 	{
 		return getScreenSearchArtist().getPopUpNoResultsFound().isDisplayedPopUp();
 	}
-	
+
 	/**
-	 * Check if pop up 'Success Delete' is displayed 
-	 * @return true:  pop up  is displayed 
-	 * false:  pop up not is  displayed
+	 * Check if pop up 'Success Delete' is displayed.
+	 * 
+	 * @return true: pop up is displayed false: pop up not is displayed
 	 */
 	public static boolean isDisplayedPopUpSucessDelete()
 	{
 		return getScreenSearchArtist().getPopUpSucessDelete().isDisplayedPopUp();
 	}
-	
-	
-
 }

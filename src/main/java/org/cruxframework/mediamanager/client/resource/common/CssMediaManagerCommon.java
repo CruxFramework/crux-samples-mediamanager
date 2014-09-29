@@ -18,8 +18,9 @@ package org.cruxframework.mediamanager.client.resource.common;
 import com.google.gwt.resources.client.CssResource;
 
 /**
+ * Class description: Resources class. 
+ * 
  * @author Claudio Junior
- *
  */
 public interface CssMediaManagerCommon extends CssResource
 {

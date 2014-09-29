@@ -29,120 +29,159 @@ import org.cruxframework.mediamanager.client.service.LoginServiceAsync;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * Class description: 
+ * View controller for menu commands.
+ * 
  * @author alexandre.costa
  */
 @Controller("menuController")
 public class MenuController
-{	
-	@Inject
-	public LoginServiceAsync loginServiceAsync;
+{
+	private static final String ON = "on";
 
+	private static final String MM_HEADER = "mmHeader";
+
+	private static final String VIEWS = "views";
+	
+	@Inject
+	private LoginServiceAsync loginServiceAsync;
+
+	/**
+	 * Handles activate event.
+	 */
 	@Expose
 	public void onActivate()
 	{
 		animateMenuIn();
 	}
-	
+
+	/**
+	 * Shows add artist view.
+	 */
 	@Expose
 	public void addArtist()
 	{
-		((SimpleViewContainer) Screen.get("views")).showView("artist");
+		((SimpleViewContainer) Screen.get(VIEWS)).showView("artist");
 		closeMenu();
 	}
-	
+
+	/**
+	 * Shows add media view.
+	 */
 	@Expose
 	public void addMedia()
 	{
-		((SingleViewContainer) Screen.get("views")).showView("media");
+		((SingleViewContainer) Screen.get(VIEWS)).showView("media");
 		closeMenu();
 	}
-	
+
+	/**
+	 * Shows statistics view.
+	 */
 	@Expose
 	public void stats()
 	{
-		((SingleViewContainer) Screen.get("views")).showView("statistics");
+		((SingleViewContainer) Screen.get(VIEWS)).showView("statistics");
 		closeMenu();
 	}
-	
+
+	/**
+	 * Shows search artist view.
+	 */
 	@Expose
 	public void searchArtist()
 	{
-		((SingleViewContainer) Screen.get("views")).showView("artists");
+		((SingleViewContainer) Screen.get(VIEWS)).showView("artists");
 		closeMenu();
 	}
-	
+
+	/**
+	 * Shows search media view.
+	 */
 	@Expose
 	public void searchMedia()
 	{
-		((SingleViewContainer) Screen.get("views")).showView("medias");
+		((SingleViewContainer) Screen.get(VIEWS)).showView("medias");
 		closeMenu();
 	}
-	
+
+	/**
+	 * Performs user logout.
+	 */
 	@Expose
 	public void signOut()
 	{
 		loginServiceAsync.logout(new LogoutCallback());
 	}
+
+	/**
+	 * Toggle menu.
+	 */
+	@Expose
+	public void toggleMenu()
+	{
+		Widget header = View.of(this).getWidget(MM_HEADER);
+		if ((header.getStyleName()).indexOf(ON) != -1)
+		{
+			header.removeStyleName(ON);
+		}
+		else
+		{
+			header.addStyleName(ON);
+		}
+	}
+	
+	/********************************************
+	 * Getters and setters
+	 ********************************************/
+	
+	/**
+	 * @param loginServiceAsync the loginServiceAsync to set
+	 */
+	public void setLoginServiceAsync(LoginServiceAsync loginServiceAsync)
+	{
+		this.loginServiceAsync = loginServiceAsync;
+	}
+
+
+	/*********************************************
+	 * Animations
+	 *********************************************/
 	
 	private static void hideMenu()
 	{
 		Screen.get("menuView").setVisible(false);
 	}
+
+	private void animateMenuIn()
+	{
+		Widget header = View.of(this).getWidget(MM_HEADER);
+		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.slideInDown);
+		animation.animate(header);
+	}
+
+	private void closeMenu()
+	{
+		Widget header = View.of(this).getWidget(MM_HEADER);
+		header.removeStyleName(ON);
+	}
 	
 	/*********************************************
 	 * Callback classes
 	 *********************************************/
-	
+
 	private class LogoutCallback extends AsyncCallbackAdapter<Void>
 	{
 		@Override
 		public void onComplete(Void result)
 		{
-			((SingleViewContainer) Screen.get("views")).showView("login");
+			((SingleViewContainer) Screen.get(VIEWS)).showView("login");
 			hideMenu();
 		}
-		
+
 		@Override
 		public void onError(Throwable e)
 		{
 			animateMenuIn();
-		}
-	}
-	
-	/*********************************************
-	 * Animations
-	 *********************************************/
-	
-	public void animateMenuIn()
-	{
-		Widget header = View.of(this).getWidget("mmHeader");
-		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.slideInDown);
-		animation.animate(header);
-	}
-	
-	public void animateMenuOut()
-	{
-		Widget header = View.of(this).getWidget("mmHeader");
-		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.slideOutUp);
-		animation.animate(header);
-	}
-	
-	private void closeMenu()
-	{
-		Widget header = View.of(this).getWidget("mmHeader");
-		header.removeStyleName("on");
-	}
-	
-	@Expose
-	public void toggleMenu()
-	{
-		Widget header = View.of(this).getWidget("mmHeader");
-		if((header.getStyleName()).indexOf("on") != -1)
-		{
-			header.removeStyleName("on");
-		}else{
-			header.addStyleName("on");
 		}
 	}
 }

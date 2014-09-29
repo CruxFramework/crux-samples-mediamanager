@@ -16,11 +16,13 @@
 package org.cruxframework.mediamanager.client.reuse.controller;
 
 import org.cruxframework.crux.core.client.Crux;
+import org.cruxframework.crux.core.client.errors.ErrorHandler;
 import org.cruxframework.crux.core.client.rest.Callback;
 
 /**
- * Class description: 
+ * Mediamanager callback adapter. Just call {@link ErrorHandler#handleError(Throwable)} method when a exception is thrown.
  * @author alexandre.costa
+ * @param <T> callback return type
  */
 public abstract class CallbackAdapter<T> implements Callback<T>
 {
@@ -37,14 +39,14 @@ public abstract class CallbackAdapter<T> implements Callback<T>
 	}
 	
 	/**
-	 * Override this method to handle result received for a remote call
-	 * @param result
+	 * Override this method to handle result received for a remote call.
+	 * @param result process result
 	 */
 	public abstract void onComplete(T result);
 	
 	/**
-	 * Override this method to add specific error handling for a remote call
-	 * @param e
+	 * Override this method to add specific error handling for a remote call.
+	 * @param e exception
 	 */
 	public void onFailure(Exception e)
 	{

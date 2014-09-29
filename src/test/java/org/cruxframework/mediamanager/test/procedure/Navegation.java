@@ -21,8 +21,8 @@ import org.cruxframework.mediamanager.test.util.EnumMenu;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 
 /**
- * Class description: This class implements the procedures which simulate the
- *  navegation of user by system 
+ * Class description: This class implements the procedures which simulate the navegation of user by system.
+ * 
  * @author guilherme.alecrim
  */
 public class Navegation
@@ -30,9 +30,10 @@ public class Navegation
 	private static ScreenLogin login;
 
 	/**
-	 * Realize login with sucess in media manager 
-	 * @param user: valid login  of  user, e.g admin
-	 * @param password: password valid of  user, e.g admin 
+	 * Realize login with success in media manager.
+	 * 
+	 * @param user valid login of user, e.g admin
+	 * @param password password valid of user, e.g admin
 	 */
 	public static void loginSucess(String user, String password)
 	{
@@ -41,40 +42,40 @@ public class Navegation
 		getScreenLogin().getAcess().click();
 		waitFiveSeconds();
 	}
-	
-	/**
-	 * Realize login with insucess in media manager 
-	 * @param user: invalid login  of  user, e.g userInvalid
-	 * @param password: invalid password of user, e.g invalidPass123
-	 * @return
-	 */
 
-	public static String loginFail(String user, String password) 
+	/**
+	 * Realize login with insuccess in media manager.
+	 * 
+	 * @param user invalid login of user, e.g userInvalid
+	 * @param password invalid password of user, e.g invalidPass123
+	 * @return message
+	 */
+	public static String loginFail(String user, String password)
 	{
-		loginSucess(user,password);
+		loginSucess(user, password);
 		String loginInvalid = getScreenLogin().getPopUpPasswordInvalid().getMenssagePopUp();
 		getScreenLogin().getPopUpPasswordInvalid().confirmPopUp();
 		return loginInvalid;
 	}
 
 	/**
-	 * Exit media manager , click in button singOut  
+	 * Exit mediamanager, click in button singOut.
 	 */
 	public static void signOut()
 	{
 		getScreenLogin().signOut().click();
 		waitFiveSeconds();
 	}
-	
 
 	/**
-	 * Acess a option of menu
-	 * @param menuOption
+	 * Acess a option of menu.
+	 * 
+	 * @param menuOption option
 	 */
 	public static void acessMenu(EnumMenu menuOption)
 	{
 		refreshBrowser();
-		Button menu = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		Button menu = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		waitFiveSeconds();
 		switch (menuOption)
 		{
@@ -97,41 +98,38 @@ public class Navegation
 		}
 		menu.click();
 		waitFiveSeconds();
-		
-		
 	}
-
-	
 
 	/**
-	 * Stop current thread in 5 seconds, for wait  loading browser.	
+	 * Stop current thread in 5 seconds, for wait loading browser.
 	 */
-	public static void waitFiveSeconds() 
+	public static void waitFiveSeconds()
 	{
-		
-		try {
+		try
+		{
 			Thread.sleep(5000);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
-		
 	}
 	
-	public static ScreenLogin getScreenLogin()
+	/*****************************************
+	 * utilities
+	 *****************************************/
+
+	private static ScreenLogin getScreenLogin()
 	{
-		if(login == null)
+		if (login == null)
 		{
 			login = new ScreenLogin();
 		}
-		return login; 
+		return login;
 	}
-	
-	
-	public static void refreshBrowser()
-	{
-		SetUp.DRIVER.navigate().refresh();
-	}
-	
-	
 
+	private static void refreshBrowser()
+	{
+		SetUp.getDriver().navigate().refresh();
+	}
 }

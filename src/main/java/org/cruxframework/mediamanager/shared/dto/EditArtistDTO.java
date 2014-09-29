@@ -18,15 +18,16 @@ package org.cruxframework.mediamanager.shared.dto;
 import java.util.List;
 
 /**
- * Class description: 
+ * Class description: DTO class for editing artists.
+ * 
  * @author alexandre.costa
  */
 public class EditArtistDTO
 {
 	private ArtistDTO artist;
-	
+
 	private List<CountryDTO> countries;
-	
+
 	private List<GenreDTO> genres;
 
 	/**

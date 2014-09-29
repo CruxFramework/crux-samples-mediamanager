@@ -16,10 +16,12 @@
 package org.cruxframework.mediamanager.shared.dto;
 
 import org.cruxframework.crux.core.client.dto.DataObject;
+import org.cruxframework.mediamanager.server.entity.User;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Class description: DTO class for {@link User} entity.
+ * 
  * @author alexandre.costa
  */
 @DataObject("user")

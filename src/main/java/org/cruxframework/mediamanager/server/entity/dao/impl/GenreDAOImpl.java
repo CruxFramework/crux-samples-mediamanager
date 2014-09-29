@@ -23,11 +23,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Class description: 
+ * Class description: DAO class for {@link Genre}.
+ * 
  * @author alexandre.costa
  */
 @Component
-@Scope(value =  WebApplicationContext.SCOPE_REQUEST)
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class GenreDAOImpl extends AbstractDAO<GenreDTO, Genre>
 {
 

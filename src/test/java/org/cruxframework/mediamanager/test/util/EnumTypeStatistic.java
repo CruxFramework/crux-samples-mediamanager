@@ -16,10 +16,11 @@
 package org.cruxframework.mediamanager.test.util;
 
 /**
- * Class description: This enum represent the options of types of statistics
+ * Class description: This enum represent the options of types of statistics.
+ * 
  * @author guilherme.alecrim
  */
-// TODO guilherme.alecrim: documentar classe e métodos
+// CHECKSTYLE:OFF
 public enum EnumTypeStatistic
 {
 	TOTAL, BORROWED, MORE_THAN_ONE_MONTH;

@@ -23,13 +23,18 @@ import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
 import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 
 /**
- * Class description: 
+ * Class description: REST interface for artists.
+ * 
  * @author alexandre.costa
  */
 @TargetRestService("artistService")
 public interface ArtistServiceProxy extends RestServiceProxy<ArtistDTO>
 {
-	
+	/**
+	 * Search by name.
+	 * @param name query
+	 * @param callback callback object
+	 */
 	void search(String name, Callback<List<ArtistDTO>> callback);
-	
+
 }

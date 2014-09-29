@@ -21,49 +21,46 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class description: 
+ * Class description: Utilities for date formatting.
+ * 
  * @author alexandre.costa
  */
 public class DateFormatUtils
 {
-	
+
 	private DateFormatUtils()
 	{
 		// Constructor
 	}
-	
-	
+
+	/**
+	 * Indicates if a String is valid date.
+	 * @param date string date.
+	 * @return true if the string is a valid date. false otherwise.
+	 */
 	public static boolean isValid(String date)
 	{
-		SimpleDateFormat format = 
-			DateFormatContainer.getFormat(DateFormatContainer.FORMAT_DATE);
-		
-		try 
+		SimpleDateFormat format = DateFormatContainer.getFormat(DateFormatContainer.FORMAT_DATE);
+
+		try
 		{
 			format.parse(date);
-		} catch (ParseException e) 
+		}
+		catch (ParseException e)
 		{
 			return false;
 		}
-		
+
 		return true;
-	}
-	
-	public static void main(String[] args)
-	{
-		System.out.println(DateFormatUtils.isValid("29/02/2001"));
-		
 	}
 }
 
 class DateFormatContainer
 {
 	public static final String FORMAT_DATE = "dd/MM/yyyy";
-	
-	private static final ThreadLocal<Map<String, SimpleDateFormat>> FORMATS = 
-		new ThreadLocal<Map<String,SimpleDateFormat>>();
-	
-	
+
+	private static final ThreadLocal<Map<String, SimpleDateFormat>> FORMATS = new ThreadLocal<Map<String, SimpleDateFormat>>();
+
 	public static SimpleDateFormat getFormat(String formatPattern)
 	{
 		Map<String, SimpleDateFormat> threadMap = FORMATS.get();
@@ -72,9 +69,9 @@ class DateFormatContainer
 			threadMap = new HashMap<String, SimpleDateFormat>();
 			FORMATS.set(threadMap);
 		}
-		
+
 		SimpleDateFormat format = threadMap.get(formatPattern);
-		
+
 		if (format == null)
 		{
 			format = new SimpleDateFormat(formatPattern);

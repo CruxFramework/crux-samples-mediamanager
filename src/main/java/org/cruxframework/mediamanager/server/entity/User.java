@@ -25,23 +25,35 @@ import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 import org.cruxframework.mediamanager.shared.dto.UserDTO;
 
 /**
- * Class description: 
+ * Class description: Implements user entity.
+ * 
  * @author alexandre.costa
  */
 @Entity
-@Table(name = "APL_USER") // "User" is reserved in same databases
+// "User" is reserved in same databases
+@Table(name = "APL_USER")
 @SequenceGenerator(name = "SEQ_STORE", sequenceName = "SEQ_USER")
 public class User extends AbstractEntity<UserDTO>
 {
 	private String name;
 	private String login;
 	private String password;
-	
+
+	/**
+	 * Default constructor.
+	 */
 	public User()
 	{
-		
+
 	}
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param name user name
+	 * @param login user login
+	 * @param password user password
+	 */
 	public User(String name, String login, String password)
 	{
 		this.name = name;

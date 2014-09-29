@@ -26,7 +26,8 @@ import br.ufmg.dcc.saotome.beholder.ui.table.Cell;
 import br.ufmg.dcc.saotome.beholder.ui.table.Cell.Coordinate;
 
 /**
- * Class description: This class implements the  procedures in 'Search Media' screen
+ * Class description: This class implements the procedures in 'Search Media' screen.
+ * 
  * @author guilherme.alecrim
  */
 public class PTSearchMedia
@@ -35,8 +36,9 @@ public class PTSearchMedia
 
 	/**
 	 * Returns the first media in a search result, or null if the search does not return any results.
-	 * @param queryMedia: parameter for search media
-	 * @return LineTableSearchMedia: result of search 
+	 * 
+	 * @param queryMedia parameter for search media
+	 * @return LineTableSearchMedia: result of search
 	 */
 	public static LineTableSearchMedia searchMedia(QueryMedia queryMedia)
 	{
@@ -54,13 +56,15 @@ public class PTSearchMedia
 		}
 		return lsm;
 	}
+
 	/**
-	 * Search for a media and change yours values 
-	 * @param queryMedia: parameter for search media
-	 * @param newValues: new values for search media
-	 * @return message sucess to edit media
+	 * Search for a media and change yours values.
+	 * 
+	 * @param queryMedia parameter for search media
+	 * @param newValues new values for search media
+	 * @return edit media success message
 	 */
-	public static String editMedia(QueryMedia queryMedia, Media newValues) 
+	public static String editMedia(QueryMedia queryMedia, Media newValues)
 	{
 		String sucessEditMedia = null;
 		searchMedia(queryMedia);
@@ -73,9 +77,10 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Delete one media 
-	 * @param queryMedia: parameter for search media
-	 * @return message of success to delete media
+	 * Delete a media.
+	 * 
+	 * @param queryMedia parameter for search media
+	 * @return delete media success message
 	 */
 	public static String deleteMedia(QueryMedia queryMedia)
 	{
@@ -89,9 +94,10 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Check if media deleted was exclude of the data base
-	 * @param queryMedia : media for delete
-	 * @return: message 'No Results Found'
+	 * Check if media deleted was exclude of the data base.
+	 * 
+	 * @param queryMedia media for delete
+	 * @return message 'No Results Found'
 	 */
 	public static String deleteAndSearhcMedia(QueryMedia queryMedia)
 	{
@@ -104,10 +110,11 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Check if changes in media occurs in database
-	 * @param media: current parameters of the media 
-	 * @param newValues: new values for media
-	 * @return: media searched in 'Search Media' screens
+	 * Check if changes in media occurs in database.
+	 * 
+	 * @param media current parameters of the media
+	 * @param newValues new values for media
+	 * @return media searched in 'Search Media' screens
 	 */
 	public static Media editAndSearchMedia(Media media, Media newValues)
 	{
@@ -122,8 +129,9 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Fill fields of 'Search Media' screen
-	 * @param values: values to fill  
+	 * Fill fields of 'Search Media' screen.
+	 * 
+	 * @param values values to fill
 	 */
 	public static void populateFieldsQuery(QueryMedia values)
 	{
@@ -133,8 +141,9 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Realize one search 
-	 * @return the first result of a search 
+	 * Realize one search.
+	 * 
+	 * @return the first result of a search
 	 */
 	public static LineTableSearchMedia getFirstLineSearch()
 	{
@@ -149,12 +158,13 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Lend one media
-	 * @param queryMedia: parameters of search
-	 * @param nameLend: name of the client which borrowed media
-	 * @param dateLend: date of the lend media
+	 * Lend a media.
+	 * 
+	 * @param queryMedia parameters of search
+	 * @param nameLend name of the client which borrowed media
+	 * @param dateLend date of the lend media
 	 */
-	public static void lendMedia(QueryMedia queryMedia, String nameLend, String dateLend) 
+	public static void lendMedia(QueryMedia queryMedia, String nameLend, String dateLend)
 	{
 		PTSearchMedia.searchMedia(queryMedia);
 		getScreenSearchMedia().getBtnLend().click();
@@ -166,8 +176,9 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Unborrowed media
-	 * @param queryMedia: parameter for search media.  
+	 * Unborrowed media.
+	 * 
+	 * @param queryMedia parameter for search media.
 	 */
 	public static void lendMediaUnborrowed(QueryMedia queryMedia)
 	{
@@ -177,42 +188,46 @@ public class PTSearchMedia
 	}
 
 	/**
-	 * Instance screenSearchMedia
+	 * Instance screenSearchMedia.
+	 * 
 	 * @return screenSearchMedia
 	 */
-
 	public static ScreenSearchMedia getScreenSearchMedia()
 	{
-		if (screenSearchMedia == null )
+		if (screenSearchMedia == null)
 		{
 			screenSearchMedia = new ScreenSearchMedia();
 		}
 		return screenSearchMedia;
 	}
-	
+
+	/**
+	 * empty search result.
+	 * @param query query
+	 * @return message
+	 */
 	public static String searchMediaWithNotExist(QueryMedia query)
 	{
 		PTSearchMedia.searchMedia(query);
 		String noResultsFound = PTSearchMedia.getScreenSearchMedia().getPopUpNoResultsFound().getMenssagePopUp();
 		return noResultsFound;
 	}
-	
-	
-	/* 
-	 * ********************************************************
-	 * This auxiliary methods for fill date to lend media screen
-	 * ********************************************************
-	 */
-	
-	/** 
+
+	/**********************************************************
+	 * This auxiliary methods for fill date to lend media screen 
+	 * ********************************************************/
+
+	/**
 	 * Browse in the calendar to find month or year
-	 * @param yearOrMonth: year or month for select 
+	 * 
+	 * @param yearOrMonth: year or month for select
 	 * @param optionMonth: month for select
 	 */
 	private static void selectYearOrMonth(int yearOrMonth, boolean optionMonth)
 	{
 		Cell yearMonth = screenSearchMedia.getLendMedia().getTbHeaderCalendar().getCell(1, 3);
-		Cell btnLeft, btnRight;
+		Cell btnLeft;  
+		Cell btnRight;
 
 		int atualValue;
 		if (optionMonth)
@@ -243,19 +258,21 @@ public class PTSearchMedia
 		}
 	}
 
-	/** 
-	 * Get year string composed by year and month in the header of  calendar 
-	 * @param yearMonth: string year month in the header of calendar 
-	 * @return: year 
+	/**
+	 * Get year string composed by year and month in the header of calendar
+	 * 
+	 * @param yearMonth: string year month in the header of calendar
+	 * @return: year
 	 */
 	private static Integer getYear(String yearMonth)
 	{
 		Integer year = Integer.parseInt(yearMonth.substring(0, 4));
 		return year;
 	}
-	
+
 	/**
 	 * Fill fiedl date
+	 * 
 	 * @param date: date in format dd/mm/yyyy
 	 */
 	private static void fillDate(String date)
@@ -270,7 +287,8 @@ public class PTSearchMedia
 
 	/**
 	 * Select one day in calendar
-	 * @param strDay: day for select 
+	 * 
+	 * @param strDay: day for select
 	 */
 	private static void selectDay(int strDay)
 	{
@@ -286,8 +304,8 @@ public class PTSearchMedia
 				{
 					c = new Coordinate(i, j);
 					/*
-					 * cases one day is displayed more than once in matrix of moth
-					 * e.g day 1, can is displayed in begin and the end of the matrix month
+					 * cases one day is displayed more than once in matrix of moth e.g day 1, can is displayed in begin and the end of the
+					 * matrix month
 					 */
 					if (strDay < 10)
 					{
@@ -295,8 +313,8 @@ public class PTSearchMedia
 						break;
 					}
 					/*
-					 * case interval of day 20 - 31 is displayed more that once in the matrix month
-					 * e.g day 31 of the current month and day 31 month before 
+					 * case interval of day 20 - 31 is displayed more that once in the matrix month e.g day 31 of the current month and day
+					 * 31 month before
 					 */
 					else if ((strDay > 20 && strDay < 31))
 					{
@@ -311,9 +329,10 @@ public class PTSearchMedia
 		}
 		screenSearchMedia.getLendMedia().getTbDayCalendar().getCell(c).click();
 	}
-	
-	/** 
-	 * Map the month in calendar for a option integer  
+
+	/**
+	 * Map the month in calendar for a option integer
+	 * 
 	 * @param calendarMonth: String which represent month in the calendar
 	 * @return: option integer equivalent to month.
 	 */
@@ -369,5 +388,4 @@ public class PTSearchMedia
 			return 12;
 		}
 	}
-
 }

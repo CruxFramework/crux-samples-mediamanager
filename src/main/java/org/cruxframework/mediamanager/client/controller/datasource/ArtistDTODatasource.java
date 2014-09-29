@@ -21,7 +21,7 @@ import org.cruxframework.mediamanager.client.reuse.controller.AbstractDTODatasou
 import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 
 /**
- * Class description: 
+ * Implements datasource pattern for {@link ArtistDTO}.
  * @author alexandre.costa
  */
 @DataSource("artistDTODatasource")

@@ -16,26 +16,36 @@
 package org.cruxframework.mediamanager.server.utils;
 
 /**
- * Class description: 
+ * Class description: Order by clause.
+ * 
  * @author alexandre.costa
  */
 public class OrderBy
 {
 	private final String field;
-	private final boolean crescente;
-	
+	private final boolean ascending;
+
+	/**
+	 * Constructor.
+	 * @param field field name.
+	 */
 	public OrderBy(String field)
 	{
 		this.field = field;
-		this.crescente = true;
+		this.ascending = true;
 	}
-	
-	public OrderBy(String field, boolean crescente)
+
+	/**
+	 * Constructor.
+	 * @param field field name
+	 * @param ascending indicates if order by clause is ascending
+	 */
+	public OrderBy(String field, boolean ascending)
 	{
 		this.field = field;
-		this.crescente = crescente;
+		this.ascending = ascending;
 	}
-	
+
 	/**
 	 * @return the field
 	 */
@@ -45,12 +55,10 @@ public class OrderBy
 	}
 
 	/**
-	 * @return the crescente
+	 * @return the ascending
 	 */
-	public boolean isCrescente()
+	public boolean isAscending()
 	{
-		return crescente;
+		return ascending;
 	}
-
-	
 }

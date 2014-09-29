@@ -18,7 +18,8 @@ package org.cruxframework.mediamanager.client.reuse.controller;
 import org.cruxframework.mediamanager.shared.enums.ErrorType;
 
 /**
- * Class description: 
+ * Class description: Result object for edit operations.
+ * 
  * @author alexandre.costa
  */
 public class EditOperation

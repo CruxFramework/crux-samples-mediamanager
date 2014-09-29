@@ -37,20 +37,32 @@ import org.cruxframework.mediamanager.shared.enums.MediaType;
 
 import com.google.gwt.user.client.ui.ListBox;
 
-
 /**
- * Class description: 
+ * Controller for media view.
+ * 
  * @author alexandre.costa
  */
 @Controller("mediaController")
 public class MediaController extends EditController<MediaDTO>
-{	
+{
+	private static final String ARTIST_LIST_BOX = "artistListBox";
+
+	private static final String TYPE_LIST_BOX = "typeListBox";
+
+	private static final String UPDATE_BUTTON = "updateButton";
+
+	private static final String INSERT_BUTTON = "insertButton";
+
 	@Inject
-	public MediaServiceProxy restServiceProxy;
-	
+	private MediaServiceProxy restServiceProxy;
+
 	@Inject
-	public EditMediaServiceProxy editMediaServiceProxy;
-	
+	private EditMediaServiceProxy editMediaServiceProxy;
+
+	/**
+	 * Handles {@link ViewActivateEvent} event.
+	 * @param event view activate event
+	 */
 	@Expose
 	public void onActivate(ViewActivateEvent event)
 	{
@@ -59,16 +71,15 @@ public class MediaController extends EditController<MediaDTO>
 		BindableView<MediaDTO> view = View.of(this);
 		MediaDTO media = event.getParameterObject();
 		Integer identificator = media == null ? null : media.getId();
-		fillMediaTypeListBox((ListBox) view.getWidget("typeListBox"), media);
+		fillMediaTypeListBox((ListBox) view.getWidget(TYPE_LIST_BOX), media);
 		editMediaServiceProxy.get(identificator, new EditMediaCallback());
 	}
-	
+
 	/********************************************
 	 * UI control methods
 	 ********************************************/
-	
-	private static void fillMediaTypeListBox(ListBox typesListBox, 
-		MediaDTO mediaDTO)
+
+	private static void fillMediaTypeListBox(ListBox typesListBox, MediaDTO mediaDTO)
 	{
 		if (typesListBox.getItemCount() == 0)
 		{
@@ -80,11 +91,12 @@ public class MediaController extends EditController<MediaDTO>
 				typesListBox.addItem(type.name(), type.name());
 			}
 		}
-		
+
 		if (mediaDTO == null)
 		{
 			typesListBox.setSelectedIndex(0);
-		} else
+		}
+		else
 		{
 			for (int i = 0; i < typesListBox.getItemCount(); i++)
 			{
@@ -96,9 +108,8 @@ public class MediaController extends EditController<MediaDTO>
 			}
 		}
 	}
-	
-	private static void fillArtistListBox(ListBox artistListBox, 
-		List<ArtistDTO> artistList, MediaDTO mediaDTO)
+
+	private static void fillArtistListBox(ListBox artistListBox, List<ArtistDTO> artistList, MediaDTO mediaDTO)
 	{
 		artistListBox.clear();
 		artistListBox.addItem("", "");
@@ -107,112 +118,81 @@ public class MediaController extends EditController<MediaDTO>
 		{
 			ArtistDTO artist = artistList.get(i);
 			artistListBox.addItem(artist.getName(), artist.getId().toString());
-			
+
 			if (mediaDTO != null && mediaDTO.getArtist().getId() == artist.getId())
 			{
 				artistListBox.setSelectedIndex(i + 1);
 			}
 		}
 	}
-	
+
 	/********************************************
 	 * View state settings
 	 ********************************************/
-	
+
 	@Override
 	protected void editState(View view)
 	{
-		Button insertButton = (Button)view.getWidget("insertButton");
-		Button updateButton = (Button) view.getWidget("updateButton");
+		Button insertButton = (Button) view.getWidget(INSERT_BUTTON);
+		Button updateButton = (Button) view.getWidget(UPDATE_BUTTON);
 		insertButton.setEnabled(false);
 		updateButton.setEnabled(true);
 	}
-	
+
 	@Override
 	protected void insertState(View view)
 	{
-		Button insertButton = (Button)view.getWidget("insertButton");
-		Button updateButton = (Button) view.getWidget("updateButton");
+		Button insertButton = (Button) view.getWidget(INSERT_BUTTON);
+		Button updateButton = (Button) view.getWidget(UPDATE_BUTTON);
 		insertButton.setEnabled(true);
 		updateButton.setEnabled(false);
 	}
-	
+
 	@Override
 	protected boolean validate(MediaDTO mediaDTO)
 	{
-		return mediaDTO.getName() != null 
-			&& mediaDTO.getName().trim().length() > 0
-			&& mediaDTO.getArtist().getId() != null
-			&& mediaDTO.getType() != null;
-	}
-	
-	/****************************************
-	 * Callback classes
-	 *****************************************/
-	
-	private class EditMediaCallback extends WaitCallbackAdapter<EditMediaDTO>
-	{
-		@Override
-		public void success(EditMediaDTO result)
-		{
-			BindableView<MediaDTO> view = View.of(MediaController.this);
-			MediaDTO media = result.getMedia();
-			Integer identificator = media == null ? null : media.getId();
-			
-			/* Adjust artistsViewviewAcessor state */
-			if (identificator != null)
-			{
-				editState(view);
-				view.setData(result.getMedia());
-			} else
-			{
-				insertState(view);
-				view.setData(getNewInstance());
-			}
-			
-			fillArtistListBox((ListBox) view.getWidget("artistListBox"), 
-				result.getArtists(), media);
-		}
+		return mediaDTO.getName() != null && mediaDTO.getName().trim().length() > 0 && mediaDTO.getArtist().getId() != null
+		    && mediaDTO.getType() != null;
 	}
 	
 	/********************************************
 	 * Overwritten methods
 	 ********************************************/
-	
+
 	@Override
 	protected void fillDTO(BindableView<MediaDTO> view, MediaDTO dto)
 	{
 		/* Get media type */
-		ListBox typeListBox = (ListBox) view.getWidget("typeListBox");
-		
+		ListBox typeListBox = (ListBox) view.getWidget(TYPE_LIST_BOX);
+
 		try
 		{
-			MediaType type = MediaType.valueOf(
-				typeListBox.getValue(typeListBox.getSelectedIndex()));
-			
+			MediaType type = MediaType.valueOf(typeListBox.getValue(typeListBox.getSelectedIndex()));
+
 			dto.setType(type);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			dto.setType(null);
 		}
-		
+
 		/* Get artist id */
-		ListBox artistListBox = (ListBox) view.getWidget("artistListBox");
+		ListBox artistListBox = (ListBox) view.getWidget(ARTIST_LIST_BOX);
 		ArtistDTO artistDTO = new ArtistDTO();
-		
+
 		try
 		{
-			artistDTO.setId(Integer.parseInt(
-				artistListBox.getValue(artistListBox.getSelectedIndex())));
-			
-		} catch (NumberFormatException e)
+			artistDTO.setId(Integer.parseInt(artistListBox.getValue(artistListBox.getSelectedIndex())));
+
+		}
+		catch (NumberFormatException e)
 		{
 			artistDTO.setId(null);
 		}
-		
+
 		dto.setArtist(artistDTO);
 	}
-	
+
 	@Override
 	protected MediaServiceProxy getRestServiceProxy()
 	{
@@ -223,5 +203,54 @@ public class MediaController extends EditController<MediaDTO>
 	protected MediaDTO getNewInstance()
 	{
 		return new MediaDTO();
+	}
+	
+	/****************************************
+	 * Getters and setters
+	 ****************************************/
+	
+	/**
+	 * @param restServiceProxy the restServiceProxy to set
+	 */
+	public void setRestServiceProxy(MediaServiceProxy restServiceProxy)
+	{
+		this.restServiceProxy = restServiceProxy;
+	}
+
+	/**
+	 * @param editMediaServiceProxy the editMediaServiceProxy to set
+	 */
+	public void setEditMediaServiceProxy(EditMediaServiceProxy editMediaServiceProxy)
+	{
+		this.editMediaServiceProxy = editMediaServiceProxy;
+	}
+	
+	/****************************************
+	 * Callback classes
+	 *****************************************/
+
+	private class EditMediaCallback extends WaitCallbackAdapter<EditMediaDTO>
+	{
+		@Override
+		public void success(EditMediaDTO result)
+		{
+			BindableView<MediaDTO> view = View.of(MediaController.this);
+			MediaDTO media = result.getMedia();
+			Integer identificator = media == null ? null : media.getId();
+
+			/* Adjust artistsViewviewAcessor state */
+			if (identificator != null)
+			{
+				editState(view);
+				view.setData(result.getMedia());
+			}
+			else
+			{
+				insertState(view);
+				view.setData(getNewInstance());
+			}
+
+			fillArtistListBox((ListBox) view.getWidget(ARTIST_LIST_BOX), result.getArtists(), media);
+		}
 	}
 }

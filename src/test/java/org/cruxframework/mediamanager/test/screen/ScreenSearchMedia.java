@@ -53,14 +53,14 @@ public class ScreenSearchMedia
 	 */
 	public ScreenSearchMedia()
 	{
-		type = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
-		name = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		borrowed = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		btnSearch = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		tableResult = SetUp.BUILDER.uiComponentBuilderInstance().tableInstance();
-		btnEdit = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		btnDelete = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		btnLend = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		type = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
+		name = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		borrowed = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		btnSearch = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		tableResult = SetUp.getBuilder().uiComponentBuilderInstance().tableInstance();
+		btnEdit = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		btnDelete = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		btnLend = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		
 		popUpNoResultsFound = new PopUp(
 				"/html/body/div[4]/div",
@@ -93,7 +93,7 @@ public class ScreenSearchMedia
 
 	public Select getType()
 	{
-		type = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
+		type = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		type.loadById("medias_typeListBox");
 		return type;
 	}

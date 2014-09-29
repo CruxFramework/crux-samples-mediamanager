@@ -16,10 +16,12 @@
 package org.cruxframework.mediamanager.shared.enums;
 
 /**
- * Class description: 
+ * Class description: Media types.
+ * 
  * @author alexandre.costa
  */
-public enum MediaType 
+// CHECKSTYLE:OFF
+public enum MediaType
 {
 	CD, DVD
 

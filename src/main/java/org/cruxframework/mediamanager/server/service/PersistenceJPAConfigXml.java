@@ -20,7 +20,8 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Class description: 
+ * Class description: Annotation class for spring configuration.
+ * 
  * @author alexandre.costa
  */
 @EnableTransactionManagement

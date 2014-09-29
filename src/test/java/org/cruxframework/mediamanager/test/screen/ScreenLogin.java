@@ -43,10 +43,10 @@ public class ScreenLogin
 	 */
 	public ScreenLogin()
 	{
-		login = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		password = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		acess = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		logoff = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		login = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		password = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		acess = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		logoff = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		popUpPasswordInvalid = new PopUp(
 				"/html/body/div[5]/div",
 				"/html/body/div[5]/div/div/div[2]/div/div",

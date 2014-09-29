@@ -18,36 +18,27 @@ package org.cruxframework.mediamanager.test.dataprovider;
 import org.testng.annotations.DataProvider;
 
 /**
- * Class description: This class contains methods that return  inputs for test the class CTLogin
- * for each method of test exist a method provider of input, the name of a methods provider reference 
- * a method of test, e.g the method PV001_LoginFail in class PVLogin provide input for test P001_LoginFail in class CTLogin
+ * Class description: This class contains methods that return inputs for test the class CTLogin for each method of test exist a method
+ * provider of input, the name of a methods provider reference a method of test, e.g the method PV001_LoginFail in class PVLogin provide
+ * input for test P001_LoginFail in class CTLogin.
+ * 
+ * Each method of this class returns an array object, each row of this array represents an input to a method of test
+ * 
  * @author guilherme.alecrim
  */
+// CHECKSTYLE:OFF
 public class PVLogin
 {
-	
-	/*
-	 * Each method of this class returns an array object, 
-	 * each row of this array represents an input to 
-	 * a method of test
-	 */
-	
+
 	@DataProvider(name = "PV001_LoginFail")
 	public static Object[][] PV001_LoginFail()
 	{
-		return new Object[][] { 
-				{"abc", "123" }, 
-				{"", "admin" }, 
-				{"admin", "" },
-				{ "", "" },
-				};
+		return new Object[][] { { "abc", "123" }, { "", "admin" }, { "admin", "" }, { "", "" }, };
 	}
 
 	@DataProvider(name = "PV001_LoginSucess")
 	public static Object[][] PV001_LoginSucess()
 	{
-		return new Object[][] { 
-				{"admin", "admin" },
-				};
+		return new Object[][] { { "admin", "admin" }, };
 	}
 }

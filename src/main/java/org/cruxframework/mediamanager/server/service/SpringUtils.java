@@ -19,7 +19,8 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 /**
- * Class description: 
+ * Class description: Manages spring configurations.
+ * 
  * @author alexandre.costa
  */
 public final class SpringUtils
@@ -27,7 +28,7 @@ public final class SpringUtils
 	private static SpringUtils instance;
 
 	private final AutowireCapableBeanFactory autowireCapableBeanFactory;
-	
+
 	private final AnnotationConfigWebApplicationContext context;
 
 	private SpringUtils()
@@ -58,7 +59,7 @@ public final class SpringUtils
 			instance = new SpringUtils();
 		}
 	}
-	
+
 	public boolean containsBean(String beanName)
 	{
 		return autowireCapableBeanFactory.containsBean(beanName);
@@ -68,7 +69,7 @@ public final class SpringUtils
 	{
 		return autowireCapableBeanFactory.getBean(clazz);
 	}
-	
+
 	public <T> T getBean(String name, Class<T> requiredType)
 	{
 		return autowireCapableBeanFactory.getBean(name, requiredType);

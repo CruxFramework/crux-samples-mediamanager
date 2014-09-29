@@ -26,11 +26,14 @@ import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description:
+ * Class description: Base controller for editing resources.
+ * 
  * @author alexandre.costa
+ * @param <T> DTO type
  */
 public abstract class EditController<T extends AbstractDTO> extends AbstractController
 {
+	private static final String FACES_MESSAGE_BOX = "faces-MessageBox";
 	private static final String DEFAULT_TITLE = "Cancel?";
 	private static final String DEFAULT_MESSAGE = "Deseja cencelar a edição desse registro?";
 	private static final String DEFAULT_SUCCESS_MESSAGE = "Successfully saved!";
@@ -42,46 +45,49 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	@Expose
 	public void insert()
 	{
-		final BindableView<T> view = View.of(this);
-		T dto = view.getData();
-		fillDTO(view, dto);
-		
+		final BindableView<T> VIEW = View.of(this);
+		T dto = VIEW.getData();
+		fillDTO(VIEW, dto);
+
 		if (!validate(dto))
 		{
-			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
-					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-		} else
+			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true, false, true, true, FACES_MESSAGE_BOX,
+			    DialogAnimation.fadeDownUp);
+		}
+		else
 		{
-			getRestServiceProxy().insert(dto, new InsertCallback(view));
+			getRestServiceProxy().insert(dto, new InsertCallback(VIEW));
 		}
 	}
-	
+
 	/**
 	 * Update a register on persistence mechanism using REST service proxy.
 	 */
 	@Expose
 	public void update()
 	{
-		final BindableView<T> view = View.of(this);
-		T dto = view.getData();
-		fillDTO(view, dto);
-		
+		final BindableView<T> VIEW = View.of(this);
+		T dto = VIEW.getData();
+		fillDTO(VIEW, dto);
+
 		if (!validate(dto))
 		{
-			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true,
-					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-		} else
+			MessageBox.show(null, DEFAULT_FILL_FIELDS_MESSAGE, MessageType.ERROR, true, false, true, true, FACES_MESSAGE_BOX,
+			    DialogAnimation.fadeDownUp);
+		}
+		else
 		{
 			getRestServiceProxy().update(dto.getId(), dto, new UpdateCallback());
 		}
 	}
-	
+
 	/******************************************
 	 * Utilities
 	 ******************************************/
-	
+
 	/**
-	 * Load most recent entity from persistence mechanism for updating. 
+	 * Load most recent entity from persistence mechanism for updating.
+	 * 
 	 * @param id entity id
 	 * @param view view
 	 */
@@ -89,9 +95,10 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	{
 		getRestServiceProxy().get(id, new LoadEntityCallback(view));
 	}
-	
+
 	/**
 	 * Adjust view state for updating or inserting.
+	 * 
 	 * @param event view activate event
 	 */
 	@SuppressWarnings("unchecked")
@@ -99,39 +106,42 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	{
 		T dto = (T) event.getParameterObject();
 		Integer id = dto == null ? null : dto.getId();
-		final BindableView<T> view = View.of(this);
+		final BindableView<T> VIEW = View.of(this);
 
 		if (id != null)
 		{
-			loadEntity(id, view);
-			editState(view);
-		} else
+			loadEntity(id, VIEW);
+			editState(VIEW);
+		}
+		else
 		{
 			T newDTO = getNewInstance();
-			view.setData(newDTO);
-			insertState(view);
+			VIEW.setData(newDTO);
+			insertState(VIEW);
 		}
 	}
-	
+
 	/******************************************
 	 * Abstract or empty methods
 	 ******************************************/
-	
+
 	/**
-	 * Create a new DTO instance for inserting. 
+	 * Create a new DTO instance for inserting.
+	 * 
 	 * @return new instance
 	 */
 	protected abstract T getNewInstance();
-	
+
 	/**
 	 * Get the service proxy.
+	 * 
 	 * @return current proxy
 	 */
 	protected abstract RestServiceProxy<T> getRestServiceProxy();
 
-
 	/**
 	 * Perform DTO client validation
+	 * 
 	 * @param dto data transfer object
 	 * @return true if DTO is valid, false otherwise.
 	 */
@@ -139,46 +149,47 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	{
 		return true;
 	}
-	
+
 	/**
 	 * Fill DTO with view informations.
+	 * 
 	 * @param view editing view
 	 * @param dto DTO to be filled.
 	 */
 	protected void fillDTO(BindableView<T> view, T dto)
 	{
-		
+
 	}
-	
+
 	/*********************************************
 	 * Callback classes
 	 *********************************************/
-	
+
 	private class LoadEntityCallback extends CallbackAdapter<T>
 	{
 		private final BindableView<T> view;
-		
+
 		public LoadEntityCallback(BindableView<T> view)
 		{
 			this.view = view;
 		}
-		
+
 		@Override
 		public void onComplete(T result)
 		{
 			view.setData(result);
 		}
 	}
-	
+
 	private class InsertCallback extends CallbackAdapter<EditOperation>
 	{
 		private final BindableView<T> view;
-		
+
 		public InsertCallback(BindableView<T> view)
 		{
 			this.view = view;
 		}
-		
+
 		@Override
 		public void onComplete(EditOperation result)
 		{
@@ -186,21 +197,21 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 			T dto = view.getData();
 			dto.setId(id);
 			editState(view);
-			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
-					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true, false, true, true, FACES_MESSAGE_BOX,
+			    DialogAnimation.fadeDownUp);
 		}
 	}
-	
+
 	private class UpdateCallback extends CallbackAdapter<EditOperation>
 	{
 		@Override
 		public void onComplete(EditOperation result)
 		{
-			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true,
-					false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
+			MessageBox.show(null, DEFAULT_SUCCESS_MESSAGE, MessageType.SUCCESS, true, false, true, true, FACES_MESSAGE_BOX,
+			    DialogAnimation.fadeDownUp);
 		}
 	}
-	
+
 	/*********************************************
 	 * Confirm dialog messages
 	 ********************************************/
@@ -216,7 +227,7 @@ public abstract class EditController<T extends AbstractDTO> extends AbstractCont
 	}
 
 	/*********************************************
-	 * View behavior 
+	 * View behavior
 	 ********************************************/
 
 	protected void editState(View view)

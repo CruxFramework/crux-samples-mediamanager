@@ -25,9 +25,11 @@ import javax.servlet.ServletContextListener;
 import org.hsqldb.server.Server;
 
 /**
- * Class description: 
+ * Class description: Initializes HSQLDB on server startup.
+ * 
  * @author alexandre.costa
  */
+// CHECKSTYLE:OFF
 public class InitDBListener implements ServletContextListener
 {
 	@Override
@@ -35,14 +37,13 @@ public class InitDBListener implements ServletContextListener
 	{
 		try
 		{
-			 Connection connection = DriverManager.getConnection(
-				 "jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
-			 
-			 Statement stmt = connection.createStatement();
-			 stmt.execute("SHUTDOWN");
-			 stmt.close();
-			 connection.close();
-		} catch (Exception e)
+			Connection connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
+			Statement stmt = connection.createStatement();
+			stmt.execute("SHUTDOWN");
+			stmt.close();
+			connection.close();
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

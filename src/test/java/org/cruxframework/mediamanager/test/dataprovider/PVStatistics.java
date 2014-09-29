@@ -29,44 +29,40 @@ import org.cruxframework.mediamanager.test.model.Media;
 import org.testng.annotations.DataProvider;
 
 /**
- * Class description: This class contains methods that return the inputs for testing the class CTStatistics
- * for each method of test exist a method provider of input, the name of a methods provider reference 
- * a method of test, e.g the method PV001_LoginFail in class PVLogin provide input for test P001_LoginFail in class CTLogin
+ * Class description: This class contains methods that return the inputs for testing the class CTStatistics for each method of test exist a
+ * method provider of input, the name of a methods provider reference a method of test, e.g the method PV001_LoginFail in class PVLogin
+ * provide input for test P001_LoginFail in class CTLogin.
+ * 
+ * Each method of this class returns an array object, each row of this array represents an input to a method of testing.
+ * 
  * @author guilherme.alecrim
  */
+// CHECKSTYLE:OFF
 public class PVStatistics
 {
-	
-	/*
-	 * Each method of this class returns an array object, 
-	 * each row of this array represents an input to 
-	 * a method of testing
-	 */
-	
 	@DataProvider(name = "PV001")
 	public static Object[][] PV001()
 	{
-		return new Object[][] { 
-				{ new Media("CD", "Statistics1", "Artista01P006"), CDS_TOTAL, TOTAL },
-				{ new Media("CD", "Statistics2", "Artista01P006"), CDS_TOTAL, TOTAL },
-				{  new Media("DVD", "Statistics3", "Artista01P006"), DVDS_TOTAL, TOTAL },
-				{  new Media("DVD", "Statistics4", "Artista01P006"), DVDS_TOTAL, TOTAL },
-				{  new Media("CD", "Statistics5", "Artista01P006"), CDS_TOTAL, TOTAL },
-				{  new Media("DVD", "Statistics6", "Artista01P006"), DVDS_TOTAL, TOTAL },
+		return new Object[][] { { new Media("CD", "Statistics1", "Artista01P006"), CDS_TOTAL, TOTAL },
+		    { new Media("CD", "Statistics2", "Artista01P006"), CDS_TOTAL, TOTAL },
+		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_TOTAL, TOTAL },
+		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_TOTAL, TOTAL },
+		    { new Media("CD", "Statistics5", "Artista01P006"), CDS_TOTAL, TOTAL },
+		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_TOTAL, TOTAL },
 
-				{ new Media("CD", "Statistics1", "Artista01P006"), CDS_BORROWED, BORROWED },
-				{ new Media("CD", "Statistics2", "Artista01P006"), CDS_BORROWED, BORROWED },
-				{ new Media("DVD", "Statistics3", "Artista01P006"), DVDS_BORROWED, BORROWED },
-				{ new Media("DVD", "Statistics4", "Artista01P006"), DVDS_BORROWED, BORROWED },
-				{  new Media("CD", "Statistics5", "Artista01P006"), CDS_BORROWED, BORROWED },
-				{  new Media("DVD", "Statistics6", "Artista01P006"), DVDS_BORROWED, BORROWED },
+		    { new Media("CD", "Statistics1", "Artista01P006"), CDS_BORROWED, BORROWED },
+		    { new Media("CD", "Statistics2", "Artista01P006"), CDS_BORROWED, BORROWED },
+		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_BORROWED, BORROWED },
+		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_BORROWED, BORROWED },
+		    { new Media("CD", "Statistics5", "Artista01P006"), CDS_BORROWED, BORROWED },
+		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_BORROWED, BORROWED },
 
-				{ new Media("CD", "Statistics1", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{ new Media("CD", "Statistics2", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{  new Media("DVD", "Statistics3", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{  new Media("DVD", "Statistics4", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{  new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{  new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH } };
+		    { new Media("CD", "Statistics1", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+		    { new Media("CD", "Statistics2", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+		    { new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH } };
 	}
 
 	@DataProvider(name = "PV002")
@@ -74,13 +70,13 @@ public class PVStatistics
 	{
 		return new Object[][] {
 
-		{  new Media("CD", "Statistics1", "Artista01P006"), CDS_TOTAL, TOTAL },
-				{  new Media("DVD", "Statistics3", "Artista01P006"), DVDS_TOTAL, TOTAL },
+		{ new Media("CD", "Statistics1", "Artista01P006"), CDS_TOTAL, TOTAL },
+		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_TOTAL, TOTAL },
 
-				{  new Media("CD", "Statistics2", "Artista01P006"), CDS_BORROWED, BORROWED },
-				{  new Media("DVD", "Statistics4", "Artista01P006"), DVDS_BORROWED, BORROWED },
+		    { new Media("CD", "Statistics2", "Artista01P006"), CDS_BORROWED, BORROWED },
+		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_BORROWED, BORROWED },
 
-				{  new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-				{  new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH }, };
+		    { new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
+		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH }, };
 	}
 }

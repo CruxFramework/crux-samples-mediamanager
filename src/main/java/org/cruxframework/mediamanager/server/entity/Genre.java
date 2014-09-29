@@ -24,7 +24,8 @@ import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 import org.cruxframework.mediamanager.shared.dto.GenreDTO;
 
 /**
- * Class description: 
+ * Class description: Implements genre entity.
+ * 
  * @author alexandre.costa
  */
 @Entity
@@ -32,12 +33,20 @@ import org.cruxframework.mediamanager.shared.dto.GenreDTO;
 public class Genre extends AbstractEntity<GenreDTO>
 {
 	private String name;
-	
+
+	/**
+	 * Default constructor.
+	 */
 	public Genre()
 	{
-		
+
 	}
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param name genre name.
+	 */
 	public Genre(String name)
 	{
 		this.name = name;
@@ -69,5 +78,4 @@ public class Genre extends AbstractEntity<GenreDTO>
 		dto.setName(getName());
 		return dto;
 	}
-
 }

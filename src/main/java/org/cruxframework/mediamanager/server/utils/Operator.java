@@ -16,10 +16,11 @@
 package org.cruxframework.mediamanager.server.utils;
 
 /**
- * Class description:
+ * Class description: Query operators.
  * 
  * @author alexandre.costa
  */
+// CHECKSTYLE:OFF
 public enum Operator
 {
 	EQUALS,

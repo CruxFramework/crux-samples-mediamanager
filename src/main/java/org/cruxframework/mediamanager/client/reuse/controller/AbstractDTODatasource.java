@@ -24,8 +24,9 @@ import org.cruxframework.crux.core.client.datasource.LocalPagedDataSource;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Base class for datasources.
  * @author alexandre.costa
+ * @param <T> DTO type
  */
 public abstract class AbstractDTODatasource<T extends AbstractDTO> 
 	extends LocalPagedDataSource<T>
@@ -38,11 +39,10 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 		updateData(getValues());
 	}
 
-	public List<T> getValues()
-	{
-		return new ArrayList<T>(getMap().values());
-	}
-
+	/**
+	 * add a DTO list to datasource.
+	 * @param values DTO list to be added.
+	 */
 	public void addValues(List<T> values)
 	{
 		if (values != null)
@@ -57,11 +57,18 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 		}
 	}
 	
+	/**
+	 * reset datasource.
+	 */
 	public void clear()
 	{
 		getMap().clear();
 	}
 	
+	/**
+	 * add a new DTO to datasource.
+	 * @param dto DTO to be added.
+	 */
 	public void add(T dto)
 	{
 		if (dto != null)
@@ -70,6 +77,10 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 		}
 	}
 	
+	/**
+	 * remove a DTO from datasource.
+	 * @param dto DTO to be removed
+	 */
 	public void remove(T dto)
 	{
 		if (dto != null)
@@ -77,7 +88,17 @@ public abstract class AbstractDTODatasource<T extends AbstractDTO>
 			getMap().remove(dto.getId());
 		}
 	}
+	
+	/****************************************
+	 * utilities
+	 ****************************************/
+	
+	private List<T> getValues()
+	{
+		return new ArrayList<T>(getMap().values());
+	}
 
+	
 	private Map<Integer, T> getMap()
 	{
 		if (map == null)

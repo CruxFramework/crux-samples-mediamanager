@@ -18,7 +18,8 @@ package org.cruxframework.mediamanager.shared.dto;
 import java.io.Serializable;
 
 /**
- * Class description: 
+ * Class description: DTO class for statistics.
+ * 
  * @author alexandre.costa
  */
 public class StatisticsDTO implements Serializable

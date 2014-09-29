@@ -23,15 +23,14 @@ import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 import br.ufmg.dcc.saotome.beholder.ui.table.Table;
 
 /**
- * Class description: This class represent the screen Lend Media 
+ * Class description: This class represent the screen Lend Media.
+ * 
+ * This parameters equivalent the elements in screen This element are providers by Beholder Framework
+ * 
  * @author guilherme.alecrim
  */
 public class LendMedia
 {
-	/*
-	 * This parameters equivalent   the elements in screen  
-	 * This element are providers by Beholder  Framework
-	 */
 	private Checkbox cbBorrowed;
 	private TextField txtName;
 	private TextField txtDate;
@@ -41,74 +40,94 @@ public class LendMedia
 	private Table tbDayCalendar;
 	private PopUp popUpDateInvalid;
 
-	/*
-	 *  constructor  initialize all elements 
+	/**
+	 * Default constructor. Initializes all elements.
 	 */
 	public LendMedia()
 	{
-		cbBorrowed = SetUp.BUILDER.uiComponentBuilderInstance().checkboxInstance();
-		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		txtDate = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		btnCancel = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		btnSave = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		tbHeaderCalendar = SetUp.BUILDER.uiComponentBuilderInstance().tableInstance();
-		tbDayCalendar = SetUp.BUILDER.uiComponentBuilderInstance().tableInstance();
-		
-		// TODO: Implementar quando pop estiver sendo exibido.s
-		popUpDateInvalid = new PopUp(
-				"",
-				"",
-				""
-				);
+		cbBorrowed = SetUp.getBuilder().uiComponentBuilderInstance().checkboxInstance();
+		txtName = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		txtDate = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		btnCancel = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		btnSave = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		tbHeaderCalendar = SetUp.getBuilder().uiComponentBuilderInstance().tableInstance();
+		tbDayCalendar = SetUp.getBuilder().uiComponentBuilderInstance().tableInstance();
+
+		// TODO: Implementar quando pop estiver sendo exibido.
+		popUpDateInvalid = new PopUp("", "", "");
 	}
-	
+
 	/*
-	 * accessors methods, this methods performed scan in the html before return the element
-	 * this scan is necessary because the element can not is displayed in screen to the access
+	 * Accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * not is displayed in screen to the access.
 	 */
 
+	/**
+	 * @return borrowed checkbox
+	 */
 	public Checkbox getCbBorrowed()
 	{
 		cbBorrowed.loadById("gwt-uid-1");
 		return cbBorrowed;
 	}
 
+	/**
+	 * @return name textfield
+	 */
 	public TextField getTxtName()
 	{
 		txtName.loadById("lend_nameTxt");
 		return txtName;
 	}
 
+	/**
+	 * @return date textfield
+	 */
 	public TextField getTxtDate()
 	{
 		txtDate.loadById("_mask_1");
 		return txtDate;
 	}
 
+	/**
+	 * @return cancel button
+	 */
 	public Button getBtnCancel()
 	{
 		btnCancel.loadById("lend_cancelBtn");
 		return btnCancel;
 	}
 
+	/**
+	 * @return save button
+	 */
 	public Button getBtnSave()
 	{
 		btnSave.loadById("lend_saveBtn");
 		return btnSave;
 	}
 
+	/**
+	 * @return header calendar table
+	 */
 	public Table getTbHeaderCalendar()
 	{
 		tbHeaderCalendar.loadByXPath("/html/body/div[8]/div/table/tbody/tr/td/table");
 		return tbHeaderCalendar;
 	}
 
+	/**
+	 * @return calendar table
+	 */
 	public Table getTbDayCalendar()
 	{
 		tbDayCalendar.loadByXPath("/html/body/div[8]/div/table/tbody/tr[2]/td/table");
 		return tbDayCalendar;
 	}
 
+	/**
+	 * @return date popup
+	 */
 	public PopUp getPopUpDateInvalid()
 	{
 		return popUpDateInvalid;

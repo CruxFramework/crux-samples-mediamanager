@@ -19,17 +19,19 @@ import org.cruxframework.mediamanager.test.model.Media;
 import org.cruxframework.mediamanager.test.screen.ScreenAddMedia;
 
 /**
- * Class description: This class implements the  procedures in 'Add Media' screen
+ * Class description: This class implements the procedures in 'Add Media' screen.
+ * 
  * @author guilherme.alecrim
  */
 public class PTAddMedia
 {
 	private static ScreenAddMedia screenAddMedia;
 
-	/** 
-	 * Add a media
-	 * @param media: media for add in database
-	 * @return: menssage of sucess 'Successfully saved!'
+	/**
+	 * Add a media.
+	 * 
+	 * @param media media for add in database
+	 * @return success message 'Successfully saved!'
 	 */
 	public static String addMedia(Media media)
 	{
@@ -40,11 +42,12 @@ public class PTAddMedia
 		return msgSucess;
 	}
 
-	/** 
-	 * Add a media and after change your data 
-	 * @param media: media for add 
-	 * @param newValues: new values for media
-	 * @return menssage of sucess 'Successfully saved!'
+	/**
+	 * Add a media and after change your data.
+	 * 
+	 * @param media media for add
+	 * @param newValues new values for media
+	 * @return success menssage 'Successfully saved!'
 	 */
 	public static String saveChanges(Media media, Media newValues)
 	{
@@ -56,9 +59,10 @@ public class PTAddMedia
 		return msgSaveChange;
 	}
 
-	/** 
-	 * Filled of field 'Add Media' screen 
-	 * @param media: values for fill the fields
+	/**
+	 * Filled of field 'Add Media' screen.
+	 * 
+	 * @param media values for fill the fields
 	 */
 	public static void populateFields(Media media)
 	{
@@ -68,23 +72,23 @@ public class PTAddMedia
 	}
 
 	/**
-	 * Check if the pop up is displayed
-	 * @return true:  pop up  is displayed 
-	 * false:  pop up not is  displayed
+	 * Check if the pop up is displayed.
+	 * 
+	 * @return true: pop up is displayed false: pop up not is displayed
 	 */
 	public static boolean isDisplayedPopUp()
 	{
 		return getScreenAddMedia().getPopUp().isDisplayedPopUp();
 	}
-	
-	
+
 	/**
-	 * instantiates the object ScreenAddMedia
-	 * @return: ScreenAddMedia instatiates
+	 * instantiates the object ScreenAddMedia.
+	 * 
+	 * @return ScreenAddMedia instatiates
 	 */
 	public static ScreenAddMedia getScreenAddMedia()
 	{
-		if (screenAddMedia == null )
+		if (screenAddMedia == null)
 		{
 			screenAddMedia = new ScreenAddMedia();
 		}

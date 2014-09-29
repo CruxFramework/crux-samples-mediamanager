@@ -19,32 +19,27 @@ import org.cruxframework.mediamanager.test.model.Media;
 import org.testng.annotations.DataProvider;
 
 /**
- * Class description:   
- * Class description: This class contains methods that return the inputs for testing the class CTAddMedia
- * for each method of test exist a method provider of input, the name of a methods provider reference 
- * a method of test, e.g the method PV001_LoginFail in class PVLogin provide input for test P001_LoginFail in class CTLogin
+ * Class description: Class description: This class contains methods that return the inputs for testing the class CTAddMedia for each method
+ * of test exist a method provider of input, the name of a methods provider reference a method of test, e.g the method PV001_LoginFail in
+ * class PVLogin provide input for test P001_LoginFail in class CTLogin.
+ * 
+ * Each method of this class returns an array object, each row of this array represents an input to a method of testing.
+ * 
  * @author guilherme.alecrim
  */
+// CHECKSTYLE:OFF
 public class PVAddMedia
 {
-	
-	/*
-	 * Each method of this class returns an array object, 
-	 * each row of this array represents an input to 
-	 * a method of testing
-	 */
-	
-	
 	@DataProvider(name = "PV001_Medias")
 	public static Object[][] PV001_Medias()
 	{
-		return new Object[][] { {  new Media("CD", "Dirt", "Artista01P006") } };
+		return new Object[][] { { new Media("CD", "Dirt", "Artista01P006") } };
 	}
 
 	@DataProvider(name = "PV002_SaveChanges")
 	public static Object[][] PV002_SaveChanges()
 	{
-		return new Object[][] { {new Media("CD", "Evil Empire", "Artista01P006"), new Media("DVD", "Unplugged MTV", "Artista02P006") } };
+		return new Object[][] { { new Media("CD", "Evil Empire", "Artista01P006"), new Media("DVD", "Unplugged MTV", "Artista02P006") } };
 	}
 
 	@DataProvider(name = "PV003_AddAndSearchMedia")
@@ -56,18 +51,15 @@ public class PVAddMedia
 	@DataProvider(name = "PV004_ChangeAndSearchMedia")
 	public static Object[][] PV004_ChangeAndSearchMedia()
 	{
-		return new Object[][] { {new Media("CD", "MediaForEdit3", "Artista01P006"),
-				new Media("DVD", "EditNameMediaTest4", "Artista02P006") } };
+		return new Object[][] { { new Media("CD", "MediaForEdit3", "Artista01P006"),
+		    new Media("DVD", "EditNameMediaTest4", "Artista02P006") } };
 	}
 
 	@DataProvider(name = "PV005_FieldCleanToAdd")
 	public static Object[][] PV005_FieldCleanToAdd()
 	{
-		return new Object[][] { 
-				{  new Media("", "", "") },
-				{  new Media("", "Media", "") },
-				{  new Media("", "", "Artista01P006") }, 
-				{  new Media("CD", "", "") } };
+		return new Object[][] { { new Media("", "", "") }, { new Media("", "Media", "") }, { new Media("", "", "Artista01P006") },
+		    { new Media("CD", "", "") } };
 	}
 
 	@DataProvider(name = "PV006_FieldCleanToChange")

@@ -27,6 +27,12 @@ import org.apache.commons.lang.StringUtils;
 import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 
 
+/**
+ * Class description: 
+ * 
+ * @author alexandre.costa
+ */
+// CHECKSTYLE:OFF
 public class QueryBuilder
 {
 	private static final String FROM = "from";
@@ -220,7 +226,7 @@ public class QueryBuilder
 				item.append(orderBy.getField());
 				item.append(SPACE);
 
-				if (orderBy.isCrescente())
+				if (orderBy.isAscending())
 				{
 					item.append(ASCENDING);
 				} else

@@ -19,45 +19,47 @@ import org.cruxframework.mediamanager.test.model.Artist;
 import org.cruxframework.mediamanager.test.screen.ScreenAddArtist;
 
 /**
- * Class description:  This class implements the  procedures in 'Add Artist' screen
+ * Class description: This class implements the procedures in 'Add Artist' screen.
+ * 
  * @author guilherme.alecrim
  */
 public class PTAddArtist
 {
 	private static ScreenAddArtist screenAddArtist;
 
-	/** 
-	 * Add an artist 
-	 * @param artist: Artist for add in data base
-	 * @return: message of success to add artist 'Successfully saved!'
+	/**
+	 * Add an artist.
+	 * 
+	 * @param artist Artist for add in data base
+	 * @return message of success to add artist 'Successfully saved!'
 	 */
-	public static String addArtist(Artist artist) 
-	{		
-		
+	public static String addArtist(Artist artist)
+	{
 		populateFields(artist);
 		getScreenAddArtist().getBtnAddArtist().click();
 		String msg = getScreenAddArtist().getPopUp().getMenssagePopUp();
-		getScreenAddArtist().getPopUp().confirmPopUp();	
+		getScreenAddArtist().getPopUp().confirmPopUp();
 		Navegation.waitFiveSeconds();
 		return msg;
 	}
 
-
-	/** 
-	 * Populate the fields of 'Add Artist' screen
-	 * @param artist: values for fill the fields
+	/**
+	 * Populate the fields of 'Add Artist' screen.
+	 * 
+	 * @param artist values for fill the fields
 	 */
 	public static void populateFields(Artist artist)
-	{	
-			getScreenAddArtist().getName().fill(artist.getName());
-			getScreenAddArtist().getCountry().select(artist.getCountry());
-			getScreenAddArtist().getGenre().select(artist.getGenre());
+	{
+		getScreenAddArtist().getName().fill(artist.getName());
+		getScreenAddArtist().getCountry().select(artist.getCountry());
+		getScreenAddArtist().getGenre().select(artist.getGenre());
 	}
 
-	/** 
-	 * Add a  artist and change yours data
-	 * @param artist: artist for add 
-	 * @param newValues: values for change data of artist 
+	/**
+	 * Add a artist and change yours data.
+	 * 
+	 * @param artist artist for add
+	 * @param newValues values for change data of artist
 	 * @return message of success 'Successfully saved!'
 	 */
 	public static String addAndChangerArtist(Artist artist, Artist newValues)
@@ -70,34 +72,27 @@ public class PTAddArtist
 		return sucessChage;
 	}
 
-
 	/**
-	 * Check if the pop   with message 'Successfully saved!' is displayed
-	 * @return true:  pop up  is displayed 
-	 * false:  pop up not is  displayed
+	 * Check if the pop with message 'Successfully saved!' is displayed.
+	 * 
+	 * @return true popup is displayed false: pop up not is displayed
 	 */
 	public static boolean isDisplayedPopUpSavedAddArtist()
 	{
 		return getScreenAddArtist().getPopUp().isDisplayedPopUp();
 	}
-	
-	
 
-	
-	
-	
-	
-	/** 
-	 * instance the object ScreenAddArtist
-	 * @return: ScreenAddArtist instance
+	/**
+	 * instance the object ScreenAddArtist.
+	 * 
+	 * @return ScreenAddArtist instance
 	 */
 	public static ScreenAddArtist getScreenAddArtist()
 	{
-		if(screenAddArtist == null)
+		if (screenAddArtist == null)
 		{
 			screenAddArtist = new ScreenAddArtist();
 		}
 		return screenAddArtist;
 	}
-	
 }

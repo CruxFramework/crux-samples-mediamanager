@@ -20,7 +20,8 @@ import org.cruxframework.mediamanager.shared.dto.StatisticsDTO;
 import com.google.gwt.user.client.rpc.RemoteService;
 
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
 public interface StatisticsService extends RemoteService

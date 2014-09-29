@@ -21,7 +21,8 @@ import org.cruxframework.crux.core.client.rest.RestProxy.TargetRestService;
 import org.cruxframework.mediamanager.shared.dto.EditMediaDTO;
 
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
 @TargetRestService("editMediaService")

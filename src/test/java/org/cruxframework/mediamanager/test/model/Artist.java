@@ -16,20 +16,19 @@
 package org.cruxframework.mediamanager.test.model;
 
 /**
- * Class description: This class represent  an artist with attributes name, country and genre 
+ * Class description: This class represent an artist with attributes name, country and genre.
+ * 
  * @author guilherme.alecrim
  */
 public class Artist
 {
-	/*
-	 * name: nome of artists. e.g Guilherme
-	 * country: coutry of artist e.g Brazil
-	 * genre: genre of artist e.g Rock
-	 */
 	private String name;
 	private String country;
 	private String genre;
-
+	
+	/**
+	 * Default constructor.
+	 */
 	public Artist()
 	{
 		name = new String();
@@ -37,7 +36,12 @@ public class Artist
 		genre = new String();
 	}
 
-
+	/**
+	 * Constructor.
+	 * @param name artist name
+	 * @param country artist country
+	 * @param genre artist genre
+	 */
 	public Artist(String name, String country, String genre)
 	{
 		this.name = name;
@@ -45,45 +49,13 @@ public class Artist
 		this.genre = genre;
 	}
 
-	public String getName()
-	{
-		return name;
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-
-	public String getCountry()
-	{
-		return country;
-	}
-
-	public void setCountry(String country)
-	{
-		this.country = country;
-	}
-
-	public String getGenre()
-	{
-		return genre;
-	}
-
-	public void setGenre(String genre)
-	{
-		this.genre = genre;
-	}
-    /**
-     * Compare  name, country and genre between two artists
-     */
 	@Override
 	public boolean equals(Object obj)
 	{
 		if (obj instanceof Artist)
 		{
 			if (((Artist) obj).getName().equals(this.name) && (((Artist) obj).getCountry().equals(this.country))
-					&& (((Artist) obj).getGenre().equals(this.genre)))
+			    && (((Artist) obj).getGenre().equals(this.genre)))
 			{
 				return true;
 			}
@@ -96,5 +68,57 @@ public class Artist
 	{
 		String artist = "Name: " + name + "\n" + "Country: " + country + "\n" + "Genre: " + genre;
 		return artist;
+	}
+	
+	/**************************************************
+	 * Getters and setters
+	 **************************************************/
+
+	/**
+	 * @return the name
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	/**
+	 * @return the country
+	 */
+	public String getCountry()
+	{
+		return country;
+	}
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country)
+	{
+		this.country = country;
+	}
+
+	/**
+	 * @return the genre
+	 */
+	public String getGenre()
+	{
+		return genre;
+	}
+
+	/**
+	 * @param genre the genre to set
+	 */
+	public void setGenre(String genre)
+	{
+		this.genre = genre;
 	}
 }

@@ -24,8 +24,11 @@ import javax.persistence.Version;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Class description: Base class for entities.
+ * 
  * @author alexandre.costa
+ * 
+ * @param <T> DTO class
  */
 @MappedSuperclass
 public abstract class AbstractEntity<T extends AbstractDTO>
@@ -67,8 +70,11 @@ public abstract class AbstractEntity<T extends AbstractDTO>
 	{
 		this.version = version;
 	}
-	
+
+	/**
+	 * @return DTO represation of entity
+	 */
 	@Transient
 	public abstract T getDTORepresentation();
-	
+
 }

@@ -30,54 +30,48 @@ import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 import com.google.gwt.user.client.ui.TextBox;
 
 /**
- * Class description: 
+ * Controller for artists view.
+ * 
  * @author alexandre.costa
  */
 @Controller("artistsController")
 public class ArtistsController extends SearchController<ArtistDTO>
 {
-	
 	@Inject
-	public ArtistsView artistsViewviewAcessor;
-	
+	private ArtistsView artistsViewviewAcessor;
+
 	@Inject
-	public ArtistServiceProxy artistServiceProxy;
-	
+	private ArtistServiceProxy artistServiceProxy;
+
+	/**
+	 * Handles onActivate view event.
+	 */
 	@Expose
 	public void onActivate()
 	{
 		animateContent();
 		animateResults();
-		
+
 		/* Clean grid */
 		getResultGrid().clear();
 		getResultGrid().refresh();
 	}
-	
+
+	/**
+	 * Handles search command action.
+	 */
 	@Expose
 	public void search()
 	{
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		String name = artistsViewviewAcessor.nameTextBox().getText();
-		artistServiceProxy.search(name, new SearchCallback()); 
-	}
-	
-	/*************************************
-	 * WidgetAccessor interfaces
-	 *************************************/
-	
-	@BindView("artists")
-	public static interface ArtistsView extends WidgetAccessor
-	{
-		TextBox nameTextBox();
-		
-		DeviceAdaptiveGrid tableGrid();
+		artistServiceProxy.search(name, new SearchCallback());
 	}
 
 	/*************************************
 	 * Overwritten methods
 	 *************************************/
-	
+
 	@Override
 	protected String getMessageForDeleteValidationError()
 	{
@@ -89,7 +83,7 @@ public class ArtistsController extends SearchController<ArtistDTO>
 	{
 		return "artist";
 	}
-	
+
 	@Override
 	protected DeviceAdaptiveGrid getResultGrid()
 	{
@@ -100,5 +94,48 @@ public class ArtistsController extends SearchController<ArtistDTO>
 	protected ArtistServiceProxy getRestServiceProxy()
 	{
 		return artistServiceProxy;
+	}
+	
+	/*************************************
+	 * Getters and setters
+	 *************************************/
+	
+	/**
+	 * @param artistsViewviewAcessor the artistsViewviewAcessor to set
+	 */
+	public void setArtistsViewviewAcessor(ArtistsView artistsViewviewAcessor)
+	{
+		this.artistsViewviewAcessor = artistsViewviewAcessor;
+	}
+
+	/**
+	 * @param artistServiceProxy the artistServiceProxy to set
+	 */
+	public void setArtistServiceProxy(ArtistServiceProxy artistServiceProxy)
+	{
+		this.artistServiceProxy = artistServiceProxy;
+	}
+
+	/*************************************
+	 * WidgetAccessor interfaces
+	 *************************************/
+
+	/**
+	 * Allows access screen components. 
+	 * 
+	 * @author alexandre.costa
+	 */
+	@BindView("artists")
+	public static interface ArtistsView extends WidgetAccessor
+	{
+		/**
+		 * @return get name textbox.
+		 */
+		TextBox nameTextBox();
+
+		/**
+		 * @return get table grid.
+		 */
+		DeviceAdaptiveGrid tableGrid();
 	}
 }

@@ -25,15 +25,21 @@ import org.cruxframework.mediamanager.client.reuse.controller.AbstractController
 import org.cruxframework.mediamanager.client.service.LoginServiceAsync;
 
 /**
- * Class description: 
+ * Class description: Root view controller.
+ * 
  * @author alexandre.costa
  */
 @Controller("rootController")
 public class RootController extends AbstractController
 {
-	@Inject
-	public LoginServiceAsync loginServiceAsync;
+	private static final String VIEWS = "views";
 	
+	@Inject
+	private LoginServiceAsync loginServiceAsync;
+
+	/**
+	 * Handles view activate event.
+	 */
 	@Expose
 	public void onActivate()
 	{
@@ -45,12 +51,25 @@ public class RootController extends AbstractController
 				if (result != null && result)
 				{
 					Screen.get("menuView").setVisible(true);
-					((SimpleViewContainer) Screen.get("views")).showView("statistics");
-				} else
+					((SimpleViewContainer) Screen.get(VIEWS)).showView("statistics");
+				}
+				else
 				{
-					((SimpleViewContainer) Screen.get("views")).showView("login");
+					((SimpleViewContainer) Screen.get(VIEWS)).showView("login");
 				}
 			}
 		});
+	}
+	
+	/**************************************************
+	 * Getters and setters
+	 *************************************************/
+	
+	/**
+	 * @param loginServiceAsync the loginServiceAsync to set
+	 */
+	public void setLoginServiceAsync(LoginServiceAsync loginServiceAsync)
+	{
+		this.loginServiceAsync = loginServiceAsync;
 	}
 }

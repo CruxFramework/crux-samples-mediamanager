@@ -24,13 +24,19 @@ import org.cruxframework.mediamanager.shared.dto.MediaDTO;
 import org.cruxframework.mediamanager.shared.enums.MediaType;
 
 /**
- * Class description: 
+ * Class description: REST interface for medias.
+ * 
  * @author alexandre.costa
  */
 @TargetRestService("mediaService")
 public interface MediaServiceProxy extends RestServiceProxy<MediaDTO>
 {
-	void search(MediaType type, String name, String person, 
-		Callback<List<MediaDTO>> callback); 
-	
+	/**
+	 * @param type
+	 * @param name
+	 * @param person
+	 * @param callback
+	 */
+	void search(MediaType type, String name, String person, Callback<List<MediaDTO>> callback);
+
 }

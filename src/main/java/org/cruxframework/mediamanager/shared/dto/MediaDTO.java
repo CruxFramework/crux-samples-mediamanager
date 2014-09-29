@@ -18,11 +18,12 @@ package org.cruxframework.mediamanager.shared.dto;
 import java.util.Date;
 
 import org.cruxframework.crux.core.client.dto.DataObject;
+import org.cruxframework.mediamanager.server.entity.Media;
 import org.cruxframework.mediamanager.shared.enums.MediaType;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Class description: DTO class for {@link Media} entity.
  * @author alexandre.costa
  */
 @DataObject("media")

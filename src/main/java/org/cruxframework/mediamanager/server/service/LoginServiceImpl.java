@@ -29,29 +29,29 @@ import org.cruxframework.mediamanager.server.entity.dao.impl.UserDAOImpl;
 import org.cruxframework.mediamanager.server.utils.Filter;
 
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
 public class LoginServiceImpl implements LoginService, RequestAware
 {
 	private static final String LOGIN = "login";
-	
+
 	private HttpServletRequest request;
-	
+
 	@Override
 	public Boolean login(String login, String password)
 	{
 		List<Filter> filters = new ArrayList<Filter>(2);
-		filters.add(new Filter("login", login));
+		filters.add(new Filter(LOGIN, login));
 		filters.add(new Filter("password", password));
-		List<User> result =  SpringUtils.get().getBean(
-			UserDAOImpl.class).search(filters, null);
-		
+		List<User> result = SpringUtils.get().getBean(UserDAOImpl.class).search(filters, null);
+
 		if (CollectionUtils.size(result) != 1)
 		{
 			return false;
 		}
-		
+
 		request.getSession(true).setAttribute(LOGIN, login);
 		return true;
 	}
@@ -62,21 +62,23 @@ public class LoginServiceImpl implements LoginService, RequestAware
 		String login = (String) request.getSession().getAttribute(LOGIN);
 		return StringUtils.isNotEmpty(login);
 	}
-	
+
 	@Override
 	public void logout()
 	{
 		request.getSession().invalidate();
 	}
-	
+
 	/*******************************************
 	 * Getters and setters
 	 *******************************************/
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setRequest(HttpServletRequest request)
 	{
 		this.request = request;
 	}
-
 }

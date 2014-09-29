@@ -17,17 +17,16 @@ package org.cruxframework.mediamanager.client.service;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
-
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
 public interface LoginService extends RemoteService
 {
 	Boolean login(String login, String password);
-	
-	Boolean isSessionActive();
-	
-	void logout();
 
+	Boolean isSessionActive();
+
+	void logout();
 }

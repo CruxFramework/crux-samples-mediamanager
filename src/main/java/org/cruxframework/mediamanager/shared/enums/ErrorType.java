@@ -16,11 +16,18 @@
 package org.cruxframework.mediamanager.shared.enums;
 
 /**
- * Class description: 
+ * Class description: Error types.
+ * 
  * @author alexandre.costa
  */
 public enum ErrorType
 {
-	INSERT, UPDATE, DELETE
+	/** Error on insert resource. */
+	INSERT,
 
+	/** Error on update resource. */
+	UPDATE,
+
+	/** Error on delete resource. */
+	DELETE
 }

@@ -23,11 +23,11 @@ import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.util.StringUtils;
 
 /**
- * Class description:
+ * Class description: Wrapper for {@link OpenEntityManagerInViewFilter}. Forces spring initialization.
+ * 
  * @author alexandre.costa
  */
-public class CustomOpenEntityManagerInViewFilter extends
-	OpenEntityManagerInViewFilter
+public class CustomOpenEntityManagerInViewFilter extends OpenEntityManagerInViewFilter
 {
 	/**
 	 * {@inheritDoc}
@@ -40,17 +40,15 @@ public class CustomOpenEntityManagerInViewFilter extends
 		if (StringUtils.hasLength(emfBeanName))
 		{
 			return SpringUtils.get().getBean(emfBeanName, EntityManagerFactory.class);
-		} else if (!StringUtils.hasLength(puName)
-			&& SpringUtils.get().containsBean(
-				DEFAULT_ENTITY_MANAGER_FACTORY_BEAN_NAME))
+		}
+		else if (!StringUtils.hasLength(puName) && SpringUtils.get().containsBean(DEFAULT_ENTITY_MANAGER_FACTORY_BEAN_NAME))
 		{
-			return SpringUtils.get().getBean(
-				DEFAULT_ENTITY_MANAGER_FACTORY_BEAN_NAME, EntityManagerFactory.class);
-		} else
+			return SpringUtils.get().getBean(DEFAULT_ENTITY_MANAGER_FACTORY_BEAN_NAME, EntityManagerFactory.class);
+		}
+		else
 		{
 			// Includes fallback search for single EntityManagerFactory bean by type.
-			return EntityManagerFactoryUtils.findEntityManagerFactory(SpringUtils
-				.get().getContext(), puName);
+			return EntityManagerFactoryUtils.findEntityManagerFactory(SpringUtils.get().getContext(), puName);
 		}
 	}
 }

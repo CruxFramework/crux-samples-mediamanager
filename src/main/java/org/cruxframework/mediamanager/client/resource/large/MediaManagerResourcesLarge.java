@@ -22,9 +22,11 @@ import org.cruxframework.mediamanager.client.resource.common.MediaManagerResourc
 import com.google.gwt.resources.client.DataResource;
 
 /**
+ * Class description: Resources class. 
+ * 
  * @author Claudio Junior
- *
  */
+// CHECKSTYLE:OFF
 @Resource(value="mediaManagerResources", supportedDevices={Device.all})
 public interface MediaManagerResourcesLarge extends MediaManagerResourcesCommon
 {
@@ -36,5 +38,4 @@ public interface MediaManagerResourcesLarge extends MediaManagerResourcesCommon
 	
 	@Source("header-logo.png")
 	DataResource headerLogo();
-	
 }

@@ -23,20 +23,27 @@ import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Class description: Entity utils.
+ * 
  * @author alexandre.costa
  */
 public class EntityUtils
 {
-	public static <D extends AbstractDTO, E extends AbstractEntity<D>>  List<D> 
-		convert(List<E> entities)
+	/**
+	 * Converts an entity list to DTO list.
+	 * @param <D> DTO type class
+	 * @param <E> entity type class
+	 * @param entities entity list
+	 * @return DTO list.
+	 */
+	public static <D extends AbstractDTO, E extends AbstractEntity<D>> List<D> convert(List<E> entities)
 	{
 		List<D> dtoResultList = new ArrayList<D>(CollectionUtils.size(entities));
 		for (E entity : entities)
 		{
 			dtoResultList.add(entity.getDTORepresentation());
 		}
-		
+
 		return dtoResultList;
 	}
 }

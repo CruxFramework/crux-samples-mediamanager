@@ -37,7 +37,8 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * Class description: 
+ * Controller for login view.
+ * 
  * @author alexandre.costa
  */
 @Controller("loginController")
@@ -45,10 +46,10 @@ public class LoginController
 {
 	private static final String DEFAULT_SIGN_UP_MESSAGE = "Login: admin / admin";
 	private static final String DEFAULT_ERROR_SIGN_UP = "Username and password invalid!";
-	
+
 	@Inject
-	public LoginServiceAsync loginServiceAsync;
-	
+	private LoginServiceAsync loginServiceAsync;
+
 	/**
 	 * Process user login.
 	 */
@@ -57,21 +58,26 @@ public class LoginController
 	{
 		/* Get login and password */
 		View view = View.of(this);
-		final TextBox loginTextBox = (TextBox) view.getWidget("loginTextBox");
-		final PasswordTextBox passwrodTextBox = 
-			(PasswordTextBox)view.getWidget("passwordTextBox");
+		final TextBox LOGIN_TEXT_BOX = (TextBox) view.getWidget("loginTextBox");
+		final PasswordTextBox PASSWROD_TEXT_BOX = (PasswordTextBox) view.getWidget("passwordTextBox");
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		/* invoke login service */
-		loginServiceAsync.login(loginTextBox.getValue(), passwrodTextBox.getValue(), 
-			new LoginCallback(loginTextBox, passwrodTextBox));
+		loginServiceAsync.login(LOGIN_TEXT_BOX.getValue(), PASSWROD_TEXT_BOX.getValue(), new LoginCallback(LOGIN_TEXT_BOX,
+		    PASSWROD_TEXT_BOX));
 	}
-	
+
+	/**
+	 * Process create new account command.
+	 */
 	@Expose
 	public void createNewAccount()
 	{
 		MessageBox.show(DEFAULT_SIGN_UP_MESSAGE, MessageType.INFO, DialogAnimation.fadeDownUp);
 	}
-	
+
+	/**
+	 * Animate login view.
+	 */
 	@Expose
 	public void animateLogin()
 	{
@@ -79,22 +85,84 @@ public class LoginController
 		animateIntroduction();
 		animateFormWrapper();
 	}
-	
+
+	/******************************************
+	 * Utilities
+	 ******************************************/
+
+	private static void showMenu()
+	{
+		Screen.get("menuView").setVisible(true);
+	}
+
+	/******************************************
+	 * Animations
+	 ******************************************/
+
+	private void animateLogo()
+	{
+		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeInUp);
+		animation.animate(View.of(this).getWidget("logo"));
+	}
+
+	private void animateIntroduction()
+	{
+		final int ANIMATION_DELAY = 600;
+
+		Timer delay = new Timer()
+		{
+			@Override
+			public void run()
+			{
+				final Widget INTRODUCTION_TEXT = View.of(LoginController.this).getWidget("introductionText");
+				StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeIn);
+
+				animation.animate(INTRODUCTION_TEXT, new Callback()
+				{
+					@Override
+					public void onAnimationCompleted()
+					{
+						INTRODUCTION_TEXT.addStyleName("opaque");
+					}
+				});
+			}
+		};
+		delay.schedule(ANIMATION_DELAY);
+	}
+
+	private void animateFormWrapper()
+	{
+		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeInUp);
+		animation.animate(View.of(this).getWidget("formWrapper"));
+	}
+
+	/******************************************
+	 * Getters and setters
+	 ******************************************/
+
+	/**
+	 * @param loginServiceAsync the loginServiceAsync to set
+	 */
+	public void setLoginServiceAsync(LoginServiceAsync loginServiceAsync)
+	{
+		this.loginServiceAsync = loginServiceAsync;
+	}
+
 	/*****************************************
 	 * Callback classes
 	 *****************************************/
-	
+
 	private class LoginCallback implements AsyncCallback<Boolean>
 	{
 		private final TextBox loginTextBox;
 		private final PasswordTextBox passwrodTextBox;
-		
+
 		public LoginCallback(TextBox loginTextBox, PasswordTextBox passwrodTextBox)
 		{
 			this.loginTextBox = loginTextBox;
 			this.passwrodTextBox = passwrodTextBox;
 		}
-		
+
 		@Override
 		public void onSuccess(Boolean result)
 		{
@@ -103,14 +171,16 @@ public class LoginController
 				WaitBox.hideAllDialogs();
 				((SimpleViewContainer) Screen.get("views")).showView("statistics");
 				LoginController.showMenu();
-			}else{
+			}
+			else
+			{
 				WaitBox.hideAllDialogs();
-				MessageBox.show(null, DEFAULT_ERROR_SIGN_UP, MessageType.ERROR, true,
-						false, true, true,"faces-MessageBox", DialogAnimation.fadeDownUp);
-			
+				MessageBox.show(null, DEFAULT_ERROR_SIGN_UP, MessageType.ERROR, true, false, true, true, "faces-MessageBox",
+				    DialogAnimation.fadeDownUp);
+
 			}
 		}
-		
+
 		@Override
 		public void onFailure(Throwable caught)
 		{
@@ -118,56 +188,5 @@ public class LoginController
 			loginTextBox.setValue("");
 			passwrodTextBox.setValue("");
 		}
-	}
-	
-	/******************************************
-	 * Utilities
-	 ******************************************/
-	
-	private static void showMenu()
-	{
-		Screen.get("menuView").setVisible(true);
-	}
-	
-	/******************************************
-	 * Animations
-	 ******************************************/
-	
-	private void animateLogo()
-	{
-		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeInUp);
-		animation.animate(View.of(this).getWidget("logo"));
-	}
-	
-	private void animateIntroduction()
-	{
-		Timer delay = new Timer()
-		{
-			@Override
-			public void run()
-			{
-				final Widget introductionText = View.of(LoginController.this)
-					.getWidget("introductionText");
-				
-				StandardAnimation animation = new StandardAnimation(
-					StandardAnimation.Type.fadeIn);
-				
-				animation.animate(introductionText, new Callback()
-				{
-					@Override
-					public void onAnimationCompleted()
-					{
-						introductionText.addStyleName("opaque");
-					}
-				});
-			}
-		};
-		delay.schedule(600);
-	}
-	
-	private void animateFormWrapper()
-	{
-		StandardAnimation animation = new StandardAnimation(StandardAnimation.Type.fadeInUp);
-		animation.animate(View.of(this).getWidget("formWrapper"));
 	}
 }

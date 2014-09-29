@@ -44,11 +44,11 @@ public class ScreenAddArtist
 	 */
 	public ScreenAddArtist()
 	{
-		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		selectFieldCountry = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
-		selectFieldGenre = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
-		btnAddArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		btnSaveChanges = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		txtName = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		selectFieldCountry = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
+		selectFieldGenre = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
+		btnAddArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		btnSaveChanges = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		popUp = new PopUp("/html/body/div[5]/div","/html/body/div[5]/div/div/div[2]/div/div","/html/body/div[5]/div/div/div[2]/div/button");
 	}
 
@@ -72,14 +72,14 @@ public class ScreenAddArtist
 
 	public Select getCountry()
 	{	
-		selectFieldCountry = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
+		selectFieldCountry = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		selectFieldCountry.loadById("artist_countryListBox");
 		return selectFieldCountry;
 	}
 
 	public Select getGenre()
 	{
-		selectFieldGenre = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
+		selectFieldGenre = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		selectFieldGenre.loadById("artist_genereListBox");
 		return selectFieldGenre;
 	}

@@ -24,24 +24,61 @@ import br.ufmg.dcc.saotome.beholder.Browser;
 import br.ufmg.dcc.saotome.beholder.builder.Builder;
 import br.ufmg.dcc.saotome.beholder.selenium.SeleniumController;
 
-
 /**
- * This class implements the method setup used for initiate the browser and instantiate the web elements
+ * This class implements the method setup used for initiate the browser and instantiate the web elements.
+ * 
  * @author guilherme.alecrim
  */
 public class SetUp
 {
-	public static Browser BROWSER;
-	public static Builder BUILDER;
-	public static String Url;
-	public static WebDriver DRIVER;
+	private static Browser browser;
+	private static Builder builder;
+	private static String url;
+	private static WebDriver driver;
 
+	/**
+	 * init setup.
+	 * @param url project URL
+	 * @throws MalformedURLException exception
+	 */
 	public static void setUP(final String url) throws MalformedURLException
 	{
-		SetUp.BROWSER = SeleniumController.getBrowser();
-		SetUp.BUILDER = SeleniumController.getBuilder();
-		SetUp.Url = url;
-		SetUp.BROWSER.open(new URL(Url));
-		SetUp.DRIVER = SeleniumController.getDriver();
+		SetUp.browser = SeleniumController.getBrowser();
+		SetUp.builder = SeleniumController.getBuilder();
+		SetUp.url = url;
+		SetUp.browser.open(new URL(url));
+		SetUp.driver = SeleniumController.getDriver();
+	}
+
+	/**
+	 * @return the browser
+	 */
+	public static Browser getBrowser()
+	{
+		return browser;
+	}
+
+	/**
+	 * @return the builder
+	 */
+	public static Builder getBuilder()
+	{
+		return builder;
+	}
+
+	/**
+	 * @return the url
+	 */
+	public static String getUrl()
+	{
+		return url;
+	}
+
+	/**
+	 * @return the driver
+	 */
+	public static WebDriver getDriver()
+	{
+		return driver;
 	}
 }

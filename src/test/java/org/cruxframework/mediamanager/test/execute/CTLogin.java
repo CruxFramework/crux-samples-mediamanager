@@ -23,35 +23,37 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- *Class description: tests to validate the access to the media manager. 
- *The login must be performed only to the user : admin  and  password:  admin 
- * The providers of inputs  are methods of class PVLogin class 
+ * Class description: tests to validate the access to the media manager. The login must be performed only to the user : admin and password:
+ * admin The providers of inputs are methods of class PVLogin class
+ * 
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVLogin }
  * @author guilherme.alecrim
  */
 @Test(groups = { "mediaManager", "login" }, priority = 2)
 public class CTLogin
 {
-	/** 
-	 * Login with  invalid user, the system should displayed pop up with message "Username and password invalid!"
-	 * @param user : user invalid
-	 * @param password: password of the user 
+	/**
+	 * Login with invalid user, the system should displayed pop up with message "Username and password invalid!".
+	 * 
+	 * @param user user invalid
+	 * @param password password of the user
 	 */
 	@Test(enabled = true, dataProvider = "PV001_LoginFail", dataProviderClass = PVLogin.class)
-	public void P001_LoginFail( String user, String password)  
+	public void p001LoginFail(String user, String password)
 	{
-		SetUp.DRIVER.navigate().refresh();
+		SetUp.getDriver().navigate().refresh();
 		String loginFail = Navegation.loginFail(user, password);
 		Assert.assertEquals(loginFail, "Username and password invalid!");
 	}
 
-	/** 
-	 * Login whit user valid, the system should allow the user access  
-	 * @param user: user altentic in system
-	 * @param password: password of the user authenticate
+	/**
+	 * Login whit user valid, the system should allow the user access.
+	 * 
+	 * @param user valid user in system
+	 * @param password password of the user authenticate
 	 */
 	@Test(enabled = true, dataProvider = "PV001_LoginSucess", dataProviderClass = PVLogin.class)
-	public void P002_LoginSucess( String user, String password)  
+	public void p002LoginSucess(String user, String password)
 	{
 		Navegation.loginSucess(user, password);
 		Assert.assertEquals(PTStatistics.getNameScreenStatistics(), "Statistics");

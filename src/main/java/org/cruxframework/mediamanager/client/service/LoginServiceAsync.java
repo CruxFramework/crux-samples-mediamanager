@@ -18,14 +18,15 @@ package org.cruxframework.mediamanager.client.service;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
 public interface LoginServiceAsync
 {
 	void login(String login, String password, AsyncCallback<Boolean> callback);
-	
+
 	void isSessionActive(AsyncCallback<Boolean> callback);
-	
+
 	void logout(AsyncCallback<Void> callback);
 }

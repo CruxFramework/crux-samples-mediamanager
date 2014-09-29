@@ -21,14 +21,14 @@ import br.ufmg.dcc.saotome.beholder.ui.Div;
 
 /**
  * Class description: This class represent the screen Statistics
+ * 
  * @author guilherme.alecrim
  */
 public class ScreenStatistics
 {
-	
+
 	/*
-	 * This parameters equivalent   the elements in screen  
-	 * This element are providers by Beholder  Framework
+	 * This parameters equivalent the elements in screen This element are providers by Beholder Framework
 	 */
 	private Div divCdsTotal;
 	private Div divCdsBorrowed;
@@ -38,27 +38,24 @@ public class ScreenStatistics
 	private Div divMoreThanOneMonthDVD;
 	private Div nameSreen;
 
-	
 	/*
-	 *  constructor  initialize all elements 
+	 * constructor initialize all elements
 	 */
 	public ScreenStatistics()
 	{
-		divCdsTotal = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		divCdsBorrowed = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		divMoreThanOneMonthCD = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		divDVDsTotal = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		divDVDsBorrowed = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		divMoreThanOneMonthDVD = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
-		nameSreen= SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
+		divCdsTotal = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
+		divCdsBorrowed = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
+		divMoreThanOneMonthCD = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
+		divDVDsTotal = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
+		divDVDsBorrowed = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
+		divMoreThanOneMonthDVD = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
+		nameSreen = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
 	}
 
-	
 	/*
-	 * accessors methods, this methods performed scan in the html before return the element
-	 * this scan is necessary because the element can not is displayed in screen to the access
+	 * accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * not is displayed in screen to the access
 	 */
-
 	public Div getDivCdsTotal()
 	{
 		divCdsTotal.loadById("statistics_totalCDsLabel");
@@ -94,7 +91,7 @@ public class ScreenStatistics
 		divMoreThanOneMonthDVD.loadById("statistics_forgottenDVDsLabel");
 		return divMoreThanOneMonthDVD;
 	}
-	
+
 	public String getNameScreen()
 	{
 		nameSreen.loadByXPath("/html/body/div[3]/div[2]/div");

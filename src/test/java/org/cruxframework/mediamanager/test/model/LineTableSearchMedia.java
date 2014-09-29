@@ -16,49 +16,35 @@
 package org.cruxframework.mediamanager.test.model;
 
 /**
- * Class description: Represent a line of the result table of 'Search Media' screen
- *  One line of the result table is  compost  by attributes of a 
- *  media and a client witch borrowed the media (column person) 
+ * Class description: Represent a line of the result table of 'Search Media' screen One line of the result table is compost by attributes of
+ * a media and a client witch borrowed the media (column person).
+ * 
+ * Media, are the columns, Type, Name and Artist Person is client witch borrowed the media, column Person
+ * 
  * @author guilherme.alecrim
  */
 public class LineTableSearchMedia
 {
-	/*
-	 * Media, are the columns, Type, Name and  Artist
-	 *  Person is client witch borrowed the media, column Person    
-	 */
 	private Media media;
 	private String person;
 
+	/**
+	 * Default constructor.
+	 */
 	public LineTableSearchMedia()
 	{
 		media = new Media();
 		person = new String();
 	}
 
+	/**
+	 * Constructor.
+	 * @param media media
+	 * @param person person
+	 */
 	public LineTableSearchMedia(Media media, String person)
 	{
 		this.media = media;
-		this.person = person;
-	}
-
-	public Media getMedia()
-	{
-		return media;
-	}
-
-	public void setMedia(Media media)
-	{
-		this.media = media;
-	}
-
-	public String getPerson()
-	{
-		return person;
-	}
-
-	public void setPerson(String person)
-	{
 		this.person = person;
 	}
 
@@ -68,7 +54,7 @@ public class LineTableSearchMedia
 		if (obj instanceof LineTableSearchMedia)
 		{
 			if (((LineTableSearchMedia) obj).getMedia().equals(this.media)
-					&& (((LineTableSearchMedia) obj).getPerson().equals(this.person)))
+			    && (((LineTableSearchMedia) obj).getPerson().equals(this.person)))
 			{
 				return true;
 			}
@@ -80,5 +66,41 @@ public class LineTableSearchMedia
 	public String toString()
 	{
 		return this.media.toString() + "\n" + "Person: " + this.person;
+	}
+	
+	/****************************************
+	 * getters and setters
+	 ****************************************/
+
+	/**
+	 * @return the media
+	 */
+	public Media getMedia()
+	{
+		return media;
+	}
+
+	/**
+	 * @param media the media to set
+	 */
+	public void setMedia(Media media)
+	{
+		this.media = media;
+	}
+
+	/**
+	 * @return the person
+	 */
+	public String getPerson()
+	{
+		return person;
+	}
+
+	/**
+	 * @param person the person to set
+	 */
+	public void setPerson(String person)
+	{
+		this.person = person;
 	}
 }

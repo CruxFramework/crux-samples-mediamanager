@@ -18,8 +18,9 @@ package org.cruxframework.mediamanager.client.resource.large;
 import org.cruxframework.mediamanager.client.resource.common.CssMediaManagerCommon;
 
 /**
+ * Class description: Resources class. 
+ * 
  * @author Claudio Junior
- *
  */
 public interface CssMediaManagerLarge extends CssMediaManagerCommon
 {

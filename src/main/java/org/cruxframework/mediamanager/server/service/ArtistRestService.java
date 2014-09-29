@@ -52,6 +52,8 @@ import org.springframework.web.context.WebApplicationContext;
 @Path("artists")
 public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 {
+	private static final String NAME = "name";
+
 	@Autowired
 	private ArtistDAOImpl artistDAOImpl;
 	
@@ -65,7 +67,7 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 	private MediaDAOImpl mediaDAOImpl;
 	
 	@GET
-	public List<ArtistDTO> search(@QueryParam("name") String name) 
+	public List<ArtistDTO> search(@QueryParam(NAME) String name) 
 		throws RestException
 	{
 		List<Filter> filters = getSearchFilters(name);
@@ -110,7 +112,7 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 	protected List<OrderBy> orderBy()
 	{
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
-		orderings.add(new OrderBy("name"));
+		orderings.add(new OrderBy(NAME));
 		return orderings;
 	}
 	
@@ -123,7 +125,7 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 		List<Filter> filters = new ArrayList<Filter>(0);
 		if (name != null && name.trim().length() > 0)
 		{
-			Filter filter = new Filter("name", name);
+			Filter filter = new Filter(NAME, name);
 			filter.setOperator(Operator.LIKE_FULL);
 			filters.add(filter);
 		}

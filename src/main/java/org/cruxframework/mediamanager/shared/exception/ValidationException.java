@@ -15,14 +15,13 @@
  */
 package org.cruxframework.mediamanager.shared.exception;
 
-
 /**
- * Class description: 
+ * Class description: Validation exception.
+ * 
  * @author alexandre.costa
  */
 public class ValidationException extends RuntimeException
 {
 	private static final long serialVersionUID = 8182888341230568706L;
 
-	
 }

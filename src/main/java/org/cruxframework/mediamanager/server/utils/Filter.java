@@ -22,7 +22,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Class description: 
+ * Class description: Search filter.
+ * 
  * @author alexandre.costa
  */
 public class Filter implements Serializable
@@ -32,13 +33,19 @@ public class Filter implements Serializable
 	private final List<Object> values = new ArrayList<Object>(0);
 	private String field;
 	private Operator operator = Operator.EQUALS;
-	
+
 	/* all default values is false */
 	private boolean closeParenthesis;
 	private boolean disjunctive;
 	private boolean openParenthesis;
 	private boolean caseSensitive;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param field field name
+	 * @param values field values
+	 */
 	public Filter(String field, Object... values)
 	{
 		this.field = field;
@@ -48,7 +55,14 @@ public class Filter implements Serializable
 		}
 	}
 
-	public Filter(Operator operator, String field, Object...  values)
+	/**
+	 * Constructor.
+	 * 
+	 * @param operator operator
+	 * @param field field name
+	 * @param values field values
+	 */
+	public Filter(Operator operator, String field, Object... values)
 	{
 		this.field = field;
 		if (values != null)
@@ -57,13 +71,36 @@ public class Filter implements Serializable
 		}
 		this.operator = operator;
 	}
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param operator operator
+	 * @param field field name
+	 * @param values field values
+	 */
 	public Filter(Operator operator, String field, Collection<?> values)
 	{
 		this.field = field;
 		this.values.addAll(values);
 		this.operator = operator;
 	}
+
+	/**
+	 * @return the value
+	 */
+	public Object getValue()
+	{
+		if (values.isEmpty())
+		{
+			return null;
+		}
+		return values.get(0);
+	}
+
+	/************************************************
+	 * Getters and setters
+	 ************************************************/
 
 	/**
 	 * @return the field
@@ -81,18 +118,6 @@ public class Filter implements Serializable
 		this.field = field;
 	}
 
-	/**
-	 * @return the value
-	 */
-	public Object getValue()
-	{
-		if (values.isEmpty())
-		{
-			return null;
-		}
-		return values.get(0);
-	}
-	
 	/**
 	 * @return the operator
 	 */

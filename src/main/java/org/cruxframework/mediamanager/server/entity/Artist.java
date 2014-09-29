@@ -28,7 +28,8 @@ import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 
 /**
- * Class description: 
+ * Class description: Implements artist entity.
+ * 
  * @author alexandre.costa
  */
 @Entity
@@ -38,19 +39,28 @@ public class Artist extends AbstractEntity<ArtistDTO>
 	private String name;
 	private Genre genre;
 	private Country country;
-	
+
+	/**
+	 * Default constructor.
+	 */
 	public Artist()
 	{
-		
+
 	}
-	
-	public Artist(String name, Genre genere, Country country)
+
+	/**
+	 * Constructor.
+	 * @param name artist name
+	 * @param genre artist genre
+	 * @param country artist country
+	 */
+	public Artist(String name, Genre genre, Country country)
 	{
 		this.name = name;
-		this.genre = genere;
+		this.genre = genre;
 		this.country = country;
 	}
-	
+
 	/**
 	 * @return the genre
 	 */
@@ -113,17 +123,17 @@ public class Artist extends AbstractEntity<ArtistDTO>
 		ArtistDTO dto = new ArtistDTO();
 		dto.setId(getId());
 		dto.setName(getName());
-		
+
 		if (genre != null)
 		{
 			dto.setGenre(genre.getDTORepresentation());
 		}
-		
+
 		if (country != null)
 		{
 			dto.setCountry(country.getDTORepresentation());
 		}
-		
+
 		return dto;
 	}
 }

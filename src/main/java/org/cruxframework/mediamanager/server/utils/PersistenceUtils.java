@@ -22,14 +22,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 /**
- * Class description: 
+ * Class description: Utilities for persistence.
+ * 
  * @author alexandre.costa
  */
 public class PersistenceUtils
 {
-	
 	private static final Logger LOGGER = Logger.getLogger(PersistenceUtils.class.getName());
-	
+
+	/**
+	 * Close an entity manager.
+	 * @param entityManager entityManager
+	 */
 	public static void closeEntityManager(EntityManager entityManager)
 	{
 		try
@@ -38,12 +42,17 @@ public class PersistenceUtils
 			{
 				entityManager.close();
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			LOGGER.log(Level.SEVERE, "", e);
 		}
 	}
-	
+
+	/**
+	 * rollback a transaction.
+	 * @param transaction transaction object 
+	 */
 	public static void rollbackTransaction(EntityTransaction transaction)
 	{
 		try
@@ -52,7 +61,8 @@ public class PersistenceUtils
 			{
 				transaction.rollback();
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			LOGGER.log(Level.SEVERE, "", e);
 		}

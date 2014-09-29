@@ -44,11 +44,11 @@ public class ScreenAddMedia
 	 */
 	public ScreenAddMedia()
 	{
-		mediaType = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
-		mediaName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		mediaArtist = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
-		btnAddArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		btnSaveChanges = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		mediaType = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
+		mediaName = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		mediaArtist = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
+		btnAddArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		btnSaveChanges = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		popUp = new PopUp("/html/body/div[5]/div",
 				"/html/body/div[5]/div/div/div[2]/div/div",
 				"/html/body/div[5]/div/div/div[2]/div/button");
@@ -61,7 +61,7 @@ public class ScreenAddMedia
 	 */
 	public Select getMediaType()
 	{	
-		mediaType = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
+		mediaType = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		mediaType.loadById("media_typeListBox");
 		return mediaType;
 	}
@@ -74,7 +74,7 @@ public class ScreenAddMedia
 
 	public Select getMediaArtist()
 	{
-		mediaArtist = SetUp.BUILDER.uiComponentBuilderInstance().selectFieldInstance();
+		mediaArtist = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		mediaArtist.loadById("media_artistListBox");
 		return mediaArtist;
 	}

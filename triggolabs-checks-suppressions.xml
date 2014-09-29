@@ -1,4 +1,6 @@
-/*
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.0//EN" "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+<!--
  * Copyright 2013 cruxframework.org.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -12,16 +14,12 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- */
-package org.cruxframework.mediamanager.client.resource.small;
-
-import org.cruxframework.mediamanager.client.resource.common.CssMediaManagerCommon;
-
-/**
- * Class description: Resources class.
- * 
- * @author Claudio Junior
- */
-public interface CssMediaManagerSmall extends CssMediaManagerCommon
-{
-}
+ -->
+<suppressions>
+	<suppress checks="EmptyBlock" files="[/\\]src[/\\]test[/\\]java[/\\]" />
+	<suppress checks="MagicNumber" files="[/\\]src[/\\]test[/\\]java[/\\]" />
+	<suppress checks="EmptyStatement" files="[/\\]src[/\\]test[/\\]java[/\\]" />
+	<suppress checks="MultipleStringLiterals" files="[/\\]src[/\\]test[/\\]java[/\\]" />
+	<suppress checks="." files=".*\.xml"/>
+	<suppress checks="." files=".*\.txt"/>
+</suppressions>

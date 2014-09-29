@@ -32,60 +32,66 @@ import org.cruxframework.mediamanager.server.utils.QueryBuilder;
 import org.cruxframework.mediamanager.shared.reuse.dto.AbstractDTO;
 
 /**
- * Class description: 
+ * Class description: Data Access Object pattern.
+ * 
  * @author alexandre.costa
+ * 
+ * @param <DTO> DTO class
+ * @param <E> entity class
  */
-public abstract class AbstractDAO<DTO extends AbstractDTO, 
-	E extends AbstractEntity<DTO>>
+public abstract class AbstractDAO<DTO extends AbstractDTO, E extends AbstractEntity<DTO>>
 {
 	private EntityManager entityManager;
 
 	/* Abstract BO class */
 	private Class<E> entityClass;
-	
+
 	{
 		init();
 	}
-	
+
+	/**
+	 * Find an entity by id 
+	 * @param id entity id
+	 * @return entity whose id is equals 
+	 */
 	public E find(Integer id)
 	{
 		E entity = entityManager.find(entityClass, id);
 		return entity;
 	}
-	
+
 	public void save(E entity)
 	{
 		entityManager.persist(entity);
 	}
-	
+
 	public void delete(E entity)
 	{
 		entityManager.remove(entity);
 	}
-	
-	public List<E> search(List<Filter> filters, List<OrderBy> orderings) 
+
+	public List<E> search(List<Filter> filters, List<OrderBy> orderings)
 	{
 		return search(filters, orderings, null, null);
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<E> search(List<Filter> filters, List<OrderBy> orderings, 
-		Integer firstResult, Integer pageSize) 
+	public List<E> search(List<Filter> filters, List<OrderBy> orderings, Integer firstResult, Integer pageSize)
 	{
 		QueryBuilder queryBuilder = new QueryBuilder(entityClass);
 		queryBuilder.addFilters(filters);
 		queryBuilder.addOrderings(orderings);
-		
+
 		String sql = queryBuilder.buildJPAQuery();
 		Map<String, Object> valuesMap = queryBuilder.getValuesMap();
-		
+
 		Query query = buildJPAQuery(sql, valuesMap, firstResult, pageSize);
 		List<E> resultList = query.getResultList();
 		return resultList;
 	}
-	
-	private Query buildJPAQuery(String sql, Map<String, Object> valuesMap,
-		Integer firstResult, Integer pageSize)
+
+	private Query buildJPAQuery(String sql, Map<String, Object> valuesMap, Integer firstResult, Integer pageSize)
 	{
 		Query query = entityManager.createQuery(sql);
 		Set<String> keys = valuesMap.keySet();
@@ -93,7 +99,7 @@ public abstract class AbstractDAO<DTO extends AbstractDTO,
 		{
 			query.setParameter(chave, valuesMap.get(chave));
 		}
-		
+
 		if (firstResult != null && pageSize != null)
 		{
 			query.setFirstResult(firstResult);
@@ -101,21 +107,20 @@ public abstract class AbstractDAO<DTO extends AbstractDTO,
 		}
 		return query;
 	}
-	
+
 	/**************************************
 	 * Utilities
 	 **************************************/
-	
+
 	@SuppressWarnings("unchecked")
 	protected void init()
 	{
-		ParameterizedType parameterizedType = (ParameterizedType) this.getClass()
-			.getGenericSuperclass();
+		ParameterizedType parameterizedType = (ParameterizedType) this.getClass().getGenericSuperclass();
 
 		Type types[] = parameterizedType.getActualTypeArguments();
 		entityClass = (Class<E>) types[1];
 	}
-	
+
 	/*****************************************
 	 * Getters and setters
 	 *****************************************/

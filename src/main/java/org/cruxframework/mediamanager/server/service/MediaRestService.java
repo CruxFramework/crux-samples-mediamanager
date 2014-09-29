@@ -40,35 +40,34 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Class description: 
+ * Class description:
+ * 
  * @author alexandre.costa
  */
 @Component
-@Scope(value =  WebApplicationContext.SCOPE_REQUEST)
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RestService("mediaService")
 @Path("medias")
 public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 {
 	@Autowired
 	private MediaDAOImpl mediaDAOImpl;
-	
+
 	@Autowired
 	private ArtistDAOImpl artistDAOImpl;
-	
+
 	@GET
-	public List<MediaDTO> search(
-		@QueryParam("type") MediaType type, 
-		@QueryParam("name") String name, 
-		@QueryParam("person")String person) throws RestException
+	public List<MediaDTO> search(@QueryParam("type") MediaType type, @QueryParam("name") String name, @QueryParam("person") String person)
+	    throws RestException
 	{
 		List<Filter> filters = getSearchFilters(type, name, person);
 		return doSearch(filters);
 	}
-	
+
 	/****************************************************
 	 * Overwritten methods
 	 ****************************************************/
-	
+
 	@Override
 	protected void prepareEntity(Media media, MediaDTO mediaDTO)
 	{
@@ -76,24 +75,24 @@ public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 		media.setPerson(mediaDTO.getPerson());
 		media.setName(mediaDTO.getName());
 		media.setType(mediaDTO.getType());
-		
+
 		Calendar calendar = null;
-		
+
 		if (mediaDTO.getDate() != null)
 		{
-			calendar = Calendar.getInstance();			
+			calendar = Calendar.getInstance();
 			calendar.setTime(mediaDTO.getDate());
 		}
-		
+
 		media.setDate(calendar);
-		
+
 		if (mediaDTO.getArtist() != null)
 		{
 			Artist artist = artistDAOImpl.find(mediaDTO.getArtist().getId());
 			media.setArtist(artist);
 		}
 	}
-	
+
 	@Override
 	protected List<OrderBy> orderBy()
 	{
@@ -101,13 +100,12 @@ public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 		orderings.add(new OrderBy("name"));
 		return orderings;
 	}
-	
+
 	/******************************************
 	 * Utilities
 	 ******************************************/
-	
-	private static List<Filter> getSearchFilters(MediaType type, String name, 
-		String person)
+
+	private static List<Filter> getSearchFilters(MediaType type, String name, String person)
 	{
 		List<Filter> filters = new ArrayList<Filter>(0);
 		if (name != null && name.trim().length() > 0)
@@ -116,22 +114,22 @@ public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 			filter.setOperator(Operator.LIKE_FULL);
 			filters.add(filter);
 		}
-		
+
 		if (person != null && person.trim().length() > 0)
 		{
 			Filter filter = new Filter("person", person);
 			filter.setOperator(Operator.LIKE_FULL);
 			filters.add(new Filter("person", person));
 		}
-		
+
 		if (type != null)
 		{
 			filters.add(new Filter("type", type));
 		}
-		
+
 		return filters;
 	}
-	
+
 	/***************************************
 	 * Getters and setters
 	 ***************************************/

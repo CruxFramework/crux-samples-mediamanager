@@ -27,48 +27,49 @@ import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 /**
- * Class description: This class performs tests in Statistics screen , this tests insert or delete data in 
- * database and check if statistics  was updates
- * The providers of inputs  are methods of class PVStatistics
+ * Class description: This class performs tests in Statistics screen , this tests insert or delete data in database and check if statistics
+ * was updates. The providers of inputs are methods of class PVStatistics
+ * 
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVStatistics}
  * @author guilherme.alecrim
  */
 @Test(groups = { "mediaManager", "statistics" }, priority = 7)
 public class CTStatistics
 {
-
+	/**
+	 * Access statistics view.
+	 */
 	@BeforeGroups(groups = "statistics", alwaysRun = true)
-	public void restart()  
+	public void restart()
 	{
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 
-	/** 
+	/**
 	 * Given a insertion in the database, the statistics are being updated.
-	 * @param media: Media with insert in data base
-	 * @param statistic: Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
-	 * @param typeStatistic: Type of statistic, e.g is Total, Borrowed of More than one month
+	 * 
+	 * @param media Media with insert in data base
+	 * @param statistic Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
+	 * @param typeStatistic Type of statistic, e.g is Total, Borrowed of More than one month
 	 */
 	@Test(enabled = true, dataProvider = "PV001", dataProviderClass = PVStatistics.class)
-	public void P001_IncrementStatistic( Media media, EnumStatistics statistic,
-			EnumTypeStatistic typeStatistic) 
+	public void p001IncrementStatistic(Media media, EnumStatistics statistic, EnumTypeStatistic typeStatistic)
 	{
 		int totalBefore = PTStatistics.getValueStatistics(statistic);
 		PTStatistics.incrementStatistic(media, typeStatistic);
 		int totalAfter = PTStatistics.getValueStatistics(statistic);
 		Assert.assertEquals(totalAfter, totalBefore + 1);
-
 	}
 
-	/** 
-	 * Given a decrease in the database, the statistics are being updated
-	 * @param media: Media with insert in data base
-	 * @param statistic: Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
-	 * @param typeStatistic: Type of statistic, e.g is Total, Borrowed of More than one month
+	/**
+	 * Given a decrease in the database, the statistics are being updated.
+	 * 
+	 * @param media Media with insert in data base
+	 * @param statistic Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
+	 * @param typeStatistic Type of statistic, e.g is Total, Borrowed of More than one month
 	 */
 	@Test(enabled = true, dataProvider = "PV002", dataProviderClass = PVStatistics.class)
-	public void P002_DecrementStatistic( Media media, EnumStatistics statistic,
-			EnumTypeStatistic typeStatistic)  
+	public void p002DecrementStatistic(Media media, EnumStatistics statistic, EnumTypeStatistic typeStatistic)
 	{
 		int totalBefore = PTStatistics.getValueStatistics(statistic);
 		PTStatistics.decrementStatistic(media, typeStatistic);

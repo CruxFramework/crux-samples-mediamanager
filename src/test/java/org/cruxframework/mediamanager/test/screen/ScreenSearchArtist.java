@@ -46,12 +46,12 @@ public class ScreenSearchArtist
 	 */
 	public ScreenSearchArtist()
 	{
-		txtName = SetUp.BUILDER.uiComponentBuilderInstance().textFieldInstance();
-		btnSearch = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		txtName = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
+		btnSearch = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 
 		lineTable = new Artist();
-		btnEditArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
-		btnDeleteArtist = SetUp.BUILDER.uiComponentBuilderInstance().buttonInstance();
+		btnEditArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
+		btnDeleteArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 
 		popUpDelete = new PopUpDelete("/html/body/div[5]/div",
 				"/html/body/div[5]/div/div/div[2]/div/div", 
@@ -92,7 +92,7 @@ public class ScreenSearchArtist
 
 	public Artist getFirstItemSearchTable()
 	{
-		Div line = SetUp.BUILDER.uiComponentBuilderInstance().divInterface();
+		Div line = SetUp.getBuilder().uiComponentBuilderInstance().divInterface();
 		line.loadByXPath("/html/body/div[3]/div[2]/div/div[2]/div/div/div/table/tbody/tr[2]/td/div/div");
 		lineTable.setName(line.getText());
 		line.loadByXPath("/html/body/div[3]/div[2]/div/div[2]/div/div/div/table/tbody/tr[2]/td[2]/div/div");

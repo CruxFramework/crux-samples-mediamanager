@@ -24,7 +24,8 @@ import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 import org.cruxframework.mediamanager.shared.dto.CountryDTO;
 
 /**
- * Class description: 
+ * Class description: Implements country entity.
+ * 
  * @author alexandre.costa
  */
 @Entity
@@ -33,16 +34,24 @@ public class Country extends AbstractEntity<CountryDTO>
 {
 	private String name;
 
+	/**
+	 * Default constructor.
+	 */
 	public Country()
 	{
-		
+
 	}
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param name country name
+	 */
 	public Country(String name)
 	{
 		this.name = name;
 	}
-	
+
 	/**
 	 * @return the name
 	 */

@@ -32,7 +32,8 @@ import org.cruxframework.mediamanager.shared.dto.MediaDTO;
 import org.cruxframework.mediamanager.shared.enums.MediaType;
 
 /**
- * Class description: 
+ * Class description: Implements media entity.
+ * 
  * @author alexandre.costa
  */
 @Entity
@@ -45,12 +46,23 @@ public class Media extends AbstractEntity<MediaDTO>
 	private String person;
 	private Calendar date;
 	private Artist artist;
-	
+
+	/**
+	 * Default constructor.
+	 */
 	public Media()
 	{
-		
+
 	}
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param name media name
+	 * @param type media type
+	 * @param artist artist of the media
+	 * @param borrowed media status
+	 */
 	public Media(String name, MediaType type, Artist artist, Boolean borrowed)
 	{
 		this.name = name;
@@ -58,7 +70,7 @@ public class Media extends AbstractEntity<MediaDTO>
 		this.artist = artist;
 		this.borrowed = borrowed;
 	}
-	
+
 	/**
 	 * @return the name
 	 */
@@ -144,7 +156,7 @@ public class Media extends AbstractEntity<MediaDTO>
 	{
 		this.date = date;
 	}
-	
+
 	/**
 	 * @return the artist
 	 */
@@ -161,7 +173,7 @@ public class Media extends AbstractEntity<MediaDTO>
 	{
 		this.artist = artist;
 	}
-	
+
 	@Override
 	@Transient
 	public MediaDTO getDTORepresentation()
