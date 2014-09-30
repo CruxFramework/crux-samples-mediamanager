@@ -18,15 +18,28 @@ package org.cruxframework.mediamanager.client.service;
 import com.google.gwt.user.client.rpc.RemoteService;
 
 /**
- * Class description:
+ * Class description: Synchronous RPC interface for user session control operations.
  * 
  * @author alexandre.costa
  */
 public interface LoginService extends RemoteService
 {
+	/**
+	 * Performs user login.
+	 * @param login user login
+	 * @param password user password
+	 * @return true if the user was authenticated.
+	 */
 	Boolean login(String login, String password);
 
+	/**
+	 * checks whether the user's session is active.
+	 * @return true if active.
+	 */
 	Boolean isSessionActive();
 
+	/**
+	 * Performs user logout.
+	 */
 	void logout();
 }

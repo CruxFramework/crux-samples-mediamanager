@@ -29,7 +29,7 @@ import org.cruxframework.mediamanager.server.entity.dao.impl.UserDAOImpl;
 import org.cruxframework.mediamanager.server.utils.Filter;
 
 /**
- * Class description:
+ * Class description: RPC implementation for user session control operations.
  * 
  * @author alexandre.costa
  */

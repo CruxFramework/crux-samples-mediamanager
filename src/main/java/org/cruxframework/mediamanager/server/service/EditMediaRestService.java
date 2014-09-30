@@ -37,7 +37,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Class description: 
+ * Class description: REST implementation for {@link EditMediaDTO}.
+ * 
  * @author alexandre.costa
  */
 @Component
@@ -52,6 +53,12 @@ public class EditMediaRestService
 	@Autowired
 	private ArtistDAOImpl artistDAOImpl;
 	
+	/**
+	 * Get data for media edition.
+	 * @param id media's id
+	 * @return DTO object
+	 * @throws RestException exception
+	 */
 	@GET
 	@Path("{id}")
 	public EditMediaDTO get(@PathParam("id")Integer id) throws RestException
@@ -93,5 +100,4 @@ public class EditMediaRestService
 	{
 		this.artistDAOImpl = artistDAOImpl;
 	}
-
 }

@@ -21,13 +21,17 @@ import org.cruxframework.crux.core.client.rest.RestProxy.TargetRestService;
 import org.cruxframework.mediamanager.shared.dto.EditArtistDTO;
 
 /**
- * Class description:
+ * Class description: Client REST interface for editing artists.
  * 
  * @author alexandre.costa
  */
 @TargetRestService("editArtistService")
 public interface EditArtistServiceProxy extends RestProxy
 {
+	/**
+	 * Get data for artist edition.
+	 * @param id artist id.
+	 * @param callback callback object
+	 */
 	void get(Integer id, Callback<EditArtistDTO> callback);
-
 }

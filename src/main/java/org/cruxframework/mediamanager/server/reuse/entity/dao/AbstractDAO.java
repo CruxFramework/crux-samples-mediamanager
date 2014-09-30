@@ -51,7 +51,7 @@ public abstract class AbstractDAO<DTO extends AbstractDTO, E extends AbstractEnt
 	}
 
 	/**
-	 * Find an entity by id 
+	 * Finds an entity by id.
 	 * @param id entity id
 	 * @return entity whose id is equals 
 	 */
@@ -61,21 +61,45 @@ public abstract class AbstractDAO<DTO extends AbstractDTO, E extends AbstractEnt
 		return entity;
 	}
 
+	/**
+	 * Saves an entity in the database.
+	 * @param entity entity to be saved.
+	 */
 	public void save(E entity)
 	{
 		entityManager.persist(entity);
 	}
 
+	/**
+	 * Removes an entity from the database.
+	 * @param entity entity to be removed.
+	 */
 	public void delete(E entity)
 	{
 		entityManager.remove(entity);
 	}
 
+	/**
+	 * Search method.
+	 * 
+	 * @param filters search filters
+	 * @param orderings ordering parameters
+	 * @return entities list
+	 */
 	public List<E> search(List<Filter> filters, List<OrderBy> orderings)
 	{
 		return search(filters, orderings, null, null);
 	}
 
+	/**
+	 * Search method.
+	 * 
+	 * @param filters search filters
+	 * @param orderings ordering parameters
+	 * @param firstResult first result
+	 * @param pageSize page size
+	 * @return entities list
+	 */
 	@SuppressWarnings("unchecked")
 	public List<E> search(List<Filter> filters, List<OrderBy> orderings, Integer firstResult, Integer pageSize)
 	{
@@ -91,6 +115,10 @@ public abstract class AbstractDAO<DTO extends AbstractDTO, E extends AbstractEnt
 		return resultList;
 	}
 
+	/**************************************
+	 * Utilities
+	 **************************************/
+
 	private Query buildJPAQuery(String sql, Map<String, Object> valuesMap, Integer firstResult, Integer pageSize)
 	{
 		Query query = entityManager.createQuery(sql);
@@ -99,7 +127,7 @@ public abstract class AbstractDAO<DTO extends AbstractDTO, E extends AbstractEnt
 		{
 			query.setParameter(chave, valuesMap.get(chave));
 		}
-
+		
 		if (firstResult != null && pageSize != null)
 		{
 			query.setFirstResult(firstResult);
@@ -108,15 +136,10 @@ public abstract class AbstractDAO<DTO extends AbstractDTO, E extends AbstractEnt
 		return query;
 	}
 
-	/**************************************
-	 * Utilities
-	 **************************************/
-
 	@SuppressWarnings("unchecked")
 	protected void init()
 	{
 		ParameterizedType parameterizedType = (ParameterizedType) this.getClass().getGenericSuperclass();
-
 		Type types[] = parameterizedType.getActualTypeArguments();
 		entityClass = (Class<E>) types[1];
 	}

@@ -49,22 +49,13 @@ public class PopUpDelete extends PopUp
 	/**
 	 * Accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
 	 * not is displayed in screen to the access.
+	 * 
 	 * @return button
 	 */
 	public Button getBtnCancel()
 	{
 		btnCancel.loadByXPath(getXpathBntCancel());
 		return btnCancel;
-	}
-
-	public String getXpathBntCancel()
-	{
-		return xpathBntCancel;
-	}
-
-	public void setXpathBntCancel(String xpathBntCancel)
-	{
-		this.xpathBntCancel = xpathBntCancel;
 	}
 
 	/**
@@ -76,5 +67,21 @@ public class PopUpDelete extends PopUp
 		{
 			getBtnCancel().click();
 		}
+	}
+
+	/**
+	 * @return the xpathBntCancel
+	 */
+	public String getXpathBntCancel()
+	{
+		return xpathBntCancel;
+	}
+
+	/**
+	 * @param xpathBntCancel the xpathBntCancel to set
+	 */
+	public void setXpathBntCancel(String xpathBntCancel)
+	{
+		this.xpathBntCancel = xpathBntCancel;
 	}
 }

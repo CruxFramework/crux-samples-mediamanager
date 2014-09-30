@@ -20,12 +20,16 @@ import org.cruxframework.mediamanager.shared.dto.StatisticsDTO;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
- * Class description:
+ * Class description: Asynchronous RPC interface for statistics operations.
  * 
  * @author alexandre.costa
  */
 public interface StatisticsServiceAsync
 {
+	/**
+	 * Get database statistics.
+	 * @param callback callback object.
+	 */
 	void getStatistics(AsyncCallback<StatisticsDTO> callback);
 
 }

@@ -43,11 +43,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Class description: 
+ * Class description: REST implementation for {@link Artist} resource.
+ * 
  * @author alexandre.costa
  */
 @Component
-@Scope(value =  WebApplicationContext.SCOPE_REQUEST)
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RestService("artistService")
 @Path("artists")
 public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
@@ -56,28 +57,33 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 
 	@Autowired
 	private ArtistDAOImpl artistDAOImpl;
-	
+
 	@Autowired
 	private CountryDAOImpl countryDAOImpl;
-	
+
 	@Autowired
 	private GenreDAOImpl genreDAOImpl;
-	
+
 	@Autowired
 	private MediaDAOImpl mediaDAOImpl;
-	
+
+	/**
+	 * Search method.
+	 * @param name artist name
+	 * @return artists list.
+	 * @throws RestException exception
+	 */
 	@GET
-	public List<ArtistDTO> search(@QueryParam(NAME) String name) 
-		throws RestException
+	public List<ArtistDTO> search(@QueryParam(NAME) String name) throws RestException
 	{
 		List<Filter> filters = getSearchFilters(name);
 		return doSearch(filters);
 	}
-	
+
 	/****************************************
 	 * Overwritten methods
 	 ****************************************/
-	
+
 	@Override
 	protected void validateDelete(Artist object)
 	{
@@ -89,25 +95,25 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 			throw new ValidationException();
 		}
 	}
-	
+
 	@Override
 	protected void prepareEntity(Artist artist, ArtistDTO artistDTO)
 	{
 		artist.setName(artistDTO.getName());
-		
+
 		if (artistDTO.getCountry() != null)
 		{
 			Country country = countryDAOImpl.find(artistDTO.getCountry().getId());
 			artist.setCountry(country);
 		}
-		
+
 		if (artistDTO.getGenre() != null)
 		{
 			Genre genere = genreDAOImpl.find(artistDTO.getGenre().getId());
 			artist.setGenre(genere);
 		}
 	}
-	
+
 	@Override
 	protected List<OrderBy> orderBy()
 	{
@@ -115,11 +121,11 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 		orderings.add(new OrderBy(NAME));
 		return orderings;
 	}
-	
+
 	/****************************************
 	 * Utilities
 	 ****************************************/
-	
+
 	private static List<Filter> getSearchFilters(String name)
 	{
 		List<Filter> filters = new ArrayList<Filter>(0);
@@ -129,10 +135,10 @@ public class ArtistRestService extends AbstractRestService<ArtistDTO, Artist>
 			filter.setOperator(Operator.LIKE_FULL);
 			filters.add(filter);
 		}
-		
+
 		return filters;
 	}
-	
+
 	/****************************************
 	 * Getters and setters
 	 ****************************************/

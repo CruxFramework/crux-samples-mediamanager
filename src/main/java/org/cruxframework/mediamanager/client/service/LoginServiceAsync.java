@@ -18,15 +18,29 @@ package org.cruxframework.mediamanager.client.service;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
- * Class description:
+ * Class description: Asynchronous RPC interface for user session control operations.
  * 
  * @author alexandre.costa
  */
 public interface LoginServiceAsync
 {
+	/**
+	 * Performs user login.
+	 * @param login user login
+	 * @param password user password
+	 * @param callback callback object.
+	 */
 	void login(String login, String password, AsyncCallback<Boolean> callback);
 
+	/**
+	 * checks whether the user's session is active.
+	 * @param callback callback object
+	 */
 	void isSessionActive(AsyncCallback<Boolean> callback);
 
+	/**
+	 * Performs user logout.
+	 * @param callback callback object.
+	 */
 	void logout(AsyncCallback<Void> callback);
 }

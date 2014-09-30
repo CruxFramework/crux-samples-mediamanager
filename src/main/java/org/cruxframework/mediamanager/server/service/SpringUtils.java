@@ -15,6 +15,7 @@
  */
 package org.cruxframework.mediamanager.server.service;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
@@ -40,8 +41,9 @@ public final class SpringUtils
 	}
 
 	/**
+	 * Get unique instance.
 	 *
-	 * @return
+	 * @return unique instance.
 	 */
 	public static SpringUtils get()
 	{
@@ -60,29 +62,72 @@ public final class SpringUtils
 		}
 	}
 
+	/**
+	 * Delegate method.
+	 * 
+	 * @see {@link BeanFactory#containsBean(String)}.
+	 * 
+	 * @param beanName the name of the bean to query
+	 * @return whether a bean with the given name is present
+	 */
 	public boolean containsBean(String beanName)
 	{
 		return autowireCapableBeanFactory.containsBean(beanName);
 	}
 
+	/**
+	 * Delegate method.
+	 *  
+	 * @see {@link BeanFactory#getBean(Class)}.
+	 * 
+	 * @param clazz type the bean must match; can be an interface or superclass.
+	 * @param <T> the type of the class modeled by {@link Class}.
+	 * @return an instance of the single bean matching the required type
+	 */
 	public <T> T getBean(Class<T> clazz)
 	{
 		return autowireCapableBeanFactory.getBean(clazz);
 	}
 
+	/**
+	 * Delegate method.
+	 * 
+	 * @see {@link BeanFactory#getBean(String, Class)}.
+	 * 
+	 * @param name he name of the bean to retrieve
+	 * @param requiredType type the bean must match.
+	 * @param <T> the type of the class modeled by {@link Class}.
+	 * @return an instance of the bean
+	 */
 	public <T> T getBean(String name, Class<T> requiredType)
 	{
 		return autowireCapableBeanFactory.getBean(name, requiredType);
 	}
 
+	/**
+	 * Delegate method.
+	 * 
+	 * @see {@link AutowireCapableBeanFactory#createBean(Class)}
+	 * 
+	 * @param clazz the class of the bean to create
+	 * @param <T> the type of the class modeled by {@link Class}.
+	 * @return the new bean instance
+	 */
 	public <T> T createBean(Class<T> clazz)
 	{
 		return autowireCapableBeanFactory.createBean(clazz);
 	}
 
-	public void autowireBean(Object t)
+	/**
+	 * Delegate method.
+	 * 
+	 * @see {@link AutowireCapableBeanFactory#autowireBean(Object)}
+	 * 
+	 * @param existingBean he existing bean instance
+	 */
+	public void autowireBean(Object existingBean)
 	{
-		autowireCapableBeanFactory.autowireBean(t);
+		autowireCapableBeanFactory.autowireBean(existingBean);
 	}
 
 	/**

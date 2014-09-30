@@ -14,22 +14,22 @@
  * the License.
  */
 
-
 package org.cruxframework.mediamanager.test.screen;
+
 import org.cruxframework.mediamanager.test.procedure.SetUp;
 
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: This class represent the screen Login
+ * Class description: This class represent the screen Login.
+ * 
  * @author guilherme.alecrim
  */
 public class ScreenLogin
 {
 	/*
-	 * This parameters equivalent   the elements in screen  
-	 * This element are providers by Beholder  Framework
+	 * This parameters equivalent the elements in screen This element are providers by Beholder Framework
 	 */
 	private TextField login;
 	private TextField password;
@@ -37,9 +37,8 @@ public class ScreenLogin
 	private Button logoff;
 	private PopUp popUpPasswordInvalid;
 
-	
-	/*
-	 *  constructor  initialize all elements 
+	/**
+	 * constructor initialize all elements.
 	 */
 	public ScreenLogin()
 	{
@@ -47,15 +46,13 @@ public class ScreenLogin
 		password = SetUp.getBuilder().uiComponentBuilderInstance().textFieldInstance();
 		acess = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		logoff = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
-		popUpPasswordInvalid = new PopUp(
-				"/html/body/div[5]/div",
-				"/html/body/div[5]/div/div/div[2]/div/div",
-				"/html/body/div[5]/div/div/div[2]/div/button"		
-				);
+		popUpPasswordInvalid = new PopUp("/html/body/div[5]/div", "/html/body/div[5]/div/div/div[2]/div/div",
+		    "/html/body/div[5]/div/div/div[2]/div/button");
 	}
+
 	/*
-	 * accessors methods, this methods performed scan in the html before return the element
-	 * this scan is necessary because the element can not is displayed in screen to the access
+	 * accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * not is displayed in screen to the access
 	 */
 
 	public TextField getLogin()
@@ -82,8 +79,11 @@ public class ScreenLogin
 		return logoff;
 	}
 
+	/**
+	 * @return the popUpPasswordInvalid
+	 */
 	public PopUp getPopUpPasswordInvalid()
-	{										
+	{
 		return popUpPasswordInvalid;
 	}
 }

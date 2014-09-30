@@ -23,13 +23,13 @@ import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
  * Class description: This class represent the screen Add Artist
+ * 
  * @author guilherme.alecrim
  */
 public class ScreenAddArtist
 {
 	/*
-	 * This parameters equivalent   the elements in screen  
-	 * This element are providers by Beholder  Framework
+	 * This parameters equivalent the elements in screen This element are providers by Beholder Framework
 	 */
 	private TextField txtName;
 	private Select selectFieldCountry;
@@ -37,10 +37,9 @@ public class ScreenAddArtist
 	private Button btnAddArtist;
 	private Button btnSaveChanges;
 	private PopUp popUp;
-	
-	
-	/*
-	 *  constructor  initialize all elements 
+
+	/**
+	 * constructor initialize all elements.
 	 */
 	public ScreenAddArtist()
 	{
@@ -49,20 +48,19 @@ public class ScreenAddArtist
 		selectFieldGenre = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		btnAddArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		btnSaveChanges = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
-		popUp = new PopUp("/html/body/div[5]/div","/html/body/div[5]/div/div/div[2]/div/div","/html/body/div[5]/div/div/div[2]/div/button");
+		popUp = new PopUp("/html/body/div[5]/div", "/html/body/div[5]/div/div/div[2]/div/div",
+		    "/html/body/div[5]/div/div/div[2]/div/button");
 	}
 
-	
 	/*
-	 * accessors methods, this methods performed scan in the html before return the element
-	 * this scan is necessary because the element can not is displayed in screen to the access
+	 * accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * not is displayed in screen to the access
 	 */
 	public PopUp getPopUp()
 	{
-		
+
 		return popUp;
 	}
-
 
 	public TextField getName()
 	{
@@ -71,7 +69,7 @@ public class ScreenAddArtist
 	}
 
 	public Select getCountry()
-	{	
+	{
 		selectFieldCountry = SetUp.getBuilder().uiComponentBuilderInstance().selectFieldInstance();
 		selectFieldCountry.loadById("artist_countryListBox");
 		return selectFieldCountry;
@@ -96,6 +94,4 @@ public class ScreenAddArtist
 		return btnSaveChanges;
 	}
 
-	
-	
 }

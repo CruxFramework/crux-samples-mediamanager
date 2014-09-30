@@ -23,14 +23,14 @@ import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 import br.ufmg.dcc.saotome.beholder.ui.table.Table;
 
 /**
- * Class description: This class represent the screen Search Artist
+ * Class description: This class represent the screen Search Artist.
+ * 
  * @author guilherme.alecrim
  */
 public class ScreenSearchMedia
 {
 	/*
-	 * This parameters equivalent   the elements in screen  
-	 * This element are providers by Beholder  Framework
+	 * This parameters equivalent the elements in screen This element are providers by Beholder Framework
 	 */
 	private Select type;
 	private TextField name;
@@ -47,9 +47,8 @@ public class ScreenSearchMedia
 	private PopUp popUpSucessDelete;
 	private LendMedia lendMedia;
 
-	
-	/*
-	 *  constructor  initialize all elements 
+	/**
+	 * constructor initialize all elements.
 	 */
 	public ScreenSearchMedia()
 	{
@@ -61,34 +60,22 @@ public class ScreenSearchMedia
 		btnEdit = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		btnDelete = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		btnLend = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
-		
-		popUpNoResultsFound = new PopUp(
-				"/html/body/div[4]/div",
-				"/html/body/div[4]/div/div/div[2]/div/div",
-				"/html/body/div[4]/div/div/div[2]/div/button"
-				);
-		
-		popUpDelete = new PopUpDelete("/html/body/div[5]/div",
-				"/html/body/div[5]/div/div/div[2]/div/div", 
-				"/html/body/div[5]/div/div/div[2]/div/nav/button ",
-				"/html/body/div[5]/div/div/div[2]/div/nav/button[2]"
-				);
-		
-		
-		popUpSucessDelete = new PopUp(
-				"/html/body/div[4]/div",
-				"/html/body/div[4]/div/div/div[2]/div/div",
-				"/html/body/div[4]/div/div/div[2]/div/button"
-				);
-		
-		
+
+		popUpNoResultsFound = new PopUp("/html/body/div[4]/div", "/html/body/div[4]/div/div/div[2]/div/div",
+		    "/html/body/div[4]/div/div/div[2]/div/button");
+
+		popUpDelete = new PopUpDelete("/html/body/div[5]/div", "/html/body/div[5]/div/div/div[2]/div/div",
+		    "/html/body/div[5]/div/div/div[2]/div/nav/button ", "/html/body/div[5]/div/div/div[2]/div/nav/button[2]");
+
+		popUpSucessDelete = new PopUp("/html/body/div[4]/div", "/html/body/div[4]/div/div/div[2]/div/div",
+		    "/html/body/div[4]/div/div/div[2]/div/button");
+
 		lendMedia = new LendMedia();
 	}
 
-	
 	/*
-	 * accessors methods, this methods performed scan in the html before return the element
-	 * this scan is necessary because the element can not is displayed in screen to the access
+	 * accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * not is displayed in screen to the access
 	 */
 
 	public Select getType()
@@ -145,16 +132,25 @@ public class ScreenSearchMedia
 		return btnLend;
 	}
 
+	/**
+	 * @return the popUpDelete
+	 */
 	public PopUpDelete getPopUpDelete()
 	{
 		return popUpDelete;
 	}
 
+	/**
+	 * @return the popUpSucessDelete
+	 */
 	public PopUp getPopUpSucessDelete()
 	{
 		return popUpSucessDelete;
 	}
 
+	/**
+	 * @return the lendMedia
+	 */
 	public LendMedia getLendMedia()
 	{
 		return lendMedia;

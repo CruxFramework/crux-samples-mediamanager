@@ -23,14 +23,14 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: This class represent the screen Search Artist
+ * Class description: This class represent the screen Search Artist.
+ * 
  * @author guilherme.alecrim
  */
 public class ScreenSearchArtist
 {
 	/*
-	 * This parameters equivalent   the elements in screen  
-	 * This element are providers by Beholder  Framework
+	 * This parameters equivalent the elements in screen This element are providers by Beholder Framework
 	 */
 	private TextField txtName;
 	private Button btnSearch;
@@ -41,8 +41,8 @@ public class ScreenSearchArtist
 	private PopUp popUpSucessDelete;
 	private PopUp popUpNoResultsFound;
 
-	/*
-	 *  constructor  initialize all elements 
+	/**
+	 * Default constructor.
 	 */
 	public ScreenSearchArtist()
 	{
@@ -53,31 +53,23 @@ public class ScreenSearchArtist
 		btnEditArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 		btnDeleteArtist = SetUp.getBuilder().uiComponentBuilderInstance().buttonInstance();
 
-		popUpDelete = new PopUpDelete("/html/body/div[5]/div",
-				"/html/body/div[5]/div/div/div[2]/div/div", 
-				"/html/body/div[5]/div/div/div[2]/div/nav/button ",
-				"/html/body/div[5]/div/div/div[2]/div/nav/button[2]"
-				);
-	
-		popUpNoResultsFound = new PopUp(
-				"/html/body/div[4]/div",
-				"/html/body/div[4]/div/div/div[2]/div/div",
-				"/html/body/div[4]/div/div/div[2]/div/button"
-				);
-		
-		popUpSucessDelete = new PopUp(
-				"/html/body/div[4]/div",
-				"/html/body/div[4]/div/div/div[2]/div/div",
-				"/html/body/div[4]/div/div/div[2]/div/button"
-				);
-	
-	}
-	
-	/*
-	 * accessors methods, this methods performed scan in the html before return the element
-	 * this scan is necessary because the element can not is displayed in screen to the access
-	 */
+		popUpDelete = new PopUpDelete("/html/body/div[5]/div", "/html/body/div[5]/div/div/div[2]/div/div",
+		    "/html/body/div[5]/div/div/div[2]/div/nav/button ", "/html/body/div[5]/div/div/div[2]/div/nav/button[2]");
 
+		popUpNoResultsFound = new PopUp("/html/body/div[4]/div", "/html/body/div[4]/div/div/div[2]/div/div",
+		    "/html/body/div[4]/div/div/div[2]/div/button");
+
+		popUpSucessDelete = new PopUp("/html/body/div[4]/div", "/html/body/div[4]/div/div/div[2]/div/div",
+		    "/html/body/div[4]/div/div/div[2]/div/button");
+
+	}
+
+	/*
+	 * accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * not is displayed in screen to the access
+	 */
+	
+	
 	public TextField getTxtName()
 	{
 		txtName.loadById("artists_nameTextBox");
@@ -114,22 +106,27 @@ public class ScreenSearchArtist
 		return btnDeleteArtist;
 	}
 
+	/**
+	 * @return the popUpDelete
+	 */
 	public PopUpDelete getPopUpDelete()
-	{		
+	{
 		return popUpDelete;
 	}
 
+	/**
+	 * @return the popUpSucessDelete
+	 */
 	public PopUp getPopUpSucessDelete()
 	{
 		return popUpSucessDelete;
 	}
 
+	/**
+	 * @return the popUpNoResultsFound
+	 */
 	public PopUp getPopUpNoResultsFound()
 	{
-//		popUpNoResultsFound.setSuperXpath("/html/body/div[4]/div");
-//		popUpNoResultsFound.setXpathBtnOk("/html/body/div[4]/div/div/div[2]/div/button");
-//		popUpNoResultsFound.setXpathDivText("/html/body/div[4]/div/div/div[2]/div/div");
 		return popUpNoResultsFound;
 	}
-
 }

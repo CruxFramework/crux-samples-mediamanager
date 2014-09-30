@@ -21,12 +21,17 @@ import org.cruxframework.crux.core.client.rest.RestProxy.TargetRestService;
 import org.cruxframework.mediamanager.shared.dto.EditMediaDTO;
 
 /**
- * Class description:
+ * Class description: Client REST interface for editing medias.
  * 
  * @author alexandre.costa
  */
 @TargetRestService("editMediaService")
 public interface EditMediaServiceProxy extends RestProxy
 {
-	public void get(Integer id, Callback<EditMediaDTO> callback);
+	/**
+	 * Get edit media data.
+	 * @param id media id
+	 * @param callback callback object
+	 */
+	void get(Integer id, Callback<EditMediaDTO> callback);
 }

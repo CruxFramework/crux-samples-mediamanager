@@ -20,13 +20,12 @@ import org.cruxframework.mediamanager.test.procedure.SetUp;
 import br.ufmg.dcc.saotome.beholder.ui.Div;
 
 /**
- * Class description: This class represent the screen Statistics
+ * Class description: This class represent the screen Statistics.
  * 
  * @author guilherme.alecrim
  */
 public class ScreenStatistics
 {
-
 	/*
 	 * This parameters equivalent the elements in screen This element are providers by Beholder Framework
 	 */
@@ -38,8 +37,8 @@ public class ScreenStatistics
 	private Div divMoreThanOneMonthDVD;
 	private Div nameSreen;
 
-	/*
-	 * constructor initialize all elements
+	/**
+	 * Default constructor.
 	 */
 	public ScreenStatistics()
 	{

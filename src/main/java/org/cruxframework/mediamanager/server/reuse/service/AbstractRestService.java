@@ -42,6 +42,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Class description: Abstract superclass for REST based services.
+ * 
  * @param <D> DTO type class
  * @param <E> Entity type class
  * @see AbstractDTO
@@ -49,19 +50,21 @@ import org.springframework.transaction.annotation.Transactional;
  * 
  * @author alexandre.costa
  */
-public abstract class AbstractRestService<D extends AbstractDTO, 
-	E extends AbstractEntity<D>>
+public abstract class AbstractRestService<D extends AbstractDTO, E extends AbstractEntity<D>>
 {
-	private final static Logger LOGGER = Logger
-		.getLogger(AbstractRestService.class.getName());
-	
+	private static final Logger LOGGER = Logger.getLogger(AbstractRestService.class.getName());
+
+	private static final String RIGHT_BRACKET = "]";
+
 	/**
 	 * Retrieves a record form persistence mechanism by id.
+	 * 
 	 * @param id register id
 	 * @return DTO representation from an entity record
-	 * @throws RestException
+	 * @throws RestException unexpected exception
 	 */
-	@GET/*(cacheTime = GET.ONE_DAY)*/
+	@GET
+	/* (cacheTime = GET.ONE_DAY) */
 	@Path("{id}")
 	public D get(@PathParam("id") Integer id) throws RestException
 	{
@@ -69,46 +72,50 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 		{
 			E entity = getDao().find(id);
 			return entity.getDTORepresentation();
-		} catch (PersistenceException e)
+		}
+		catch (PersistenceException e)
 		{
-			LOGGER.severe("Erro ao recuperar objeto da class ["
-				+ getDao().getEntityClass().getCanonicalName() + "]");
+			LOGGER.severe("Erro ao recuperar objeto da class [" + getDao().getEntityClass().getCanonicalName() + RIGHT_BRACKET);
 			throw new RestException(e);
-		} 
+		}
 	}
 
 	/**
 	 * Update a record on persistence mechanism.
+	 * 
 	 * @param id entity id
-	 * @param dto DTO representation for updating an entity record. 
+	 * @param dto DTO representation for updating an entity record.
+	 * @return result of operation
+	 * @throws RestException unexpected exception
 	 */
 	@PUT(validatePreviousState = StateValidationModel.ENSURE_STATE_MATCHES)
 	@Path("{id}")
 	@Transactional
-	public EditOperation update(@PathParam("id") Integer id, D dto)
-		throws RestException
+	public EditOperation update(@PathParam("id") Integer id, D dto) throws RestException
 	{
 		try
 		{
 			Validate.isTrue(id != null && dto != null && id.equals(dto.getId()), "");
 			doSave(false, dto);
 			return new EditOperation();
-		} catch (RestException e)
+		}
+		catch (RestException e)
 		{
 			throw e;
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
-			LOGGER.severe("Erro ao atualizar objeto da class ["
-				+ getDao().getEntityClass().getCanonicalName() + "]");
+			LOGGER.severe("Erro ao atualizar objeto da class [" + getDao().getEntityClass().getCanonicalName() + RIGHT_BRACKET);
 			throw new RestException(e);
 		}
 	}
 
 	/**
 	 * Insert a new register on database.
+	 * 
 	 * @param dto new instance
-	 * @return instance ID
-	 * @throws RestException
+	 * @return result of operation
+	 * @throws RestException exceptions 
 	 */
 	@POST
 	@Transactional
@@ -121,27 +128,30 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 			EditOperation edit = new EditOperation();
 			edit.setId(id);
 			return edit;
-		} catch (RestException e)
+		}
+		catch (RestException e)
 		{
 			throw e;
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
-			LOGGER.severe("Erro ao inserir objeto da class ["
-				+ getDao().getEntityClass().getCanonicalName() + "]");
+			LOGGER.severe("Erro ao inserir objeto da class [" + getDao().getEntityClass().getCanonicalName() + RIGHT_BRACKET);
 			throw new RestException(e);
 		}
 	}
-	
+
 	/**
-	 * delete a register on database.
-	 * @param abstractBO new instance
-	 * @return instance ID
-	 * @throws RestException
+	 * Remove an business object from the database.
+	 * 
+	 * @param dto DTO representation of the entity to be removed.
+	 * @param id id of the entity to be removed.
+	 * @return result of operation
+	 * @throws RestException unexpected exception
 	 */
 	@DELETE
 	@Path("{id}")
 	@Transactional
-	public EditOperation delete(@PathParam("id")Integer id, D dto) throws RestException
+	public EditOperation delete(@PathParam("id") Integer id, D dto) throws RestException
 	{
 		try
 		{
@@ -149,12 +159,13 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 			validateDelete(entity);
 			getDao().delete(entity);
 			return new EditOperation();
-		} catch (PersistenceException e)
+		}
+		catch (PersistenceException e)
 		{
-			LOGGER.severe("Erro ao excluir objeto da class ["
-				+ getDao().getEntityClass().getCanonicalName() + "]");
+			LOGGER.severe("Erro ao excluir objeto da class [" + getDao().getEntityClass().getCanonicalName() + RIGHT_BRACKET);
 			throw new RestException("Erro ao excluir um registro", e);
-		} catch (ValidationException e) 
+		}
+		catch (ValidationException e)
 		{
 			EditOperation operation = new EditOperation();
 			operation.setId(null);
@@ -162,59 +173,58 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 			return operation;
 		}
 	}
-	
+
 	/****************************************************
 	 * Utilities
 	 ***************************************************/
-	
-	protected List<D> doSearch(List<Filter> filters) 
-		throws RestException
+
+	protected List<D> doSearch(List<Filter> filters) throws RestException
 	{
 		return doSearch(filters, orderBy());
 	}
-	
-	protected List<D> doSearch(List<Filter> filters, List<OrderBy> orderBy) 
-		throws RestException
+
+	protected List<D> doSearch(List<Filter> filters, List<OrderBy> orderBy) throws RestException
 	{
 		try
 		{
 			List<E> entities = getDao().search(filters, orderBy);
 			return EntityUtils.convert(entities);
-		} catch (PersistenceException e)
+		}
+		catch (PersistenceException e)
 		{
-			LOGGER.severe("Erro ao pesquisar objetos da class ["
-				+ getDao().getEntityClass().getCanonicalName() + "]");
-			
+			LOGGER.severe("Erro ao pesquisar objetos da class [" + getDao().getEntityClass().getCanonicalName() + RIGHT_BRACKET);
+
 			throw new RestException(e);
-		} 
+		}
 	}
-	
+
 	protected Integer doSave(boolean insert, D dto) throws RestException
 	{
 		try
 		{
 			E entity = getCorrectInstance(insert, dto);
 			prepareEntity(entity, dto);
-			
+
 			if (insert)
 			{
 				validateInsert(entity);
-			} else
+			}
+			else
 			{
 				validateUpdate(entity);
 			}
 
 			getDao().save(entity);
 			return entity.getId();
-		} catch (PersistenceException e)
+		}
+		catch (PersistenceException e)
 		{
-			LOGGER.severe("Erro ao salvar um objeto da class ["
-				+ getDao().getEntityClass().getCanonicalName() + "]");
-			
+			LOGGER.severe("Erro ao salvar um objeto da class [" + getDao().getEntityClass().getCanonicalName() + RIGHT_BRACKET);
+
 			throw new RestException(e);
-		} 
+		}
 	}
-	
+
 	protected E getCorrectInstance(boolean insert, D dto)
 	{
 		if (insert)
@@ -222,14 +232,17 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 			try
 			{
 				return getDao().getEntityClass().newInstance();
-			} catch (InstantiationException e)
-			{
-				throw new RuntimeException(e);
-			} catch (IllegalAccessException e)
+			}
+			catch (InstantiationException e)
 			{
 				throw new RuntimeException(e);
 			}
-		} else 
+			catch (IllegalAccessException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+		else
 		{
 			return getDao().find(dto.getId());
 		}
@@ -238,52 +251,58 @@ public abstract class AbstractRestService<D extends AbstractDTO,
 	/*****************************************************
 	 * Abstract or empty methods
 	 *****************************************************/
-	
+
 	/**
 	 * Get DAO object
+	 * 
 	 * @return DAO object
 	 */
 	protected abstract AbstractDAO<D, E> getDao();
-	
+
 	/**
 	 * Copy values from DTO to entity
+	 * 
 	 * @param entity target entity
 	 * @param dto source DTO
 	 */
 	protected void prepareEntity(E entity, D dto)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Performer business rules validation on insert operation.
+	 * 
 	 * @param object entity to be validated
 	 */
 	protected void validateInsert(E object)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Performer business rules validation on update operation.
+	 * 
 	 * @param object entity to be validated
 	 */
 	protected void validateUpdate(E object)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Performer business rules validation on delete operation.
+	 * 
 	 * @param object entity to be validated
 	 */
 	protected void validateDelete(E object)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Get the default ordering for search operation.
+	 * 
 	 * @return ordering
 	 */
 	protected List<OrderBy> orderBy()

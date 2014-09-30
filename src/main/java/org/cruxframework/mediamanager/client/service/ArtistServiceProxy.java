@@ -23,7 +23,7 @@ import org.cruxframework.mediamanager.client.reuse.service.RestServiceProxy;
 import org.cruxframework.mediamanager.shared.dto.ArtistDTO;
 
 /**
- * Class description: REST interface for artists.
+ * Class description: Client REST interface for artists.
  * 
  * @author alexandre.costa
  */

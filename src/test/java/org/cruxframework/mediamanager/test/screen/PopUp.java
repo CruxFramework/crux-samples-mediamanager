@@ -22,7 +22,7 @@ import br.ufmg.dcc.saotome.beholder.ui.Div;
 import br.ufmg.dcc.saotome.beholder.ui.form.Button;
 
 /**
- * This class represent a pop up All class pop up should extends this class
+ * This class represent a pop up All class pop up should extends this class.
  * 
  * @author guilherme.alecrim
  */
@@ -40,6 +40,7 @@ public class PopUp
 
 	/**
 	 * constructor initialize all elements.
+	 * 
 	 * @param superXpath superXpath
 	 * @param xpathMsg xpathMsg
 	 * @param xpathBtnOk xpathBtnOk
@@ -54,7 +55,7 @@ public class PopUp
 	}
 
 	/*
-	 * accessors methods, this methods performed scan in the html before return the element this scan is necessary because the element can
+	 * accessors methods, this methods performed scan in the html before return t he element this scan is necessary because the element can
 	 * not is displayed in screen to the access
 	 */
 
@@ -63,7 +64,7 @@ public class PopUp
 	 */
 	public Div getDivText()
 	{
-		divText.loadByXPath(getXpathDivText());
+		divText.loadByXPath(getXpathMsg());
 		return divText;
 	}
 
@@ -76,41 +77,9 @@ public class PopUp
 		return btnOk;
 	}
 
-	/*
-	 * this accessors return the xpath of the componets of the pop up
-	 */
-	public String getXpathBtnOk()
-	{
-		return xpathBtnOk;
-	}
-
-	public void setXpathBtnOk(String xpathBtnOk)
-	{
-		this.xpathBtnOk = xpathBtnOk;
-	}
-
-	public String getXpathDivText()
-	{
-		return xpathMsg;
-	}
-
-	public void setXpathDivText(String xpathDivText)
-	{
-		this.xpathMsg = xpathDivText;
-	}
-
-	public String getSuperXpath()
-	{
-		return superXpath;
-	}
-
-	public void setSuperXpath(String xpathPopUp)
-	{
-		this.superXpath = xpathPopUp;
-	}
-
 	/**
-	 * check if pop up is displayed
+	 * check if pop up is displayed.
+	 * 
 	 * @return true if it is displayed
 	 */
 	public boolean isDisplayedPopUp()
@@ -129,7 +98,7 @@ public class PopUp
 	}
 
 	/**
-	 * Confirm pop up, ie, click in button ok
+	 * Confirm pop up, ie, click in button ok.
 	 */
 	public void confirmPopUp()
 	{
@@ -140,12 +109,64 @@ public class PopUp
 	}
 
 	/**
-	 * Get the message of pop up
+	 * Get the message of pop up.
 	 * 
 	 * @return the message of pop up
 	 */
 	public String getMenssagePopUp()
 	{
 		return getDivText().getText();
+	}
+
+	/*
+	 * this accessors return the xpath of the componets of the pop up
+	 */
+
+	/**
+	 * @return the xpathBtnOk
+	 */
+	public String getXpathBtnOk()
+	{
+		return xpathBtnOk;
+	}
+
+	/**
+	 * @param xpathBtnOk the xpathBtnOk to set
+	 */
+	public void setXpathBtnOk(String xpathBtnOk)
+	{
+		this.xpathBtnOk = xpathBtnOk;
+	}
+
+	/**
+	 * @return the xpathMsg
+	 */
+	public String getXpathMsg()
+	{
+		return xpathMsg;
+	}
+
+	/**
+	 * @param xpathMsg the xpathMsg to set
+	 */
+	public void setXpathMsg(String xpathMsg)
+	{
+		this.xpathMsg = xpathMsg;
+	}
+
+	/**
+	 * @return the superXpath
+	 */
+	public String getSuperXpath()
+	{
+		return superXpath;
+	}
+
+	/**
+	 * @param superXpath the superXpath to set
+	 */
+	public void setSuperXpath(String superXpath)
+	{
+		this.superXpath = superXpath;
 	}
 }

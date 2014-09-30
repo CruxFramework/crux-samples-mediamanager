@@ -40,7 +40,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Class description:
+ * Class description: REST implementation for {@link Media} resource.
  * 
  * @author alexandre.costa
  */
@@ -50,14 +50,29 @@ import org.springframework.web.context.WebApplicationContext;
 @Path("medias")
 public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 {
+	private static final String TYPE = "type";
+
+	private static final String PERSON = "person";
+
+	private static final String NAME = "name";
+
 	@Autowired
 	private MediaDAOImpl mediaDAOImpl;
 
 	@Autowired
 	private ArtistDAOImpl artistDAOImpl;
 
+	/**
+	 * Search method.
+	 * 
+	 * @param type media's type
+	 * @param name media's name
+	 * @param person media's author 
+	 * @return medias list
+	 * @throws RestException exception
+	 */
 	@GET
-	public List<MediaDTO> search(@QueryParam("type") MediaType type, @QueryParam("name") String name, @QueryParam("person") String person)
+	public List<MediaDTO> search(@QueryParam(TYPE) MediaType type, @QueryParam(NAME) String name, @QueryParam(PERSON) String person)
 	    throws RestException
 	{
 		List<Filter> filters = getSearchFilters(type, name, person);
@@ -97,7 +112,7 @@ public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 	protected List<OrderBy> orderBy()
 	{
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
-		orderings.add(new OrderBy("name"));
+		orderings.add(new OrderBy(NAME));
 		return orderings;
 	}
 
@@ -110,21 +125,21 @@ public class MediaRestService extends AbstractRestService<MediaDTO, Media>
 		List<Filter> filters = new ArrayList<Filter>(0);
 		if (name != null && name.trim().length() > 0)
 		{
-			Filter filter = new Filter("name", name);
+			Filter filter = new Filter(NAME, name);
 			filter.setOperator(Operator.LIKE_FULL);
 			filters.add(filter);
 		}
 
 		if (person != null && person.trim().length() > 0)
 		{
-			Filter filter = new Filter("person", person);
+			Filter filter = new Filter(PERSON, person);
 			filter.setOperator(Operator.LIKE_FULL);
-			filters.add(new Filter("person", person));
+			filters.add(new Filter(PERSON, person));
 		}
 
 		if (type != null)
 		{
-			filters.add(new Filter("type", type));
+			filters.add(new Filter(TYPE, type));
 		}
 
 		return filters;

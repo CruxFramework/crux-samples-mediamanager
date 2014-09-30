@@ -39,48 +39,55 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Class description: 
+ * Class description: REST implementation for {@link EditArtistDTO}.
+ * 
  * @author alexandre.costa
  */
 @Component
-@Scope(value =  WebApplicationContext.SCOPE_REQUEST)
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RestService("editArtistService")
 @Path("editartists")
 public class EditArtistRestService
 {
 	@Autowired
 	private CountryDAOImpl countryDAOImpl;
-	
+
 	@Autowired
 	private GenreDAOImpl genreDAOImpl;
-	
+
 	@Autowired
 	private ArtistDAOImpl artistDAOImpl;
-	
+
+	/**
+	 * Get data for artist edition.
+	 * @param id artist's id
+	 * @return DTO object
+	 * @throws RestException exception
+	 */
 	@GET
 	@Path("{id}")
 	public EditArtistDTO get(@PathParam("id") Integer id) throws RestException
 	{
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
 		orderings.add(new OrderBy("name"));
-		
+
 		List<Country> countries = countryDAOImpl.search(null, orderings);
 		List<Genre> genres = genreDAOImpl.search(null, orderings);
 		ArtistDTO artistDTO = null;
-		
+
 		if (id != null)
 		{
 			Artist artist = artistDAOImpl.find(id);
 			artistDTO = artist.getDTORepresentation();
 		}
-		
+
 		EditArtistDTO editArtistDTO = new EditArtistDTO();
 		editArtistDTO.setArtist(artistDTO);
 		editArtistDTO.setCountries(EntityUtils.convert(countries));
 		editArtistDTO.setGenres(EntityUtils.convert(genres));
 		return editArtistDTO;
 	}
-	
+
 	/******************************************
 	 * Getters and setters
 	 ******************************************/
@@ -108,5 +115,4 @@ public class EditArtistRestService
 	{
 		this.artistDAOImpl = artistDAOImpl;
 	}
-
 }

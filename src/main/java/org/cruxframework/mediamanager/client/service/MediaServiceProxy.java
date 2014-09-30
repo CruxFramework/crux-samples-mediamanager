@@ -32,10 +32,11 @@ import org.cruxframework.mediamanager.shared.enums.MediaType;
 public interface MediaServiceProxy extends RestServiceProxy<MediaDTO>
 {
 	/**
-	 * @param type
-	 * @param name
-	 * @param person
-	 * @param callback
+	 * Search medias by type, name and author.
+	 * @param type media type
+	 * @param name media's name
+	 * @param person media's author
+	 * @param callback callback object.
 	 */
 	void search(MediaType type, String name, String person, Callback<List<MediaDTO>> callback);
 

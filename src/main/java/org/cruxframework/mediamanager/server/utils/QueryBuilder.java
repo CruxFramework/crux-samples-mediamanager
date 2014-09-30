@@ -26,9 +26,10 @@ import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.cruxframework.mediamanager.server.reuse.entity.AbstractEntity;
 
-
 /**
- * Class description: 
+ * Class description: Implements a {@link Filter} based query builder.
+ * 
+ * @see {@link Filter}.
  * 
  * @author alexandre.costa
  */
@@ -47,7 +48,7 @@ public class QueryBuilder
 	private static final String PERCENT = "%";
 	private static final String ALIAS = "obj";
 	private static final String LABEL_PREFIX = ":value";
-	
+
 	private Map<String, Object> valuesMap = new HashMap<String, Object>();
 	private final Collection<Filter> filters = new ArrayList<Filter>(0);
 	private final Collection<OrderBy> orderings = new ArrayList<OrderBy>(0);
@@ -75,7 +76,7 @@ public class QueryBuilder
 		String orderBy = buildOrderByClause();
 		return select + from + buildJoins() + where + orderBy;
 	}
-	
+
 	public String buildHQLCountQuery()
 	{
 		String select = buildSelectCountClause();
@@ -91,7 +92,7 @@ public class QueryBuilder
 			index = 0;
 			this.filters.clear();
 			this.filters.addAll(filters);
-		}	
+		}
 	}
 
 	public void addOrderings(Collection<OrderBy> orderings)
@@ -111,7 +112,7 @@ public class QueryBuilder
 	{
 		return SELECT + SPACE + ALIAS + SPACE;
 	}
-	
+
 	private String buildSelectCountClause()
 	{
 		return "select count(*) ";
@@ -119,8 +120,7 @@ public class QueryBuilder
 
 	private String buildFromClause()
 	{
-		return FROM + SPACE + entityClass.getSimpleName() 
-			+ SPACE + ALIAS + SPACE;
+		return FROM + SPACE + entityClass.getSimpleName() + SPACE + ALIAS + SPACE;
 	}
 
 	private String buildWhereClause()
@@ -134,7 +134,7 @@ public class QueryBuilder
 			{
 				String field = filter.getField();
 				boolean needsAlias = isMultivaluedProperty(field) && !isRootProperty(field);
-				
+
 				if (needsAlias)
 				{
 					registerPropertyForJoin(filter);
@@ -147,51 +147,51 @@ public class QueryBuilder
 
 				switch (filter.getOperator())
 				{
-					case NOT_EQUALS:
-						where += buildNotEqualsClause(!needsAlias, filter);
-						break;
-					case EQUALS:
-						where += buildEqualsClause(!needsAlias, filter);
-						break;
-					case LIKE:
-						where += buildLikeClause(!needsAlias, filter);
-						break;
-					case LIKE_FULL:
-						where += buildFullLikeClause(!needsAlias, filter);
-						break;
-					case LIKE_LEFT:
-						where += buildLeftLikeClause(!needsAlias, filter);
-						break;
-					case LIKE_RIGHT:
-						where += buildRightLikeClause(!needsAlias, filter);
-						break;
-					case GREATER_THAN:
-						where += buildBinaryOperatorClause(!needsAlias, filter);
-						break;
-					case GREATER_THAN_OR_EQUAL:
-						where += buildBinaryOperatorClause(!needsAlias, filter);
-						break;
-					case LESS_THAN:
-						where += buildBinaryOperatorClause(!needsAlias, filter);
-						break;
-					case LESS_THAN_OR_EQUAL:
-						where += buildBinaryOperatorClause(!needsAlias, filter);
-						break;
-					case MEMBER_OF:
-						where += buildMemberOfClause(!needsAlias, filter);
-						break;
-					case NOT_MEMBER_OF:
-						where += buildNotMemberOfClause(!needsAlias, filter);
-						break;
-					case IN:
-						where += buildInClause(!needsAlias, filter);
-						break;
-					case NOT_IN:
-						where += buildNotInClause(!needsAlias, filter);
-						break;
+				case NOT_EQUALS:
+					where += buildNotEqualsClause(!needsAlias, filter);
+					break;
+				case EQUALS:
+					where += buildEqualsClause(!needsAlias, filter);
+					break;
+				case LIKE:
+					where += buildLikeClause(!needsAlias, filter);
+					break;
+				case LIKE_FULL:
+					where += buildFullLikeClause(!needsAlias, filter);
+					break;
+				case LIKE_LEFT:
+					where += buildLeftLikeClause(!needsAlias, filter);
+					break;
+				case LIKE_RIGHT:
+					where += buildRightLikeClause(!needsAlias, filter);
+					break;
+				case GREATER_THAN:
+					where += buildBinaryOperatorClause(!needsAlias, filter);
+					break;
+				case GREATER_THAN_OR_EQUAL:
+					where += buildBinaryOperatorClause(!needsAlias, filter);
+					break;
+				case LESS_THAN:
+					where += buildBinaryOperatorClause(!needsAlias, filter);
+					break;
+				case LESS_THAN_OR_EQUAL:
+					where += buildBinaryOperatorClause(!needsAlias, filter);
+					break;
+				case MEMBER_OF:
+					where += buildMemberOfClause(!needsAlias, filter);
+					break;
+				case NOT_MEMBER_OF:
+					where += buildNotMemberOfClause(!needsAlias, filter);
+					break;
+				case IN:
+					where += buildInClause(!needsAlias, filter);
+					break;
+				case NOT_IN:
+					where += buildNotInClause(!needsAlias, filter);
+					break;
 
-					default:
-						throw new RuntimeException("Nenhum operador informado");
+				default:
+					throw new RuntimeException("Nenhum operador informado");
 				}
 
 				if (filter.isCloseParenthesis())
@@ -229,7 +229,8 @@ public class QueryBuilder
 				if (orderBy.isAscending())
 				{
 					item.append(ASCENDING);
-				} else
+				}
+				else
 				{
 					item.append(DESCENDING);
 				}
@@ -243,16 +244,14 @@ public class QueryBuilder
 	{
 		String label = generateLabel();
 		registerLabelAndValue(label, filter.getValue());
-		String where = (useClassAlias ? ALIAS + "." : "") + filter.getField() + " "
-				+ filter.getOperator() + " " + label;
+		String where = (useClassAlias ? ALIAS + "." : "") + filter.getField() + " " + filter.getOperator() + " " + label;
 
 		return where;
 	}
 
 	private String buildInClause(boolean useClassAlias, Filter filter)
 	{
-		String where = (useClassAlias ? ALIAS + "." : "") + filter.getField()
-				+ " in (";
+		String where = (useClassAlias ? ALIAS + "." : "") + filter.getField() + " in (";
 
 		for (Object value : filter.getValues())
 		{
@@ -267,8 +266,7 @@ public class QueryBuilder
 
 	private String buildNotInClause(boolean useClassAlias, Filter filter)
 	{
-		String where = (useClassAlias ? ALIAS + "." : "") + filter.getField()
-				+ " not in (";
+		String where = (useClassAlias ? ALIAS + "." : "") + filter.getField() + " not in (";
 
 		for (Object value : filter.getValues())
 		{
@@ -285,8 +283,7 @@ public class QueryBuilder
 	{
 		String label = generateLabel();
 		registerLabelAndValue(label, filter.getValue());
-		String where = label + " member of " + (useClassAlias ? ALIAS + "." : "")
-				+ filter.getField();
+		String where = label + " member of " + (useClassAlias ? ALIAS + "." : "") + filter.getField();
 
 		return where;
 	}
@@ -295,8 +292,7 @@ public class QueryBuilder
 	{
 		String label = generateLabel();
 		registerLabelAndValue(label, filter.getValue());
-		String where = label + " not member of "
-				+ (useClassAlias ? ALIAS + "." : "") + filter.getField();
+		String where = label + " not member of " + (useClassAlias ? ALIAS + "." : "") + filter.getField();
 
 		return where;
 	}
@@ -306,16 +302,17 @@ public class QueryBuilder
 		if (filter.getValues().size() > 1)
 		{
 			return buildNotInClause(useClassAlias, filter);
-		} else
+		}
+		else
 		{
 			if (filter.getValue() == null)
 			{
 				return buildIsNotNullClause(useClassAlias, filter);
-			} else
+			}
+			else
 			{
 				String label = generateLabel();
-				String where = (useClassAlias ? ALIAS + "." : "") + filter.getField()
-						+ " <> " + label;
+				String where = (useClassAlias ? ALIAS + "." : "") + filter.getField() + " <> " + label;
 				registerLabelAndValue(label, filter.getValue());
 				return where;
 			}
@@ -327,20 +324,21 @@ public class QueryBuilder
 		if (filter.getValues().size() > 1)
 		{
 			return buildInClause(useClassAlias, filter);
-		} else
+		}
+		else
 		{
 			if (filter.getValue() == null)
 			{
 				return buildIsNullClause(useClassAlias, filter);
-			} else
+			}
+			else
 			{
 				String label = generateLabel();
 				Object value = filter.getValue();
 				registerLabelAndValue(label, value);
 				String where = StringUtils.EMPTY;
-				
-				boolean needsLower = value instanceof String
-						&& !filter.isCaseSensitive();
+
+				boolean needsLower = value instanceof String && !filter.isCaseSensitive();
 
 				where += needsLower ? "lower(" : "";
 				where += (useClassAlias ? ALIAS + "." : "") + filter.getField();
@@ -354,8 +352,7 @@ public class QueryBuilder
 
 	private String buildIsNotNullClause(boolean useClassAlias, Filter filter)
 	{
-		return (useClassAlias ? ALIAS + "." : "") + filter.getField()
-				+ " is not null";
+		return (useClassAlias ? ALIAS + "." : "") + filter.getField() + " is not null";
 	}
 
 	private String buildIsNullClause(boolean useClassAlias, Filter filter)
@@ -367,8 +364,7 @@ public class QueryBuilder
 	{
 		String label = generateLabel();
 		registerLabelAndValue(label, filter.getValue());
-		String normalizedField = (useClassAlias ? ALIAS + "." : "")
-				+ filter.getField();
+		String normalizedField = (useClassAlias ? ALIAS + "." : "") + filter.getField();
 
 		String where = "lower(" + normalizedField + ")" + " like lower(" + label + ")";
 		return where;
@@ -379,8 +375,7 @@ public class QueryBuilder
 		String label = generateLabel();
 		registerLabelAndValue(label, PERCENT + filter.getValue() + PERCENT);
 
-		String normalizedField = (useClassAlias ? ALIAS + "." : "")
-				+ filter.getField();
+		String normalizedField = (useClassAlias ? ALIAS + "." : "") + filter.getField();
 
 		String where = "lower(" + normalizedField + ")" + " like lower(" + label + ")";
 		return where;
@@ -390,8 +385,7 @@ public class QueryBuilder
 	{
 		String label = generateLabel();
 		registerLabelAndValue(label, PERCENT + filter.getValue());
-		String normalizedField = (useClasseAlias ? ALIAS + "." : "")
-				+ filter.getField();
+		String normalizedField = (useClasseAlias ? ALIAS + "." : "") + filter.getField();
 
 		String where = "lower(" + normalizedField + ")" + " like lower(" + label + ")";
 		return where;
@@ -401,8 +395,7 @@ public class QueryBuilder
 	{
 		String label = generateLabel();
 		registerLabelAndValue(label, filter.getValue() + PERCENT);
-		String normalizedField = (useClasseAlias ? ALIAS + "." : "")
-				+ filter.getField();
+		String normalizedField = (useClasseAlias ? ALIAS + "." : "") + filter.getField();
 
 		String where = "lower(" + normalizedField + ")" + " like lower(" + label + ")";
 		return where;
@@ -448,7 +441,8 @@ public class QueryBuilder
 		{
 			Field field = entityClass.getDeclaredField(rootProperty);
 			return Iterable.class.isAssignableFrom(field.getType());
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			return false;
 		}
