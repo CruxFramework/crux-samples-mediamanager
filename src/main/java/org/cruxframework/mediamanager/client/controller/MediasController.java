@@ -15,7 +15,6 @@
  */
 package org.cruxframework.mediamanager.client.controller;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.cruxframework.crux.core.client.Crux;
@@ -66,7 +65,7 @@ public class MediasController extends SearchController<MediaDTO>
 	private static final String DATE = "date";
 
 	@Inject
-	private MediasViewWidgetAccessor mediaViewWidgetAccessor;
+	private MediasViewWidgetAccessor mediasViewWidgetAccessor;
 
 	@Inject
 	private MediaServiceProxy mediaServiceProxy;
@@ -82,7 +81,7 @@ public class MediasController extends SearchController<MediaDTO>
 		getResultGrid().refresh();
 
 		/* Get all media types */
-		ListBox types = mediaViewWidgetAccessor.typeListBox();
+		ListBox types = mediasViewWidgetAccessor.typeListBox();
 		if (types.getItemCount() == 0)
 		{
 			types.addItem("", "");
@@ -106,15 +105,15 @@ public class MediasController extends SearchController<MediaDTO>
 	{
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		MediaType type = null;
-		String typeValue = mediaViewWidgetAccessor.typeListBox().getValue(mediaViewWidgetAccessor.typeListBox().getSelectedIndex());
+		String typeValue = mediasViewWidgetAccessor.typeListBox().getValue(mediasViewWidgetAccessor.typeListBox().getSelectedIndex());
 
 		if (typeValue != null && typeValue.trim().length() > 0)
 		{
 			type = MediaType.valueOf(typeValue);
 		}
 
-		String name = mediaViewWidgetAccessor.nameTextBox().getValue();
-		String person = mediaViewWidgetAccessor.personTextBox().getValue();
+		String name = mediasViewWidgetAccessor.nameTextBox().getValue();
+		String person = mediasViewWidgetAccessor.personTextBox().getValue();
 		mediaServiceProxy.search(type, name, person, new SearchCallback());
 	}
 
@@ -218,6 +217,7 @@ public class MediasController extends SearchController<MediaDTO>
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private String validate(MediaDTO dto)
 	{
 		/* all fields */
@@ -225,14 +225,12 @@ public class MediasController extends SearchController<MediaDTO>
 		{
 			return "Fill all fields";
 		}
-		
-		Calendar date = Calendar.getInstance();
-		date.set(Calendar.HOUR_OF_DAY, 0);
-		date.set(Calendar.MINUTE, 0);
-		date.set(Calendar.SECOND, 1);
 
 		/* date validation */
-		Date now = date.getTime();
+		Date now = new Date();
+		now.setHours(0);
+		now.setMinutes(0);
+		now.setSeconds(1);
 
 		if (dto.getDate() != null && dto.getDate().after(now))
 		{
@@ -253,52 +251,10 @@ public class MediasController extends SearchController<MediaDTO>
 		container.setUnloadViewOnClose(true);
 		container.hide();
 	}
-
-	/*************************************
-	 * Overwritten methods
-	 *************************************/
-
-	@Override
-	protected String getEditViewOutcome()
-	{
-		return "media";
-	}
-
-	@Override
-	protected DeviceAdaptiveGrid getResultGrid()
-	{
-		return mediaViewWidgetAccessor.tableGrid();
-	}
-
-	@Override
-	protected MediaServiceProxy getRestServiceProxy()
-	{
-		return mediaServiceProxy;
-	}
-
-	/*************************************
-	 * Getters and setters
-	 *************************************/
-
-	/**
-	 * @param mediaViewWidgetAccessor the mediaViewWidgetAccessor to set
-	 */
-	public void setMediaViewWidgetAccessor(MediasViewWidgetAccessor mediaViewWidgetAccessor)
-	{
-		this.mediaViewWidgetAccessor = mediaViewWidgetAccessor;
-	}
-
-	/**
-	 * @param mediaServiceProxy the mediaServiceProxy to set
-	 */
-	public void setMediaServiceProxy(MediaServiceProxy mediaServiceProxy)
-	{
-		this.mediaServiceProxy = mediaServiceProxy;
-	}
-
-	/**********************************************
-	 * Callback and widget accessor classes
-	 **********************************************/
+	
+	/*************************************************
+	 * Callback classes and widget accessor interfaces
+	 *************************************************/
 
 	private class SaveLendCallback implements Callback<EditOperation>
 	{
@@ -354,5 +310,46 @@ public class MediasController extends SearchController<MediaDTO>
 
 		DeviceAdaptiveGrid tableGrid();
 	}
+	
+	/*************************************
+	 * Overwritten methods
+	 *************************************/
 
+	@Override
+	protected String getEditViewOutcome()
+	{
+		return "media";
+	}
+
+	@Override
+	protected DeviceAdaptiveGrid getResultGrid()
+	{
+		return mediasViewWidgetAccessor.tableGrid();
+	}
+
+	@Override
+	protected MediaServiceProxy getRestServiceProxy()
+	{
+		return mediaServiceProxy;
+	}
+
+	/*************************************
+	 * Getters and setters
+	 *************************************/
+
+	/**
+	 * @param mediasViewWidgetAccessor the mediasViewWidgetAccessor to set
+	 */
+	public void setMediasViewWidgetAccessor(MediasViewWidgetAccessor mediasViewWidgetAccessor)
+	{
+		this.mediasViewWidgetAccessor = mediasViewWidgetAccessor;
+	}
+
+	/**
+	 * @param mediaServiceProxy the mediaServiceProxy to set
+	 */
+	public void setMediaServiceProxy(MediaServiceProxy mediaServiceProxy)
+	{
+		this.mediaServiceProxy = mediaServiceProxy;
+	}
 }
