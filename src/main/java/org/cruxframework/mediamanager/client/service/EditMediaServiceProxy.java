@@ -33,5 +33,11 @@ public interface EditMediaServiceProxy extends RestProxy
 	 * @param id media id
 	 * @param callback callback object
 	 */
-	void get(Integer id, Callback<EditMediaDTO> callback);
+	void update(Integer id, Callback<EditMediaDTO> callback);
+	
+	/**
+	 * Get edit media data.
+	 * @param callback callback object
+	 */
+	void add(Callback<EditMediaDTO> callback);
 }

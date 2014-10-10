@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/crux-dev/src/main/java/org/cruxframework/crux/tools/codeserver/CodeServer.java"/>
+<listEntry value="/crux-dev/src/main/java/org/cruxframework/crux/tools/server/JettyDevServer.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
@@ -18,9 +18,9 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.cruxframework.crux.tools.codeserver.CodeServer"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-sourceDir src/main/java -webDir target/mediamanager -moduleName mediamanager -startHotDeploymentScanner"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.cruxframework.crux.tools.server.JettyDevServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-appRootDir target/mediamanager -addDevelopmentComponents"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="mediamanager"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms256M -Xmx768M"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms256M -Xmx768M -DCrux.dev=true"/>
 </launchConfiguration>

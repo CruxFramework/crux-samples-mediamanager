@@ -61,15 +61,10 @@ public class EditMediaRestService
 	 */
 	@GET
 	@Path("{id}")
-	public EditMediaDTO get(@PathParam("id")Integer id) throws RestException
+	public EditMediaDTO update(@PathParam("id")Integer id) throws RestException
 	{
-		MediaDTO mediaDTO = null;
-		
-		if (id != null)
-		{
-			Media media = id == null ? null : mediaDAOImpl.find(id);
-			mediaDTO = media.getDTORepresentation();
-		}
+		Media media = id == null ? null : mediaDAOImpl.find(id);
+		MediaDTO mediaDTO = media.getDTORepresentation();
 		
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
 		orderings.add(new OrderBy("name"));
@@ -77,6 +72,24 @@ public class EditMediaRestService
 		List<Artist> artists = artistDAOImpl.search(null, orderings);
 		EditMediaDTO editMediaDTO = new EditMediaDTO();
 		editMediaDTO.setMedia(mediaDTO);
+		editMediaDTO.setArtists(EntityUtils.convert(artists));
+		return editMediaDTO;
+	}
+	
+	/**
+	 * Get data for media edition.
+	 * @return DTO object
+	 * @throws RestException exception
+	 */
+	@GET
+	public EditMediaDTO add() throws RestException
+	{
+		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
+		orderings.add(new OrderBy("name"));
+		
+		List<Artist> artists = artistDAOImpl.search(null, orderings);
+		EditMediaDTO editMediaDTO = new EditMediaDTO();
+		editMediaDTO.setMedia(new MediaDTO());
 		editMediaDTO.setArtists(EntityUtils.convert(artists));
 		return editMediaDTO;
 	}

@@ -68,7 +68,15 @@ public class ArtistController extends EditController<ArtistDTO>
 		WaitBox.show("Wait", DialogAnimation.fadeDownUp);
 		ArtistDTO artist = event.getParameterObject();
 		Integer identificator = artist == null ? null : artist.getId();
-		editArtistServiceProxy.get(identificator, new EditAristCallback());
+		
+		if (identificator != null)
+		{
+			editArtistServiceProxy.update(identificator, new EditAristCallback());
+		}
+		else
+		{
+			editArtistServiceProxy.add(new EditAristCallback());
+		}
 	}
 
 	/********************************************
@@ -117,7 +125,7 @@ public class ArtistController extends EditController<ArtistDTO>
 			GenreDTO genre = genreList.get(i);
 			genreListBox.addItem(genre.getName(), genre.getId().toString());
 
-			if (artistDTO != null && artistDTO.getGenre().getId() == genre.getId())
+			if (artistDTO != null && artistDTO.getGenre() != null && artistDTO.getGenre().getId() == genre.getId())
 			{
 				genreListBox.setSelectedIndex(i + 1);
 			}
@@ -135,7 +143,7 @@ public class ArtistController extends EditController<ArtistDTO>
 			CountryDTO country = countryList.get(i);
 			countryListBox.addItem(country.getName(), country.getId().toString());
 
-			if (artistDTO != null && artistDTO.getCountry().getId() == country.getId())
+			if (artistDTO != null && artistDTO.getCountry() != null && artistDTO.getCountry().getId() == country.getId())
 			{
 				countryListBox.setSelectedIndex(i + 1);
 			}

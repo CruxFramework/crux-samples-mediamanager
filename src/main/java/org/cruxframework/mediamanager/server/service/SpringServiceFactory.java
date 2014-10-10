@@ -36,9 +36,9 @@ public class SpringServiceFactory extends RestServiceFactoryImpl
 	public void initialize(ServletContext context)
 	{
 		super.initialize(context);
-		if (context != null)
-		{
-			SpringUtils.get();
-		}
+//		if (context != null)
+//		{
+//			SpringUtils.get();
+//		}
 	}
 }

@@ -33,5 +33,11 @@ public interface EditArtistServiceProxy extends RestProxy
 	 * @param id artist id.
 	 * @param callback callback object
 	 */
-	void get(Integer id, Callback<EditArtistDTO> callback);
+	void update(Integer id, Callback<EditArtistDTO> callback);
+	
+	/**
+	 * Get data for artist edition.
+	 * @param callback callback object
+	 */
+	void add(Callback<EditArtistDTO> callback);
 }

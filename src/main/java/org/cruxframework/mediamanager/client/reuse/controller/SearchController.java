@@ -19,14 +19,14 @@ import java.util.List;
 
 import org.cruxframework.crux.core.client.Crux;
 import org.cruxframework.crux.core.client.controller.Expose;
+import org.cruxframework.crux.core.client.event.OkEvent;
+import org.cruxframework.crux.core.client.event.OkHandler;
 import org.cruxframework.crux.core.client.rest.Callback;
 import org.cruxframework.crux.core.client.screen.Screen;
 import org.cruxframework.crux.smartfaces.client.dialog.Confirm;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox;
 import org.cruxframework.crux.smartfaces.client.dialog.MessageBox.MessageType;
 import org.cruxframework.crux.smartfaces.client.dialog.WaitBox;
-import org.cruxframework.crux.smartfaces.client.event.OkEvent;
-import org.cruxframework.crux.smartfaces.client.event.OkHandler;
 import org.cruxframework.crux.widgets.client.deviceadaptivegrid.DeviceAdaptiveGrid;
 import org.cruxframework.crux.widgets.client.event.SelectEvent;
 import org.cruxframework.crux.widgets.client.grid.DataRow;

@@ -72,7 +72,15 @@ public class MediaController extends EditController<MediaDTO>
 		MediaDTO media = event.getParameterObject();
 		Integer identificator = media == null ? null : media.getId();
 		fillMediaTypeListBox((ListBox) view.getWidget(TYPE_LIST_BOX), media);
-		editMediaServiceProxy.get(identificator, new EditMediaCallback());
+		
+		if (identificator != null)
+		{
+			editMediaServiceProxy.update(identificator, new EditMediaCallback());
+		}
+		else
+		{
+			editMediaServiceProxy.add(new EditMediaCallback());
+		}
 	}
 
 	/********************************************
@@ -119,7 +127,7 @@ public class MediaController extends EditController<MediaDTO>
 			ArtistDTO artist = artistList.get(i);
 			artistListBox.addItem(artist.getName(), artist.getId().toString());
 
-			if (mediaDTO != null && mediaDTO.getArtist().getId() == artist.getId())
+			if (mediaDTO != null && mediaDTO.getArtist() != null && mediaDTO.getArtist().getId() == artist.getId())
 			{
 				artistListBox.setSelectedIndex(i + 1);
 			}

@@ -66,7 +66,31 @@ public class EditArtistRestService
 	 */
 	@GET
 	@Path("{id}")
-	public EditArtistDTO get(@PathParam("id") Integer id) throws RestException
+	public EditArtistDTO update(@PathParam("id") Integer id) throws RestException
+	{
+		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
+		orderings.add(new OrderBy("name"));
+
+		List<Country> countries = countryDAOImpl.search(null, orderings);
+		List<Genre> genres = genreDAOImpl.search(null, orderings);
+
+		Artist artist = artistDAOImpl.find(id);
+		ArtistDTO artistDTO = artist.getDTORepresentation();
+
+		EditArtistDTO editArtistDTO = new EditArtistDTO();
+		editArtistDTO.setArtist(artistDTO);
+		editArtistDTO.setCountries(EntityUtils.convert(countries));
+		editArtistDTO.setGenres(EntityUtils.convert(genres));
+		return editArtistDTO;
+	}
+	
+	/**
+	 * Get data for artist edition.
+	 * @return DTO object
+	 * @throws RestException exception
+	 */
+	@GET
+	public EditArtistDTO add() throws RestException
 	{
 		List<OrderBy> orderings = new ArrayList<OrderBy>(1);
 		orderings.add(new OrderBy("name"));
@@ -75,14 +99,8 @@ public class EditArtistRestService
 		List<Genre> genres = genreDAOImpl.search(null, orderings);
 		ArtistDTO artistDTO = null;
 
-		if (id != null)
-		{
-			Artist artist = artistDAOImpl.find(id);
-			artistDTO = artist.getDTORepresentation();
-		}
-
 		EditArtistDTO editArtistDTO = new EditArtistDTO();
-		editArtistDTO.setArtist(artistDTO);
+		editArtistDTO.setArtist(new ArtistDTO());
 		editArtistDTO.setCountries(EntityUtils.convert(countries));
 		editArtistDTO.setGenres(EntityUtils.convert(genres));
 		return editArtistDTO;
