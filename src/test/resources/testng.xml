@@ -7,13 +7,13 @@
 		Files (x86)\Google\Chrome\Application\chrome.exe"/> -->
 
 	<!-- Execute test in firefox -->
-	<parameter name="parameters" value="browser=FIREFOX;pathFirefox=/opt/firefox/firefox" />
+	<parameter name="parameters" value="browser=FIREFOX;pathFirefox=/home/alexandre/downloads/firefox/firefox/firefox" />
 
 	<!-- Execute test in IE -->
 	<!-- <parameter name="parameters" value="browser=IE;ieDriverBin=.\drivers\IE.exe"/> -->
 
 	<test name="TF - Media Manager">
-		<parameter name="url" value="http://halley:8082/mediamanager/mediamanager/index.html" />			
+		<parameter name="url" value="http://localhost:8082/mediamanager/mediamanager/index.html" />			
 		<groups>
 			<run>
 				<!-- Execute all tests -->
