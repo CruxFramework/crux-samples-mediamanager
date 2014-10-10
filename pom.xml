@@ -215,7 +215,7 @@
 							<goal>redeploy-only</goal>
 						</goals>
 						<configuration>
-							<url>http://localhost:8080/manager/text</url>
+							<url>http://halley:8082/manager/text</url>
 							<username>admin</username>
 							<password>admin</password>
 							<update>true</update>
