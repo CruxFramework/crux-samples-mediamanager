@@ -22,6 +22,9 @@ import org.cruxframework.mediamanager.test.procedure.PTAddArtist;
 import org.cruxframework.mediamanager.test.procedure.PTAddMedia;
 import org.cruxframework.mediamanager.test.procedure.SetUp;
 import org.cruxframework.mediamanager.test.util.EnumMenu;
+import org.cruxframework.mediamanager.test.util.PopulateDBTest;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -35,8 +38,11 @@ import org.testng.annotations.Test;
 @Test(priority = 1)
 public class CTConfiguration
 {
+	private PopulateDBTest pdtest;
+	
+	
 	/**
-	 * This method instantiates the browser with the url of the system, the url is passed within testng.xml file.
+	 * Instantiates the browser with the url of the system, the url is passed within testng.xml file.
 	 * 
 	 * @param url URL of the application
 	 * @throws Exception unexpected exception
@@ -46,8 +52,28 @@ public class CTConfiguration
 	public void setUp(String url) throws Exception
 	{
 		SetUp.setUP(url);
-		registeringMassData();
+		
 	}
+
+	/** 
+	 * Populate the data base with data for exectution test.
+	 */
+	@BeforeSuite(alwaysRun = true)
+	public void populateDB()
+	{
+		pdtest =  new PopulateDBTest();
+		pdtest.populateDbTest();
+	
+	}
+	
+//	/**
+//	 * Remove all artist and medias after of the execution of all tests. 
+//	 */
+//	@AfterSuite(alwaysRun = true)
+//	public void removeArtistAndMediasDBAfterTests()
+//	{		
+//		pdtest.removeArtist();
+//	}
 
 	/**
 	 * This method acesss the system and insert some datas necessary for some tests.
@@ -61,6 +87,7 @@ public class CTConfiguration
 		medias();
 		Navegation.signOut();
 		System.out.println(">>>>>> Sucess at  add data. Executing tests ...");
+				
 	}
 
 	/**
