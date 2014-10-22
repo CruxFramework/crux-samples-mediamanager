@@ -65,7 +65,7 @@ public class ScreenSearchMedia
 		    "/html/body/div[4]/div/div/div[2]/div/button");
 
 		popUpDelete = new PopUpDelete("/html/body/div[5]/div", "/html/body/div[5]/div/div/div[2]/div/div",
-		    "/html/body/div[5]/div/div/div[2]/div/nav/button ", "/html/body/div[5]/div/div/div[2]/div/nav/button[2]");
+		    "/html/body/div[5]/div/div/div[2]/div/nav/button[2]", " /html/body/div[5]/div/div/div[2]/div/nav/button");
 
 		popUpSucessDelete = new PopUp("/html/body/div[4]/div", "/html/body/div[4]/div/div/div[2]/div/div",
 		    "/html/body/div[4]/div/div/div[2]/div/button");

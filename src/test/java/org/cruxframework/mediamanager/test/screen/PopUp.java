@@ -98,7 +98,7 @@ public class PopUp
 	}
 
 	/**
-	 * Confirm pop up, ie, click in button ok.
+	 * Confirm pop up, i.e, click in button ok.
 	 */
 	public void confirmPopUp()
 	{

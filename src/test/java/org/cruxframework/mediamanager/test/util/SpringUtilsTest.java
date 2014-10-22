@@ -19,7 +19,6 @@ import org.cruxframework.mediamanager.server.service.PersistenceJPAConfigXml;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 /**
  * Class description: Manages spring configurations.

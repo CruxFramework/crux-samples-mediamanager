@@ -30,9 +30,6 @@ import org.cruxframework.mediamanager.server.entity.Country;
 import org.cruxframework.mediamanager.server.entity.Genre;
 import org.cruxframework.mediamanager.server.entity.Media;
 import org.cruxframework.mediamanager.server.entity.User;
-import org.cruxframework.mediamanager.server.entity.dao.impl.ArtistDAOImpl;
-import org.cruxframework.mediamanager.server.utils.Filter;
-import org.cruxframework.mediamanager.server.utils.Operator;
 import org.cruxframework.mediamanager.shared.enums.MediaType;
 
 /**
@@ -125,7 +122,7 @@ public class PopulateDBTest
 		medias.add(new Media("MediaForDelete2", MediaType.CD, artist.get(0), false));
 		medias.add(new Media("MediaForBorrowed", MediaType.DVD, artist.get(0), false));
 		medias.add(new Media("MediaForSearch", MediaType.CD, artist.get(0), false));
-		medias.add(new Media("MediaForSearch2", MediaType.DVD, artist.get(0), false));
+		medias.add(new Media("MediaForSearch2", MediaType.DVD, artist.get(1), false));
 		medias.add(new Media("MediaForEdit", MediaType.DVD, artist.get(0), false));
 		medias.add(new Media("MediaForEdit2", MediaType.DVD, artist.get(0), false));
 		medias.add(new Media("MediaForEdit3", MediaType.CD, artist.get(0), false));

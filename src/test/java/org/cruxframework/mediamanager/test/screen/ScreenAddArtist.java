@@ -22,7 +22,7 @@ import br.ufmg.dcc.saotome.beholder.ui.form.Select;
 import br.ufmg.dcc.saotome.beholder.ui.form.TextField;
 
 /**
- * Class description: This class represent the screen Add Artist
+ * Class description: This class represent the screen Add Artist.
  * 
  * @author guilherme.alecrim
  */

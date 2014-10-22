@@ -87,7 +87,7 @@ public class PTSearchMedia
 		String sucessOnDelete = null;
 		PTSearchMedia.searchMedia(queryMedia);
 		getScreenSearchMedia().getBtnDelete().click();
-		getScreenSearchMedia().getPopUpDelete().confirmPopUp();
+		getScreenSearchMedia().getPopUpDelete().confirmPopUp();		
 		sucessOnDelete = getScreenSearchMedia().getPopUpSucessDelete().getMenssagePopUp();
 		getScreenSearchMedia().getPopUpSucessDelete().confirmPopUp();
 		return sucessOnDelete;
