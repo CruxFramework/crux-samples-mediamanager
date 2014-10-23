@@ -14,10 +14,10 @@
 
 	<test name="TF - Media Manager">
 	  	<!-- url halley -->
-		<!-- <parameter name="url" value="http://localhost:8082/mediamanager/mediamanager/index.html" />	 -->	
+		<parameter name="url" value="http://localhost:8082/mediamanager/mediamanager/index.html" />		
 		
 		<!-- url local -->
-		<parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" />	
+		<!-- <parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" />	 -->
 		
 		
 		
