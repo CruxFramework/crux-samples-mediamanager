@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVSearchMedia}
  * @author guilherme.alecrim
  */
-@Test(groups = { "mediaManager", "searchMedia" }, priority = 6)
+@Test(groups = { "mediaManager", "searchMedia" }, priority = 7)
 public class CTSearchMedia
 {
 	/**
@@ -41,7 +41,7 @@ public class CTSearchMedia
 	 * @param media media expected in the search
 	 * @param query attributes of the search
 	 */
-	@Test(enabled = false, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV001_SearchMediaWhitExist", dataProviderClass = PVSearchMedia.class)
 	public void p001SearchMediaWhitExist(Media media, QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -55,7 +55,7 @@ public class CTSearchMedia
 	 * 
 	 * @param query attributes of the search
 	 */
-	@Test(enabled = false, dataProvider = "PV002_SearchMediaWhitNotExist", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV002_SearchMediaWhitNotExist", dataProviderClass = PVSearchMedia.class)
 	public void p002SearchMediaWhitNotExist(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -69,7 +69,7 @@ public class CTSearchMedia
 	 * @param query attributes of the search
 	 * @param newValues new values for media searched
 	 */
-	@Test(enabled = false, dataProvider = "PV003_EditMedia", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV003_EditMedia", dataProviderClass = PVSearchMedia.class)
 	public void p003EditMedia(QueryMedia query, Media newValues)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -82,7 +82,7 @@ public class CTSearchMedia
 	 * 
 	 * @param query attributes of the search
 	 */
-	@Test(enabled = false, dataProvider = "PV004_DeleteMedia", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV004_DeleteMedia", dataProviderClass = PVSearchMedia.class)
 	public void p004DeleteMedia(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -96,7 +96,7 @@ public class CTSearchMedia
 	 * @param media media for edit
 	 * @param newValues new values for media
 	 */
-	@Test(enabled = false, dataProvider = "PV005_EditAndSearchMedia", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV005_EditAndSearchMedia", dataProviderClass = PVSearchMedia.class)
 	public void p005EditAndSearchMedia(Media media, Media newValues)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -109,7 +109,7 @@ public class CTSearchMedia
 	 * 
 	 * @param query media for delete
 	 */
-	@Test(enabled = false, dataProvider = "PV006_DeleteAndSearchMedia", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV006_DeleteAndSearchMedia", dataProviderClass = PVSearchMedia.class)
 	public void p006DeleteAndSearchMedia(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -124,7 +124,7 @@ public class CTSearchMedia
 	 * @param name client name
 	 * @param date date of the borrow
 	 */
-	@Test(enabled = false, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV007_LendBorrwed", dataProviderClass = PVSearchMedia.class)
 	public void p007LendBorrwed(QueryMedia query, String name, String date)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -138,7 +138,7 @@ public class CTSearchMedia
 	 * 
 	 * @param query attributes of the search
 	 */
-	@Test(enabled = false, dataProvider = "PV008_LendOnBorred", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV008_LendOnBorred", dataProviderClass = PVSearchMedia.class)
 	public void p008LendOnBorred(QueryMedia query)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
@@ -154,7 +154,7 @@ public class CTSearchMedia
 	 * @param name client name
 	 * @param date date of the borrow
 	 */
-	@Test(enabled = false, dataProvider = "PV009_InvalidDate", dataProviderClass = PVSearchMedia.class)
+	@Test(enabled = true, dataProvider = "PV009_InvalidDate", dataProviderClass = PVSearchMedia.class)
 	public void p009InvalidDate(QueryMedia query, String name, String date)
 	{
 		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);

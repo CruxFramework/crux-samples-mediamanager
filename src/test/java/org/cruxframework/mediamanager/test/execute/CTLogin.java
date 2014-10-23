@@ -38,7 +38,7 @@ public class CTLogin
 	 * @param user user invalid
 	 * @param password password of the user
 	 */
-	@Test(enabled = true, dataProvider = "PV001_LoginFail", dataProviderClass = PVLogin.class)
+	@Test(enabled = false, dataProvider = "PV001_LoginFail", dataProviderClass = PVLogin.class)
 	public void p001LoginFail(String user, String password)
 	{
 		SetUp.getDriver().navigate().refresh();

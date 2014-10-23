@@ -13,74 +13,103 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package org.cruxframework.mediamanager.test.execute;
 
 import org.cruxframework.mediamanager.test.dataprovider.PVStatistics;
-import org.cruxframework.mediamanager.test.model.Media;
 import org.cruxframework.mediamanager.test.procedure.Navegation;
 import org.cruxframework.mediamanager.test.procedure.PTStatistics;
 import org.cruxframework.mediamanager.test.util.EnumMenu;
-import org.cruxframework.mediamanager.test.util.EnumStatistics;
-import org.cruxframework.mediamanager.test.util.EnumTypeStatistic;
 import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 /**
- * Class description: This class performs tests in Statistics screen , this tests insert or delete data in database and check if statistics
- * was updates. The providers of inputs are methods of class PVStatistics
+ * Class description: This class performs tests in Statistics screen.
+ * The providers of inputs are methods of class PVStatistics.
  * 
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVStatistics}
  * @author guilherme.alecrim
  */
-@Test(groups = { "mediaManager", "statistics" }, priority = 7)
-public class CTStatistics
+@Test(groups = { "mediaManager", "statistics" }, priority = 3)
+public class CTStatistics 
 {
+	
 	/**
-	 * Access statistics view.
+	 * Before tests access menu statistics. 
 	 */
 	@BeforeGroups(groups = "statistics", alwaysRun = true)
 	public void restart()
 	{
 		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
-
+	
+	
 	/**
-	 * Given a insertion in the database, the statistics are being updated.
-	 * 
-	 * @param media Media with insert in data base
-	 * @param statistic Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
-	 * @param typeStatistic Type of statistic, e.g is Total, Borrowed of More than one month
+	 * This test check if number of CDs total in screen statistics is equal total Cds in data base.
+	 * @param expected value expect of CDs total. 
 	 */
 	@Test(enabled = true, dataProvider = "PV001", dataProviderClass = PVStatistics.class)
-	public void p001IncrementStatistic(Media media, EnumStatistics statistic, EnumTypeStatistic typeStatistic)
+	public  void p001CdsTotal(String expected) 
 	{
-		int totalBefore = PTStatistics.getValueStatistics(statistic);
-		PTStatistics.incrementStatistic(media, typeStatistic);
-		int totalAfter = PTStatistics.getValueStatistics(statistic);
-		Assert.assertEquals(totalAfter, totalBefore + 1);
+		String actual = PTStatistics.getCdsTotal();		
+		Assert.assertEquals(actual,  expected);
+	}
+	
+	/**
+	 * This test check if number of  CDs borrowed in screen statistics is equal total Cds borrowed in data base.
+	 * @param expected value expect of CDs borrowed.
+	 */
+	@Test(enabled = true, dataProvider = "PV002", dataProviderClass = PVStatistics.class)
+	public void p002CdsBorrowed(String expected)
+	{
+		String actual = PTStatistics.getCdsBorrowed();
+		Assert.assertEquals(actual,  expected);
+	}
+	
+	/**
+	 * This test check if number of  CDs more than on  month in screen statistics is equal total Cds more than on  month in data base. 	 
+	 * @param expected value expect of CDs more than on  month. 
+	 */
+	@Test(enabled = true, dataProvider = "PV003", dataProviderClass = PVStatistics.class)
+	public void p003CdsMoreThanonMonth(String expected)
+	{
+		String actual = PTStatistics.getCdsMoreThanonMonth();
+		Assert.assertEquals(actual,  expected);
+	}
+	
+	/**
+	 * This test check if DVDs total in screen statistics is equal total DVDs  in data base. 	 
+	 * @param expected value expect of DVDs total. 
+	 */
+	@Test(enabled = true, dataProvider = "PV004", dataProviderClass = PVStatistics.class)
+	public  void p004DvdsTotal(String expected) 
+	{
+		String actual = PTStatistics.getDvdsTotal();
+		Assert.assertEquals(actual, expected);
+	}
+	
+	
+	/**
+	 * This test check if number of DVDs borrowed in screen statistics is equal total  DVDs borrowed in data base.
+	 * @param expected value expect of  DVDs borrowed. 
+	 */
+	@Test(enabled = true, dataProvider = "PV005", dataProviderClass = PVStatistics.class)
+	public void p005DvdsBorrowed(String expected)
+	{
+		
+		String actual = PTStatistics.getDvdsBorrowed();
+		Assert.assertEquals(actual, expected);
 	}
 
 	/**
-	 * Given a decrease in the database, the statistics are being updated.
-	 * 
-	 * @param media Media with insert in data base
-	 * @param statistic Statistic witch will be check,e.g CDS_TOTAL, CDS_BORROWED, etc
-	 * @param typeStatistic Type of statistic, e.g is Total, Borrowed of More than one month
+	 * This test check if number of DVDs More Than on Month in screen statistics is equal total  DVDs More Than on Month in data base.
+	 * @param expected value expect of DVDs More Than on Month. 
 	 */
-	@Test(enabled = true, dataProvider = "PV002", dataProviderClass = PVStatistics.class)
-	public void p002DecrementStatistic(Media media, EnumStatistics statistic, EnumTypeStatistic typeStatistic)
+	@Test(enabled = true, dataProvider = "PV006", dataProviderClass = PVStatistics.class)
+	public void p006DvdsMoreThanonMonth(String expected)
 	{
-		int totalBefore = PTStatistics.getValueStatistics(statistic);
-		PTStatistics.decrementStatistic(media, typeStatistic);
-		int totalAfter = PTStatistics.getValueStatistics(statistic);
-		if (totalBefore > 0)
-		{
-			Assert.assertEquals(totalAfter, totalBefore - 1);
-		}
-		else
-		{
-			Assert.assertEquals(totalAfter, 0);
-		}
+		String actual = PTStatistics.getDvdsMoreThanonMonth();
+		Assert.assertEquals(actual, expected);
 	}
 }

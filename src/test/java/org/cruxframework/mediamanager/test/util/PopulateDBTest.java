@@ -127,13 +127,22 @@ public class PopulateDBTest
 		medias.add(new Media("MediaForEdit2", MediaType.DVD, artist.get(0), false));
 		medias.add(new Media("MediaForEdit3", MediaType.CD, artist.get(0), false));
 		
+		medias.add(new Media("CD1Borrowed", MediaType.CD, artist.get(1), true));
+		medias.add(new Media("CD2Borrowed", MediaType.CD, artist.get(1), true));
+		medias.add(new Media("CD3NotBorrowed", MediaType.CD, artist.get(1), false));
+		
+		medias.add(new Media("DVD1Borrowed", MediaType.DVD, artist.get(1), true));
+		medias.add(new Media("DVD2Borrowed", MediaType.DVD, artist.get(1), true));
+		medias.add(new Media("DVD3Borrowed", MediaType.DVD, artist.get(1), false));
+		
+		
+		
 		for (Media m : medias)
 		{
 			entityManager.persist(m);
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public void removeArtist()
 	{
 		

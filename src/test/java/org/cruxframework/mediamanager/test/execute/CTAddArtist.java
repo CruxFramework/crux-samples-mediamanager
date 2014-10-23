@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
  * @see {org.cruxframework.mediamanager.test.dataprovider.PVAddArtist }
  * @author guilherme.alecrim
  */
-@Test(groups = { "mediaManager", "addArtist" }, priority = 3)
+@Test(groups = { "mediaManager", "addArtist" }, priority = 4)
 public class CTAddArtist
 {
 
@@ -55,7 +55,7 @@ public class CTAddArtist
 	 * @param artist Artist data to be added
 	 * @param newValues ​values ​​to be used to change the data of the artist wich was added
 	 */
-	@Test(enabled = false, dataProvider = "PV002_AddAndChangeArtists", dataProviderClass = PVAddArtist.class)
+	@Test(enabled = true, dataProvider = "PV002_AddAndChangeArtists", dataProviderClass = PVAddArtist.class)
 	public void p002AddAndSaveChanges(Artist artist, Artist newValues)
 	{
 		Navegation.acessMenu(EnumMenu.ADD_ARTIST);

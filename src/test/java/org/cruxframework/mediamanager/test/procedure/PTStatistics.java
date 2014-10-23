@@ -15,97 +15,89 @@
  */
 package org.cruxframework.mediamanager.test.procedure;
 
-import org.cruxframework.mediamanager.test.model.Media;
-import org.cruxframework.mediamanager.test.model.QueryMedia;
 import org.cruxframework.mediamanager.test.screen.ScreenStatistics;
-import org.cruxframework.mediamanager.test.util.EnumMenu;
-import org.cruxframework.mediamanager.test.util.EnumStatistics;
-import org.cruxframework.mediamanager.test.util.EnumTypeStatistic;
 
 /**
- * Class description: This class implements the procedures for 'Statistics' screen.
- * 
+ * This class implements all procedures for tests of the screen statistics. 
  * @author guilherme.alecrim
+ *
  */
-public class PTStatistics
+
+public class PTStatistics 
 {
+	
 	private static ScreenStatistics screenStatistics;
 
-	/**
-	 * Increment the value of the one statistic.
-	 * 
-	 * @param media media for add in the data base
-	 * @param statistic statistic for increment e.g total, borrowed or more than one month
-	 */
-	public static void incrementStatistic(Media media, EnumTypeStatistic statistic)
-	{
-		switch (statistic)
-		{
-			case TOTAL:
-				incrementTotal(media);
-				break;
-			case BORROWED:
-				incrementTotalBorrowed(media);
-				break;
-			case MORE_THAN_ONE_MONTH:
-				incrementMoreThanOneMonth(media);
-				break;
-			default:
-				break;
-		}
-	}
 
 	/**
-	 * Decrement the value of the one statistic.
-	 * 
-	 * @param media media for remove in the data base
-	 * @param statistic statistic for decrement e.g total, borrowed or more than one month
+	 * Return the total Cds in the screen.
+	 * @return Cds total.
 	 */
-	public static void decrementStatistic(Media media, EnumTypeStatistic statistic)
+
+	public  static String getCdsTotal() 
 	{
-		switch (statistic)
-		{
-			case TOTAL:
-				decrementTotal(media);
-				break;
-			case BORROWED:
-				decrementTotalBorrowed(media);
-				break;
-			case MORE_THAN_ONE_MONTH:
-				decrementMoreThanOneMonth(media);
-				break;
-			default:
-				break;
-		}
+		return getScreenStatistics().getDivCdsTotal().getText();
 	}
+	
+	
 
 	/**
-	 * Get value of statistic in the screen Statistics.
-	 * 
-	 * @param statistic statistic desired
-	 * @return value correspondent of statistic desired
+	 * Return the total Cds borrowed in the screen.
+	 * @return Cds borrowed.
 	 */
-	public static int getValueStatistics(EnumStatistics statistic)
+	public static String getCdsBorrowed()
 	{
-		switch (statistic)
-		{
-			case CDS_TOTAL:
-				return Integer.parseInt(getScreenStatistics().getDivCdsTotal().getText());
-			case CDS_BORROWED:
-				return Integer.parseInt(getScreenStatistics().getDivCdsBorrowed().getText());
-			case CD_MORE_THAN_ONE_MONTH:
-				return Integer.parseInt(getScreenStatistics().getDivMoreThanOneMonthCD().getText());
-			case DVDS_TOTAL:
-				return Integer.parseInt(getScreenStatistics().getDivDVDsTotal().getText());
-			case DVDS_BORROWED:
-				return Integer.parseInt(getScreenStatistics().getDivDVDsBorrowed().getText());
-			case DVDS_MORE_THAN_ONE_MONTH:
-				return Integer.parseInt(getScreenStatistics().getDivMoreThanOneMonthDVD().getText());
-			default:
-				return -1;
-		}
+		return getScreenStatistics().getDivCdsBorrowed().getText();
 	}
-
+	
+	
+	/**
+	 * Return the total Cds more than on month in the screen.
+	 * @return Cds more than on month .
+	 */
+	public static String getCdsMoreThanonMonth()
+	{
+//		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
+//		QueryMedia qm = new QueryMedia("CD","CD3NotBorrowed","");	
+//		PTSearchMedia.lendMedia(qm, "Guilherme Natan", "2014 Jun 5");
+//		Navegation.acessMenu(EnumMenu.STATISTICS);
+		return getScreenStatistics().getDivMoreThanOneMonthCD().getText();
+	}
+	
+	/**
+	 * Return the total Dvds total in the screen.
+	 * @return  Dvds total.
+	 */
+	public  static String getDvdsTotal() 
+	{
+		
+		return  getScreenStatistics().getDivDVDsTotal().getText();
+	}
+	
+	
+	/**
+	 * Return the total Dvds borrowed in the screen.
+	 * @return   Dvds borrowed.
+	 */
+	public static String getDvdsBorrowed()
+	{
+		return  getScreenStatistics().getDivDVDsBorrowed().getText();
+	}
+	
+	
+	/**
+	 * Return the total Dvds more than on month in the screen.
+	 * @return   Dvds more than on month.
+	 */
+	public static String getDvdsMoreThanonMonth()
+	{
+//		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
+//		QueryMedia qm = new QueryMedia("DVD","DVD3NotBorrowed","");	
+//		PTSearchMedia.lendMedia(qm, "Guilherme Natan", "2014 Jun 5");
+//		Navegation.acessMenu(EnumMenu.STATISTICS);
+		return  getScreenStatistics().getDivMoreThanOneMonthDVD().getText();
+	}
+	
 	/**
 	 * Get screen name.
 	 * @return name
@@ -113,79 +105,6 @@ public class PTStatistics
 	public static String getNameScreenStatistics()
 	{
 		return getScreenStatistics().getNameScreen();
-	}
-
-	/**
-	 * Increment value of statistic Total
-	 * 
-	 * @param media: media for add in the data base
-	 */
-	private static void incrementTotal(Media media)
-	{
-		Navegation.acessMenu(EnumMenu.ADD_MEDIA);
-		PTAddMedia.addMedia(media);
-		Navegation.acessMenu(EnumMenu.STATISTICS);
-	}
-
-	/**
-	 * Increment value of statistic Total Borrowed
-	 * 
-	 * @param media: media for borrowed
-	 */
-	private static void incrementTotalBorrowed(Media media)
-	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 Jun 20");
-		Navegation.acessMenu(EnumMenu.STATISTICS);
-	}
-
-	/**
-	 * Increment value of statistic More Than One Month
-	 * 
-	 * @param media: media for borrowed more than one month
-	 */
-	private static void incrementMoreThanOneMonth(Media media)
-	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 May 3");
-		Navegation.acessMenu(EnumMenu.STATISTICS);
-	}
-
-	/**
-	 * Decrement value of statistic Total
-	 * 
-	 * @param media: media for remove in the data base
-	 */
-	private static void decrementTotal(Media media)
-	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		PTSearchMedia.deleteMedia(new QueryMedia(media.getType(), media.getName(), ""));
-		Navegation.acessMenu(EnumMenu.STATISTICS);
-	}
-
-	/**
-	 * Decrement value of statistic Total Borrowed
-	 * 
-	 * @param media: media for remove in the data base
-	 */
-	private static void decrementTotalBorrowed(Media media)
-	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		PTSearchMedia.lendMediaUnborrowed(new QueryMedia(media.getType(), media.getName(), "André Luiz"));
-		PTSearchMedia.getScreenSearchMedia().getLendMedia().getBtnSave().click();
-		Navegation.acessMenu(EnumMenu.STATISTICS);
-	}
-
-	/**
-	 * Decrement value of statistic More Than On eMonth
-	 * 
-	 * @param media: media for remove in the data base
-	 */
-	private static void decrementMoreThanOneMonth(Media media)
-	{
-		Navegation.acessMenu(EnumMenu.SEARCH_MEDIA);
-		PTSearchMedia.lendMedia(new QueryMedia(media.getType(), media.getName(), ""), "André Luiz", "2014 Jul 3");
-		Navegation.acessMenu(EnumMenu.STATISTICS);
 	}
 	
 	private static ScreenStatistics getScreenStatistics()
@@ -196,4 +115,5 @@ public class PTStatistics
 		}
 		return screenStatistics;
 	}
+	
 }

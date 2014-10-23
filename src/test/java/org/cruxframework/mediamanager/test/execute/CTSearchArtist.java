@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVSearchArtist}
  * @author guilherme.alecrim
  */
-@Test(groups = { "mediaManager", "searchArtist" }, priority = 5)
+@Test(groups = { "mediaManager", "searchArtist" }, priority = 6)
 public class CTSearchArtist
 {
 	/**

@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
  * @see { org.cruxframework.mediamanager.test.dataprovider.PVAddMedia }
  * @author guilherme.alecrim
  */
-@Test(groups = { "mediaManager", "addMedia" }, priority = 4)
+@Test(groups = { "mediaManager", "addMedia" }, priority = 5)
 public class CTAddMedia
 {
 	/**

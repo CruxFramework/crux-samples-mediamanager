@@ -15,17 +15,6 @@
  */
 package org.cruxframework.mediamanager.test.dataprovider;
 
-import static org.cruxframework.mediamanager.test.util.EnumStatistics.CDS_BORROWED;
-import static org.cruxframework.mediamanager.test.util.EnumStatistics.CDS_TOTAL;
-import static org.cruxframework.mediamanager.test.util.EnumStatistics.CD_MORE_THAN_ONE_MONTH;
-import static org.cruxframework.mediamanager.test.util.EnumStatistics.DVDS_BORROWED;
-import static org.cruxframework.mediamanager.test.util.EnumStatistics.DVDS_MORE_THAN_ONE_MONTH;
-import static org.cruxframework.mediamanager.test.util.EnumStatistics.DVDS_TOTAL;
-import static org.cruxframework.mediamanager.test.util.EnumTypeStatistic.BORROWED;
-import static org.cruxframework.mediamanager.test.util.EnumTypeStatistic.MORE_THAN_ONE_MONTH;
-import static org.cruxframework.mediamanager.test.util.EnumTypeStatistic.TOTAL;
-
-import org.cruxframework.mediamanager.test.model.Media;
 import org.testng.annotations.DataProvider;
 
 /**
@@ -43,40 +32,50 @@ public class PVStatistics
 	@DataProvider(name = "PV001")
 	public static Object[][] PV001()
 	{
-		return new Object[][] { { new Media("CD", "Statistics1", "Artista01P006"), CDS_TOTAL, TOTAL },
-		    { new Media("CD", "Statistics2", "Artista01P006"), CDS_TOTAL, TOTAL },
-		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_TOTAL, TOTAL },
-		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_TOTAL, TOTAL },
-		    { new Media("CD", "Statistics5", "Artista01P006"), CDS_TOTAL, TOTAL },
-		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_TOTAL, TOTAL },
-
-		    { new Media("CD", "Statistics1", "Artista01P006"), CDS_BORROWED, BORROWED },
-		    { new Media("CD", "Statistics2", "Artista01P006"), CDS_BORROWED, BORROWED },
-		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_BORROWED, BORROWED },
-		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_BORROWED, BORROWED },
-		    { new Media("CD", "Statistics5", "Artista01P006"), CDS_BORROWED, BORROWED },
-		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_BORROWED, BORROWED },
-
-		    { new Media("CD", "Statistics1", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-		    { new Media("CD", "Statistics2", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-		    { new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH } };
+		return new Object[][] { 				
+				{"7"}		    
+		};
 	}
-
+	
 	@DataProvider(name = "PV002")
 	public static Object[][] PV002()
 	{
-		return new Object[][] {
+		return new Object[][] { 				
+				{"2"}		    
+		};
+	}
+	
+	@DataProvider(name = "PV003")
+	public static Object[][] PV003()
+	{
+		return new Object[][] { 				
+				{"1"}		    
+		};
+	}
 
-		{ new Media("CD", "Statistics1", "Artista01P006"), CDS_TOTAL, TOTAL },
-		    { new Media("DVD", "Statistics3", "Artista01P006"), DVDS_TOTAL, TOTAL },
-
-		    { new Media("CD", "Statistics2", "Artista01P006"), CDS_BORROWED, BORROWED },
-		    { new Media("DVD", "Statistics4", "Artista01P006"), DVDS_BORROWED, BORROWED },
-
-		    { new Media("CD", "Statistics5", "Artista01P006"), CD_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH },
-		    { new Media("DVD", "Statistics6", "Artista01P006"), DVDS_MORE_THAN_ONE_MONTH, MORE_THAN_ONE_MONTH }, };
+	@DataProvider(name = "PV004")
+	public static Object[][] PV004()
+	{
+		return new Object[][] { 				
+				{"7"}		    
+		};
+	}
+	
+	
+	@DataProvider(name = "PV005")
+	public static Object[][] PV005()
+	{
+		return new Object[][] { 				
+				{"2"}		    
+		};
+	}
+	
+	
+	@DataProvider(name = "PV006")
+	public static Object[][] PV006()
+	{
+		return new Object[][] { 				
+				{"1"}		    
+		};
 	}
 }
