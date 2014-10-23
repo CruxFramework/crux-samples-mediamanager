@@ -33,13 +33,13 @@
 		</packages>
 
 		<classes>
-			<class name="org.cruxframework.mediamanager.test.execute.CTConfiguration" />
+			<class name="org.cruxframework.mediamanager.test.execute.CTConfiguration"  />
 			<class name="org.cruxframework.mediamanager.test.execute.CTLogin" />
-	   	   	<class name="org.cruxframework.mediamanager.test.execute.CTAddArtist" />
- 		 	<class name="org.cruxframework.mediamanager.test.execute.CTAddMedia" />  
+			<class name="org.cruxframework.mediamanager.test.execute.CTStatistics" />
+		   	<class name="org.cruxframework.mediamanager.test.execute.CTAddArtist" />
+ 			<class name="org.cruxframework.mediamanager.test.execute.CTAddMedia" />  
 			<class name="org.cruxframework.mediamanager.test.execute.CTSearchArtist" />  
 			<class name="org.cruxframework.mediamanager.test.execute.CTSearchMedia" /> 
-	    <!-- <class name="org.cruxframework.mediamanager.test.execute.CTStatistics" /> -->
 		</classes>
 	</test>
 </suite>
