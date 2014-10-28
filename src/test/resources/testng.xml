@@ -7,7 +7,7 @@
 		Files (x86)\Google\Chrome\Application\chrome.exe"/> -->
 
 	<!-- Execute test in firefox -->
-	<parameter name="parameters" value="browser=FIREFOX;firefoxDriveBin=/opt/firefox/firefox " />
+	<parameter name="parameters" value="browser=FIREFOX;firefoxDriveBin=/opt/firefox/firefox" />
 	<!-- firefoxDriveBin=/opt/firefox/firefox -->
 
 	<!-- Execute test in IE -->
