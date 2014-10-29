@@ -5,13 +5,18 @@
 	<!-- Execute test in Chrome -->
 	<!-- <parameter name="parameters" value="browser=CHROME;chromeDriverBin=.\drivers\chromedriver.exe;chromeBin=C:\Program 
 		Files (x86)\Google\Chrome\Application\chrome.exe"/> -->
-
-	<!-- Execute test in firefox -->
-	<parameter name="parameters" value="browser=FIREFOX;firefoxDriveBin=/opt/firefox/firefox" />
-	<!-- firefoxDriveBin=/opt/firefox/firefox -->
+		
+	<!-- Execute test in phanton -->
+	<!-- <parameter name="parameters" value="browser=PHANTON;pathPhantonDriver=./mediamanager/drivers/phantomjs.exe" /> -->
 
 	<!-- Execute test in IE -->
 	<!-- <parameter name="parameters" value="browser=IE;ieDriverBin=.\drivers\IE.exe"/> -->
+	
+	
+	
+
+	<!-- Execute test in firefox -->
+	<parameter name="parameters" value="browser=FIREFOX;pathFirefox=/opt/firefox28/firefox-bin" />
 
 	<test name="TF - Media Manager">
 	  	<!-- url halley -->
