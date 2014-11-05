@@ -215,7 +215,7 @@
 							<goal>redeploy-only</goal>
 						</goals>
 						<configuration>
-							<url>http://localhost:8082/manager/text</url>
+							<url>http://halley.sysmap.com.br:8082/manager/text</url>
 							<username>admin</username>
 							<password>admin</password>
 							<update>true</update>
