@@ -18,7 +18,8 @@
 
 	<test name="TF - Media Manager">
 	  	<!-- url halley -->
-		<parameter name="url" value="http://halley.sysmap.com.br:8082/mediamanager/mediamanager/index.html" />		
+		<!-- <parameter name="url" value="http://halley.sysmap.com.br:8082/mediamanager/mediamanager/index.html" />	 -->
+		<parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" />	
 		
 
 		<groups>
