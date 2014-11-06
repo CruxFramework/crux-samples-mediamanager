@@ -55,16 +55,16 @@ public class CTConfiguration
 		
 	}
 
-	/** 
-	 * Populate the data base with data for exectution test.
-	 */
-	@BeforeSuite(alwaysRun = true)
-	public void populateDB()
-	{
-		pdtest =  new PopulateDBTest();
-		pdtest.populateDbTest();
-	
-	}
-	
+//	/** 
+//	 * Populate the data base with data for exectution test.
+//	 */
+//	@BeforeSuite(alwaysRun = false)
+//	public void populateDB()
+//	{
+//		pdtest =  new PopulateDBTest();
+//		pdtest.populateDbTest();
+//	
+//	}
+//	
 
 }
