@@ -7,26 +7,20 @@
 		Files (x86)\Google\Chrome\Application\chrome.exe"/> -->
 		
 	<!-- Execute test in phanton -->
-	<!-- <parameter name="parameters" value="browser=PHANTON;pathPhantonDriver=./mediamanager/drivers/phantomjs.exe" /> -->
+<!-- 	<parameter name="parameters" value="browser=PHANTON;pathPhantonDriver=./mediamanager/drivers/phantomjs.exe" /> -->
 
 	<!-- Execute test in IE -->
 	<!-- <parameter name="parameters" value="browser=IE;ieDriverBin=.\drivers\IE.exe"/> -->
 	
-	
-	
 
 	<!-- Execute test in firefox -->
-	<parameter name="parameters" value="browser=FIREFOX;pathFirefox=/opt/firefox28/firefox-bin" />
+	<parameter name="parameters" value="browser=FIREFOX;" />
 
 	<test name="TF - Media Manager">
 	  	<!-- url halley -->
-		<parameter name="url" value="http://localhost:8082/mediamanager/mediamanager/index.html" />		
+		<parameter name="url" value="http://halley.sysmap.com.br:8082/mediamanager/mediamanager/index.html" />		
 		
-		<!-- url local -->
-		<!-- <parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" />	 -->
-		
-		
-		
+
 		<groups>
 			<run>
 				<!-- Execute all tests -->
