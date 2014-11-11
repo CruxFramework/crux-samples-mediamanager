@@ -327,7 +327,7 @@ public class ArtistClientDB extends ServiceClientDB implements ArtistProxy
 				@Override
 				public void onSuccess(Cursor<Integer, Media> result)
 				{
-					if (result != null)
+					if (result.getValue() != null)
 					{
 						WaitBox.hideAllDialogs();
 						MessageBox.show(controller.getMessageForDeleteValidationError(),

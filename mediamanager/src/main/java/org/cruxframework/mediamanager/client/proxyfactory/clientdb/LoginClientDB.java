@@ -87,6 +87,13 @@ public class LoginClientDB extends ServiceClientDB implements LoginProxy
 						controller.LoginSuccessState(false);
 					}
 				}
+				
+				@Override
+				public void onError(String message)
+				{
+				    super.onError(message);
+				    controller.LoginSuccessState(false);
+				}
 			});
 	}
 	

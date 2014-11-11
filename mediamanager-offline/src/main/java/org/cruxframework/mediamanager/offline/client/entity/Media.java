@@ -18,6 +18,7 @@ package org.cruxframework.mediamanager.offline.client.entity;
 
 import java.util.Date;
 
+import org.cruxframework.crux.core.client.db.annotation.DatabaseDef.IndexDef;
 import org.cruxframework.crux.core.client.db.annotation.Store;
 import org.cruxframework.crux.core.client.db.annotation.Store.Indexed;
 import org.cruxframework.mediamanager.core.client.dto.MediaDTO;
@@ -30,7 +31,9 @@ import org.cruxframework.mediamanager.offline.client.reuse.OfflineEntity;
  * 
  * @author Bruno Medeiros (bruno@triggolabs.com)
  */
-@Store(Media.STORE_NAME)
+
+// indexes = {@IndexDef (name = "artist.id", keyPath = {"artist.id"})}
+@Store(value = Media.STORE_NAME)
 public class Media extends OfflineEntity<MediaDTO> 
 {
 	public static final String STORE_NAME = "media";
