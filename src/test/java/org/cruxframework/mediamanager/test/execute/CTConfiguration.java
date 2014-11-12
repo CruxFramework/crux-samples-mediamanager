@@ -15,15 +15,8 @@
  */
 package org.cruxframework.mediamanager.test.execute;
 
-import org.cruxframework.mediamanager.test.model.Artist;
-import org.cruxframework.mediamanager.test.model.Media;
-import org.cruxframework.mediamanager.test.procedure.Navegation;
-import org.cruxframework.mediamanager.test.procedure.PTAddArtist;
-import org.cruxframework.mediamanager.test.procedure.PTAddMedia;
 import org.cruxframework.mediamanager.test.procedure.SetUp;
-import org.cruxframework.mediamanager.test.util.EnumMenu;
 import org.cruxframework.mediamanager.test.util.PopulateDBTest;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -35,10 +28,9 @@ import org.testng.annotations.Test;
  * 
  * @author guilherme.alecrim
  */
-@Test(priority = 1)
+@Test(groups ={"mediaManager"}, priority = 1, enabled = true)
 public class CTConfiguration
 {
-	private PopulateDBTest pdtest;
 	
 	
 	/**
@@ -52,19 +44,19 @@ public class CTConfiguration
 	public void setUp(String url) throws Exception
 	{
 		SetUp.setUP(url);
-		
+		System.out.println("configuration");
 	}
 
-//	/** 
-//	 * Populate the data base with data for exectution test.
-//	 */
-//	@BeforeSuite(alwaysRun = false)
-//	public void populateDB()
-//	{
-//		pdtest =  new PopulateDBTest();
-//		pdtest.populateDbTest();
-//	
-//	}
-//	
+	/** 
+	 * Populate the data base with data for execution test.
+	 */
+	@BeforeSuite(alwaysRun = true)
+	public void populateDB()
+	{
+		PopulateDBTest pdtest =  new PopulateDBTest();
+		pdtest.populateDbTest();
+		System.out.println("data base populated");
+	}
+	
 
 }
