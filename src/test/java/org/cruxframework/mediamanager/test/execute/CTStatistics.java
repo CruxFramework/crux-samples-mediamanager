@@ -71,7 +71,7 @@ public class CTStatistics
 	 * This test check if number of  CDs more than on  month in screen statistics is equal total Cds more than on  month in data base. 	 
 	 * @param expected value expect of CDs more than on  month. 
 	 */
-	@Test(enabled = true, dataProvider = "PV003", dataProviderClass = PVStatistics.class)
+	@Test(enabled = false, dataProvider = "PV003", dataProviderClass = PVStatistics.class)
 	public void p003CdsMoreThanonMonth(String expected)
 	{
 		String actual = PTStatistics.getCdsMoreThanonMonth();
@@ -106,7 +106,7 @@ public class CTStatistics
 	 * This test check if number of DVDs More Than on Month in screen statistics is equal total  DVDs More Than on Month in data base.
 	 * @param expected value expect of DVDs More Than on Month. 
 	 */
-	@Test(enabled = true, dataProvider = "PV006", dataProviderClass = PVStatistics.class)
+	@Test(enabled = false, dataProvider = "PV006", dataProviderClass = PVStatistics.class)
 	public void p006DvdsMoreThanonMonth(String expected)
 	{
 		String actual = PTStatistics.getDvdsMoreThanonMonth();
