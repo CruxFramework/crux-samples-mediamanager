@@ -2,23 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Testes Funcionais Media Manager">
 
-	<!-- Execute test in Chrome -->
-	<!-- <parameter name="parameters" value="browser=CHROME;chromeDriverBin=.\drivers\chromedriver.exe;chromeBin=C:\Program 
-		Files (x86)\Google\Chrome\Application\chrome.exe"/> -->
-		
-	<!-- Execute test in phanton -->
-	<!--<parameter name="parameters" value="browser=PHANTON;pathPhantonDriver=./mediamanager/drivers/phantomjs.exe" /> -->
-
-	<!-- Execute test in IE -->
-	<!-- <parameter name="parameters" value="browser=IE;ieDriverBin=.\drivers\IE.exe"/> -->
-	
-
 	<!-- Execute test in firefox -->
 	<parameter name="parameters" value="browser=FIREFOX;" />
 	
-  	<!-- url halley -->
-	<parameter name="url" value="http://halley.sysmap.com.br:8082/mediamanager/mediamanager/index.html" />	
-	<!-- <parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" />	 -->
+  	<!-- url de acesso -->
+	<!-- <parameter name="url" value="http://halley.sysmap.com.br:8082/mediamanager/mediamanager/index.html" /> -->	
+	 <parameter name="url" value="http://localhost:8080/mediamanager/mediamanager/index.html" /> 
 	
 	
 	<test name="TF - Media Manager">
@@ -37,10 +26,10 @@
 			<class name="org.cruxframework.mediamanager.test.execute.CTConfiguration"  />
 			<class name="org.cruxframework.mediamanager.test.execute.CTLogin" />
 	   		<class name="org.cruxframework.mediamanager.test.execute.CTStatistics" />
-		 <!--<class name="org.cruxframework.mediamanager.test.execute.CTAddArtist" />
+		    <class name="org.cruxframework.mediamanager.test.execute.CTAddArtist" /> 
  			<class name="org.cruxframework.mediamanager.test.execute.CTAddMedia" />  
 			<class name="org.cruxframework.mediamanager.test.execute.CTSearchArtist" />  
-			<class name="org.cruxframework.mediamanager.test.execute.CTSearchMedia" />  -->
+			<class name="org.cruxframework.mediamanager.test.execute.CTSearchMedia" /> 
 		</classes>
 	</test>
 </suite>
