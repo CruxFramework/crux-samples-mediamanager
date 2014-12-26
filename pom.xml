@@ -161,7 +161,7 @@
 		<dependency>
 			<groupId>br.ufmg.dcc.saotome</groupId>
 			<artifactId>beholder-selenium</artifactId>
-			<version>1.3.3</version>
+			<version>1.3.2</version>
 		</dependency>
 
 		<dependency>
@@ -215,7 +215,7 @@
 							<goal>redeploy-only</goal>
 						</goals>
 						<configuration>
-							<url>http://localhost/manager/text</url>
+							<url>http://halley.sysmap.com.br:8082/manager/text</url>
 							<username>admin</username>
 							<password>admin</password>
 							<update>true</update>
